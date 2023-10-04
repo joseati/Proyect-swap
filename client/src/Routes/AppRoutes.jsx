@@ -6,6 +6,8 @@ import { Register } from '../Pages/Auth/Register/Register';
 import { Login } from '../Pages/Auth/Login/Login';
 import { Error } from '../Pages/Error/Error';
 import { NavbarrApp } from '../Components/Navbar/NavbarrApp';
+import { PreguntasFrecuentes } from '../Pages/Dashboard/Dudas/PreguntasFrecuentes';
+import { TerminosYCondiciones } from '../Pages/Dashboard/Dudas/TerminosYCondiciones';
 
 
 export const AppRoutes = () => {
@@ -21,6 +23,8 @@ export const AppRoutes = () => {
           <Route path='/' element= {<Home/>}/>
           <Route path='/register' element = {<Register/>}/>
           <Route path='/login' element = {<Login/>}/>
+          <Route path='/faqs' element = {<PreguntasFrecuentes/>}/>
+          <Route path='/terminos-condiciones' element = {<TerminosYCondiciones/>}/>
           <Route path='*' element= {<Error/>}/>
 
         </Routes>
