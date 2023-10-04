@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter } from "react-router-dom"
 import { SwapProvider } from './context/SwapContext';
 import { AppRoutes } from './Routes/AppRoutes';

@@ -1,3 +1,4 @@
+
 import {createContext, useEffect, useState} from 'react';
 import { getLocalStore } from '../Utils/localStorage';
 import jwt_decode from "jwt-decode"
@@ -5,8 +6,10 @@ import axios from "axios"
 
 export const SwapContext = createContext();
 
-
 export const SwapProvider = (props) => {
+
+
+  
   const [ user, setUser ] = useState();
   const [ token , setToken ] = useState();
   const [ isLoged, setIsLoged ] = useState(false)
@@ -53,8 +56,8 @@ export const SwapProvider = (props) => {
         setIsLoged
     } }>
 
-      {props.children}
 
+      {props.children}
     </SwapContext.Provider>
-  )
-}
+  );
+};

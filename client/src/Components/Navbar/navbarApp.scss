@@ -1,0 +1,29 @@
+.navbarBrand {
+  width: 200px;
+}
+
+.navbLink {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttonNav {
+  border-radius: 25px !important;
+  background-color: #005a8d !important;
+  margin-left: 25px;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 10px;
+  background-color: #005a8d;
+  h4 {
+    color: white;
+  }
+}
