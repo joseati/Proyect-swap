@@ -6,12 +6,14 @@ import { Register } from '../Pages/Auth/Register/Register';
 import { Login } from '../Pages/Auth/Login/Login';
 import { Error } from '../Pages/Error/Error';
 import { NavbarrApp } from '../Components/Navbar/NavbarrApp';
+import { OneUser } from '../Pages/Users/OneUser';
 import { PoliticasDePrivacidad } from '../Pages/Dashboard/PoliticasLegales/PoliticasDePrivacidad';
 import { Footer } from '../Components/Footer/Footer';
 import { AvisoLegal } from '../Pages/Dashboard/PoliticasLegales/AvisoLegal';
 import { ClausulaConsentimiento } from '../Pages/Dashboard/PoliticasLegales/ClausulaConsentimiento';
 import { ContactaConNosotros } from '../Pages/Dashboard/ContactaConNosotros';
 import { SobreNosotros } from '../Pages/Dashboard/SobreNosotros';
+
 
 
 export const AppRoutes = () => {
@@ -25,6 +27,8 @@ export const AppRoutes = () => {
         <Routes>
           <Route path='politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
           <Route path='/' element= {<Home/>}/>
+          <Route path='/oneUser' element = {<OneUser/>}/>
+       
           <Route path='/register' element = {<Register/>}/>
           <Route path='/login' element = {<Login/>}/>
           <Route path='/avisoLegal' element = {<AvisoLegal/>} ></Route>
