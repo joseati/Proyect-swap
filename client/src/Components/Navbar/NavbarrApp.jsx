@@ -1,3 +1,7 @@
+
+
+ 
+=======
 import React, { useState, useContext  } from 'react'
 import { Nav, Navbar, Container , Button} from 'react-bootstrap'
 import { Link, useNavigate } from "react-router-dom"
@@ -5,7 +9,7 @@ import { ModalRegister } from '../Modal/ModalRegister'
 import { Register } from '../../Pages/Auth/Register/Register'
 import { Login } from "../../Pages/Auth/Login/Login"
 import { SwapContext } from '../../context/SwapContext'
-
+import "./navbarApp.scss";
 
 
 export const NavbarrApp = () => {
@@ -31,14 +35,22 @@ export const NavbarrApp = () => {
   
   return (
     <>
-    <Navbar bg="light" data-bs-theme="light">
-    <Container>
-      <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-       <Nav className="me-auto">
-        <Nav.Link as={Link} to="/">Home</Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav>
+     <Navbar collapseOnSelect expand="md" bg="light" sticky="top">
+      <Container>
+        <Navbar.Brand as={Link} to="/">
+          <img
+            className="navbarBrand"
+            src="/assets/images/swapframe.png"
+            alt="logo"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto navbLink w-75">
+            <Nav.Link href="#comprar">Comprar Viajes</Nav.Link>
+            <Nav.Link href="#vender">Vender Viaje</Nav.Link>
+            <Nav.Link href="#sobrenosotros">Sobre Nosotros</Nav.Link>
+          </Nav>
       {isLoged === false ?
        <> <Button onClick={handleShow}>
           Registrarse
