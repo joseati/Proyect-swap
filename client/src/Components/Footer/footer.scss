@@ -5,10 +5,11 @@
   margin-bottom: 5vh;
 }
 
-.title {
+.title-col {
+  margin-bottom: 2vh;
   margin-top: 2vh;
   font-family: Nunito;
-  font-size: 21px;
+  font-size: 24px;
   text-align: left;
   line-height: 24px;
   color: #005a8d;
@@ -21,6 +22,7 @@
   color: #005a8d;
   margin-bottom: 12px;
 }
+
 p {
   font-family: Nunito;
   font-size: 14px;
@@ -30,20 +32,21 @@ p {
   color: #585858;
 }
 
+.title-swap {
+  font-size: 14px;
+  text-align: left;
+  color: #005a8d;
+}
+
 .logo-swap {
   margin-top: 2vh;
   width: 90px;
 }
-
-.lanzadera {
-  margin-top: 2vh;
-  width: 16vw;
-}
-
-.minerva {
-  margin-top: 2vh;
-  width: 15vw;
-  margin-top: 10px;
+.square-logo {
+  margin-top: 3vh;
+  margin-right: 5vw;
+  width: 300px;
+  margin-bottom: 1vh;
 }
 
 ul {
@@ -51,7 +54,6 @@ ul {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
   max-width: 375px;
 }
 
@@ -87,5 +89,22 @@ ul {
 }
 
 .rights-text {
+  font-weight: bold;
   color: black;
+}
+.lanzadera-img {
+  margin-right: 2vw;
+  margin-top: 2vh;
+  width: 12vw;
+  margin-bottom: 15vh;
+}
+
+.minerva-img {
+  margin-top: 2vh;
+  width: 12vw;
+  margin-bottom: 15vh;
+}
+
+.p-footer {
+  margin-bottom: 15vh;
 }

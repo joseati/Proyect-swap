@@ -9,7 +9,7 @@ export const  PoliticasDePrivacidad= () => {
             <div className="d-flex justify-content-center text-center">
               <div className="w-100 centrado" style={{ borderBottom: "0" }}>
                 <h1
-                  className="main-text pb-5"
+                  className="main-text pb-5 mt-4"
                   style={{
                     fontFamily: "Numito",
                     color: "#005a8d",
