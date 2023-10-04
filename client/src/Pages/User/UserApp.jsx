@@ -1,12 +1,17 @@
 import React, { useContext, useState } from "react";
-import { SwapContext } from "../../Context/SwapContext";
+// import { SwapContext } from "../../Context/SwapContext";
+import { SwapContext } from '../../context/SwapContext'
 import { Button, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { delLocalStore } from '../../Utils/localStorage'
+
 import "./userApp.scss";
 
+
 export const UserApp = () => {
-  const { user } = useContext(SwapContext);
+  
   const navigate = useNavigate();
+  const { user ,setIsLoged, setToken} = useContext(SwapContext)
   const [comprasButton, setComprasButton] = useState(true);
   const [ventasButton, setVentasButton] = useState(false);
   const [favoritosButton, setFavoritosButton] = useState(false);
@@ -32,6 +37,12 @@ export const UserApp = () => {
     setVentasButton(false)
   };
 
+  const closeSesion = () =>{
+    delLocalStore("token")
+    setToken()
+    setIsLoged(false)
+    navigate("/")
+  }
   return (
     <>
       <Col className="infoUser">
@@ -68,6 +79,7 @@ export const UserApp = () => {
               sobre el viaje</p>
           </div>
         )}
+        <Button onClick={closeSesion}>Cerrar Sesion</Button>
       </Col>
     </>
   );
