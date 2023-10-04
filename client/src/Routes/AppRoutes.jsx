@@ -6,6 +6,8 @@ import { Register } from '../Pages/Auth/Register/Register';
 import { Login } from '../Pages/Auth/Login/Login';
 import { Error } from '../Pages/Error/Error';
 import { NavbarrApp } from '../Components/Navbar/NavbarrApp';
+import { PoliticasDePrivacidad } from '../Pages/Dashboard/PoliticasLegales/PoliticasDePrivacidad';
+import { Footer } from '../Components/Footer/Footer';
 
 
 export const AppRoutes = () => {
@@ -17,7 +19,7 @@ export const AppRoutes = () => {
 
       <Row>
         <Routes>
-
+          <Route path='politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
           <Route path='/' element= {<Home/>}/>
           <Route path='/register' element = {<Register/>}/>
           <Route path='/login' element = {<Login/>}/>
@@ -25,6 +27,8 @@ export const AppRoutes = () => {
 
         </Routes>
       </Row>
+
+      <Footer/>
     </Container>
   )
 }
