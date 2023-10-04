@@ -8,7 +8,6 @@ import { Error } from '../Pages/Error/Error';
 import { NavbarrApp } from '../Components/Navbar/NavbarrApp';
 import { PreguntasFrecuentes } from '../Pages/Dashboard/Dudas/PreguntasFrecuentes';
 import { TerminosYCondiciones } from '../Pages/Dashboard/Dudas/TerminosYCondiciones';
-import { OneUser } from '../Pages/Users/OneUser';
 import { PoliticasDePrivacidad } from '../Pages/Dashboard/PoliticasLegales/PoliticasDePrivacidad';
 import { Footer } from '../Components/Footer/Footer';
 import { AvisoLegal } from '../Pages/Dashboard/PoliticasLegales/AvisoLegal';
@@ -38,12 +37,10 @@ export const AppRoutes = () => {
           />
           <Route path="/politicacookies" element={<PoliticasCookies />} />
           <Route path="/comofunciona" element={<ComoFunciona />} />
-          <Route path="/oneUser" element={<UserApp />} />
+          <Route path="/oneUser" element={< UserApp />} />
           <Route path='politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
+          <Route path='/politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
           <Route path='/' element= {<Home/>}/>
-          <Route path='/oneUser' element = {<OneUser/>}/>       
-          <Route path='/register' element = {<Register/>}/>
-          <Route path='/login' element = {<Login/>}/>
           <Route path='/faqs' element = {<PreguntasFrecuentes/>}/>
           <Route path='/terminos-condiciones' element = {<TerminosYCondiciones/>}/>
           <Route path='/avisoLegal' element = {<AvisoLegal/>} ></Route>
