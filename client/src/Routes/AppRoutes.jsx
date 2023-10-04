@@ -6,6 +6,8 @@ import { Register } from '../Pages/Auth/Register/Register';
 import { Login } from '../Pages/Auth/Login/Login';
 import { Error } from '../Pages/Error/Error';
 import { NavbarrApp } from '../Components/Navbar/NavbarrApp';
+import { PreguntasFrecuentes } from '../Pages/Dashboard/Dudas/PreguntasFrecuentes';
+import { TerminosYCondiciones } from '../Pages/Dashboard/Dudas/TerminosYCondiciones';
 import { OneUser } from '../Pages/Users/OneUser';
 import { PoliticasDePrivacidad } from '../Pages/Dashboard/PoliticasLegales/PoliticasDePrivacidad';
 import { Footer } from '../Components/Footer/Footer';
@@ -13,6 +15,7 @@ import { AvisoLegal } from '../Pages/Dashboard/PoliticasLegales/AvisoLegal';
 import { ClausulaConsentimiento } from '../Pages/Dashboard/PoliticasLegales/ClausulaConsentimiento';
 import { ContactaConNosotros } from '../Pages/Dashboard/ContactaConNosotros';
 import { SobreNosotros } from '../Pages/Dashboard/SobreNosotros';
+
 
 
 
@@ -31,6 +34,8 @@ export const AppRoutes = () => {
        
           <Route path='/register' element = {<Register/>}/>
           <Route path='/login' element = {<Login/>}/>
+          <Route path='/faqs' element = {<PreguntasFrecuentes/>}/>
+          <Route path='/terminos-condiciones' element = {<TerminosYCondiciones/>}/>
           <Route path='/avisoLegal' element = {<AvisoLegal/>} ></Route>
           <Route path='/clausulaDeConsentimiento' element = {<ClausulaConsentimiento/>} ></Route>
           <Route path='/contactaConNosotros' element = {<ContactaConNosotros/>} ></Route>
