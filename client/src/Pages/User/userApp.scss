@@ -1,0 +1,26 @@
+.infoUser {
+  background-color: #89c9d3c4;
+  height: 100vh;
+  text-align: center;
+}
+
+.screenUser {
+  height: 150vh;
+  background-color: #89c9d346;
+}
+.userButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 250px;
+  margin-top: 80px;
+  Button {
+    background-color: #005a8d;
+    border-radius: 25px;
+  }
+  Button:hover {
+    background-color: #ffc700;
+    color: black;
+    font-weight: bold;
+  }
+}
