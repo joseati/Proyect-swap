@@ -1,0 +1,91 @@
+.footer {
+  border-top: 2px solid #005a8d;
+  border-bottom: 2px solid #005a8d;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.title {
+  margin-top: 2vh;
+  font-family: Nunito;
+  font-size: 21px;
+  text-align: left;
+  line-height: 24px;
+  color: #005a8d;
+}
+
+.title-footer {
+  font-family: Nunito;
+  font-size: 21px;
+  text-align: left;
+  color: #005a8d;
+  margin-bottom: 12px;
+}
+p {
+  font-family: Nunito;
+  font-size: 14px;
+  letter-spacing: normal;
+  text-align: left;
+  line-height: 21px;
+  color: #585858;
+}
+
+.logo-swap {
+  margin-top: 2vh;
+  width: 90px;
+}
+
+.lanzadera {
+  margin-top: 2vh;
+  width: 16vw;
+}
+
+.minerva {
+  margin-top: 2vh;
+  width: 15vw;
+  margin-top: 10px;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  max-width: 375px;
+}
+
+.iconStyle {
+  width: 40px;
+  height: 40px;
+  border: #005a8d;
+  border-radius: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #005a8d;
+  margin-right: 20px;
+}
+
+.iconInnerStyle {
+  color: white;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.rights {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rights-text {
+  color: black;
+}

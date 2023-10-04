@@ -1,22 +1,41 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Nav, Navbar, Container, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+
+
+ 
+=======
+import React, { useState, useContext  } from 'react'
+import { Nav, Navbar, Container , Button} from 'react-bootstrap'
+import { Link, useNavigate } from "react-router-dom"
+import { ModalRegister } from '../Modal/ModalRegister'
+import { Register } from '../../Pages/Auth/Register/Register'
+import { Login } from "../../Pages/Auth/Login/Login"
+import { SwapContext } from '../../context/SwapContext'
 import "./navbarApp.scss";
-import { SwapContext } from "../../Context/SwapContext";
+
 
 export const NavbarrApp = () => {
   // requerimos y usamos use navigate de router_dom para navegar entre las rutas mediante Link to
-  const navigate = useNavigate();
-  const [boolButtonNav, setBoolButtonNav] = useState(false);
-  //Rescatar del Context la información del user
-  const { user } = useContext(SwapContext);
+  const navigate = useNavigate ()
+  const [show, setShow] = useState(false);
+  const [showModalLogin, setShowModalLogin ] = useState(false)
 
-  const register = () => {
-    navigate("/register");
-    setBoolButtonNav(true);
-  };
+  // Cierre y apertura de los modales 
+  const handleClose = () => setShow(false);
+
+  const handleShow = () => setShow(true);
+
+  const handleCloseModalLogin = () =>{
+    setShowModalLogin(false)
+  }
+  const handleShowModalLogin = () =>{
+    setShowModalLogin(true)
+  }
+  const {isLoged} = useContext(SwapContext)
+  console.log("islogeee", isLoged);
+  // Contex para usar isLoged como controlador de los botones de registro 
+  
   return (
-    <Navbar collapseOnSelect expand="md" bg="light" sticky="top">
+    <>
+     <Navbar collapseOnSelect expand="md" bg="light" sticky="top">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
@@ -32,21 +51,29 @@ export const NavbarrApp = () => {
             <Nav.Link href="#vender">Vender Viaje</Nav.Link>
             <Nav.Link href="#sobrenosotros">Sobre Nosotros</Nav.Link>
           </Nav>
-
-          {/* Pendiente definir el estado que mostrará la letra al estar logueado */}
-          {/* {user && (
-            <div className="avatar" onClick={() => navigate("/oneUser")}>
-              <h4>{user?.name?.charAt(0).toUpperCase()}</h4>
-            </div>
-          )} */}
-          <div className="avatar" onClick={() => navigate("/oneUser")}>
-            <h4>C</h4>
-          </div>
-          <Button className="buttonNav" onClick={() => register()}>
-            Iniciar Sesión
-          </Button>
-        </Navbar.Collapse>
+      {isLoged === false ?
+       <> <Button onClick={handleShow}>
+          Registrarse
+        </Button> 
+        <Button onClick={ handleShowModalLogin }>
+         Login
+        </Button> 
+      </> 
+      :
+      <><Button onClick={() => navigate("/oneUser")}>Ir a usuario</Button></>}
+         
+      
       </Container>
     </Navbar>
-  );
-};
+    <Register     show={show}
+                  handleClose = {handleClose}
+                  handleShow = {handleShow}
+                 />
+    <Login show = {showModalLogin}
+          handleClose = {handleCloseModalLogin}
+          handleShow = {handleShowModalLogin}
+
+            />
+  </>
+  )
+}
