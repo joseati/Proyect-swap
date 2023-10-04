@@ -1,12 +1,12 @@
 import React from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 
-export const ModalLogin = ({show, handleClose,handleChange, inputLogin, onSubmit}) => {
+export const ModalLogin = ({show, handleClose,handleChange, inputLogin, onSubmit, showMsg}) => {
   return (
     <>
      <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Fromulario de registro</Modal.Title>
+        <Modal.Title>Login</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <Form>
@@ -29,18 +29,23 @@ export const ModalLogin = ({show, handleClose,handleChange, inputLogin, onSubmit
         name='password'
         onChange={handleChange}/>
        </Form.Group>      
-
-       <Button onClick={onSubmit}  className=' mt-5'>Enviar</Button>
-     </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+       {showMsg && <p style={{color: "red", fontWeight: "bold", fontSize: "20px", marginTop: "2vw"}}>email o password incorrectos</p>}
+       <Button onClick={onSubmit}  className=' m-3'>Enviar</Button>
+       <Button 
+        variant="secondary" 
+        onClick={handleClose}
+        className=' m-3'
+       >
           Close
         </Button>
+     </Form>
+      </Modal.Body>
+      {/* <Modal.Footer>
+        
         <Button variant="primary" onClick={handleClose}>
           Save Changes
         </Button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
     </>
   )

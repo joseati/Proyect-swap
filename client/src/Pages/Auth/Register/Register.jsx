@@ -14,7 +14,7 @@ const initialUser = {
 export const Register = ({show, handleClose, handleShow}) => {
 
   const [inputUser, setInputUser] = useState(initialUser)
-  
+  const [showMsgReg, setShowMsgReg] = useState(false)
 
 
 const navigate = useNavigate()
@@ -43,7 +43,7 @@ const onSubmit = (e) =>{
       setInputUser("")
     }
       )
-    .catch( (err) => console.log(err)  )
+    .catch((err) => setShowMsgReg(true))
     
 }
   return (
@@ -55,6 +55,7 @@ const onSubmit = (e) =>{
        show = {show}
        handleShow = {handleShow}
        handleClose = {handleClose}
+       showMsgReg = {showMsgReg}
        />
    
       

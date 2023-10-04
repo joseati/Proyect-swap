@@ -7,18 +7,20 @@ export const TerminosYCondiciones = () => {
   return (
     <Col>
       <Row className='section-1'>
-      <h2 className='h2-head'>Términos y condiciones</h2>
+      <h2 className='h2-head mt-5'>Términos y condiciones</h2>
       <h4 className='head-accord'>Términos y Condiciones Generales</h4>
-        <Col className='ps-5'>
+        <Col className='ps-5 intro'>
         
       
-      <p>TÉRMINOS Y CONDICIONES GENERALES DE CONTRATACION PARA EL USO DE SERVICIOS DE SWAP YOUR TRAVEL</p>
-      <p>Última actualización: 16 de julio de 2022.</p>
-      <p>El Registro mediante una dirección de correo electrónico significa el reconocimiento en la aceptación de los términos y condiciones del presente documento.</p>
-      <p>Significa así mismo reconocer que “Swap Your Travel” actua como intermediario en la relación contractual establecida entre los Usuarios de la Plataforma.</p>
-      <br />
-      <p>Los presentes términos y condiciones generales de contratación para el uso de servicios deben ser leídos atentamente, por cuanto tras proceder al registro del usuario significa el obligado cumplimiento de estos, así como sus actualizaciones periódicas. En caso contrario es preciso salir, inmediatamente, del sitio web y no usar ninguno de los servicios ofertados.</p>
-      <p>La aceptación electrónica de estos términos y condiciones generales de contratación para el uso de servicios significa la formalización de un contrato en la forma establecida por la legislación española vigente.</p>
+      
+        <p>TÉRMINOS Y CONDICIONES GENERALES DE CONTRATACION PARA EL USO DE SERVICIOS DE SWAP YOUR TRAVEL</p>
+        <p>Última actualización: 16 de julio de 2022.</p>
+        <p>El Registro mediante una dirección de correo electrónico significa el reconocimiento en la aceptación de los términos y condiciones del presente documento.</p>
+        <p>Significa así mismo reconocer que “Swap Your Travel” actua como intermediario en la relación contractual establecida entre los Usuarios de la Plataforma.</p>
+       
+        <p>Los presentes términos y condiciones generales de contratación para el uso de servicios deben ser leídos atentamente, por cuanto tras proceder al registro del usuario significa el obligado cumplimiento de estos, así como sus actualizaciones periódicas. En caso contrario es preciso salir, inmediatamente, del sitio web y no usar ninguno de los servicios ofertados.</p>
+        <p>La aceptación electrónica de estos términos y condiciones generales de contratación para el uso de servicios significa la formalización de un contrato en la forma establecida por la legislación española vigente.</p>
+      
         
         </Col>
       </Row>
