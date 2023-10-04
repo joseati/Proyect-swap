@@ -36,6 +36,7 @@ export const AppRoutes = () => {
           <Route path="/comofunciona" element={<ComoFunciona />} />
           <Route path="/oneUser" element={<UserApp />} />
 
+
           <Route
             path="/politicas-de-privacidad"
             element={<PoliticasDePrivacidad />}
