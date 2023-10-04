@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { SwapContext } from '../../context/SwapContext'
+import { SwapContext } from '../../Context/SwapContext'
 import { Button } from 'react-bootstrap'
 import { delLocalStore } from '../../Utils/localStorage'
 import { useNavigate } from 'react-router-dom'
