@@ -1,4 +1,4 @@
-import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import {
   FaLinkedinIn,
   FaInstagram,
@@ -12,26 +12,23 @@ export const Footer = () => {
       <Container className="footer">
         <Row>
           <Col>
-          <h4 className="title">SOMOS SWAP YOUR TRAVEL</h4>
+            <h4 className="title">SOMOS SWAP YOUR TRAVEL</h4>
             <p>¿Quiénes somos?</p>
             <p>Cómo funciona?</p>
             <p>Preguntas frecuentes</p>
             <p>Blog</p>
             <p>Contacto</p>
-
-
           </Col>
           <Col>
-          <h4 className="title">LEGAL</h4>
-          <p>Aviso Legal</p>
+            <h4 className="title">LEGAL</h4>
+            <p>Aviso Legal</p>
             <p>Política de privacidad</p>
             <p>Política de cookies</p>
             <p>Política de cookies</p>
             <p>Claúsula de consentimiento</p>
             <p>Advertencia</p>
-
           </Col>
-      
+
           <Col>
             <img
               src="./assets/images/lanzadera.png"
