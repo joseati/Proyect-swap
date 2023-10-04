@@ -39,7 +39,7 @@ export const AppRoutes = () => {
           <Route path="/politicacookies" element={<PoliticasCookies />} />
           <Route path="/comofunciona" element={<ComoFunciona />} />
           <Route path="/oneUser" element={<UserApp />} />
-          <Route path='politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
+          <Route path='/politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
           <Route path='/' element= {<Home/>}/>
           <Route path='/oneUser' element = {<OneUser/>}/>       
           <Route path='/register' element = {<Register/>}/>
