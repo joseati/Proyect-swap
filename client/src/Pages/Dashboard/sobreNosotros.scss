@@ -1,0 +1,149 @@
+.padre{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  background: linear-gradient(to left,  #005a8d, #89c9d3c4);
+  padding: 0vh 15% 0vh 15% !important;
+  flex-wrap: wrap;
+  
+}
+.apasionados{
+  color: white;
+  display: flex;
+  text-align: right;
+  justify-content: center;
+  align-items: center;
+  h1{
+    font-size: 50px !important;
+  }
+  p{
+    color: white;
+    text-align: right;
+    font-size: 24px;
+    line-height: 2rem;
+  }
+}
+.apasionados2{
+  display: flex;
+  text-align: right;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.padre2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6vh 15vw 6vh 15vw !important;
+  gap: 6vw;
+  flex-wrap: wrap;
+  
+}
+
+.nuestraMision{
+  color:  #005a8d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw !important;
+  gap: 10px;
+ 
+  h4{
+    color: #89c9d3c4;
+  }
+  p{
+    font-size: 24px;
+    line-height: 2rem;
+  }
+  
+}
+.nuestraMision2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img{
+    width: 400px;
+  }
+}
+
+.padre3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6vh 15vw 6vh 0vw !important;
+  flex-wrap: wrap;
+  gap: 2vw;
+  background-color: rgb(235, 234, 234);
+  width: 100% !important;
+}
+
+.revolucionando{
+  padding: 0 !important;
+  
+  img{
+    width: 50vw;
+  }
+}
+.revolucionando2{
+  color:  #005a8d;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: end;
+  text-align: right;
+  gap: 10px;
+  h4{
+    color: #89c9d3c4;
+  }
+  p{
+    line-height: 2rem;
+    text-align: right;
+    font-size: 24px;
+  }
+}
+
+.padre4{
+  color:  #005a8d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10vh 18vw 10vh 18vw;
+  gap: 2vw;
+  line-height: 2rem;
+  h2{
+    margin-bottom: 16px;
+    
+  }
+  h4{
+    color: #89c9d3c4;
+  }
+  p{
+    line-height: 2rem;
+    font-size: 24px;
+  }
+}
+ol{
+  list-style: none;
+}
+//-------------------------------------
+
+@media screen and (max-width: 1429px){
+  .padre{
+    padding: 7vh 4vw 0vh 4vw !important;
+  }
+  .apasionados2{
+    text-align: initial;
+    p{
+      text-align: initial;
+    }
+  }
+  .subPadre{
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    
+  }
+}

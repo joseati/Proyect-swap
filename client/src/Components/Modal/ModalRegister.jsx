@@ -2,7 +2,7 @@ import React, {Children, useState} from 'react'
 import { Modal,Button, Form } from 'react-bootstrap';
 
 
-export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser, show,  }) => {
+export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser, show, showMsgReg }) => {
   
   
   
@@ -12,7 +12,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
 
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Fromulario de registro</Modal.Title>
+        <Modal.Title>Formulario de registro</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <Form>
@@ -46,18 +46,25 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
         name='password'
         onChange={handleChange}/>
        </Form.Group>      
-
-       <Button onClick={onSubmit} className=' mt-5'>Enviar</Button>
+       {showMsgReg && <p style={{color: "red", fontWeight: "bold", fontSize: "20px", marginTop: "2vw"}}>email o password no válidos</p>}
+       <Button onClick={onSubmit} className=' m-3'>Enviar</Button>
+       <Button 
+        variant="secondary" 
+        onClick={handleClose}
+        className=' m-3'
+       >
+          Close
+        </Button>
      </Form>
       </Modal.Body>
-      <Modal.Footer>
+      {/* <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
         <Button variant="primary" onClick={handleClose}>
           Save Changes
         </Button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   </>
 );
