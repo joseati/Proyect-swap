@@ -12,6 +12,7 @@ const initialValue = {
 export const Login = ({show, handleClose}) => {
  const [inputLogin, setInputLogin] = useState(initialValue)
 const {setIsLoged} = useContext(SwapContext)
+const [showMsg, setShowMsg] = useState(false)
 
 // Cambios en los imput para capatar los datos de login
  const handleChange = (e) => {
@@ -34,7 +35,7 @@ const onSubmit = (e) => {
       setIsLoged(true)
       handleClose()
     })
-    .catch((err) => console.log(err))
+    .catch((err) =>setShowMsg(true))
 
 }
 
@@ -46,6 +47,7 @@ const onSubmit = (e) => {
                 handleChange={handleChange}
                 inputLogin = {inputLogin}
                 onSubmit = {onSubmit}
+                showMsg = {showMsg}
                 />
     </Col>
   )

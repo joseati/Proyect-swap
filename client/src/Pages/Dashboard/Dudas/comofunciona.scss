@@ -1,0 +1,54 @@
+.fondoCF {
+  background-color: #e7f4f6;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.firstRow {
+  text-align: center;
+  padding-top: 50px;
+  h1 {
+    font-size: 60px;
+    color: #005a8d;
+  }
+}
+
+.CosCF {
+  background-color: red;
+}
+
+.cardCF {
+  border-radius: 45px !important;
+  padding: 20px;
+
+  .hgroupCF {
+    padding: 40px 40px 0px 40px;
+    text-align: center;
+    color: #2d78a1;
+  }
+}
+
+.spanWord {
+  color: #fdcb18;
+}
+
+.colored-list {
+  list-style-type: none;
+  counter-reset: list-counter;
+}
+
+.colored-list li::before {
+  content: counter(list-counter);
+  counter-increment: list-counter;
+  color: #2d78a1;
+  margin-right: 8px; /* Espacio entre el número y el texto */
+}
+
+.btnCF {
+  background-color: #fdcb18;
+  color: #005a8d;
+  border: 1px solid transparent;
+  border-radius: 25px !important;
+  margin-left: 25%;
+}
