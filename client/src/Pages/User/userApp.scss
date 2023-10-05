@@ -5,7 +5,7 @@
 }
 
 .screenUser {
-  height: 150vh;
+  height: 100vh;
   background-color: #89c9d346;
 }
 .userButtons {
@@ -22,5 +22,28 @@
     background-color: #ffc700;
     color: black;
     font-weight: bold;
+  }
+}
+.all-info-user {
+  margin-top: 15vh;
+  h2 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 20px;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+.corazon {
+  width: 30px;
+}
+
+@media (max-width: 768px) {
+  .userButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

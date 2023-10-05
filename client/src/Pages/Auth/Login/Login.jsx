@@ -33,6 +33,7 @@ const onSubmit = (e) => {
       saveLocalStora("token", res.data)
       setInputLogin(initialValue)
       setIsLoged(true)
+      setShowMsg(false)
       handleClose()
     })
     .catch((err) =>setShowMsg(true))
@@ -46,8 +47,10 @@ const onSubmit = (e) => {
                 handleClose={handleClose}
                 handleChange={handleChange}
                 inputLogin = {inputLogin}
+                setInputLogin = {setInputLogin}
                 onSubmit = {onSubmit}
                 showMsg = {showMsg}
+                setShowMsg = {setShowMsg}
                 />
     </Col>
   )
