@@ -14,7 +14,7 @@ export const PreguntasFrecuentes = () => {
       
       <Row>
         
-        <Col>
+        <Col  ms={12} className="p-0">
           <Accordion defaultActiveKey="0" className='cont-accord-faqs'>
           <Accordion.Item eventKey="1">
             <Accordion.Header>

@@ -8,7 +8,7 @@ export const SobreNosotros = () => {
       <Row className="padre">
         <Col className="apasionados">
             <Row className="subPadre">
-             <Col className="img" xs={12} xl={6}>
+             <Col className="foto" xs={12} xl={6}>
             <img src="/assets/images/fondo-2.png" alt="" />
           </Col>
           <Col className="apasionados2" xs={12} xl={6} >
