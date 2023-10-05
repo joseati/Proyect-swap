@@ -2,7 +2,7 @@
 import React from 'react';
 import {Container, Row } from "react-bootstrap";
 import { Routes, Route } from 'react-router-dom';
-import { Home } from '../Pages/Dashboard/Home/Home';
+
 import { Error } from '../Pages/Error/Error';
 import { NavbarrApp } from '../Components/Navbar/NavbarrApp';
 import { PreguntasFrecuentes } from '../Pages/Dashboard/Dudas/PreguntasFrecuentes';
@@ -37,7 +37,7 @@ export const AppRoutes = () => {
           <Route path="/oneUser" element={< UserApp />} />
           
           <Route path='/politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
-          <Route path='/' element= {<Home/>}/>
+          {/* <Route path='/' element= {<Home/>}/> */}
           <Route path='/faqs' element = {<PreguntasFrecuentes/>}/>
           <Route path='/terminos-condiciones' element = {<TerminosYCondiciones/>}/>
           <Route path='/avisoLegal' element = {<AvisoLegal/>} ></Route>
