@@ -38,6 +38,7 @@ export const AppRoutes = () => {
           <Route path='/terminos-condiciones' element = {<TerminosYCondiciones/>}/>
           <Route path='/avisoLegal' element = {<AvisoLegal/>} ></Route>
           <Route path='/clausulaDeConsentimiento' element = {<ClausulaConsentimiento/>} ></Route>
+          <Route path='/viajes' element={<Viajes/>}/>
           <Route path='/contactaConNosotros' element = {<ContactaConNosotros/>} ></Route>
           <Route path='/sobreNosotros' element = {<SobreNosotros/>} ></Route>
           <Route path='*' element= {<Error/>}/>
