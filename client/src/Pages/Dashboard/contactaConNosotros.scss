@@ -1,12 +1,16 @@
+.contactaConNosotrosPadre{
+  padding:10vh 15vw 10vh 15vw !important;
+  gap: 3vw;
+}
 .contactaConNosotros{
-  
   justify-content: center;
   align-items: center;
-  height: 94vh;
-  padding: 0vh 15vw 0vh 15vw !important;
   gap: 3vw;
- 
+ flex-wrap: wrap;
   
+}
+col{
+  height: 30vh;
 }
 .contacts{
   display: flex;
@@ -14,5 +18,9 @@
   align-items: center;
   justify-content: center;
   
-  
+}
+@media screen and (max-width: 1400px){
+  .contactaConNosotros{
+    flex-wrap: wrap;
+  }
 }
