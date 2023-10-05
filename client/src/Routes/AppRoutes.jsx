@@ -17,7 +17,7 @@ import { ComoFunciona } from "../Pages/Dashboard/Dudas/ComoFunciona";
 import { UserApp } from "../Pages/User/UserApp";
 import { Home } from '../Pages/Dashboard/Home/Home';
 import { Viajes } from "../Pages/Ventas/Viajes";
-
+import { AllTravels } from '../Pages/ViajesAcomprar/AllTravels';
 
 export const AppRoutes = () => {
   return (
@@ -40,7 +40,9 @@ export const AppRoutes = () => {
           <Route path='/clausulaDeConsentimiento' element = {<ClausulaConsentimiento/>} ></Route>
           <Route path='/contactaConNosotros' element = {<ContactaConNosotros/>} ></Route>
           <Route path='/sobreNosotros' element = {<SobreNosotros/>} ></Route>
+          <Route path='/todosLosViajes' element = {<AllTravels/>}/>
           <Route path='*' element= {<Error/>}/>
+          
 
         </Routes>
       </Row>
