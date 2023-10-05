@@ -28,10 +28,7 @@ export const AppRoutes = () => {
       <Row>
         <Routes>
     
-          <Route
-            path="/advertenciasgenericas"
-            element={<AdvertenciasGenericas />}
-          />
+          <Route path="/advertenciasgenericas" element={<AdvertenciasGenericas />} />
           <Route path="/politicacookies" element={<PoliticasCookies />} />
           <Route path="/comofunciona" element={<ComoFunciona />} />
           <Route path="/" element={<Home />} />

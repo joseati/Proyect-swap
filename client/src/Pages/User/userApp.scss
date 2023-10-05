@@ -8,6 +8,12 @@
   height: 100vh;
   background-color: #89c9d346;
 }
+
+.ajusteSymbol{
+  height: 30px;
+  cursor: pointer;
+}
+
 .userButtons {
   display: flex;
   flex-direction: column;
@@ -38,6 +44,11 @@
 }
 .corazon {
   width: 30px;
+}
+
+.formEdit{
+  // background-color: red;
+  width: 80%;
 }
 
 @media (max-width: 768px) {
