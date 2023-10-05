@@ -18,4 +18,7 @@ router.get("/getOneUser/:user_id", UserController.getOneUser);
 // http://localhost:4000/users/delLogiUser/:user_id
 router.put("/delLogiUser/:user_id", UserController.delLogicUser )
 
+// http://localhost:4000/users/editUser/:user_id
+router.put("/editUser/:user_id", UserController.editUser);
+
 module.exports = router;

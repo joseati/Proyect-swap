@@ -46,7 +46,6 @@ export const AppRoutes = () => {
 
         </Routes>
       </Row>
-
       <Footer />
     </Container>
   );

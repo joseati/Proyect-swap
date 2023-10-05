@@ -103,6 +103,25 @@ class UserController {
    })
     
   }
+
+  // Editar datos de usuario a través de user_id recogido por params(parámetro dinámico)
+  editUser = (req, res) => {
+    const { user_id } = req.params;
+    const { name, last_name, address, ident_num, telephone, zip_code, iban } = req.body;
+
+    let sql = `UPDATE user SET name = "${name}",last_name = "${last_name}",
+               address = "${address}", ident_num = "${ident_num}",
+               telephone = "${telephone}", zip_code = "${zip_code}",
+               iban = "${iban}" WHERE user_id = ${user_id}`;
+
+    connection.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+    });
+  }
 }
 
 
