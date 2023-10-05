@@ -1,43 +1,34 @@
 .footer {
-  border-top: 2px solid #005a8d;
-  border-bottom: 2px solid #005a8d;
+  border-top: 3px solid #005a8d;
+  border-right: 3px solid  #005a8d;
+  border-left: 3px solid  #005a8d;
+  border-bottom: 3px solid #005a8d;
   margin-top: 5vh;
   margin-bottom: 5vh;
-}
-
-.title-col {
-  margin-bottom: 2vh;
-  margin-top: 2vh;
-  font-family: Nunito;
-  font-size: 24px;
-  text-align: left;
-  line-height: 24px;
-  color: #005a8d;
-}
-
-.title-footer {
-  font-family: Nunito;
-  font-size: 21px;
-  text-align: left;
-  color: #005a8d;
-  margin-bottom: 12px;
-}
-
-p {
-  font-family: Nunito;
-  font-size: 14px;
-  letter-spacing: normal;
-  text-align: left;
-  line-height: 21px;
-  color: #585858;
-}
-
+  .title-col {
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+    font-family: Nunito;
+    font-size: 24px;
+    text-align: left;
+    line-height: 24px;
+    color: #005a8d;
+  }
+  p {
+    cursor: pointer;
+    font-family: Nunito;
+    font-size: 14px;
+    letter-spacing: normal;
+    text-align: left;
+    line-height: 21px;
+    color: #585858;
+  }
+  
 .title-swap {
   font-size: 14px;
   text-align: left;
   color: #005a8d;
 }
-
 .logo-swap {
   margin-top: 2vh;
   width: 90px;
@@ -48,40 +39,31 @@ p {
   width: 300px;
   margin-bottom: 1vh;
 }
-
 ul {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   max-width: 375px;
+  .iconStyle {
+    width: 40px;
+    height: 40px;
+    border: #005a8d;
+    border-radius: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #005a8d;
+    margin-right: 20px;
+  }
+  
+  .iconInnerStyle {
+    color: white;
+    font-size: 18px;
+    vertical-align: middle;
+  }
 }
-
-.iconStyle {
-  width: 40px;
-  height: 40px;
-  border: #005a8d;
-  border-radius: 40px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #005a8d;
-  margin-right: 20px;
-}
-
-.iconInnerStyle {
-  color: white;
-  font-size: 18px;
-  vertical-align: middle;
-}
-
-.legal {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
 .rights {
   display: flex;
   align-items: center;
@@ -92,19 +74,27 @@ ul {
   font-weight: bold;
   color: black;
 }
+.logos-footer{
+  margin-right: 14vw;
+}
+}
 .lanzadera-img {
   margin-right: 2vw;
   margin-top: 2vh;
   width: 12vw;
-  margin-bottom: 15vh;
+
 }
 
 .minerva-img {
   margin-top: 2vh;
   width: 12vw;
-  margin-bottom: 15vh;
+  margin-bottom: 20vh;
 }
 
 .p-footer {
   margin-bottom: 15vh;
+  margin-right: 2vw;
+  color: #005a8d;
 }
+
+
