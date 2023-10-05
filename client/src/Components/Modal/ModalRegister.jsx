@@ -2,9 +2,12 @@ import React, {Children, useState} from 'react'
 import { Modal,Button, Form } from 'react-bootstrap';
 
 
-export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser, show, showMsgReg }) => {
+export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser, show, showMsgReg, setShowMsgReg }) => {
   
-  
+  const onClose = () => {
+    setShowMsgReg(false)
+    handleClose()
+  }
   
   return (
     <>
@@ -15,7 +18,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
         <Modal.Title>Formulario de registro</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <Form>
+      <>
 
       <Form.Group>
        <Form.Label htmlFor='name'>Nombre</Form.Label>
@@ -50,21 +53,14 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
        <Button onClick={onSubmit} className=' m-3'>Enviar</Button>
        <Button 
         variant="secondary" 
-        onClick={handleClose}
+        onClick={onClose}
         className=' m-3'
        >
           Close
         </Button>
-     </Form>
+     </>
       </Modal.Body>
-      {/* <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Save Changes
-        </Button>
-      </Modal.Footer> */}
+
     </Modal>
   </>
 );

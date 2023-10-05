@@ -1,7 +1,14 @@
 import React from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 
-export const ModalLogin = ({show, handleClose,handleChange, inputLogin, onSubmit, showMsg}) => {
+export const ModalLogin = ({show, handleClose,handleChange, inputLogin, onSubmit, showMsg, setShowMsg, setInputLogin}) => {
+
+  const onClose = () => {
+    setShowMsg(false)
+    setInputLogin({})
+    handleClose()
+  }
+
   return (
     <>
      <Modal show={show} onHide={handleClose}>
@@ -33,19 +40,14 @@ export const ModalLogin = ({show, handleClose,handleChange, inputLogin, onSubmit
        <Button onClick={onSubmit}  className=' m-3'>Enviar</Button>
        <Button 
         variant="secondary" 
-        onClick={handleClose}
+        onClick={onClose}
         className=' m-3'
        >
           Close
         </Button>
      </Form>
       </Modal.Body>
-      {/* <Modal.Footer>
-        
-        <Button variant="primary" onClick={handleClose}>
-          Save Changes
-        </Button>
-      </Modal.Footer> */}
+      
     </Modal>
     </>
   )

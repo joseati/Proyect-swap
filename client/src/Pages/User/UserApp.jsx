@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-// import { SwapContext } from "../../Context/SwapContext";
 import { SwapContext } from '../../context/SwapContext'
-import { Button, Col, Form } from "react-bootstrap";
+import { Button, Col, Toast, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { delLocalStore } from '../../Utils/localStorage'
+import axios from "axios"
 import "./userApp.scss";
 
 const initialValue = {
@@ -25,7 +25,13 @@ export const UserApp = () => {
   const [favoritosButton, setFavoritosButton] = useState(false);
   const [editButton, setEditButton] =useState(false);
   const [editInputs, setEditInputs] = useState(initialValue)
+  const [showToast, setShowToast] = useState()
 
+console.log(user);
+console.log(showToast);
+  
+  
+  
   const handleNavigateToFaqs = (e) => {
     e.preventDefault();
     navigate("/faqs");
@@ -84,6 +90,29 @@ export const UserApp = () => {
     setEditInputs({...editInputs, [name]: value});
   }
 
+  // borrado logico de usuario , ruta put para cambiar datos de usuario , utilizo ruta dinámica con parametro dinamico para recoger el usuario a traves del user_id
+  const delLogicUser = () => {
+    setShowToast(true)
+    if(user){
+    
+      const {user_id} = user
+    
+      console.log(user_id);
+     axios
+      .put(`http://localhost:4000/users/delLogiUser/${user_id}`)
+
+      .then((res) => {
+        console.log(res.data);
+        setIsLoged(false)
+        setToken("")
+        navigate("/")
+      })
+
+      .catch((err) => console.log(err))
+    }
+     
+    
+  }
   return (
     <>
       <Col className="infoUser">
@@ -206,7 +235,29 @@ export const UserApp = () => {
       </Col>
         )}
         <Button onClick={closeSesion}>Cerrar Sesion</Button>
+        <Button onClick={() => setShowToast(true)}> Borrar usuario</Button>
+        
+          {showToast &&
+          <>
+            <Toast>
+              <Toast.Header onClick={() => setShowToast  (false)}>
+           <img  src="holder.js/20x20?  text=%20" className="rounded me-2"  alt="" />
+            <strong style={{color:"red"}} className="me-auto">
+                Atencion!
+             </ strong>
+
+        <small>Borrar</small>
+          </Toast.Header>
+          <Toast.Body>
+            Estas seguro que quieres Borrar el usuario
+            <Button variant="danger" onClick={delLogicUser}> Borrar usuario</Button>
+            <Button onClick={() => setShowToast(false)}> Cancelar</Button>
+          </Toast.Body>
+    </Toast>
+    </> }
+      
       </Col>
+      
     </>
   );
-};
+}

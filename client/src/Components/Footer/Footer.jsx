@@ -1,4 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
+import {useNavigate} from "react-router-dom"
 import {
   FaLinkedinIn,
   FaInstagram,
@@ -8,26 +9,29 @@ import {
 import "./footer.scss";
 
 export const Footer = () => {
+  const navigate = useNavigate()
   return (
     <>
       <Container className="footer">
         <Row>
           <Col>
             <h4 className="title-col">SOMOS SWAP YOUR TRAVEL</h4>
-            <p>¿Quiénes somos?</p>
+            <p onClick={() => navigate("/sobreNosotros")}>¿Quiénes somos?</p>
             <p>Cómo funciona?</p>
-            <p>Preguntas frecuentes</p>
+            <p onClick={() => navigate("/faqs")}>Preguntas frecuentes</p>
             <p>Blog</p>
             <p>Contacto</p>
+            <p>¿Qué dicen de nosotros?</p>
+
           </Col>
           <Col>
-            <h4 className="title-col">LEGAL</h4>
-            <p>Aviso Legal</p>
-            <p>Política de privacidad</p>
-            <p>Política de cookies</p>
-            <p>Política de cookies</p>
-            <p>Claúsula de consentimiento</p>
-            <p>Advertencia</p>
+            <h4 className="title-col">POLÍTICAS LEGALES</h4>
+            <p onClick={() => navigate("/avisoLegal")}>Aviso Legal</p>
+            <p onClick={() => navigate("/politicas-de-privacidad")}>Política de privacidad</p>
+            <p onClick={() => navigate("/politicacookies")}>Política de cookies</p>
+            <p onClick={() => navigate("/clausulaDeConsentimiento")}>Claúsula de consentimiento</p>
+            <p onClick={() => navigate("/advertenciasgenericas")}>Advertencia Genérica</p>
+            <p onClick={() => navigate("/terminos-condiciones")}>Términos y condiciones</p>
           </Col>
 
           <Col>
@@ -83,14 +87,7 @@ export const Footer = () => {
         </Row>
         <Row>
           <Row>
-            <div className="legal">
-              <h4 className="title-footer">POLÍTICAS LEGALES</h4>
-              <p>Aviso legal</p>
-              <p>Políticas de privacidad</p>
-              <p>Políticas de cookies</p>
-              <p>Cláusula de consentimiento</p>
-              <p>Advertencia</p>
-            </div>
+       
           </Row>
           <div className="rights">
             <p className="rights-text">2023 © Todos los derechos reservados</p>
@@ -98,20 +95,22 @@ export const Footer = () => {
         </Row>
       </Container>
       <Row className="justify-content-center">
-        <Col className="d-flex align-items-center justify-content-end">
-          <p className="p-footer">Con el apoyo de: </p>
-        </Col>
-        <Col className="d-flex align-items-center justify-content-center ">
-          <img
-            src="./assets/images/lanzadera.png"
-            alt="lanzadera"
-            className="lanzadera-img"
-          />
-          <img
-            src="./assets/images/minerva.png"
-            alt="minerva"
-            className="minerva-img"
-          />
+       
+        <Col className=" logos-footer d-flex align-items-center justify-content-end ">
+        <p className="p-footer">Con el apoyo de: </p>
+
+          <div className="d-flex flex-column">
+            <img
+              src="./assets/images/lanzadera.png"
+              alt="lanzadera"
+              className="lanzadera-img"
+            />
+            <img
+              src="./assets/images/minerva.png"
+              alt="minerva"
+              className="minerva-img"
+            />
+          </div>
         </Col>
       </Row>
       

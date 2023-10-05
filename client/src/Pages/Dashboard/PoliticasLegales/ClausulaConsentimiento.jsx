@@ -4,12 +4,12 @@ import './clausulaDeConsentimiento.scss'
 export const ClausulaConsentimiento = () => {
   return (
    
-      <Row>
+      
             <Col className='clausula'>
                 <div className='title'>
                         <h1 >Cláusula de Consentimiento</h1>
                 </div>
-            
+            <div className='clausula'>
                 <p>
                     En cumplimiento de lo dispuesto en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos
                     Personales y Garantía de los Derechos Digitales, el Reglamento Europeo de Protección de Datos (UE)
@@ -32,7 +32,9 @@ export const ClausulaConsentimiento = () => {
                     la Agencia Española de Protección de Datos. Podrá obtener más información consultando el aviso legal
                     de nuestra página web.
                 </p>
+            </div>
+                
             </Col>
-         </Row>
+         
   )
 }
