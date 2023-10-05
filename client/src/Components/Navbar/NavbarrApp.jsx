@@ -42,7 +42,7 @@ export const NavbarrApp = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto navbLink w-75">
-              <Nav.Link href="#comprar">Comprar Viajes</Nav.Link>
+              <Nav.Link as = {Link} to= {"/todosLosViajes"}>Comprar Viajes</Nav.Link>
               <Nav.Link as={Link} to={"/viajes"}>Vender Viaje</Nav.Link>
               <Nav.Link href="/sobrenosotros">Sobre Nosotros</Nav.Link>
 

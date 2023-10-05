@@ -104,6 +104,7 @@ console.log(showToast);
       .then((res) => {
         console.log(res.data);
         setIsLoged(false)
+        delLocalStore("token")
         setToken("")
         navigate("/")
       })
