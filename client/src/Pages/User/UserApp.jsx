@@ -1,16 +1,27 @@
 import React, { useContext, useState } from "react";
-import { SwapContext } from "../../Context/SwapContext";
-import { Button, Col } from "react-bootstrap";
+// import { SwapContext } from "../../Context/SwapContext";
+import { SwapContext } from '../../context/SwapContext'
+import { Button, Col, Toast } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { delLocalStore } from '../../Utils/localStorage'
+import axios from "axios"
 import "./userApp.scss";
 
+
 export const UserApp = () => {
-  const { user } = useContext(SwapContext);
+  
   const navigate = useNavigate();
+  const { user ,setIsLoged, setToken} = useContext(SwapContext)
   const [comprasButton, setComprasButton] = useState(true);
   const [ventasButton, setVentasButton] = useState(false);
   const [favoritosButton, setFavoritosButton] = useState(false);
+  const [showToast, setShowToast] = useState()
 
+console.log(user);
+console.log(showToast);
+  
+  
+  
   const handleNavigateToFaqs = (e) => {
     e.preventDefault();
     navigate("/faqs");
@@ -32,6 +43,36 @@ export const UserApp = () => {
     setVentasButton(false)
   };
 
+  const closeSesion = () =>{
+    delLocalStore("token")
+    setToken()
+    setIsLoged(false)
+    navigate("/")
+  }
+
+  // borrado logico de usuario , ruta put para cambiar datos de usuario , utilizo ruta dinámica con parametro dinamico para recoger el usuario a traves del user_id
+  const delLogicUser = () => {
+    setShowToast(true)
+    if(user){
+    
+      const {user_id} = user
+    
+      console.log(user_id);
+     axios
+      .put(`http://localhost:4000/users/delLogiUser/${user_id}`)
+
+      .then((res) => {
+        console.log(res.data);
+        setIsLoged(false)
+        setToken("")
+        navigate("/")
+      })
+
+      .catch((err) => console.log(err))
+    }
+     
+    
+  }
   return (
     <>
       <Col className="infoUser">
@@ -68,7 +109,30 @@ export const UserApp = () => {
               sobre el viaje</p>
           </div>
         )}
+        <Button onClick={closeSesion}>Cerrar Sesion</Button>
+        <Button onClick={() => setShowToast(true)}> Borrar usuario</Button>
+        
+          {showToast &&
+          <>
+            <Toast>
+              <Toast.Header onClick={() => setShowToast  (false)}>
+           <img  src="holder.js/20x20?  text=%20" className="rounded me-2"  alt="" />
+            <strong style={{color:"red"}} className="me-auto">
+                Atencion!
+             </ strong>
+
+        <small>Borrar</small>
+          </Toast.Header>
+          <Toast.Body>
+            Estas seguro que quieres Borrar el usuario
+            <Button variant="danger" onClick={delLogicUser}> Borrar usuario</Button>
+            <Button onClick={() => setShowToast(false)}> Cancelar</Button>
+          </Toast.Body>
+    </Toast>
+    </> }
+      
       </Col>
+      
     </>
   );
-};
+}
