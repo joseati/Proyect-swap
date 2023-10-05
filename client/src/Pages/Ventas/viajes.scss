@@ -1,0 +1,75 @@
+.container-sell {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  margin-top: -3em;
+  min-width: 0;
+  margin-top: -3vh;
+  margin-right: 15vw;
+  margin-left: 15vw;
+  h3 {
+    margin-top: 2vh;
+    color: #89c9d3;
+  }
+  h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #005a8d;
+  }
+  .swapealo {
+    margin-right: 50px;
+    width: 300px;
+    background-color: #ffc700;
+    color: #005a8d;
+    font-family: "Nunito";
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 120%;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center !important;
+    margin-top: 7%;
+    padding: 15px 0;
+  }
+}
+.container-ticket {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  margin-top: -3em;
+  min-width: 0;
+  margin-top: -3vh;
+
+  .tickets-sell {
+    img {
+      cursor: pointer;
+      overflow-clip-margin: content-box;
+      overflow: clip;
+      max-width: 100%; // Asegura que las imágenes no excedan el ancho de su contenedor
+      margin-bottom: 10px; // Espacio uniforme entre la imagen y el texto debajo de ella
+    }
+
+    p {
+      color: #212529;
+      font-weight: 400;
+      text-align: center; // Alinea el texto al centro
+    }
+
+    .sell-icon {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 3vh;
+    }
+    .sell-icon.selected {
+      background: rgba(137, 201, 211, 0.2);
+      border-radius: 10px;
+      position: relative;
+      color: rgba(0, 90, 141, 0.9) !important;
+    }
+  }
+  .title-form {
+    color: #005a8d;
+    font-size: 40px;
+  }
+}
