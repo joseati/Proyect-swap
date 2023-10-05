@@ -8,7 +8,7 @@ import "./userApp.scss";
 
 const initialValue = {
   name: "",
-  lastname: "",
+  last_name: "",
   address: "",
   ident_num: "",
   telephone: "",
@@ -19,7 +19,7 @@ const initialValue = {
 export const UserApp = () => {
   
   const navigate = useNavigate();
-  const { user ,setIsLoged, setToken} = useContext(SwapContext);
+  const { user ,setIsLoged, setToken, setUser} = useContext(SwapContext);
   const [comprasButton, setComprasButton] = useState(true);
   const [ventasButton, setVentasButton] = useState(false);
   const [favoritosButton, setFavoritosButton] = useState(false);
@@ -28,7 +28,7 @@ export const UserApp = () => {
   const [showToast, setShowToast] = useState()
 
 console.log(user);
-console.log(showToast);
+// console.log(showToast);
   
   
   
@@ -70,12 +70,13 @@ console.log(showToast);
     navigate("/")
   }
 
+  //Carga la información del usuario cuando entrar en la pantalla de actualizar datos.
   useEffect(() => {
     if (user) {
         setEditInputs({
             ...editInputs, 
             name: user ? user.name : "",
-            lastname: user.lastname !== null ? user.lastname : "",
+            last_name: user.last_name !== null ? user.last_name : "",
             address: user.address !== null ? user.address : "",
             ident_num: user.ident_num !== null ? user.ident_num : "",
             telephone: user.telephone !== null ? user.telephone : "",
@@ -88,6 +89,29 @@ console.log(showToast);
   const handleChange = (e) =>{
     const {name, value} = e.target;
     setEditInputs({...editInputs, [name]: value});
+  }
+
+  //Botón que hace volcar los nuevos datos del cliente en la base
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:4000/users/editUser/${user.user_id}`, editInputs)
+      .then((res) => {
+        // Actualiza los datos del usuario en el estado local
+        setUser({
+          ...user,
+          name: editInputs.name,
+          last_name: editInputs.last_name,
+          address: editInputs.address,
+          ident_num: editInputs.ident_num,
+          telephone: editInputs.telephone,
+          zip_code: editInputs.zip_code,
+          iban: editInputs.iban
+        });
+  
+        setEditButton(false);
+      })
+      .catch((err) => console.log(err));
   }
 
   // borrado logico de usuario , ruta put para cambiar datos de usuario , utilizo ruta dinámica con parametro dinamico para recoger el usuario a traves del user_id
@@ -116,7 +140,7 @@ console.log(showToast);
   return (
     <>
       <Col className="infoUser">
-        <h1>User</h1>
+        <h1>{user?.name}</h1>
         <img onClick={showEdit}  className="ajusteSymbol" src="/assets/images/ajustes.svg" alt="actualizar perfil" />
         <div className="userButtons">
           <Button onClick={showCompras}>COMPRAS</Button>
@@ -166,12 +190,12 @@ console.log(showToast);
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="lastnameInput">Apellidos</Form.Label>
+                    <Form.Label htmlFor="last_nameInput">Apellidos</Form.Label>
                     <Form.Control                   
-                        id="lastnameInput"
+                        id="last_nameInput"
                         placeholder="Apellidos"
-                        name="lastname"
-                        value={editInputs.lastname}
+                        name="last_name"
+                        value={editInputs.last_name}
                         onChange={handleChange}
                     />
                 </Form.Group>
@@ -188,7 +212,7 @@ console.log(showToast);
               </Form.Group>
               <div className="d-flex justify-content-around">
               <Form.Group className="mb-3">
-                  <Form.Label htmlFor="ident_num_Input">DIN/PASAPORTE/CIF</Form.Label>
+                  <Form.Label htmlFor="ident_num_Input">DIN</Form.Label>
                   <Form.Control 
                       id="ident_num_Input" 
                       placeholder="DNI / PASAPORTE / CIF" 
@@ -203,7 +227,7 @@ console.log(showToast);
                     <Form.Control
                         id="phoneInput"
                         placeholder="Teléfono"
-                        name="phone"
+                        name="telephone"
                         value={editInputs.telephone}
                         onChange={handleChange}
                     />
@@ -229,8 +253,10 @@ console.log(showToast);
                       onChange={handleChange}
                   />
               </Form.Group>
-              <Button >Aceptar</Button>
-              <Button>Cancelar</Button>
+              <div className="formButton">
+                <Button onClick={onSubmit} >Aceptar</Button>
+                <Button onClick={() => setEditButton(false)}>Cancelar</Button>
+              </div>
           </Form>
       </Col>
         )}

@@ -2,6 +2,7 @@
   background-color: #89c9d3c4;
   height: 100vh;
   text-align: center;
+  padding-top: 25px;
 }
 
 .screenUser {
@@ -20,16 +21,20 @@
   justify-content: space-around;
   height: 250px;
   margin-top: 80px;
-  Button {
-    background-color: #005a8d;
-    border-radius: 25px;
-  }
-  Button:hover {
-    background-color: #ffc700;
-    color: black;
-    font-weight: bold;
-  }
+  
 }
+
+Button {
+  background-color: #005a8d !important;
+  border-radius: 25px !important;
+}
+Button:hover {
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700 !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
 .all-info-user {
   margin-top: 15vh;
   h2 {
@@ -48,7 +53,15 @@
 
 .formEdit{
   // background-color: red;
-  width: 80%;
+  width: 60%;
+  margin: 25px;
+  padding: 20px;
+  text-align: center;
+}
+
+.formButton{
+  display: flex;
+  justify-content: space-evenly;
 }
 
 @media (max-width: 768px) {
