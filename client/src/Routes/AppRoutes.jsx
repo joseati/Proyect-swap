@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../Pages/Dashboard/Home/Home";
 import { Register } from "../Pages/Auth/Register/Register";
 import { Login } from "../Pages/Auth/Login/Login";
 import { Error } from "../Pages/Error/Error";
@@ -19,6 +18,7 @@ import { AdvertenciasGenericas } from "../Pages/Dashboard/PoliticasLegales/Adver
 import { PoliticasCookies } from "../Pages/Dashboard/PoliticasLegales/PoliticasCookies";
 import { ComoFunciona } from "../Pages/Dashboard/Dudas/ComoFunciona";
 import { UserApp } from "../Pages/User/UserApp";
+import { Viajes } from "../Pages/Ventas/Viajes";
 
 export const AppRoutes = () => {
   return (
@@ -40,7 +40,6 @@ export const AppRoutes = () => {
             path="/politicas-de-privacidad"
             element={<PoliticasDePrivacidad />}
           />
-          <Route path="/" element={<Home />} />
           <Route path="/oneUser" element={<OneUser />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -58,6 +57,7 @@ export const AppRoutes = () => {
             path="/contactaConNosotros"
             element={<ContactaConNosotros />}
           ></Route>
+          <Route path="/viajes" element={<Viajes/>}/>
           <Route path="/sobreNosotros" element={<SobreNosotros />}></Route>
           <Route path="*" element={<Error />} />
         </Routes>
