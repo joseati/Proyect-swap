@@ -24,6 +24,7 @@ export const AppRoutes = () => {
       </Row>
       <Row>
         <Routes>
+
           <Route path="/advertenciasgenericas" element={<AdvertenciasGenericas />} />
           <Route path="/politicacookies" element={<PoliticasCookies />} />
           <Route path="/comofunciona" element={<ComoFunciona />} />
@@ -36,9 +37,9 @@ export const AppRoutes = () => {
           <Route path="/contactaConNosotros" element={<ContactaConNosotros />}></Route>
           <Route path="/sobreNosotros" element={<SobreNosotros />}></Route>
           <Route path="*" element={<Error />} />
+
         </Routes>
       </Row>
-
       <Footer />
     </Container>
   );
