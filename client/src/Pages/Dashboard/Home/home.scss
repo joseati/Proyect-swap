@@ -6,16 +6,23 @@
   background: linear-gradient(to left,  #005a8d, #89c9d3c4);
   padding: 0vh 15% 0vh 15% ;
   flex-wrap: wrap;
+  gap: 3vh;
   img{
-    width: 22vw;
+    width: 400px;
   }
   .homeCol1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .homesubCol1{
     background-color: white;
     border-radius: 60px;
     align-items: center;
     text-align: center;
     padding: 3vh 4vw 3vh 4vw;
-    width: 15vw;
+    width: 30vw;
     h2{
       color:  #005a8d;
       font-weight: bold;
@@ -28,7 +35,113 @@
       background-color: #ffc700;
       color: #005a8d;
       border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      width: 13vw;
+      height: 5vh;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.homeSection2{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  padding: 8vh 15% 8vh 15% ;
+  flex-wrap: wrap;
+  gap: 3vh;
+  a{
+    color:  #89c9d3c4;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .homeSectionCol1{
+     justify-content: center;
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     text-align: center;
+     h2{
+      color:  #005a8d;
+      font-weight: bold;
+      font-size: 40px;
+    }
+    h4{
+      color: #89c9d3c4;
       font-weight: bold;
     }
   }
+  .homeSubSection1{
+    display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  background: linear-gradient(to left,  #005a8d, #89c9d3c4);
+  padding: 0vh 15% 0vh 15% ;
+  flex-wrap: wrap;
+  gap: 3vh;
+  border-radius: 25px;
+  .homeSubCol1{
+    justify-content: center;
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     color: white;
+     padding: 4vh;
+     gap: 2vh;
+  }
+  .botonSubSection1{
+    background-color: #ffc700;
+      color: #005a8d;
+      border: none;
+      font-weight: bold;
+      width: 30%;
+      height: 5vh;
+      font-size: 1.5rem;
+  }
+  }
+}
+.homeSection3{
+  padding: 4vh 15% 4vh 15%;
+  justify-content: center;
+  align-items: end;
+  .iconosHome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    a{
+      color: #005a8d;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+    }
+  }
+}
+
+//----------------------
+
+@media screen and (max-width: 1200px){
+  .homeSection1{
+    padding: 3vh 5vw 0vh 5vw;
+    .homesubCol1{
+      width: 70vw;
+      .boton{
+        width: 40vw;
+      }
+    }
+  }
+  .homeSection2{
+    padding: 8vh 10% 8vh 10% ;
+    .homeSubSection1{
+      .homeSubCol1{
+        .botonSubSection1{
+          width: 35vw;
+        }
+      }
+    }
+  }
+  
 }
