@@ -4,7 +4,7 @@
   flex-direction: row;
   align-items: center;
   background: linear-gradient(to left,  #005a8d, #89c9d3c4);
-  padding: 0vh 15% 0vh 15% !important;
+  padding: 0vh 15% 0vh 15% ;
   flex-wrap: wrap;
   
 }
@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   h1{
-    font-size: 50px !important;
+    font-size: 50px ;
   }
   p{
     color: white;
@@ -36,9 +36,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6vh 15vw 6vh 15vw !important;
+  padding: 6vh 15vw 6vh 15vw ;
   gap: 6vw;
-  flex-wrap: wrap;
+  
   
 }
 
@@ -73,11 +73,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6vh 15vw 6vh 0vw !important;
+  padding: 6vh 15vw 6vh 0vw ;
   flex-wrap: wrap;
   gap: 2vw;
   background-color: rgb(235, 234, 234);
-  width: 100% !important;
+  
 }
 
 .revolucionando{
@@ -136,6 +136,7 @@ ol{
   }
   .apasionados2{
     text-align: initial;
+    
     p{
       text-align: initial;
     }
@@ -146,4 +147,34 @@ ol{
     align-items: center;
     
   }
+}
+@media screen and (max-width: 1200px){
+
+  .nuestraMision{
+   flex-wrap: wrap;
+  }
+
+.col-xl-6 {
+    flex: 0 0 auto;
+    width: 50%;
+}
+.padre3{
+  padding: 5vh 0vw 5vh 0vw;
+  gap: 4vh;
+}
+.revolucionando{
+  img{
+    width: 100vw;
+  }
+}
+.revolucionando2{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0vh 4vw 0vh 4vw;
+  p{
+    text-align: center;
+  }
+
+}
 }

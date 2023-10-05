@@ -2,7 +2,7 @@
 import React from 'react';
 import {Container, Row } from "react-bootstrap";
 import { Routes, Route } from 'react-router-dom';
-import { Home } from '../Pages/Dashboard/Home/Home';
+
 import { Error } from '../Pages/Error/Error';
 import { NavbarrApp } from '../Components/Navbar/NavbarrApp';
 import { PreguntasFrecuentes } from '../Pages/Dashboard/Dudas/PreguntasFrecuentes';
@@ -18,6 +18,7 @@ import { AdvertenciasGenericas } from "../Pages/Dashboard/PoliticasLegales/Adver
 import { PoliticasCookies } from "../Pages/Dashboard/PoliticasLegales/PoliticasCookies";
 import { ComoFunciona } from "../Pages/Dashboard/Dudas/ComoFunciona";
 import { UserApp } from "../Pages/User/UserApp";
+import { Home } from '../Pages/Dashboard/Home/Home';
 
 export const AppRoutes = () => {
   return (
@@ -33,11 +34,11 @@ export const AppRoutes = () => {
           />
           <Route path="/politicacookies" element={<PoliticasCookies />} />
           <Route path="/comofunciona" element={<ComoFunciona />} />
-
+          <Route path="/" element={<Home />} />
           <Route path="/oneUser" element={< UserApp />} />
           
           <Route path='/politicas-de-privacidad' element={<PoliticasDePrivacidad/>}/>
-          <Route path='/' element= {<Home/>}/>
+         
           <Route path='/faqs' element = {<PreguntasFrecuentes/>}/>
           <Route path='/terminos-condiciones' element = {<TerminosYCondiciones/>}/>
           <Route path='/avisoLegal' element = {<AvisoLegal/>} ></Route>
