@@ -38,6 +38,7 @@ class TravelController {
     });
   }
 
+
   sellTrainTicket = (req, res) => {
     const {
       train_type,
@@ -64,6 +65,24 @@ class TravelController {
       err ? res.status(500).json(err) : res.status(200).json(result);
     });
   }
+
+
+   getOneTravel= (req, res)=>{
+    const {travel_id} = req.params
+
+    let sql = `SELECT tp.*, u.*, pt.*, a_origin.*, a_destination.* FROM travel_product AS tp 
+      JOIN user AS u ON tp.seller_user_id = u.user_id 
+      JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
+      LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
+      LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
+    WHERE tp.travel_product_id = ${travel_id};`
+    connection.query(sql, (err, resul)=>{
+      err ?
+        res.status(500).json("err")
+        :
+        res.status(200).json(resul)
+    })
+  } 
 
 }
 
