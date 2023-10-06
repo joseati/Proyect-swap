@@ -18,6 +18,7 @@ import { UserApp } from "../Pages/User/UserApp";
 import { Home } from '../Pages/Dashboard/Home/Home';
 import { Viajes } from "../Pages/Ventas/Viajes";
 import { AllTravels } from '../Pages/ViajesAcomprar/AllTravels';
+import { OneTravel } from '../Pages/ViajesAcomprar/OneTravel';
 
 export const AppRoutes = () => {
   return (
@@ -42,6 +43,7 @@ export const AppRoutes = () => {
           <Route path='/contactaConNosotros' element = {<ContactaConNosotros/>} ></Route>
           <Route path='/sobreNosotros' element = {<SobreNosotros/>} ></Route>
           <Route path='/todosLosViajes' element = {<AllTravels/>}/>
+          <Route path='/oneTravel' element = {<OneTravel/>}/>
           <Route path='*' element= {<Error/>}/>
           
 

@@ -144,9 +144,9 @@ console.log(user);
         <h1>{user?.name}</h1>
         <img onClick={showEdit}  className="ajusteSymbol" src="/assets/images/ajustes.svg" alt="actualizar perfil" />
         <div className="userButtons">
-          <Button onClick={showCompras}>COMPRAS</Button>
-          <Button onClick={showVentas}>VENTAS</Button>
-          <Button onClick={showFavoritos}>FAVORITOS</Button>
+          <Button className="Buttonn" onClick={showCompras}>COMPRAS</Button>
+          <Button className="Buttonn" onClick={showVentas}>VENTAS</Button>
+          <Button className="Buttonn" onClick={showFavoritos}>FAVORITOS</Button>
         </div>
       </Col>
       <Col className="screenUser" xs={10}>
@@ -255,14 +255,14 @@ console.log(user);
                   />
               </Form.Group>
               <div className="formButton">
-                <Button onClick={onSubmit} >Aceptar</Button>
-                <Button onClick={() => setEditButton(false)}>Cancelar</Button>
+                <Button className="Buttonn" onClick={onSubmit} >Aceptar</Button>
+                <Button className="Buttonn" onClick={() => setEditButton(false)}>Cancelar</Button>
               </div>
           </Form>
       </Col>
         )}
-        <Button onClick={closeSesion}>Cerrar Sesion</Button>
-        <Button onClick={() => setShowToast(true)}> Borrar usuario</Button>
+        <Button className="Buttonn" onClick={closeSesion}>Cerrar Sesion</Button>
+        <Button className="Buttonn" onClick={() => setShowToast(true)}> Borrar usuario</Button>
         
           {showToast &&
           <>
