@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SwapContext } from '../../context/SwapContext'
-import { Button, Col, Toast, Form } from "react-bootstrap";
+import { Button, Col, Toast, Form, Row, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { delLocalStore } from '../../Utils/localStorage'
 import axios from "axios"
@@ -26,6 +26,17 @@ export const UserApp = () => {
   const [editButton, setEditButton] =useState(false);
   const [editInputs, setEditInputs] = useState(initialValue)
   const [showToast, setShowToast] = useState()
+
+  //Estados del user tipo Admin 
+  const [statsButton, setStatsButton] = useState(true)
+  const [delTravel, setDelTravel] = useState(false)
+  const [unableUser, setUnableUser] = useState(false)
+  const [showEditAdmin, setShowEditAdmin] = useState(false)
+  //estados relacionados con datos de total de usuarios
+  const [allUsers, setAllUsers] = useState()
+  const [active, setActive] = useState()
+  const [banned, setBanned] = useState()
+  const [lastUserReg, setLastUserReg] = useState()
 
 console.log(user);
 // console.log(showToast);
@@ -70,6 +81,26 @@ console.log(user);
     navigate("/")
   }
 
+  //FUNCIONALIDAD DEL ADMIN 
+  const OnShowStats = () =>{
+    setDelTravel(false)
+    setUnableUser(false)
+    setStatsButton(true)
+  }
+
+  const OnDelTravel = () =>{
+    setUnableUser(false)
+    setStatsButton(false)
+    setDelTravel(true)
+  }
+
+  const OnUnableUser = () => {
+    setStatsButton(false)
+    setDelTravel(false)
+    setUnableUser(true)
+  }
+
+
   //Carga la información del usuario cuando entrar en la pantalla de actualizar datos.
   useEffect(() => {
     if (user) {
@@ -85,6 +116,21 @@ console.log(user);
         });
     }
 }, [user]);
+
+//Trae los datos de todos los usuarios al Admin
+  useEffect(()=>{
+    axios
+        .get('http://localhost:4000/admin/allUsersData')
+        .then((res)=>{
+          setAllUsers(res.data)
+          setActive(res.data.filter((e)=>e.enabled === 1).length)
+          setBanned(res.data.filter((e)=>e.enabled === 0).length)
+          setLastUserReg(res.data[res.data.length-1].register_date)
+          
+        })
+        .catch((err)=>console.log(err))
+
+  },[])
 
   const handleChange = (e) =>{
     const {name, value} = e.target;
@@ -140,16 +186,38 @@ console.log(user);
   }
   return (
     <>
-      <Col className="infoUser">
+      <Col className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
         <h1>{user?.name}</h1>
-        <img onClick={showEdit}  className="ajusteSymbol" src="/assets/images/ajustes.svg" alt="actualizar perfil" />
+
+        {user?.type === 2 && <h2>Administrador/a</h2>}
+
+        {user?.type === 1 && <img onClick={showEdit}  className="ajusteSymbol" src="/assets/images/ajustes.svg" alt="actualizar perfil" />}
+        
+
         <div className="userButtons">
-          <Button onClick={showCompras}>COMPRAS</Button>
-          <Button onClick={showVentas}>VENTAS</Button>
-          <Button onClick={showFavoritos}>FAVORITOS</Button>
+          {user?.type === 1 && 
+          <>
+            <Button onClick={showCompras}>COMPRAS</Button>
+            <Button onClick={showVentas}>VENTAS</Button>
+            <Button onClick={showFavoritos}>FAVORITOS</Button>
+          </>}
+
+          {user?.type === 2 && 
+          <>
+            <Button onClick={OnShowStats}>VER ESTADÍSTICAS</Button>
+            <br />
+            <Button 
+              onClick={OnDelTravel}
+              className="but-admin"
+              >BORRAR VIAJE</Button>
+            <Button onClick={OnUnableUser}>BLOQUEAR USUARIO</Button>
+            <br />
+            <br />
+            <Button onClick={closeSesion}>Cerrar Sesion</Button>
+          </>}
         </div>
       </Col>
-      <Col className="screenUser" xs={10}>
+      {user?.type === 1 && <Col className="screenUser" xs={10}>
         <h1>Datos Viaje {user?.name}</h1>
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
@@ -174,7 +242,7 @@ console.log(user);
               sobre el viaje</p>
           </div>
         )}
-        {editButton && (
+        {editButton || showEditAdmin &&(
           <Col className="d-flex justify-content-center">
           <Form className="formEdit">
               <h2>Editar usuario</h2>
@@ -282,8 +350,64 @@ console.log(user);
           </Toast.Body>
     </Toast>
     </> }
-      
-      </Col>
+
+      </Col>}
+
+      {/* VISTAS DEL ADMIN  */}
+      {user?.type === 2 && statsButton  && <Col className="screenUser" xs={10}>
+          <Row>
+            <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
+                  <Row>
+
+                    <Col xs={12} className="p-5">
+                    <h4>Estadísticas de usuarios</h4>
+                    </Col>
+                    <Card style={{ width: '18rem'}}>
+                      <Card.Body>nº de Usuarios totales: <strong>{active + banned}</strong></Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem'}}>
+                      <Card.Body>nº de Usuarios activos: <strong>{active}</strong></Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem'}}>
+                      <Card.Body>nº de Usuarios baneados: <strong>{banned}</strong></Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem'}}>
+                      <Card.Body>fecha del último usuario registrado: <strong>{lastUserReg}</strong></Card.Body>
+                    </Card>
+
+                    <Col xs={12} className="p-5">
+                    <h4>Estadísticas de viajes</h4>
+                    </Col>
+                    <Card style={{ width: '18rem'}}>
+                    <Card.Body>nº de viajes totales: </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem'}}>
+                    <Card.Body>nº de compras en total: </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem'}}>
+                    <Card.Body>nº de Usuarios baneados: </Card.Body>
+                    </Card>
+
+                  </Row>
+              </Col>
+          </Row>
+        </Col>}
+
+      {user?.type === 2 && delTravel && <Col className="screenUser" xs={10}>
+          <Row>
+              <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
+                <h4>Borrar viaje</h4>
+              </Col>
+          </Row>
+        </Col>}
+
+      {user?.type === 2 && unableUser && <Col className="screenUser" xs={10}>
+        <Row>
+            <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
+              <h4>Bloquear usuario</h4>
+            </Col>
+        </Row>
+      </Col>}
       
     </>
   );
