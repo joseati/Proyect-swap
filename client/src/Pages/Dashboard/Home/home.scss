@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: center;
   }
+  
   .homesubCol1{
     background-color: white;
     border-radius: 60px;
@@ -23,6 +24,7 @@
     text-align: center;
     padding: 3vh 4vw 3vh 4vw;
     width: 30vw;
+    transition: 0.6s;
     h2{
       color:  #005a8d;
       font-weight: bold;
@@ -37,11 +39,20 @@
       border: none;
       border-radius: 50px;
       font-weight: bold;
-      width: 13vw;
-      height: 5vh;
+      width: 160px;
+      height: 44px;
       font-size: 1.5rem;
+      transition: 0.4s;
+    }
+    .boton:hover{
+      background-color: #005a8d;
+      color: white;
     }
   }
+  .homesubCol1:hover{
+    transform: translateY(-10px)
+  }
+  
 }
 
 .homeSection2{
@@ -52,10 +63,14 @@
   padding: 8vh 15% 8vh 15% ;
   flex-wrap: wrap;
   gap: 3vh;
-  a{
+  .azulAmarillo{
     color:  #89c9d3c4;
     font-weight: bold;
     text-decoration: none;
+    transition: 0.4s;
+  }
+  .azulAmarillo:hover{
+    color: #ffc700;
   }
   .homeSectionCol1{
      justify-content: center;
@@ -97,9 +112,14 @@
       color: #005a8d;
       border: none;
       font-weight: bold;
-      width: 30%;
-      height: 5vh;
+      width: 150px;
+      height: 44px;
       font-size: 1.5rem;
+      transition: 0.4s;
+  }
+  .botonSubSection1:hover{
+    background-color: white;
+    color: #ffc700;
   }
   }
 }
@@ -122,6 +142,9 @@
       text-decoration: none;
       text-align: center;
     }
+    a:hover{
+      color: #ffc700;
+    }
   }
 }
 .homeSection4{
@@ -134,15 +157,16 @@
   flex-wrap: wrap;
   
     .homeSubSection4Col1{
-      background-color: white;
-      display: flex;
-      flex-direction: column;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
     border-radius: 60px;
     align-items: center;
     text-align: center;
     padding: 3vh 4vw 3vh 4vw;
     width: 30vw;
     gap: 3vh;
+    transition: 0.6s;
     h2{
       color:  #005a8d;
       font-weight: bold;
@@ -151,11 +175,28 @@
       color: #89c9d3c4;
       font-weight: bold;
     }
+    .botonHomeSection4{
+      background-color: #ffc700;
+      color: #005a8d;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      width: 150px;
+      height: 44px;
+      font-size: 1.5rem;
+      transition: 0.4s;
+    }
+    .botonHomeSection4:hover{
+      background-color: #005a8d;
+      color: white;
+    }
+    }
+    .homeSubSection4Col1:hover{
+      transform: translateY(-10px)
     }
 }
 .homeSection5{
   justify-content: center;
-  
   padding: 10vh 10vw 10vh 10vw;
   .iconosHome2{
     display: flex;
@@ -185,22 +226,17 @@
   flex-direction: row;
   align-items: center;
   background: linear-gradient(to left,  #005a8d, #89c9d3c4);
-  padding: 10vh 15% 10vh 15% ;
-  
+  padding: 5vh 15% 5vh 15% ;
   .carouselHomeP{
-  
     justify-content: center;
     align-items: center;
     text-align: center;
     border-radius: 25px;
-    
     .carouselHome{
       background-color: white;
       border-radius: 25px;
       padding: 4vh 20vw 4vh 20vw;
     }
-
-    
   }
 }
 
@@ -211,20 +247,10 @@
     padding: 3vh 5vw 0vh 5vw;
     .homesubCol1{
       width: 70vw;
-      .boton{
-        width: 40vw;
-      }
     }
   }
   .homeSection2{
     padding: 8vh 10% 8vh 10% ;
-    .homeSubSection1{
-      .homeSubCol1{
-        .botonSubSection1{
-          width: 35vw;
-        }
-      }
-    }
   }
   
   
@@ -234,12 +260,16 @@
   .homeSection4{
     padding: 8vh 5% 8vh 5% ;
     flex-wrap: wrap;
-    
-      
-      .homeSubSection4Col1{
-        width: 80vw;
+    .homeSubSection4Col1{
+       width: 80vw;
+    }
+  }
+  .homeSection6{
+    .carouselHomeP{
+      .carouselHome{
+        padding: 4vh 5vw 4vh 5vw;
       }
-    
+    }
   }
 } 
 @media screen and (min-width: 1200px){
@@ -248,6 +278,13 @@
   }
 }
 @media screen and (max-width: 600px){
+  .homeSection1{
+    .homeCol1{
+      img{
+        width: 350px;
+      }
+    }
+  }
   .homeSection5{
     align-items: center;
     flex-direction: column;
@@ -255,5 +292,12 @@
   .homeSubSection5{
     flex-direction: column;
     align-items: center;
+  }
+  .homeSection6{
+    .carouselHomeP{
+      .carouselHome{
+        padding: 4vh 5vw 4vh 5vw;
+      }
+    }
   }
 }

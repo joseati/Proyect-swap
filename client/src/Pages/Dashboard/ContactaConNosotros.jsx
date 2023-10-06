@@ -6,7 +6,7 @@ export const ContactaConNosotros = () => {
     <>
       <Row className="contactaConNosotrosPadre" >
         
-            <Col >
+            <Col xs={12} xl={6} >
               <div className="contacts">
                 <img src="/assets/images/email.png" alt="" />
                 <h2>Email</h2>
@@ -19,7 +19,7 @@ export const ContactaConNosotros = () => {
                 </a>
               </div>
             </Col>
-            <Col>
+            <Col xl={6} >
               <div className="contacts">
                 <img src="/assets/images/chat.png" alt="" />
                 <h2>Live Chat</h2>
@@ -35,7 +35,7 @@ export const ContactaConNosotros = () => {
           
        
          
-            <Col>
+            <Col xl={6} >
               <div className="contacts">
                 <img src="/assets/images/telefono.png" alt="" />
                 <h2>Teléfono</h2>
@@ -45,7 +45,7 @@ export const ContactaConNosotros = () => {
                 <a href="tel:34611329641">611 32 96 41</a>
               </div>
             </Col>
-            <Col className="contacts">
+            <Col xl={6}  className="contacts">
               <div className="contacts">
                 <img src="/assets/images/oficinas.png" alt="" />
                 <h2>Oficinas</h2>

@@ -4,6 +4,7 @@ import './home.scss'
 import Carousel from 'react-bootstrap/Carousel';
 import { useNavigate } from 'react-router-dom';
 
+
 export const Home = () => {
   const [index, setIndex] = useState(0);
   const navigate = useNavigate()
@@ -12,154 +13,157 @@ export const Home = () => {
   };
   return (
     <Col>
-      <Row className='homeSection1'>
-       <Col className='homeCol1' >
-        <div className='homesubCol1'>
-          <h2>¿Tienes un viaje que no vas a disfrutar?</h2>
-        <h5>¡RECUPERA TU DINERO!</h5>
-        <Button className='boton'>SWAPEALO</Button>
-        </div>
-        
-       </Col>
-       <Col className='homeCol1'>
-       <img src="/assets/images/fondo-1.png" alt="" />
-       </Col>
+      <Row className="homeSection1">
+        <Col className="homeCol1">
+          <div className="homesubCol1">
+            <h2>¿Tienes un viaje que no vas a disfrutar?</h2>
+            <h5>¡RECUPERA TU DINERO!</h5>
+            <Button className="boton">SWAPEALO</Button>
+          </div>
+        </Col>
+        <Col className="homeCol1">
+          <img src="/assets/images/fondo-1.png" alt="" />
+        </Col>
       </Row>
 
-      <Row className='homeSection2'>
-        <Col className='homeSectionCol1'>
-        <h2>Últimos Swaps añadidos</h2>
-        <h4>SWAPEA Y CONOCE MUNDO AL MEJOR PRECIO</h4>
-        <Row>
-          <Col>
-          
+      <Row className="homeSection2">
+        <Col className="homeSectionCol1">
+          <h2>Últimos Swaps añadidos</h2>
+          <h4>SWAPEA Y CONOCE MUNDO AL MEJOR PRECIO</h4>
+          <Row>
+            <Col></Col>
+            <a className="azulAmarillo" href="">
+              Ver más
+            </a>
+          </Row>
+        </Col>
+        <Row className="homeSubSection1">
+          <Col className="homeSubCol1">
+            <h2>¿No encuentras lo que buscas?</h2>
+            <Button className="botonSubSection1">Vente aquí</Button>
           </Col>
-          <a href="">Ver más</a>
         </Row>
-        </Col>
-        <Row className='homeSubSection1'>
-          <Col className='homeSubCol1'>
-          <h2>¿No encuentras lo que buscas?</h2>
-          <Button className='botonSubSection1'>Vente aquí</Button>
-          </Col>
-        </Row>
-        
       </Row>
-      <Row className='homeSection3'  >
-        <Col className='iconosHome' xs={6} xl={2} >
-        <a href="">
-          <img onClick={()=>navigate("/viajes")} src="/assets/images/avion1.svg" alt="" />
-        </a>
-        <a href="">Billetes de avión</a>
+      <Row className="homeSection3">
+        <Col className="iconosHome" xs={6} xl={2}>
+          <a href="/todosLosViajes">
+            <img src="/assets/images/avion1.svg" alt="" />
+          </a>
+          <a href="/todosLosViajes">Billetes de avión</a>
         </Col>
-        <Col className='iconosHome' xs={6} xl={2}>
-        <a href="">
-          <img onClick={()=>navigate("/viajes")} src="/assets/images/bono.svg" alt="" />
-        </a>
-        <a href="">Bonos de viaje</a>
+        <Col className="iconosHome" xs={6} xl={2}>
+          <a href="/todosLosViajes">
+            <img src="/assets/images/bono.svg" alt="" />
+          </a>
+          <a href="/todosLosViajes">Bonos de viaje</a>
         </Col>
-        <Col className='iconosHome' xs={6} xl={2}>
-        <a href="">
-          <img onClick={()=>navigate("/viajes")}  src="/assets/images/tren.svg" alt="" />
-        </a>
-        <a href="">Billetes de tren</a>
+        <Col className="iconosHome" xs={6} xl={2}>
+          <a href="/todosLosViajes">
+            <img src="/assets/images/tren.svg" alt="" />
+          </a>
+          <a href="/todosLosViajes">Billetes de tren</a>
         </Col>
-        <Col className='iconosHome' xs={6} xl={2}>
-        <a href="">
-          <img  onClick={()=>navigate("/viajes")} src="/assets/images/alojamiento.svg" alt="" />
-        </a>
-        <a href="">Estancias de hotel</a>
+        <Col className="iconosHome" xs={6} xl={2}>
+          <a href="/todosLosViajes">
+            <img src="/assets/images/alojamiento.svg" alt="" />
+          </a>
+          <a href="/todosLosViajes">Estancias de hotel</a>
         </Col>
-        <Col className='iconosHome' xs={6} xl={2}>
-        <a href="">
-          <img onClick={()=>navigate("/viajes")} src="/assets/images/vacacional.svg" alt="" />
-        </a>
-        <a href="">Paquetes vacacionales</a>
+        <Col className="iconosHome" xs={6} xl={2}>
+          <a href="/todosLosViajes">
+            <img src="/assets/images/vacacional.svg" alt="" />
+          </a>
+          <a href="/todosLosViajes">Paquetes vacacionales</a>
         </Col>
       </Row>
-      <Row className='homeSection4'>
-        <Col className='homeSubSection4Col1'  xs={12} md={6} >
-          
-           <h2>¡Última llamada para los Swapers!</h2>
-         <h4>NO DEJES PASAR LA OPORTUNIDAD DE ESTOS SWAPS DE ÚLTIMA HORA</h4>
-         <Button className='boton'>Last Call</Button> 
-          
-         
+      <Row className="homeSection4">
+        <Col className="homeSubSection4Col1" xs={12} md={6}>
+          <h2>¡Última llamada para los Swapers!</h2>
+          <h4>NO DEJES PASAR LA OPORTUNIDAD DE ESTOS SWAPS DE ÚLTIMA HORA</h4>
+          <Button className="botonHomeSection4">Last Call</Button>
         </Col>
         <Col xs={12} md={6}>
-        <h1>AQUI VAN LAS CARDS</h1>
+          <h1>AQUI VAN LAS CARDS</h1>
         </Col>
       </Row>
-      <Row className='homeSection5'>
-        <Col className='iconosHome2' xs={6} xl={2}>
+      <Row className="homeSection5">
+        <Col className="iconosHome2" xs={6} xl={2}>
           <img src="/assets/images/candado.svg" alt="" />
-        <h5 href="">Seguro</h5>
-        <p>intermediación de SYT para dar seguridad a vendedor y comprador</p>
+          <h5>Seguro</h5>
+          <p>intermediación de SYT para dar seguridad a vendedor y comprador</p>
         </Col>
-        <Col className='iconosHome2' xs={6} xl={2}>
+        <Col className="iconosHome2" xs={6} xl={2}>
           <img src="/assets/images/facil.svg" alt="" />
-        <h5 href="">Fácil</h5>
-        <p>Regístrate en la web y en un par de clicks podrás vender o comprar tu viaje</p>
+          <h5>Fácil</h5>
+          <p>
+            Regístrate en la web y en un par de clicks podrás vender o comprar
+            tu viaje
+          </p>
         </Col>
-        <Col className='iconosHome2' xs={6} xl={2}>
+        <Col className="iconosHome2" xs={6} xl={2}>
           <img src="/assets/images/confiable.svg" alt="" />
-        <h5 href="">Confiable</h5>
-        <p>Atención personalizada por parte de un equipo especializado</p>
+          <h5>Confiable</h5>
+          <p>Atención personalizada por parte de un equipo especializado</p>
         </Col>
-        <Row className='homeSubSection5'>
-           <Col className='iconosHome2' xs={6} xl={2}>
-          <img src="/assets/images/circular.svg" alt="" />
-        <h5 href="">Economía circular</h5>
-        <p>Favorecemos la economía colaborativa entre nuestros usuarios</p>
-        </Col>
-        <Col className='iconosHome2' xs={6} xl={2}>
-          <img src="/assets/images/sostenibilidad.svg" alt="" />
-        <h5 href="">Sostenibilidad</h5>
-        <p>Nos preocupamos por el planeta</p>
-        </Col>
+        <Row className="homeSubSection5">
+          <Col className="iconosHome2" xs={6} xl={2}>
+            <img src="/assets/images/circular.svg" alt="" />
+            <h5>Economía circular</h5>
+            <p>Favorecemos la economía colaborativa entre nuestros usuarios</p>
+          </Col>
+          <Col className="iconosHome2" xs={6} xl={2}>
+            <img src="/assets/images/sostenibilidad.svg" alt="" />
+            <h5>Sostenibilidad</h5>
+            <p>Nos preocupamos por el planeta</p>
+          </Col>
         </Row>
       </Row>
-
-      <Row className='homeSection6'>
-        <Col className='carouselHomeP'>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-      <Carousel.Item >
-         <Col className='carouselHome'>
-         <h3>Francisco Javier Madroñal Cuevas</h3>
-          <p>Gratamente sorprendido con el servicio de swap your travel. Al principio desconfié porque no conocía la empresa pero el contacto es personal con ellos y comprobé que son totalmente de fiar. En cuánto al pago, son ellos los que están pendientes de que todo se realice correctamente y te mantienen informados. Totalmente recomendados.</p>
-       
-        <img src="/assets/images/review_google.png" alt="" />
-         </Col>
-        
-        
-          
-      </Carousel.Item>
-      <Carousel.Item >
-        
-        <Col className='carouselHome'>
-        <h3>Jose Antonio Acevedo Gomez</h3>
-          <p>Gracias a Swap Your Travel pude recuperar el dinero de un bono de viaje. Tuve un trato muy directo con ellos y me aportaron la seguridad que otras plataformas no me ofrecían. Volvería a repetir con ellos si me volviera a quedar tirada con un bono o billete de avión.</p>
-       
-        <img src="/assets/images/review_google.png" alt="" />
-        </Col>
-          
-      </Carousel.Item >
-      <Carousel.Item >
-        <Col className='carouselHome'>
-        <h3>Sandra Garcia</h3>
-          <p>
-          No pude realizar un viaje a Madrid y la compañía aérea me dio un bono de viaje en vez de reembolsarme el billete. Gracias A Swap Your Travel otra persona ha podido viajar con él, ahorrándose un dinero y yo he podido recuperar el mío. Todos hemos salido ganando!
-          </p>
-       
-        <img src="/assets/images/review_google.png" alt="" />
-        </Col>
-        
-          
-      </Carousel.Item>
-    </Carousel>
+      <Row className="homeSection6">
+        <Col className="carouselHomeP">
+          <Carousel activeIndex={index} onSelect={handleSelect}>
+            <Carousel.Item>
+              <Col className="carouselHome">
+                <h3>Francisco Javier Madroñal Cuevas</h3>
+                <p>
+                  Gratamente sorprendido con el servicio de swap your travel. Al
+                  principio desconfié porque no conocía la empresa pero el
+                  contacto es personal con ellos y comprobé que son totalmente
+                  de fiar. En cuánto al pago, son ellos los que están pendientes
+                  de que todo se realice correctamente y te mantienen
+                  informados. Totalmente recomendados.
+                </p>
+                <img src="/assets/images/review_google.png" alt="" />
+              </Col>
+            </Carousel.Item>
+            <Carousel.Item>
+              <Col className="carouselHome">
+                <h3>Jose Antonio Acevedo Gomez</h3>
+                <p>
+                  Gracias a Swap Your Travel pude recuperar el dinero de un bono
+                  de viaje. Tuve un trato muy directo con ellos y me aportaron
+                  la seguridad que otras plataformas no me ofrecían. Volvería a
+                  repetir con ellos si me volviera a quedar tirada con un bono o
+                  billete de avión.
+                </p>
+                <img src="/assets/images/review_google.png" alt="" />
+              </Col>
+            </Carousel.Item>
+            <Carousel.Item>
+              <Col className="carouselHome">
+                <h3>Sandra Garcia</h3>
+                <p>
+                  No pude realizar un viaje a Madrid y la compañía aérea me dio
+                  un bono de viaje en vez de reembolsarme el billete. Gracias A
+                  Swap Your Travel otra persona ha podido viajar con él,
+                  ahorrándose un dinero y yo he podido recuperar el mío. Todos
+                  hemos salido ganando!
+                </p>
+                <img src="/assets/images/review_google.png" alt="" />
+              </Col>
+            </Carousel.Item>
+          </Carousel>
         </Col>
       </Row>
-
     </Col>
-  )
-}
+  );
+};
