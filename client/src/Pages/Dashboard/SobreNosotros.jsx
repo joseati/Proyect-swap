@@ -8,10 +8,10 @@ export const SobreNosotros = () => {
       <Row className="padre">
         <Col className="apasionados">
             <Row className="subPadre">
-             <Col className="foto" xs={12} xl={6}>
+             <Col className="foto" xs={12} xl={4}>
             <img src="/assets/images/fondo-2.png" alt="" />
           </Col>
-          <Col className="apasionados2" xs={12} xl={6} >
+          <Col className="apasionados2" xs={12} xl={7} >
             <h1>Somos unos apasionados de los viajes </h1>
             <h4>
               Estamos creando una COMUNIDAD de SWAPERS donde todos salimos
@@ -29,9 +29,8 @@ export const SobreNosotros = () => {
         </Col>
       </Row>
     
-     
       <Row className="padre2">
-      <Col className="nuestraMision">
+      <Col className="nuestraMision" xs={12}  xl={6} >
           <h2>
             Nuestra misión es que recuperes tu dinero y otros viajen más barato
           </h2>
@@ -54,7 +53,6 @@ export const SobreNosotros = () => {
         </Col>  
       </Row>
       <Row className="padre3" xs={12}>
-      
           <Col className="revolucionando">
           <img src="/assets/images/sobre-nosotros-swap.jpg" alt="" />
         </Col>
@@ -64,7 +62,6 @@ export const SobreNosotros = () => {
             Socialmente comprometidos con el medio ambiente, NUESTRO SISTEMA
             REDUCE la huella de carbono.
           </h4>
-
           <p>
             Nos estamos adaptando a los nuevos hábitos y exigencias de los
             viajeros del S.XXI, a través de una tecnología de vanguardia e
@@ -76,12 +73,10 @@ export const SobreNosotros = () => {
         </Col>    
       </Row>
       <Row className="padre4">
-          
          <hgroup>
             <h2>Principios y Valores</h2>
           </hgroup>
             <Col>
-            
               <ol>
                 <li>
                   <h4>INTEGRIDAD, TRANSPARENCIA, CREDIBILIDAD</h4>
@@ -108,7 +103,6 @@ export const SobreNosotros = () => {
                 <li>
                   <h4>TECNOLOGÍA E INNOVACIÓN CONTINÚA</h4>
                   <p>
-                    {" "}
                     Facilitamos y mejoramos las funcionalidades a los usuarios y
                     nos diferenciamos de la competencia.
                   </p>
@@ -116,7 +110,6 @@ export const SobreNosotros = () => {
                 <li>
                   <h4>AYUDA AL ECOSISTEMA DE VIAJEROS</h4>
                   <p>
-                    {" "}
                     Aportamos nuestros valores, habilidades e implicación a
                     nuestra plataforma, para que ofrezca facilidad, seguridad y
                     confiabilidad.
@@ -131,13 +124,7 @@ export const SobreNosotros = () => {
                 </li>
               </ol>
             </Col>
-         
-      
-      
       </Row>
-     
-
-     
     </Col>
   );
 };

@@ -1,14 +1,8 @@
 .contactaConNosotrosPadre{
   padding:10vh 15vw 10vh 15vw !important;
-  gap: 3vw;
-}
-.contactaConNosotros{
-  justify-content: center;
-  align-items: center;
-  gap: 3vw;
- flex-wrap: wrap;
   
 }
+
 col{
   height: 30vh;
 }
@@ -16,8 +10,10 @@ col{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  
+  justify-content: end;
+  a{
+  text-decoration: none;
+}
 }
 @media screen and (max-width: 1400px){
   .contactaConNosotros{

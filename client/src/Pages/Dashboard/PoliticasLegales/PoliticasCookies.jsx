@@ -1,24 +1,24 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-
+import './politicasCookies.scss'
 export const PoliticasCookies = () => {
   return (
-    <Col>
+    <Col className="politicaCookiesPadre">
       <Row>
-        <Col>
+        <Col className="cookiesTitle">
           <h1>Políticas de Cookies</h1>
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className="coookiesHijo2 ">
           <p>
-            <br />
             Las cookies son ficheros que se descargan en su ordenador al acceder
             a determinadas páginas web. Las cookies facilitan a una página web
             almacenar y recuperar información sobre los hábitos de navegación de
             un cliente y, dependiendo de la información que contengan y de la
             forma en que se utilice su equipo, pueden servir para reconocerlo.
-            <br />
+            </p>
+            <p>
             No obstante, estos medios sólo obtienen información relacionada con
             el número de páginas visitas, la ciudad a la que está asignada la
             dirección IP desde la que se accede, el número de nuevos usuarios,
@@ -27,34 +27,42 @@ export const PoliticasCookies = () => {
             la visita. En ningún caso se obtienen datos sobre el nombre,
             apellidos, dirección postal u otros datos análogos del usuario que
             se ha conectado.
-            <br />
+            </p>
+             <p>
             Las cookies utilizadas en esta página Web se clasifican según la
             siguiente finalidad:
-            <br />
+            </p>
+            <p>
             Técnicas o necesarias: Son imprescindibles para garantizar el
             funcionamiento de la web y, por ello, no se pueden desactivar.
-            <br />
+            </p>
+            <p>
             Analíticas o estadísticas: Con esta finalidad se emplean cookies
             propias o de terceros. Se emplean para obtener el número de visitas,
             la frecuencia de las mismas, el uso de las distintas zonas del site…
-            <br />
+            </p>
+            <p>
             De personalización o preferencias: Hacen posible conservar perfiles
             de acceso, como la selección del idioma, el aspecto de la página, la
             configuración en función del navegador utilizado…
-            <br />
+            </p>
+            <p>
             Publicitarias: Pueden ser propias o de terceros. Guardan datos sobre
             los hábitos de navegación del usuario para personalizar la
             publicidad que se le ofrece.
-            <br />
+            </p>
+            <p>
             Podrás gestionar tus consentimientos en relación con las Cookies que
             usa nuestra web a través de la ventana emergente que se abre al
             entrar en la web.
-            <br />
+            </p>
+            <p>
             Usted también puede permitir, bloquear o eliminar las cookies
             instaladas en su equipo mediante la configuración de las opciones de
             su navegador. Puede encontrar información sobre cómo hacerlo, en
             relación con los navegadores más comunes, en los links que se
-            incluyen a continuación: <br />
+            incluyen a continuación: 
+            </p>
             <ul>
               <li>
                 Firefox:{" "}
@@ -81,6 +89,7 @@ export const PoliticasCookies = () => {
                 </a>
               </li>
             </ul>
+            <p>
             Le informamos, no obstante, de la posibilidad de que la
             desactivación de alguna cookie impida o dificulte la navegación o la
             prestación de los servicios ofrecidos en esta Web.

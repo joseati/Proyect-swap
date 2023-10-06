@@ -4,8 +4,8 @@
   flex-direction: row;
   align-items: center;
   background: linear-gradient(to left,  #005a8d, #89c9d3c4);
-  padding: 0vh 15% 0vh 15% ;
-  flex-wrap: wrap;
+  padding: 0vh 10% 0vh 10% ;
+  
   
 }
 .apasionados{
@@ -23,6 +23,12 @@
     font-size: 24px;
     line-height: 2rem;
   }
+  .subPadre{
+    .foto{
+      display: flex;
+    justify-content: space-evenly;
+    }
+  }
 }
 .apasionados2{
   display: flex;
@@ -30,16 +36,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .padre2{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6vh 15vw 6vh 15vw ;
-  gap: 6vw;
-  
-  
+  flex-direction: row;
+  padding: 6vh 14vw 6vh 14vw ;
 }
 
 .nuestraMision{
@@ -48,9 +53,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50vw !important;
-  gap: 10px;
- 
   h4{
     color: #89c9d3c4;
   }
@@ -133,13 +135,13 @@ ol{
 }
 //-------------------------------------
 
-@media screen and (max-width: 1429px){
+@media screen and (max-width: 1300px){
   .padre{
     padding: 7vh 4vw 0vh 4vw !important;
   }
+ 
   .apasionados2{
     text-align: initial;
-    
     p{
       text-align: initial;
     }
@@ -148,7 +150,6 @@ ol{
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
-    
   }
 }
 @media screen and (max-width: 1200px){
@@ -159,7 +160,7 @@ ol{
 
 .col-xl-6 {
     flex: 0 0 auto;
-    width: 50%;
+    width: 70%;
 }
 .padre3{
   padding: 5vh 0vw 5vh 0vw;
@@ -180,4 +181,39 @@ ol{
   }
 
 }
+}
+@media screen and (max-width: 600px){
+  .padre{
+    .apasionados{
+      .subPadre{
+        .foto{
+          display: flex;
+          justify-content: center;
+          img{
+            width: 300px;
+          }
+        }
+      }
+    }
+    .apasionados2{
+    
+      h1{
+        font-size: 35px;
+      }
+      h4{
+        font-size: 20px;
+      }
+      p{
+        font-size: 17px;
+      }
+    }
+  }
+  .padre2{
+    padding: 6vh 7vw 6vh 7vw ;
+    .nuestraMision2{
+      img{
+        width: 300px;
+      }
+    }
+  }
 }
