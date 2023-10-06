@@ -1,6 +1,14 @@
 import { Row, Col, Form } from "react-bootstrap";
 
+export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
+import { useState } from "react";
 export const PlaneForm = ({ handleChange, inputFormPlane }) => {
+  const [ticketType, setTicketType] = useState('ida');
+  const handleTicketTypeChange = (e) => {
+    setTicketType(e.target.value);
+    handleChange(e); // Llamar a la función handleChange original si es necesario.
+  };
+  
   return (
     <>
       <Form>
@@ -75,15 +83,16 @@ export const PlaneForm = ({ handleChange, inputFormPlane }) => {
                 <option value="no">No</option>
               </Form.Select>
             </Form.Group>
+           
             <Form.Group>
               <Form.Label className="label" htmlFor="telephone">
-                Teléfono
+                Préfijo y Teléfono
               </Form.Label>
               <Form.Control
                 className="custom-input"
                 name="telephone"
                 id="telephone"
-                placeholder="Introduce el teléfono"
+                placeholder="Introduce el préfijo y el teléfono"
                 onChange={handleChange}
                 value={inputFormPlane.telephone}
               />
@@ -173,7 +182,51 @@ export const PlaneForm = ({ handleChange, inputFormPlane }) => {
                 value={inputFormPlane.arrival_airport}
               />
             </Form.Group>
-
+ {/* Fecha de vuelta si es ida y vuelta */}{console.log(shwoGoAndBack)}
+ {shwoGoAndBack && <>
+              <Form.Group>
+              <Form.Label className="label" htmlFor="departure_date">
+                Fecha de ida
+              </Form.Label>
+              <Form.Control
+                className="custom-input"
+                id="arrival_date"
+                name="arrival_date_date"
+                placeholder="Fecha"
+                type="date"
+                onChange={handleChange}
+                value={inputFormPlane.arrival_date}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className="label" htmlFor="arrival_hour">
+                Hora de salida- Ida
+              </Form.Label>
+              <Form.Control
+                className="custom-input"
+                name="arrival_hour"
+                id="arrival_hour"
+                placeholder="Elija el aeropuerto de llegada"
+                type="time"
+                onChange={handleChange}
+                value={inputFormPlane.arrival_hour2}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className="label" htmlFor="departure_hour">
+                Hora de llegada - Ida
+              </Form.Label>
+              <Form.Control
+                className="custom-input"
+                name="departure_hour"
+                id="departure_hour"
+                placeholder="Elija el aeropuerto de llegada"
+                type="time"
+                onChange={handleChange}
+                value={inputFormPlane.departure_hour}
+              />
+            </Form.Group>
+            </>}
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_hour">
                 Hora de salida- Ida
@@ -202,6 +255,7 @@ export const PlaneForm = ({ handleChange, inputFormPlane }) => {
                 value={inputFormPlane.departure_hour}
               />
             </Form.Group>
+
 
             <Form.Group>
               <Form.Label className="label" htmlFor="rate_type">

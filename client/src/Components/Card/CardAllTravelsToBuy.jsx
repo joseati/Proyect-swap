@@ -1,24 +1,22 @@
 import React, { useContext, useEffect } from 'react'
 import { Col, Card, Button, Row } from 'react-bootstrap'
+import { getDate } from '../../Utils/getDateTime';
 
 
 
 export const CardAllTravelsToBuy = ({travel}) => {
-console.log(travel);
-
+   
   let departure_date = 0
-
-  if(travel?.departure_date ) {
-  // const [fecha, hora ] = travel?.departure_date.split("T")
-   departure_date = travel?.departure_date.slice(0,10)
-  console.log(departure_date);
+  let arrival_date = 0
+  // Utilizamos una funcion de utils para separar la parte que no nos interesa y guardar la que nos interesa en una variable
+  if(travel?.departure_date && travel?.arrival_date) {
+  departure_date = getDate(travel?.departure_date)
+  arrival_date = getDate(travel?.arrival_date)
+  
 }
 
-let arrival_date = 0
-if(travel?.arrival_date){
- arrival_date = travel?.arrival_date.slice(0,10)
 
-}
+
 
 
 
@@ -35,7 +33,7 @@ if(travel?.arrival_date){
    </Card.Text>
 
   <Card.Text>
-     {travel.seller_name}
+     {travel.name}
    </Card.Text>
    <Card.Text>
      {travel.company}
