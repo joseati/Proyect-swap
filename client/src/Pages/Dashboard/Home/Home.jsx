@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
-import "./home.scss";
-import Carousel from "react-bootstrap/Carousel";
+import React,{ useState } from 'react'
+import { Button, Col, Row } from 'react-bootstrap'
+import './home.scss'
+import Carousel from 'react-bootstrap/Carousel';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Home = () => {
   const [index, setIndex] = useState(0);
-
+  const navigate = useNavigate()
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };

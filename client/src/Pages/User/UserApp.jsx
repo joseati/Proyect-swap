@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { delLocalStore } from '../../Utils/localStorage'
 import axios from "axios"
 import "./userApp.scss";
+import { BanUserAdmin } from "../Admin/BanUserAdmin";
 
 const initialValue = {
   name: "",
@@ -199,16 +200,22 @@ export const UserApp = () => {
 
           {user?.type === 2 && 
           <>
-            <Button onClick={OnShowStats}>VER ESTADÍSTICAS</Button>
+            <Button 
+              className="buttonn-admin"
+              onClick={OnShowStats}>VER ESTADÍSTICAS</Button>
             <br />
             <Button 
               onClick={OnDelTravel}
-              className="but-admin"
+              className="buttonn-admin-red"
               >BORRAR VIAJE</Button>
-            <Button onClick={OnUnableUser}>BLOQUEAR USUARIO</Button>
+            <Button 
+              className="buttonn-admin-red"
+              onClick={OnUnableUser}>BLOQUEAR USUARIO</Button>
             <br />
             <br />
-            <Button onClick={closeSesion}>Cerrar Sesion</Button>
+            <Button
+              className="buttonn-admin" 
+              onClick={closeSesion}>Cerrar Sesion</Button>
           </>}
 
         </div>
@@ -238,7 +245,7 @@ export const UserApp = () => {
               sobre el viaje</p>
           </div>
         )}
-        {editButton || showEditAdmin &&(
+        {editButton &&(
           <Col className="d-flex justify-content-center">
           <Form className="formEdit">
               <h2>Editar usuario</h2>
@@ -401,6 +408,11 @@ export const UserApp = () => {
         <Row>
             <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
               <h4>Bloquear usuario</h4>
+            </Col>
+            <Col>
+                <BanUserAdmin 
+                  allUsers={allUsers}
+                />
             </Col>
         </Row>
       </Col>}

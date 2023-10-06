@@ -7,4 +7,8 @@ const AdminController = require("../controller/adminController")
 // http://localhost:4000/admin/allUsersData
 router.get('/allUsersData', AdminController.getUsersData)
 
+// http://localhost:4000/admin/banOneUser/:user_id
+router.put('banOneUser/:user_id', AdminController.banOneUser)
+
+
 module.exports = router

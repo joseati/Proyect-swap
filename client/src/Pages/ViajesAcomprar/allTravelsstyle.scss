@@ -4,7 +4,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 45rem;
-  
 }
 .bg-allTv{
   padding: 2rem 3rem;
@@ -13,13 +12,49 @@
   flex-wrap: wrap;
 }
 .bg{
-  background-color: #d9d9d9;
+  background-color: #f6f6f6;
   padding: 5rem;
-
+  width: 20vw;
   border-radius: 5px;
+  .filters-title{
+    color:#005A8D;
+    font-weight: 700 !important;
+    font-size: 1.5rem;
+  }
+  .filters-label{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    color: #005A8D;
+  }
+  .btn-filter{
+    width: 100%;
+    padding: 12px;
+    background-color: #ffc700;
+    color: #005a8d;
+    &:hover {
+      background-color: #005a8d;
+      color: white !important;
+      transition: 200ms ease-in-out;
+    }
+  }
+  img{
+    max-width: 12%;
+    height: auto;
+   object-fit: cover;
+  }
+  
 }
 .dateCard{
   display: flex;
   flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .filters-label{
+    max-width: 200px;
+  }
+
 
 }
+
