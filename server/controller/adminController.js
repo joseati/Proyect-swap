@@ -14,6 +14,18 @@ class AdminController {
       res.status(200).json(result)
     })
   }
+
+  banOneUser = (req, res) => {
+    const { user_id } = req.params
+    let sql = `UPDATE user SET enabled = 0 WHERE user_id = ${user_id}`
+
+    connection.query(sql, (err, result) => {
+      if(err){
+        res.status(500).json(err)
+      }
+      res.status(200).json(result)
+    })
+  }
 }
 
 module.exports = new AdminController()

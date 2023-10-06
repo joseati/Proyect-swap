@@ -71,6 +71,28 @@
   text-align: center;
   padding-top: 25px;
 }
+.buttonn-admin{
+  background-color: #005a8d !important;
+  border-radius: 25px !important;
+}
+.buttonn-admin-red{
+  background-color: #8d0000 !important;
+  border-radius: 25px !important;
+  border: none !important;
+}
+.buttonn-admin:hover {
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700 !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+.buttonn-admin-red:hover{
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700 !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
 
 //---------------------------
 
