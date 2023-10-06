@@ -27,8 +27,8 @@ export const UserApp = () => {
   const [editInputs, setEditInputs] = useState(initialValue)
   const [showToast, setShowToast] = useState()
 
-console.log(user);
-// console.log(showToast);
+
+
   
   
   

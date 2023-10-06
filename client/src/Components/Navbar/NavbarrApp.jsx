@@ -25,7 +25,7 @@ export const NavbarrApp = () => {
     setShowModalLogin(true);
   };
   const { isLoged } = useContext(SwapContext);
-  console.log("islogeee", isLoged);
+
   // Contex para usar isLoged como controlador de los botones de registro
 
   return (
