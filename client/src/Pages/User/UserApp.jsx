@@ -37,10 +37,7 @@ export const UserApp = () => {
   const [banned, setBanned] = useState()
   const [lastUserReg, setLastUserReg] = useState()
   
-  const handleNavigateToFaqs = (e) => {
-    e.preventDefault();
-    navigate("/faqs");
-  };
+  
 
   const showCompras = () => {
     setComprasButton(true);
@@ -92,6 +89,10 @@ export const UserApp = () => {
     setStatsButton(false)
     setDelTravel(false)
     setUnableUser(true)
+  }
+ const handleNavigateToTodosLosViajes = (e) =>{
+    e.preventDefault
+    navigate("/todosLosViajes")
   }
 
 
@@ -221,7 +222,7 @@ export const UserApp = () => {
             <h2>Aún no has comprado nada</h2>
             <p>
               Ve al apartado{" "}
-              <a href="/faqs" onClick={handleNavigateToFaqs}>
+              <a href="/todosLosViajes" onClick={handleNavigateToTodosLosViajes}>
                 Comprar Viajes
               </a>{" "}
               para adquirir tu primer viaje

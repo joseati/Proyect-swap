@@ -2,10 +2,11 @@ import React,{ useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import './home.scss'
 import Carousel from 'react-bootstrap/Carousel';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
   const [index, setIndex] = useState(0);
-
+  const navigate = useNavigate()
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
@@ -44,34 +45,34 @@ export const Home = () => {
         </Row>
         
       </Row>
-      <Row className='homeSection3' >
+      <Row className='homeSection3'  >
         <Col className='iconosHome' xs={6} xl={2} >
         <a href="">
-          <img src="/assets/images/avion1.svg" alt="" />
+          <img onClick={()=>navigate("/viajes")} src="/assets/images/avion1.svg" alt="" />
         </a>
         <a href="">Billetes de avión</a>
         </Col>
         <Col className='iconosHome' xs={6} xl={2}>
         <a href="">
-          <img src="/assets/images/bono.svg" alt="" />
+          <img onClick={()=>navigate("/viajes")} src="/assets/images/bono.svg" alt="" />
         </a>
         <a href="">Bonos de viaje</a>
         </Col>
         <Col className='iconosHome' xs={6} xl={2}>
         <a href="">
-          <img src="/assets/images/tren.svg" alt="" />
+          <img onClick={()=>navigate("/viajes")}  src="/assets/images/tren.svg" alt="" />
         </a>
         <a href="">Billetes de tren</a>
         </Col>
         <Col className='iconosHome' xs={6} xl={2}>
         <a href="">
-          <img src="/assets/images/alojamiento.svg" alt="" />
+          <img  onClick={()=>navigate("/viajes")} src="/assets/images/alojamiento.svg" alt="" />
         </a>
         <a href="">Estancias de hotel</a>
         </Col>
         <Col className='iconosHome' xs={6} xl={2}>
         <a href="">
-          <img src="/assets/images/vacacional.svg" alt="" />
+          <img onClick={()=>navigate("/viajes")} src="/assets/images/vacacional.svg" alt="" />
         </a>
         <a href="">Paquetes vacacionales</a>
         </Col>

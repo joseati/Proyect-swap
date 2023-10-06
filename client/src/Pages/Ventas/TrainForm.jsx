@@ -69,12 +69,12 @@ export const TrainForm = ({ handleChange, inputFormTrain }) => {
 
           <Form.Group>
             <Form.Label className="label" htmlFor="telephone">
-              Teléfono
+             préfijo y Teléfono
             </Form.Label>
             <Form.Control
               className="custom-input"
               id="telephone"
-              placeholder="Introduce el teléfono"
+              placeholder="Introduce el préfijo y el teléfono"
               name="telephone"
               onChange={handleChange}
               value={inputFormTrain.telephone}
@@ -97,7 +97,7 @@ export const TrainForm = ({ handleChange, inputFormTrain }) => {
         <Col md={6} xs={12} className="d-flex align-items-start flex-column">
           <Form.Group className="mb-3">
             <Form.Label className="label" htmlFor="type">
-              Tipo de billete{" "}
+              Tipo de billete
             </Form.Label>
             <Form.Select id="type" className="custom-select">
               <option value="ida">Ida</option>
