@@ -32,7 +32,7 @@ const handleChange = (e) =>{
 const onSubmit = (e) =>{
   e.preventDefault()
   
-  if(inputUser === initialUser){
+  if(inputUser.name === "" || inputUser.email === "" || inputUser.password === ""){
     setShowMsgReg(true)
     return
   }
