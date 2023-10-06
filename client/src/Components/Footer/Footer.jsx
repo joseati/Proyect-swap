@@ -14,7 +14,7 @@ export const Footer = () => {
     <>
       <Container className="footer">
         <Row>
-          <Col>
+          <Col md={4} xs={12} className="col-1">
             <h4 className="title-col">SOMOS SWAP YOUR TRAVEL</h4>
             <p onClick={() => navigate("/sobreNosotros")}>¿Quiénes somos?</p>
             <p>Cómo funciona?</p>
@@ -24,7 +24,7 @@ export const Footer = () => {
             <p>¿Qué dicen de nosotros?</p>
 
           </Col>
-          <Col>
+          <Col md={4} xs={12} className="col-2">
             <h4 className="title-col">POLÍTICAS LEGALES</h4>
             <p onClick={() => navigate("/avisoLegal")}>Aviso Legal</p>
             <p onClick={() => navigate("/politicas-de-privacidad")}>Política de privacidad</p>
@@ -34,15 +34,16 @@ export const Footer = () => {
             <p onClick={() => navigate("/terminos-condiciones")}>Términos y condiciones</p>
           </Col>
 
-          <Col>
+          <Col md={4} xs={12} className="col-3">
             <div className="d-flex align-items-end justify-content-end">
               <img
                 className="square-logo"
+                onClick={()=> navigate("/")}
                 src="/assets/images/swapframe.png"
                 alt=""
               />
             </div>
-            <ul className="ul-redes-footer mt-4">
+            <ul className="ul-redes-footer mt-4 align-items-end justify-content-end">
               <li className="iconStyle">
                 <a
                   href="https://www.linkedin.com/company/swap-your-travel/"
@@ -81,7 +82,7 @@ export const Footer = () => {
               </li>
             </ul>
             <h3 className="title-swap">
-              Marketplace para comprar y vender viajes con seguridad 2023
+              Marketplace para comprar y vender viajes con seguridad
             </h3>
           </Col>
         </Row>
@@ -96,21 +97,22 @@ export const Footer = () => {
       </Container>
       <Row className="justify-content-center">
        
-        <Col className=" logos-footer d-flex align-items-center justify-content-end ">
-        <p className="p-footer">Con el apoyo de: </p>
-
-          <div className="d-flex flex-column">
-            <img
-              src="./assets/images/lanzadera.png"
-              alt="lanzadera"
-              className="lanzadera-img"
-            />
-            <img
-              src="./assets/images/minerva.png"
-              alt="minerva"
-              className="minerva-img"
-            />
-          </div>
+        <Col className=" logos-footer d-flex align-items-end justify-content-end ">
+   
+          <p className="p-footer">Con el apoyo de: </p>
+            <div className="d-flex flex-column logos">
+              <img
+                src="./assets/images/lanzadera.png"
+                alt="lanzadera"
+                className="lanzadera-img"
+              />
+              <img
+                src="./assets/images/minerva.png"
+                alt="minerva"
+                className="minerva-img"
+              />
+            </div>
+     
         </Col>
       </Row>
       

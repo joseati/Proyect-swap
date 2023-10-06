@@ -32,10 +32,7 @@ console.log(user);
   
   
   
-  const handleNavigateToFaqs = (e) => {
-    e.preventDefault();
-    navigate("/faqs");
-  };
+  
 
   const showCompras = () => {
     setComprasButton(true);
@@ -68,6 +65,30 @@ console.log(user);
     setToken()
     setIsLoged(false)
     navigate("/")
+  }
+
+
+  //FUNCIONALIDAD DEL ADMIN 
+  const OnShowStats = () =>{
+    setDelTravel(false)
+    setUnableUser(false)
+    setStatsButton(true)
+  }
+
+  const OnDelTravel = () =>{
+    setUnableUser(false)
+    setStatsButton(false)
+    setDelTravel(true)
+  }
+
+  const OnUnableUser = () => {
+    setStatsButton(false)
+    setDelTravel(false)
+    setUnableUser(true)
+  }
+ const handleNavigateToTodosLosViajes = (e) =>{
+    e.preventDefault
+    navigate("/todosLosViajes")
   }
 
   //Carga la información del usuario cuando entrar en la pantalla de actualizar datos.
@@ -157,7 +178,7 @@ console.log(user);
             <h2>Aún no has comprado nada</h2>
             <p>
               Ve al apartado{" "}
-              <a href="/faqs" onClick={handleNavigateToFaqs}>
+              <a href="/todosLosViajes" onClick={handleNavigateToTodosLosViajes}>
                 Comprar Viajes
               </a>{" "}
               para adquirir tu primer viaje

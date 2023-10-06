@@ -68,35 +68,7 @@ export const Viajes = () => {
       });
   };
 
-  // // router.post("/sellTicket",travels.inputTicket)
-  // sellTicket = (req, res) => {
-  //   const {
-  //     air_company,
-  //     departure_airport,
-  //     departure_date,
-  //     original_price,
-  //     canSellIndividually,
-  //     telephone,
-  //     commentaries,
-  //     name,
-  //     last_name,
-  //     email,
-  //     ticketType,
-  //     arrival_airport,
-  //     arrival_hour,
-  //     departure_hour,
-  //     rate_type,
-  //     exchange_rate,
-  //     number_of_passengers,
-  //     total_amount,
-  //   } = req.body.inputFormPlane;
-  //   let sql = `INSERT INTO plane_tickets (air_company, departure_airport, departure_date, original_price, canSellIndividually, telephone, commentaries, name, last_name, email, ticketType, arrival_airport, arrival_hour, departure_hour, rate_type, exchange_rate, number_of_passengers, total_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;  //   connection.query(sql, (err, result)=>{
-  // //     err?
-  // //         res.status(400).json(err)
-  // //         :
-  // //         res.status(200).json(result)
-  // // })
-  // // }
+
   const handlePlaneChange = (e) => {
     const { name, value } = e.target;
     setInputFormPlane((prevState) => ({
@@ -116,7 +88,7 @@ export const Viajes = () => {
   return (
     <>
       <Row className="justify-content-center py-5 border-0">
-        <Col xs={12} className="d-flex justify-content-center">
+        <Col md={12} xs={12} className="d-flex justify-content-center">
           <h2
             className="text-center"
             style={{ fontSize: "40px", fontWeight: "700", color: "#005a8d" }}
@@ -142,8 +114,8 @@ export const Viajes = () => {
           />
         </>
       )}
-      {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
 
+      {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
       {trainButton && (
         <>
           <hr />

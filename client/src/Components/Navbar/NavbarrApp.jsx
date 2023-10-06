@@ -42,9 +42,11 @@ export const NavbarrApp = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto navbLink w-75">
-              <Nav.Link as = {Link} to= {"/todosLosViajes"}>Comprar Viajes</Nav.Link>
-              <Nav.Link as={Link} to={"/viajes"}>Vender Viaje</Nav.Link>
-              <Nav.Link href="/sobrenosotros">Sobre Nosotros</Nav.Link>
+              <Nav.Link className="custom-nav-link" as = {Link} to= {"/todosLosViajes"}>Comprar Viajes</Nav.Link>
+              <Nav.Link className="custom-nav-link" as={Link} to={"/viajes"}>Vender Viaje</Nav.Link>
+              <Nav.Link className="custom-nav-link" href="/sobrenosotros">Sobre Nosotros</Nav.Link>
+              <Button className="btn-contact"><img src="/assets/images/phone-black.png" alt="" /> 611 32 96 41</Button>
+              <Button className="btn-contact"><img src="/assets/images/whatsapp.png" alt="" /> CHATEAR</Button>
 
             </Nav>
             {isLoged === false ? (
