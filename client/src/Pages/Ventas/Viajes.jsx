@@ -94,7 +94,7 @@ export const Viajes = () => {
   return (
     <>
       <Row className="justify-content-center py-5 border-0">
-        <Col xs={12} className="d-flex justify-content-center">
+        <Col md={12} xs={12} className="d-flex justify-content-center">
           <h2
             className="text-center"
             style={{ fontSize: "40px", fontWeight: "700", color: "#005a8d" }}
@@ -121,8 +121,8 @@ export const Viajes = () => {
           />
         </>
       )}
-      {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
 
+      {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
       {trainButton && (
         <>
           <hr />

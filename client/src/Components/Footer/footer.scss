@@ -1,8 +1,6 @@
 .footer {
-  border-top: 3px solid #005a8d;
-  border-right: 3px solid  #005a8d;
-  border-left: 3px solid  #005a8d;
-  border-bottom: 3px solid #005a8d;
+  border-top: 2px solid #005a8d;
+  border-bottom: 2px solid #005a8d;
   margin-top: 5vh;
   margin-bottom: 5vh;
   .title-col {
@@ -26,7 +24,7 @@
   
 .title-swap {
   font-size: 14px;
-  text-align: left;
+  text-align: right;
   color: #005a8d;
 }
 .logo-swap {
@@ -35,7 +33,7 @@
 }
 .square-logo {
   margin-top: 3vh;
-  margin-right: 5vw;
+ cursor: pointer;
   width: 300px;
   margin-bottom: 1vh;
 }
@@ -74,27 +72,61 @@ ul {
   font-weight: bold;
   color: black;
 }
+
+}
 .logos-footer{
-  margin-right: 14vw;
+  .lanzadera-img {
+    margin-right: 15vw;
+    margin-bottom: 2vh;
+    width: 12.5vw;
+  }
+  
+  .minerva-img {
+    width: 12vw;
+    margin-bottom: -20vh;
+  }
+  
+  .p-footer {
+    margin-bottom: -3vh;
+    margin-right: 3vw;
+    color: #005a8d;
+  }
+  
 }
-}
-.lanzadera-img {
-  margin-right: 2vw;
-  margin-top: 2vh;
-  width: 12vw;
 
+
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+    .col-1{
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .col-2{
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .col-3{
+      text-align: center;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .low-footer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.minerva-img {
-  margin-top: 2vh;
-  width: 12vw;
-  margin-bottom: -20vh;
-}
-
-.p-footer {
-  margin-bottom: -15vh;
-  margin-right: 2vw;
-  color: #005a8d;
-}
+//FALTA AJUSTAR LOS ULTIMOS LOGOS Y EL TEXTO
 
 

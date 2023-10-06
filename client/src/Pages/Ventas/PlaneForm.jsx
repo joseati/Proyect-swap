@@ -1,6 +1,14 @@
 import { Row, Col, Form } from "react-bootstrap";
 
 export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
+import { useState } from "react";
+export const PlaneForm = ({ handleChange, inputFormPlane }) => {
+  const [ticketType, setTicketType] = useState('ida');
+  const handleTicketTypeChange = (e) => {
+    setTicketType(e.target.value);
+    handleChange(e); // Llamar a la función handleChange original si es necesario.
+  };
+  
   return (
     <>
       <Form>
@@ -78,13 +86,13 @@ export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
            
             <Form.Group>
               <Form.Label className="label" htmlFor="telephone">
-                Teléfono
+                Préfijo y Teléfono
               </Form.Label>
               <Form.Control
                 className="custom-input"
                 name="telephone"
                 id="telephone"
-                placeholder="Introduce el teléfono"
+                placeholder="Introduce el préfijo y el teléfono"
                 onChange={handleChange}
                 value={inputFormPlane.telephone}
               />
@@ -247,6 +255,7 @@ export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
                 value={inputFormPlane.departure_hour}
               />
             </Form.Group>
+
 
             <Form.Group>
               <Form.Label className="label" htmlFor="rate_type">

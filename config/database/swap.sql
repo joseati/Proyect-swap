@@ -123,9 +123,8 @@ CREATE TABLE plane_travel(
 
 );
 
-SELECT * FROM plane_travel;
-SELECT * FROM train_travel;
-select * from train_station;
+
+
 
 CREATE TABLE IF NOT EXISTS train_station (
      train_station_id INT UNSIGNED PRIMARY KEY,
@@ -136,6 +135,12 @@ CREATE TABLE IF NOT EXISTS train_station (
 	 province VARCHAR(18) CHARACTER SET utf8,
 	 country VARCHAR(8) CHARACTER SET utf8
 );
+
+
+
+select * from train_travel;
+
+ALTER TABLE travel_product ADD COLUMN document_img VARCHAR(200);
 
 CREATE TABLE train_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -162,8 +167,41 @@ CREATE TABLE train_travel(
 );
 
 
+SELECT
+    tp.*,
+    u_buyer.*,
+    u_seller.*,
+    p.*,
+    a_origin.*,
+    a_destination.*,
+    pt.*,
+    ts_origin.*,
+    ts_destination.*
+FROM travel_product AS tp
+JOIN user AS u_buyer ON tp.buyer_user_id = u_buyer.user_id
+JOIN user AS u_seller ON tp.seller_user_id = u_seller.user_id
+LEFT JOIN purchase AS p ON tp.travel_product_id = p.travel_product_id
+LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
+LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
+LEFT JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
+LEFT JOIN train_travel AS tt ON tp.travel_product_id = tt.travel_product_id
+LEFT JOIN train_station AS ts_origin ON tt.origin_train_id = ts_origin.train_station_id
+LEFT JOIN train_station AS ts_destination ON tt.destination_train_id = ts_destination.train_station_id
+WHERE tp.travel_product_id = 1;
 
-
+select * from user;
+SELECT
+    tp.*,
+    u.*,
+    pt.*,
+    a_origin.*,
+    a_destination.*
+FROM travel_product AS tp
+JOIN user AS u ON tp.seller_user_id = u.user_id
+JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
+LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
+LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
+WHERE tp.travel_product_id = 1;
 
 
 SELECT tp.*, pt.*, tt.*
