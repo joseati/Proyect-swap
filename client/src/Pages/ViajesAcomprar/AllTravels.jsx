@@ -6,8 +6,11 @@ import "./allTravelsstyle.scss";
 import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
 
 export const AllTravels = () => {
-  const { allTravelsToBuy } = useContext(SwapContext);
-  // console.log(allTravelsToBuy);
+
+ const {allTravelsToBuy} = useContext(SwapContext)
+
+
+
 
   return (
     <>

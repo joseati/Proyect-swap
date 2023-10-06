@@ -11,36 +11,26 @@ import axios from "axios";
 // Componente principal Viajes
 export const Viajes = () => {
   // Definición del estado y lógica del componente
-  // const { isLoged } = useContext(SwapContext);
+  // const { isLoged, user } = useContext(SwapContext);
   // const navigate = useNavigate();
   // Definición de estado local para manejo de modales
   // const [show, setShow] = useState(false);
   // const [showModalLogin, setShowModalLogin] = useState(false);
   const initialValue = {
-    air_company: "",
-    departure_airport: "",
-    departure_date: "",
-    original_price: "",
-    canSellIndividually: "",
-    telephone: "",
-    commentaries: "",
-    name: "",
-    last_name: "",
-    email: "",
-    ticketType: "",
-    arrival_airport: "",
-    arrival_hour: "",
-    departure_hour: "",
-    rate_type: "",
-    exchange_rate: "",
-    number_of_passengers: "",
-    total_amount: "",
-  };
+    type:"" , /* 1 o 2 depende */
+    origin:"", 
+    destiny:"",
+    passengers: "",
+    comentaries: "",
+    seller_id: "",
+
+  }
   // Estados para determinar qué formulario mostrar basado en la selección del usuario
   const [planeButton, setPlaneButton] = useState(false);
   const [trainButton, setTrainButton] = useState(false);
   const [inputFormPlane, setInputFormPlane] = useState(initialValue);
   const [inputFormTrain, setInputFormTrain] = useState(initialValue);
+  const [ shwoGoAndBack , setShwoGoAndBack] = useState(false)
 
   // Estado para manejar el icono seleccionado
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -71,18 +61,34 @@ export const Viajes = () => {
 
   const handlePlaneChange = (e) => {
     const { name, value } = e.target;
-    setInputFormPlane((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if( e.target.type == "text"){
+      setInputFormPlane({
+        ...inputFormPlane,
+        [name]: value,
+      });
+    }
+    if(e.target.type == "select-one"){
+      if(e.target.value == "idaYVuelta"){
+        setShwoGoAndBack(true)
+      }else{
+        setShwoGoAndBack(false)
+      }
+      setInputFormPlane({
+        ...inputFormPlane,
+        ticketType : e.target.value,
+      });
+    }
+    console.log(e.target.value);
+    console.log(inputFormPlane);
   };
 
   const handleTrainChange = (e) => {
     const { name, value } = e.target;
-    setInputFormTrain((prevState) => ({
-      ...prevState,
+    setInputFormTrain({
+      ...inputFormTrain,
       [name]: value,
-    }));
+    });
+    console.log(inputFormTrain);
   };
 
   return (
@@ -111,6 +117,7 @@ export const Viajes = () => {
           <PlaneForm
             handleChange={handlePlaneChange}
             inputFormPlane={inputFormPlane}
+            shwoGoAndBack = { shwoGoAndBack }
           />
         </>
       )}
