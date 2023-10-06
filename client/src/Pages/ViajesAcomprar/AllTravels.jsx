@@ -9,7 +9,7 @@ import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy'
 
 export const AllTravels = () => {
  const {allTravelsToBuy} = useContext(SwapContext)
- console.log(allTravelsToBuy);
+
 
 
   return (
