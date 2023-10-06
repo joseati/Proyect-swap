@@ -8,12 +8,11 @@ export const SwapContext = createContext();
 
 export const SwapProvider = (props) => {
 
-
-  
   const [ user, setUser ] = useState();
   const [ token , setToken ] = useState();
   const [ isLoged, setIsLoged ] = useState(false)
   const [ reset, setReset ] = useState(true)
+  const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
 
 // Hook que recogera la informacion del token( user_id, type, enabled ) cuando nos registrmeos 
   useEffect(()=>{
@@ -41,7 +40,14 @@ export const SwapProvider = (props) => {
       setToken(tokenStorage)
       setIsLoged(true)
     }
+    axios
+      .get("http://localhost:4000/travels/getAllTravelsTobuy")
+      .then( (res) => {
+        setAllTravelsToBuy(res.data)
+      } )
+      .catch( (err) => console.log(err) )
   }, [])
+  
   return (
 
 // Creacion de contexto ,al que le enviamos los elemntos que requiriremos en los componentes de la aplicacion, mediante el metodo provider y su atributo value
@@ -53,7 +59,8 @@ export const SwapProvider = (props) => {
         reset,
         setReset,
         isLoged,
-        setIsLoged
+        setIsLoged,
+        allTravelsToBuy
     } }>
 
 

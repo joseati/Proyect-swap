@@ -23,7 +23,7 @@ CREATE TABLE user(
 
 select * from user;
 SELECT * FROM user WHERE is_deleted = 0 AND enabled = 1 ;
-
+select * from travel_product;
 CREATE TABLE travel_product(
 	travel_product_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	creation_date DATE NOT NULL default (CURDATE()),
@@ -50,6 +50,7 @@ CREATE TABLE travel_product(
 	REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+select * from purchase;
 CREATE TABLE purchase (
 	purchase_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -67,6 +68,7 @@ CREATE TABLE purchase (
 );
 
 -- --------
+select * from likes;
 CREATE TABLE likes (
 	user_id INT UNSIGNED NOT NULL,
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -81,7 +83,7 @@ CREATE TABLE likes (
 
 
 
-
+select * from airport;
 CREATE TABLE airport (
     airport_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     icao_code CHAR(4),
@@ -91,7 +93,9 @@ CREATE TABLE airport (
     country VARCHAR(50)
 );
 
-drop table plane_travel;
+-- drop table plane_travel;
+
+select * from plane_travel;
 
 CREATE TABLE plane_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -125,6 +129,7 @@ CREATE TABLE IF NOT EXISTS train_station (
 	 country VARCHAR(8) CHARACTER SET utf8
 );
 
+select * from train_travel;
 CREATE TABLE train_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
 	train_travel_id INT NOT NULL,

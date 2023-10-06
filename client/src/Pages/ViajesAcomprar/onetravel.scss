@@ -1,0 +1,37 @@
+.imgProduct{
+  object-fit: contain;
+  height: 150px;
+}
+
+.section2OneTravel{
+  padding: 30px;
+  text-align: center;
+  h4{
+    font-weight: bold;
+  }
+}
+
+.goTravel{
+  background-color: #E7F4F6;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.goTravel:hover{
+  border: 3px solid #8beaf8a1;
+}
+
+.section3OneTravel{
+  text-align: center;
+}
+
+.section4OneTravel{
+  padding-top: 35px;
+}
+
+.section5OneTravel{
+  background-color: violet;
+  padding: 50px;
+}
