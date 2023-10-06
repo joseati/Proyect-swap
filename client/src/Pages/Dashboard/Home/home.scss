@@ -111,6 +111,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    img{
+      width: 80px;
+      height: 70px;
+    }
   
     a{
       color: #005a8d;
@@ -118,6 +122,85 @@
       text-decoration: none;
       text-align: center;
     }
+  }
+}
+.homeSection4{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  background: linear-gradient(to left,  #005a8d, #89c9d3c4);
+  padding: 15vh 15% 15vh 15% ;
+  flex-wrap: wrap;
+  
+    .homeSubSection4Col1{
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+    border-radius: 60px;
+    align-items: center;
+    text-align: center;
+    padding: 3vh 4vw 3vh 4vw;
+    width: 30vw;
+    gap: 3vh;
+    h2{
+      color:  #005a8d;
+      font-weight: bold;
+    }
+    h4{
+      color: #89c9d3c4;
+      font-weight: bold;
+    }
+    }
+}
+.homeSection5{
+  justify-content: center;
+  
+  padding: 10vh 10vw 10vh 10vw;
+  .iconosHome2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    h5{
+      color:  #005a8d;
+      font-weight: bold;
+    }
+    img{
+      width: 80px;
+      height: 70px;
+    }
+  }
+}
+
+.homeSubSection5{
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.homeSection6{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  background: linear-gradient(to left,  #005a8d, #89c9d3c4);
+  padding: 10vh 15% 10vh 15% ;
+  
+  .carouselHomeP{
+  
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 25px;
+    
+    .carouselHome{
+      background-color: white;
+      border-radius: 25px;
+      padding: 4vh 20vw 4vh 20vw;
+    }
+
+    
   }
 }
 
@@ -144,4 +227,33 @@
     }
   }
   
+  
+}
+ 
+ @media screen and (max-width: 783px){
+  .homeSection4{
+    padding: 8vh 5% 8vh 5% ;
+    flex-wrap: wrap;
+    
+      
+      .homeSubSection4Col1{
+        width: 80vw;
+      }
+    
+  }
+} 
+@media screen and (min-width: 1200px){
+  .homeSection5{
+    justify-content: space-evenly;
+  }
+}
+@media screen and (max-width: 600px){
+  .homeSection5{
+    align-items: center;
+    flex-direction: column;
+  }
+  .homeSubSection5{
+    flex-direction: column;
+    align-items: center;
+  }
 }
