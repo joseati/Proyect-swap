@@ -9,7 +9,7 @@ const initialValue = {
   email:"",
   password:""
 }
-export const Login = ({show, handleClose}) => {
+export const Login = ({show, handleClose,handleShow1}) => {
  const [inputLogin, setInputLogin] = useState(initialValue)
 const {setIsLoged} = useContext(SwapContext)
 const [showMsg, setShowMsg] = useState(false)
@@ -44,6 +44,7 @@ const onSubmit = (e) => {
   return (
     <Col>
     <ModalLogin show={show}
+                handleShow1={handleShow1}
                 handleClose={handleClose}
                 handleChange={handleChange}
                 inputLogin = {inputLogin}

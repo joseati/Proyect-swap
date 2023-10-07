@@ -1,0 +1,57 @@
+.modal-div{
+  .modal-title{
+    box-sizing: border-box;
+    font-weight: 700;
+    margin-bottom: -20px;
+    color: rgba(0, 90, 141, .9);
+    font-size: 40px;
+    }
+    
+    p{
+      margin-top: 2vh;
+    color: #89C9D3;
+    font-size: 20px;
+    }
+    
+    .input-modal{
+      margin-top: 15px;
+      border: 1px solid #196a98 !important;
+      height: 48px;
+      border-radius: 4px !important;
+      padding: 0.375rem 0.75rem;
+      font-weight: 400;
+      width: 300px;
+      max-width: 600px;
+      margin-bottom: 2vh;
+    }
+    
+    .btn-register{
+      margin-top: 2vh;
+      background-color: #ffc700;
+      color: #005a8d;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      width: 60%;
+      margin-bottom: 3vh;
+      font-size: 1.5rem;
+      transition: 0.2s;
+    
+      &:hover{
+        color: white;
+        background-color:#005a8d ;
+      }
+      }
+    
+    
+    a{
+      text-decoration: none;
+      &:hover{
+        color: #ffc700;
+        translate: 5px;
+      }
+    }
+}
+
+
+

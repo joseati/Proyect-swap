@@ -9,10 +9,30 @@ col{
 .contacts{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: end;
+  align-items: start;
+  justify-content: center;
+  margin-bottom: 5vh;
+  p{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #585858;
+    padding-top: 3%;
+  }
+  h2{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 42px;
+    color: #005A8D;
+    padding-top: 5%;
+  }
   a{
-  text-decoration: none;
+    color: #005A8D;
+    font-weight: 700;
+  &:hover{
+    color:#FFC700 ;
+  }
 }
 }
 @media screen and (max-width: 1400px){

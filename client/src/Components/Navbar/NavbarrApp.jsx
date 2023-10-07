@@ -18,9 +18,11 @@ export const NavbarrApp = () => {
 
   const handleShow = () => setShow(true);
 
+ 
+
   const handleCloseModalLogin = () => {
     setShowModalLogin(false);
-  };
+  }; 
   const handleShowModalLogin = () => {
     setShowModalLogin(true);
   };
@@ -42,9 +44,9 @@ export const NavbarrApp = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto navbLink w-75">
-              <Nav.Link className="custom-nav-link" as = {Link} to= {"/todosLosViajes"}>Comprar Viajes</Nav.Link>
-              <Nav.Link className="custom-nav-link" as={Link} to={"/viajes"}>Vender Viaje</Nav.Link>
-              <Nav.Link className="custom-nav-link" href="/sobrenosotros">Sobre Nosotros</Nav.Link>
+              <Nav.Link className="custom-nav-link-img" as = {Link} to= {"/todosLosViajes"}> <img src="/assets/images/cart.png" alt="" />COMPRAR VIAJES</Nav.Link>
+              <Nav.Link className="custom-nav-link-img" as={Link} to={"/viajes"}><img src="/assets/images/sell.png" alt="" /> VENDER VIAJE</Nav.Link>
+              <Nav.Link className="custom-nav-link-img" href="/sobrenosotros"> <img src="/assets/images/information-button.png" alt="" />SOBRE NOSOTROS</Nav.Link>
               <Button className="btn-contact"><img src="/assets/images/phone-black.png" alt="" /> 611 32 96 41</Button>
               <Button className="btn-contact"><img src="/assets/images/whatsapp.png" alt="" /> CHATEAR</Button>
 
@@ -52,13 +54,15 @@ export const NavbarrApp = () => {
             {isLoged === false ? (
               <>
                 {" "}
-                <Button onClick={handleShow}>Registrarse</Button>
-                <Button onClick={handleShowModalLogin}>Login</Button>
+                <div className="botones-account d-flex ">
+                  <Button className="btn-nav" onClick={handleShow}>Registrarse</Button>
+                  <Button className="btn-nav" onClick={handleShowModalLogin}>Login</Button>
+                </div>
               </>
             ) : (
               <>
-                <Button onClick={() => navigate("/oneUser")}>
-                  Ir a usuario
+                <Button className="goToUser" onClick={() => navigate("/oneUser")}>
+                  <img src="/assets/images/icon-user.png" alt="" /> Ir a usuario
                 </Button>
               </>
             )}
@@ -67,6 +71,8 @@ export const NavbarrApp = () => {
       </Navbar>
       <Register show={show} handleClose={handleClose} handleShow={handleShow} />
       <Login
+      handleShow1={handleShow}
+       setShowModalLogin={setShowModalLogin}
         show={showModalLogin}
         handleClose={handleCloseModalLogin}
         handleShow={handleShowModalLogin}
