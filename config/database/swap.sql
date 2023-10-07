@@ -21,10 +21,19 @@ CREATE TABLE user(
 	enabled BOOLEAN NOT NULL DEFAULT 0 -- (enable false puede loguearse, True no puede loguearse) Marcado por un administrador. 
 );
 
+
 ALTER TABLE user modify column telephone varchar(20);
+
 select * from user;
-SELECT * FROM user WHERE is_deleted = 0 AND enabled = 1 ;
 select * from travel_product;
+select * from plane_travel;
+select * from train_travel;
+SELECT * FROM user WHERE is_deleted = 0 AND enabled = 1 ;
+
+select * from travel_product;
+
+ALTER TABLE travel_product ADD COLUMN document_img VARCHAR(200);
+
 CREATE TABLE travel_product(
 	travel_product_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	creation_date DATE NOT NULL default (CURDATE()),
@@ -55,6 +64,7 @@ CREATE TABLE travels_documents (
 travels_document_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 travel_product_id  INT UNSIGNED NOT NULL,
 document VARCHAR(300),
+
 is_deleted BOOLEAN DEFAULT 0 NOT NULL, 
 
 CONSTRAINT fk_document_travel_id FOREIGN KEY (travel_product_id)
@@ -62,6 +72,8 @@ REFERENCES travel_product(travel_product_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 select * from purchase;
+
+
 CREATE TABLE purchase (
 	purchase_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -104,9 +116,14 @@ CREATE TABLE airport (
     country VARCHAR(50)
 );
 
+
 -- drop table plane_travel;
 
 select * from plane_travel;
+
+
+-- drop table plane_travel;
+
 
 CREATE TABLE plane_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -133,7 +150,9 @@ CREATE TABLE plane_travel(
 
 
 
+
 select * from train_station;
+
 CREATE TABLE IF NOT EXISTS train_station (
      train_station_id INT UNSIGNED PRIMARY KEY,
 	 name VARCHAR(46) CHARACTER SET utf8,
@@ -143,6 +162,7 @@ CREATE TABLE IF NOT EXISTS train_station (
 	 province VARCHAR(18) CHARACTER SET utf8,
 	 country VARCHAR(8) CHARACTER SET utf8
 );
+
 
 select * from train_travel;
 
@@ -177,6 +197,7 @@ VALUES
 
 
 
+
 select * from user;
 SELECT
     tp.*,
@@ -190,6 +211,8 @@ JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
 LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
 LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
 WHERE tp.travel_product_id = 1;
+
+
 
 
 

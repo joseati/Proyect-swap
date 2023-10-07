@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SwapContext } from '../../context/SwapContext'
-import { Button, Col, Toast, Form, Row, Card } from "react-bootstrap";
+import { Button, Col, Toast, Form, Row, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { delLocalStore } from '../../Utils/localStorage'
 import axios from "axios"
 import "./userApp.scss";
 import { BanUserAdmin } from "../Admin/BanUserAdmin";
 import { CardAllTravelsToBuy } from "../../Components/Card/CardAllTravelsToBuy";
+import { DelTravelAdmin } from "../Admin/DelTravelAdmin";
 
 const initialValue = {
   name: "",
@@ -127,7 +128,6 @@ export const UserApp = () => {
           setActive(res.data.filter((e)=>e.enabled === 1).length)
           setBanned(res.data.filter((e)=>e.enabled === 0).length)
           setLastUserReg(res.data[res.data.length-1].register_date)
-          
         })
         .catch((err)=>console.log(err))
 
@@ -187,7 +187,8 @@ export const UserApp = () => {
   }
   return (
     <>
-      <Col className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
+    
+      <Col xs={{ order: 'last' }} md={{ order: 'first' }} className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
         <h1>{user?.name}</h1>
 
         {user?.type === 2 && <h2>Administrador/a</h2>}
@@ -226,7 +227,7 @@ export const UserApp = () => {
 
         </div>
       </Col>
-      {user?.type === 1 && <Col className="screenUser" xs={10}>
+      {user?.type === 1 && <Col className="screenUser" xs={12} xl={9}>
         <h1>Datos Viaje {user?.name}</h1>
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
@@ -396,7 +397,7 @@ export const UserApp = () => {
       </Col>}
 
       {/* VISTAS DEL ADMIN  */}
-      {user?.type === 2 && statsButton  && <Col className="screenUser" xs={10}>
+      {user?.type === 2 && statsButton  && <Col className="screenUser" xs={12} xl={9}>
           <Row>
             <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
                   <Row>
@@ -435,27 +436,26 @@ export const UserApp = () => {
           </Row>
         </Col>}
 
-      {user?.type === 2 && delTravel && <Col className="screenUser" xs={10}>
+      {user?.type === 2 && delTravel && <Col className="screenUser" xs={12} xl={9}>
           <Row>
-              <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
+              <Col>
                 <h4>Borrar viaje</h4>
+                <DelTravelAdmin/>
               </Col>
           </Row>
         </Col>}
 
-      {user?.type === 2 && unableUser && <Col className="screenUser" xs={10}>
+      {user?.type === 2 && unableUser && <Col className="screenUser" xs={12} xl={9}>
         <Row>
-            <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
-              <h4>Bloquear usuario</h4>
-            </Col>
+            
             <Col>
+            <h4>Bloquear usuario</h4>
                 <BanUserAdmin 
                   allUsers={allUsers}
                 />
             </Col>
         </Row>
       </Col>}
-      
     </>
   );
 }
