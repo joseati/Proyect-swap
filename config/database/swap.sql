@@ -21,8 +21,14 @@ CREATE TABLE user(
 	enabled BOOLEAN NOT NULL DEFAULT 0 -- (enable false puede loguearse, True no puede loguearse) Marcado por un administrador. 
 );
 
+ALTER TABLE user modify column telephone VARCHAR(20);
+
 select * from user;
+select * from travel_product;
+select * from plane_travel;
+select * from train_travel;
 SELECT * FROM user WHERE is_deleted = 0 AND enabled = 1 ;
+ALTER TABLE travel_product ADD COLUMN document_img VARCHAR(200);
 
 CREATE TABLE travel_product(
 	travel_product_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -49,14 +55,17 @@ CREATE TABLE travel_product(
 	CONSTRAINT fk_user_2 FOREIGN KEY (seller_user_id)
 	REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-ALTER TABLE travel_product ADD COLUMN document_img VARCHAR(200);
 
 CREATE TABLE travels_documents (
-travels_document_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-travel_product_id  INT UNSIGNED NOT NULL, 
-)
+travels_document_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+travel_product_id  INT UNSIGNED NOT NULL,
+document VARCHAR(300),
+is_deleted BOOLEAN DEFAULT 0 NOT NULL,
+CONSTRAINT fk_document_travel_id FOREIGN KEY (travel_product_id)
+REFERENCES travel_product(travel_product_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-select * from travel_product;
+
 CREATE TABLE purchase (
 	purchase_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -97,9 +106,8 @@ CREATE TABLE airport (
     city VARCHAR(50),
     country VARCHAR(50)
 );
-Select * from airport;
 
-
+drop table plane_travel;
 
 CREATE TABLE plane_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -123,9 +131,6 @@ CREATE TABLE plane_travel(
 
 );
 
-
-
-
 CREATE TABLE IF NOT EXISTS train_station (
      train_station_id INT UNSIGNED PRIMARY KEY,
 	 name VARCHAR(46) CHARACTER SET utf8,
@@ -135,12 +140,6 @@ CREATE TABLE IF NOT EXISTS train_station (
 	 province VARCHAR(18) CHARACTER SET utf8,
 	 country VARCHAR(8) CHARACTER SET utf8
 );
-
-
-
-select * from train_travel;
-
-ALTER TABLE travel_product ADD COLUMN document_img VARCHAR(200);
 
 CREATE TABLE train_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -167,104 +166,11 @@ CREATE TABLE train_travel(
 );
 
 
-SELECT
-    tp.*,
-    u_buyer.*,
-    u_seller.*,
-    p.*,
-    a_origin.*,
-    a_destination.*,
-    pt.*,
-    ts_origin.*,
-    ts_destination.*
-FROM travel_product AS tp
-JOIN user AS u_buyer ON tp.buyer_user_id = u_buyer.user_id
-JOIN user AS u_seller ON tp.seller_user_id = u_seller.user_id
-LEFT JOIN purchase AS p ON tp.travel_product_id = p.travel_product_id
-LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
-LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
-LEFT JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
-LEFT JOIN train_travel AS tt ON tp.travel_product_id = tt.travel_product_id
-LEFT JOIN train_station AS ts_origin ON tt.origin_train_id = ts_origin.train_station_id
-LEFT JOIN train_station AS ts_destination ON tt.destination_train_id = ts_destination.train_station_id
-WHERE tp.travel_product_id = 1;
-
-select * from user;
-SELECT
-    tp.*,
-    u.*,
-    pt.*,
-    a_origin.*,
-    a_destination.*
-FROM travel_product AS tp
-JOIN user AS u ON tp.seller_user_id = u.user_id
-JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
-LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
-LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
-WHERE tp.travel_product_id = 1;
-
-
-SELECT tp.*, pt.*, tt.*
-FROM travel_product tp
-LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id
-LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id
-WHERE tp.buyer_user_id IS NULL
-AND (pt.travel_product_id IS NOT NULL OR tt.travel_product_id IS NOT NULL);
 
 
 
 
-SELECT * FROM p;
-SELECT
-    tp.travel_product_id as travel_id,
-    pt.*,
-    tt.*,
-    u_seller.name AS seller_name
-FROM
-    travel_product tp
-LEFT JOIN
-    plane_travel pt ON tp.travel_product_id = pt.travel_product_id
-LEFT JOIN
-    train_travel tt ON tp.travel_product_id = tt.travel_product_id
-LEFT JOIN
-    user u_seller ON tp.seller_user_id = u_seller.user_id
-WHERE
-    tp.buyer_user_id IS NULL
-    AND (pt.travel_product_id IS NOT NULL OR tt.travel_product_id IS NOT NULL) and tp.travel_product_id IS NOT NULL ;
 
 
-SELECT
-    tp.*, pt.*, tt.*,
-    tp.type AS tipo_de_viaje,
-    u_seller.name AS nombre_del_vendedor,
-    u_buyer.name AS nombre_del_comprador
-FROM
-    travel_product tp
-LEFT JOIN
-    user u_seller ON tp.seller_user_id = u_seller.user_id
-LEFT JOIN
-    user u_buyer ON tp.buyer_user_id = u_buyer.user_id
-WHERE
-    tp.buyer_user_id IS NULL
-    AND (
-        tp.type = 1  -- Tipo 1 para plane_travel (avión)
-        OR EXISTS (SELECT * FROM plane_travel WHERE travel_product_id = tp.travel_product_id)
-    )
-    AND (
-        tp.type = 2  -- Tipo 2 para train_travel (tren)
-        OR EXISTS (SELECT * FROM train_travel WHERE travel_product_id = tp.travel_product_id)
-    );
-  
 
 
-	SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user 
-    WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id
-    group by tp.travel_product_id;
-    -- and tt.travel_product_id = tp.travel_product_id and tp.seller_user_id = user.user_id ;
-    -- AND tp.buyer_user_id IS NULL AND (pt.travel_product_id IS NOT NULL OR tt.travel_product_id IS NOT NULL) ;
-    -- AND tp.admin_enabled = 0 AND tp.is_deleted = 0 ;
-    
-
-select * from plane_travel;
-select * from train_travel;
-select * from travel_product;
