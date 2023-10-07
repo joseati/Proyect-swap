@@ -70,6 +70,7 @@
   height: 100vh;
   text-align: center;
   padding-top: 25px;
+  
 }
 .buttonn-admin{
   background-color: #005a8d !important;
@@ -99,7 +100,13 @@
 @media (max-width: 768px) {
   .userButtons {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+  }
+  .infoAdmin{
+    width: 100%; // Ancho del sidebar en pantallas pequeñas (100% del ancho de la ventana)
+    height: auto; // Altura automática (crece según el contenido)
+   
   }
 }

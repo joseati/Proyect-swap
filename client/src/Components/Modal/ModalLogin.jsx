@@ -1,54 +1,62 @@
 import React from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
+import "./modal-login.scss"
+import {ModalRegister} from "./ModalRegister"
+export const ModalLogin = ({ showRegister, handleShow1,
+  setShowRegister ,show, handleClose,handleChange, inputLogin, onSubmit, showMsg, setShowMsg, setInputLogin}) => {
 
-export const ModalLogin = ({show, handleClose,handleChange, inputLogin, onSubmit, showMsg, setShowMsg, setInputLogin}) => {
-
-  const onClose = () => {
-    setShowMsg(false)
-    setInputLogin({})
-    handleClose()
-  }
+    const mostrarModalRegister = () =>{
+      handleClose()
+      handleShow1()
+    }
 
   return (
     <>
-     <Modal show={show} onHide={handleClose}>
+     <Modal className='modal-login' show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
+        <div className="d-flex flex-column p-lg-3 border-bottom-0 align-items-start">
+          <p className='already'>¿Ya tienes cuenta?</p>
+          <Modal.Title className='p-1 enter'>Entra desde aqui</Modal.Title>
+        </div>
       </Modal.Header>
       <Modal.Body>
       <Form>
 
-      <Form.Group>
-       <Form.Label htmlFor='email'>Email</Form.Label>
-       <Form.Control
-        id='email' placeholder='email'
-        value={inputLogin.email}
-        name='email'
-        onChange={handleChange}/>     
+      <div className="inputs-login d-flex flex-column align-items-center justify-content-center">
+        <Form.Group>
+         <Form.Control
+         className='input-login'
+          id='email' placeholder='Correo electrónico'
+          value={inputLogin.email}
+          name='email'
+          onChange={handleChange}/>
+         </Form.Group>
+         
+        <Form.Group>
+         <Form.Control
+          className='input-login'
+          id='password' placeholder='Contraseña'
+          value={inputLogin.password}
+          name='password'
+          onChange={handleChange}/>
+         </Form.Group>
+   
 
-       </Form.Group>      
-
-      <Form.Group>
-       <Form.Label htmlFor='password'>Contraseña</Form.Label>
-       <Form.Control
-        id='password' placeholder='Contraseña'
-        value={inputLogin.password}
-        name='password'
-        onChange={handleChange}/>
-       </Form.Group>      
        {showMsg && <p style={{color: "red", fontWeight: "bold", fontSize: "20px", marginTop: "2vw"}}>email o password incorrectos</p>}
-       <Button onClick={onSubmit}  className=' m-3'>Enviar</Button>
-       <Button 
-        variant="secondary" 
-        onClick={onClose}
-        className=' m-3'
-       >
-          Close
-        </Button>
+       <div className='d-flex flex-column flex align-items-center justify-content-center'>
+       <Button onClick={onSubmit}  className='btn-login m-3'>Acceder</Button>
+     
+      
+         <p onClick={mostrarModalRegister} className='p-account'>¿No tienes cuenta? <span  className='link-register'> Regístrate gratis</span> </p>
+         </div> 
+       </div>
+     
      </Form>
       </Modal.Body>
       
     </Modal>
+   
+    {}
     </>
   )
 }
