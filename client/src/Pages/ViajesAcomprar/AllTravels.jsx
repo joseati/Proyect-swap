@@ -10,8 +10,6 @@ export const AllTravels = () => {
  const {allTravelsToBuy} = useContext(SwapContext)
 
 
-
-
   return (
     <>
       <Col className='pt-4' lg={2} xs={12}>

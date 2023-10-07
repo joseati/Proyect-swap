@@ -1,5 +1,5 @@
 // Importando los módulos y componentes necesarios
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import { SwapContext } from "../../context/SwapContext";
 import "./viajes.scss";
@@ -7,24 +7,38 @@ import { PlaneForm } from "./PlaneForm";
 import { IconSelect } from "./IconSelect";
 import { TrainForm } from "./TrainForm";
 import axios from "axios";
-
+import {getDate} from "../../Utils/getDateTime"
 // Componente principal Viajes
 export const Viajes = () => {
   // Definición del estado y lógica del componente
-  // const { isLoged, user } = useContext(SwapContext);
-  // const navigate = useNavigate();
-  // Definición de estado local para manejo de modales
-  // const [show, setShow] = useState(false);
-  // const [showModalLogin, setShowModalLogin] = useState(false);
+  const { isLoged, user } = useContext(SwapContext);
+
+  
   const initialValue = {
-    type:"" , /* 1 o 2 depende */
+    // Valores insert de travel_product
+    type:"" , /* 1 o 2 depende del tipo de profducto(1-avion 2-tren */
     origin:"", 
     destiny:"",
     passengers: "",
     comentaries: "",
-    seller_id: "",
+    seller_id: user?.user_id,
+    original_price:"",
+    client_price:"",
+
+     // Valores insert de plane_product
+    travel_product_id: "", /* se tiene que rescatar en el back */
+    plane_travel_id:"", /* 1 si es solo ida o 2 si es ida y vuelta */
+    origin_airpoty_id:"", /* Se tendran que rescartar en el back tras una consulta en la tabla airpot con el company_name*/
+    destiny_airpoty_id:"",
+    departure_date:"", 
+    departure_time:"",
+    arrival_date:"",
+    arrival_time:"",
+    compani_name: "",
 
   }
+  
+
   // Estados para determinar qué formulario mostrar basado en la selección del usuario
   const [planeButton, setPlaneButton] = useState(false);
   const [trainButton, setTrainButton] = useState(false);
@@ -61,26 +75,52 @@ export const Viajes = () => {
 
   const handlePlaneChange = (e) => {
     const { name, value } = e.target;
-    if( e.target.type == "text"){
+    if( e.target.type == "text" ){
       setInputFormPlane({
         ...inputFormPlane,
         [name]: value,
       });
+      if(e.target.name === "seller_id"){
+        setInputFormPlane({
+          ...inputFormPlane, seller_id : user?.user_id
+          
+        })
+   
+        
     }
-    if(e.target.type == "select-one"){
-      if(e.target.value == "idaYVuelta"){
+    
+    if( e.target.type == "select-one" ){
+      if(e.target.value == "2"){
         setShwoGoAndBack(true)
+        
       }else{
         setShwoGoAndBack(false)
       }
       setInputFormPlane({
         ...inputFormPlane,
         ticketType : e.target.value,
-      });
+        
+      });  
+    } 
+   
+    if(e.target.type == "date"){
+       setInputFormPlane({...inputFormPlane, 
+       departure_date : e.target.value,
+       arrival_date: e.target.value
+      
+      })
+      
+     
     }
-    console.log(e.target.value);
-    console.log(inputFormPlane);
-  };
+  
+    }
+    console.log("e.tarrnamee", e.target.name);
+
+  
+  }
+  
+  console.log(inputFormPlane);
+  
 
   const handleTrainChange = (e) => {
     const { name, value } = e.target;

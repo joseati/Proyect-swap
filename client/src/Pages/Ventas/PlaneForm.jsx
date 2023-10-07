@@ -2,9 +2,11 @@ import { Row, Col, Form } from "react-bootstrap";
 import { useState } from "react";
 
 
-export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
+export const PlaneForm = ({ shwoGoAndBack, handleChange, inputFormPlane }) => {
+
 
   const [ticketType, setTicketType] = useState('ida');
+
   const handleTicketTypeChange = (e) => {
     setTicketType(e.target.value);
     handleChange(e); // Llamar a la función handleChange original si es necesario.
@@ -16,16 +18,16 @@ export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
         <Row>
           <Col md={6} xs={12} className="d-flex align-items-end flex-column">
             <Form.Group>
-              <Form.Label className="label" htmlFor="air_company">
+              <Form.Label className="label" htmlFor="compani_name">
                 Compañía aérea
               </Form.Label>
               <Form.Control
                 className="custom-input"
-                name="air_company"
-                id="air_company"
+                name="compani_name"
+                id="compani_name"
                 placeholder="Compañía..."
                 onChange={handleChange}
-                value={inputFormPlane.air_company}
+                value={inputFormPlane.compani_name}
               />
             </Form.Group>
             <Form.Group>
@@ -57,6 +59,20 @@ export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
               />
             </Form.Group>
             <Form.Group>
+              <Form.Label className="label" htmlFor="arrival_date">
+                Fecha de Vuelta
+              </Form.Label>
+              <Form.Control
+                className="custom-input"
+                id="arrival_date"
+                name="arrival_date"
+                placeholder="Fecha"
+                type="date"
+                onChange={handleChange}
+                value={inputFormPlane.arrival_date}
+              />
+            </Form.Group>
+            <Form.Group>
               <Form.Label className="label" htmlFor="original_price">
                 Precio original billete/persona(€)
               </Form.Label>
@@ -80,24 +96,12 @@ export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
                 className="custom-input"
                 id="canSellIndividually"
               >
-                <option value="yes">Sí</option>
+                <option value= "si">Sí</option>
                 <option value="no">No</option>
               </Form.Select>
             </Form.Group>
            
-            <Form.Group>
-              <Form.Label className="label" htmlFor="telephone">
-                Préfijo y Teléfono
-              </Form.Label>
-              <Form.Control
-                className="custom-input"
-                name="telephone"
-                id="telephone"
-                placeholder="Introduce el préfijo y el teléfono"
-                onChange={handleChange}
-                value={inputFormPlane.telephone}
-              />
-            </Form.Group>
+        
             <Form.Group>
               <Form.Label className="label" htmlFor="commentaries">
                 Otras especificaciones
@@ -112,17 +116,17 @@ export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label className="label" htmlFor="name">
+              <Form.Label className="label" htmlFor="seller_id">
                 Nombre del vendedor
               </Form.Label>
               <Form.Control
                 className="custom-input"
-                name="name"
-                id="name"
+                name="seller_id"
+                id="seller_id"
                 placeholder="Nombre..."
                 type="text"
                 onChange={handleChange}
-                value={inputFormPlane.name}
+                value={inputFormPlane.seller_id}
               />
             </Form.Group>
             <Form.Group>
@@ -165,8 +169,8 @@ export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
                 id="ticketType"
                 className="custom-select"
               >
-                <option value="ida">Ida</option>
-                <option value="idaYVuelta">Ida y vuelta</option>
+                <option value="1">Ida</option>
+                <option value="2">Ida y vuelta</option>
               </Form.Select>
             </Form.Group>
             <Form.Group>
