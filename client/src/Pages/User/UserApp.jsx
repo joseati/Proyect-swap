@@ -6,6 +6,7 @@ import { delLocalStore } from '../../Utils/localStorage'
 import axios from "axios"
 import "./userApp.scss";
 import { BanUserAdmin } from "../Admin/BanUserAdmin";
+import { CardAllTravelsToBuy } from "../../Components/Card/CardAllTravelsToBuy";
 import { DelTravelAdmin } from "../Admin/DelTravelAdmin";
 
 const initialValue = {
@@ -21,7 +22,7 @@ const initialValue = {
 export const UserApp = () => {
   
   const navigate = useNavigate();
-  const { user ,setIsLoged, setToken, setUser} = useContext(SwapContext);
+  const { user ,setIsLoged, setToken, setUser, allTravelsToBuy} = useContext(SwapContext);
   const [comprasButton, setComprasButton] = useState(true);
   const [ventasButton, setVentasButton] = useState(false);
   const [favoritosButton, setFavoritosButton] = useState(false);
@@ -38,7 +39,12 @@ export const UserApp = () => {
   const [active, setActive] = useState()
   const [banned, setBanned] = useState()
   const [lastUserReg, setLastUserReg] = useState()
+  // Filtro de viajes que el usuario tiene a la venta (no tendrá buyer_user_id)
+  const ventasTravels = allTravelsToBuy.filter((travel) => !travel.buyer_user_id);
+  // Filtro de viajes que un usuario a comprado (su user_id estará en el buyer_user_id)
+  const comprasTravels = allTravelsToBuy.filter((travel) => travel.buyer_user_id === user.user_id);
   
+  // console.log(allUsers);
   const handleNavigateToFaqs = (e) => {
     e.preventDefault();
     navigate("/faqs");
@@ -225,15 +231,48 @@ export const UserApp = () => {
         <h1>Datos Viaje {user?.name}</h1>
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
-            <img src="/assets/images/avionamarillo.svg" alt="" />
-            <h2>Aún no has comprado nada</h2>
-            <p>
-              Ve al apartado{" "}
-              <a href="/faqs" onClick={handleNavigateToFaqs}>
-                Comprar Viajes
-              </a>{" "}
-              para adquirir tu primer viaje
-            </p>
+            {comprasTravels ? (
+              comprasTravels?.map((travel, i) => (
+                <Row key={i}>
+                  <CardAllTravelsToBuy travel={travel} />
+                </Row>
+                  ))
+                ) : (
+                  <>
+                <img src="/assets/images/avionamarillo.svg" alt="" />
+                <h2>Aún no has comprado nada</h2>
+                <p>
+                  Ve al apartado{" "}
+                  <a href="/faqs" onClick={handleNavigateToFaqs}>
+                    Comprar Viajes
+                  </a>{" "}
+                  para adquirir tu primer viaje
+                </p>
+              </>
+              )}
+          </div>
+        )}
+        {ventasButton && (
+          <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
+            {ventasTravels ? (
+              ventasTravels?.map((travel, i) => (
+                <Row key={i}>
+                  <CardAllTravelsToBuy travel={travel} />
+                </Row>
+                  ))
+                ) : (
+                  <>
+                <img src="/assets/images/avionamarillo.svg" alt="" />
+                <h2>Aún no tienes nada a la venta</h2>
+                <p>
+                  Ve al apartado{" "}
+                  <a href="/faqs" onClick={handleNavigateToFaqs}>
+                    Vender Viajes
+                  </a>{" "}
+                  para vender tu primer viaje
+                </p>
+              </>
+              )}
           </div>
         )}
         {favoritosButton && (

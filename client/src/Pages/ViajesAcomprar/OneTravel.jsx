@@ -1,51 +1,77 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Accordion, Button, Col, Row } from 'react-bootstrap'
-import axios from 'axios';
 import "./onetravel.scss"
+// import { SwapContext } from '../../context/SwapContext';
+// import { useParams } from 'react-router-dom';
+import { getDate } from '../../Utils/getDateTime';
+import axios from 'axios';
 
 export const OneTravel = () => {
-   const {travel_id} = params;
-  // Estado para almacenar los datos del viaje
-   const [travelData, setTravelData] = useState({}); 
-  
-  // Trae la información de la BBDD de ese único vista.
-   useEffect(()=>{
+  const [oneTravelSell, setOneTravelSell] = useState([]);
+  const travel_id = 16;
+  const ida = oneTravelSell[0];
+  let vuelta = {};
+  if (oneTravelSell.length !== 1){
+    vuelta = oneTravelSell[1];
+  }
+
+
+  // const {allTravelsToBuy} = useContext(SwapContext)
+  // const {travel_id} = useParams;
+  // Se filtra el viaje correspondiente al travel_id
+  // const selectedTravel = allTravelsToBuy.find((travel) => travel.travel_id === travel_id);
+
+  useEffect(()=>{
     axios
-      .get(`http://localhost:4000/travels/OneTravel/${travel_id}`)
-      .then((response) => 
-        setTravelData(response.data)
-      )
-      .catch((err) => console.log(err))
-  })   
+      .get(`http://localhost:4000/travels/getOneTravel/${travel_id}`)
+      .then( (res) => {
+        setOneTravelSell(res.data)
+      } )
+      .catch( (err) => console.log(err) )
+  }, [])
+
+  // console.log("ONE TRAVELLLLL", oneTravelSell)
+  console.log("IIIIIIDDDDDDAAAAAAA", ida)
+  console.log("VVVVVUUUUUUEEEEELLLLTTTTTAAAA", vuelta)
+  // if (!selectedTravel) {
+  //   // Manejar el caso si no se encuentra el viaje con el ID proporcionado
+  //   return (
+  //     <div>
+  //       <p>El viaje no se encontró o no existe.</p>
+  //     </div>
+  //   );
+  // }
+  // console.log(selectedTravel);
+  
   return (
     <Col>
-      <Row>
+       <Row>
         <Col md={4} xs={12}>
-        <img className='imgProduct' src="assets/images/placeholder-avion.jpg" alt="avion" />
+        <img className='imgProduct' src="/assets/images/placeholder-avion.jpg" alt="avion" />
         </Col>
         <Col md={7} xs={12}>
-        <h3>Malaga - Barcelona </h3>
-        <h2>204.00€</h2>
-        <h4>346.00€</h4>
-        <p>Ofertado por</p>
+        <h3>{ida?.origin} -{ida?.destiny} </h3>
+        <h2>{ida?.client_price} €</h2>
+        <h4>{ida?.original_price} €</h4>
+        <p>Ofertado por: {ida?.user_name}</p>
         </Col>
-      </Row>
+      </Row> 
       <Row className='section2OneTravel'>
         <Col md={5} ms={12} className='goTravel'>
           <h4>Tu vuelo de ida</h4>
           <Row>
             <Col>
-              <h5>06/10/2023</h5>
-              <h5>11:25:00</h5>
+              <h5>{getDate(ida?.departure_date)}</h5>
+              <h5>{ida?.departure_time}</h5>
               <p></p>
-              <h5>AGP</h5>
+              <h5>{ida?.departure_time}</h5>
             </Col>
             <Col>
             <hr />
             </Col>
             <Col>
-              <h5>06/10/2023</h5>
-              <h5>11:25:00</h5>
+              <h5>{getDate(ida?.arrival_date)}</h5>
+              <h5>{ida?.arrival_time}</h5>
               <p></p>
               <h5>AGP</h5>
             </Col>
@@ -56,17 +82,17 @@ export const OneTravel = () => {
           <h4>Tu vuelo de vuelta</h4>
           <Row>
             <Col>
-              <h5>06/10/2023</h5>
-              <h5>11:25:00</h5>
+              <h5>{getDate(vuelta?.departure_date)}</h5>
+              <h5>{vuelta?.departure_time}</h5>
               <p></p>
-              <h5>AGP</h5>
+              <h5>{vuelta?.iata_code}</h5>
             </Col>
             <Col>
             <hr />
             </Col>
             <Col>
-              <h5>06/10/2023</h5>
-              <h5>11:25:00</h5>
+              <h5>{getDate(vuelta?.arrival_date)}</h5>
+              <h5>{vuelta?.arrival_time}</h5>
               <p></p>
               <h5>AGP</h5>
             </Col>

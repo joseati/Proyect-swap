@@ -21,13 +21,17 @@ CREATE TABLE user(
 	enabled BOOLEAN NOT NULL DEFAULT 0 -- (enable false puede loguearse, True no puede loguearse) Marcado por un administrador. 
 );
 
-ALTER TABLE user modify column telephone VARCHAR(20);
+
+ALTER TABLE user modify column telephone varchar(20);
 
 select * from user;
 select * from travel_product;
 select * from plane_travel;
 select * from train_travel;
 SELECT * FROM user WHERE is_deleted = 0 AND enabled = 1 ;
+
+select * from travel_product;
+
 ALTER TABLE travel_product ADD COLUMN document_img VARCHAR(200);
 
 CREATE TABLE travel_product(
@@ -60,10 +64,14 @@ CREATE TABLE travels_documents (
 travels_document_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 travel_product_id  INT UNSIGNED NOT NULL,
 document VARCHAR(300),
-is_deleted BOOLEAN DEFAULT 0 NOT NULL,
+
+is_deleted BOOLEAN DEFAULT 0 NOT NULL, 
+
 CONSTRAINT fk_document_travel_id FOREIGN KEY (travel_product_id)
 REFERENCES travel_product(travel_product_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+select * from purchase;
 
 
 CREATE TABLE purchase (
@@ -83,6 +91,7 @@ CREATE TABLE purchase (
 );
 
 -- --------
+select * from likes;
 CREATE TABLE likes (
 	user_id INT UNSIGNED NOT NULL,
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -97,7 +106,7 @@ CREATE TABLE likes (
 
 
 
-
+select * from airport;
 CREATE TABLE airport (
     airport_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     icao_code CHAR(4),
@@ -107,7 +116,14 @@ CREATE TABLE airport (
     country VARCHAR(50)
 );
 
-drop table plane_travel;
+
+-- drop table plane_travel;
+
+select * from plane_travel;
+
+
+-- drop table plane_travel;
+
 
 CREATE TABLE plane_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -131,6 +147,12 @@ CREATE TABLE plane_travel(
 
 );
 
+
+
+
+
+select * from train_station;
+
 CREATE TABLE IF NOT EXISTS train_station (
      train_station_id INT UNSIGNED PRIMARY KEY,
 	 name VARCHAR(46) CHARACTER SET utf8,
@@ -140,6 +162,11 @@ CREATE TABLE IF NOT EXISTS train_station (
 	 province VARCHAR(18) CHARACTER SET utf8,
 	 country VARCHAR(8) CHARACTER SET utf8
 );
+
+
+select * from train_travel;
+
+ALTER TABLE travel_product ADD COLUMN document_img VARCHAR(200);
 
 CREATE TABLE train_travel(
 	travel_product_id INT UNSIGNED NOT NULL,
@@ -164,13 +191,174 @@ CREATE TABLE train_travel(
 	CONSTRAINT fk_train_2 foreign key (destination_train_id)
 	references train_station(train_station_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+INSERT INTO travel_product (creation_date, type, origin, destiny, passenger, admin_enabled, seller_user_id, original_price, client_price)
+VALUES
+(1, 1, 1, 2, '2023-10-04', '08:00:00', '2023-10-04', '10:30:00', 'Airlines A');
+
+
+
+
+select * from user;
+SELECT
+    tp.*,
+    u.*,
+    pt.*,
+    a_origin.*,
+    a_destination.*
+FROM travel_product AS tp
+JOIN user AS u ON tp.seller_user_id = u.user_id
+JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
+LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
+LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
+WHERE tp.travel_product_id = 1;
 
 
 
 
 
 
+INSERT INTO travel_product (creation_date, type, origin, destiny, passenger, admin_enabled, seller_user_id, original_price, client_price)
+VALUES
+    ('2023-10-04', 1, 'Ciudad A', 'Ciudad B', 2, 1, 1, 500.00, 550.00),
+    ('2023-10-05', 2, 'Ciudad C', 'Ciudad D', 1, 1, 2, 300.00, 330.00),
+    ('2023-10-06', 1, 'Ciudad E', 'Ciudad F', 3, 1, 3, 750.00, 825.00),
+    ('2023-10-07', 3, 'Ciudad G', 'Ciudad H', 1, 1, 4, 50.00, 55.00),
+    ('2023-10-08', 4, 'Ciudad I', 'Ciudad J', 2, 1, 5, 400.00, 440.00),
+    ('2023-10-09', 5, 'Ciudad K', 'Ciudad L', 1, 1, 6, 600.00, 660.00),
+    ('2023-10-10', 1, 'Ciudad M', 'Ciudad N', 4, 1, 7, 800.00, 880.00),
+    ('2023-10-11', 2, 'Ciudad O', 'Ciudad P', 2, 1, 8, 350.00, 385.00);
 
 
 
+INSERT INTO purchase (travel_product_id, user_id, amount)
+VALUES
+    (1, 1, 550.00),
+    (2, 2, 330.00),
+    (3, 3, 825.00),
+    (4, 4, 55.00),
+    (5, 5, 440.00),
+    (6, 6, 660.00),
+    (7, 7, 880.00),
+    (8, 8, 385.00);
+    
+    
+INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name)
+VALUES
+    (1, 1, 1, 2, '2023-10-04', '08:00:00', '2023-10-04', '10:30:00', 'Airlines A'),
+    (2, 1, 3, 4, '2023-10-05', '09:30:00', '2023-10-05', '11:00:00', 'Airlines B'),
+    (3, 1, 5, 6, '2023-10-06', '10:15:00', '2023-10-06', '12:45:00', 'Airlines C'),
+    (4, 1, 7, 8, '2023-10-07', '11:45:00', '2023-10-07', '13:15:00', 'Airlines D'),
+    (5, 1, 9, 10, '2023-10-08', '13:30:00', '2023-10-08', '15:00:00', 'Airlines E'),
+    (6, 1, 11, 12, '2023-10-09', '14:15:00', '2023-10-09', '16:45:00', 'Airlines F'),
+    (7, 1, 13, 14, '2023-10-10', '15:30:00', '2023-10-10', '17:00:00', 'Airlines G'),
+    (8, 1, 15, 16, '2023-10-11', '16:45:00', '2023-10-11', '18:15:00', 'Airlines H');
+    
+INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name)
+VALUES
+    (1, 1, 1, 2, '2023-10-04', '08:00:00', '2023-10-04', '10:30:00', 'Airlines A'),
+    (1, 2, 3, 4, '2023-10-05', '09:30:00', '2023-10-05', '11:00:00', 'Airlines B'),
+    (2, 1, 5, 6, '2023-10-06', '10:15:00', '2023-10-06', '12:45:00', 'Airlines C'),
+    (2, 2, 7, 8, '2023-10-07', '11:45:00', '2023-10-07', '13:15:00', 'Airlines D'),
+    (3, 1, 9, 10, '2023-10-08', '13:30:00', '2023-10-08', '15:00:00', 'Airlines E'),
+    (3, 2, 11, 12, '2023-10-09', '14:15:00', '2023-10-09', '16:45:00', 'Airlines F'),
+    (4, 1, 13, 14, '2023-10-10', '15:30:00', '2023-10-10', '17:00:00', 'Airlines G'),
+    (4, 2, 15, 16, '2023-10-11', '16:45:00', '2023-10-11', '18:15:00', 'Airlines H');
+-- En este ejemplo, hemos asignado valores únicos a plane_travel_id para cada viaje de avión dentro del mismo producto de viaje (travel_product_id). Asegúrate de que los valores sean únicos de esta manera en tu base de datos.
+select * from user;
+select * from travel_product;
+select * from plane_travel;
+select * from travel_product where seller_user_id = 5;
+INSERT INTO travel_product (creation_date, type, origin, destiny, passenger, admin_enabled, seller_user_id, original_price, client_price, document_img)
+VALUES
+    ('2023-10-04', 1, 'Ciudad A', 'Ciudad B', 2, 1, 1, 500.00, 550.00, 'documento1.png'),
+    ('2023-10-05', 1, 'Ciudad C', 'Ciudad D', 1, 1, 1, 300.00, 330.00, 'documento2.png'),
+    ('2023-10-06', 1, 'Ciudad E', 'Ciudad F', 3, 1, 1, 750.00, 825.00, 'documento3.png'),
+    ('2023-10-07', 1, 'Ciudad G', 'Ciudad H', 1, 1, 1, 50.00, 55.00, 'documento4.png'),
+    ('2023-10-08', 1, 'Ciudad I', 'Ciudad J', 2, 1, 1, 400.00, 440.00, 'documento5.png'),
+    ('2023-10-09', 1, 'Ciudad K', 'Ciudad L', 1, 1, 1, 600.00, 660.00, 'documento6.png'),
+    ('2023-10-10', 1, 'Ciudad M', 'Ciudad N', 4, 1, 1, 800.00, 880.00, 'documento7.png'),
+    ('2023-10-11', 1, 'Ciudad O', 'Ciudad P', 2, 1, 1, 350.00, 385.00, 'documento8.png');
 
+
+INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name)
+VALUES    
+    (2, 1, 3, 4, '2023-10-05', '09:30:00', '2023-10-05', '11:00:00', 'Airlines B'),
+    (3, 1, 5, 6, '2023-10-06', '10:15:00', '2023-10-06', '12:45:00', 'Airlines C'),
+    (4, 1, 7, 8, '2023-10-07', '11:45:00', '2023-10-07', '13:15:00', 'Airlines D'),
+    (5, 1, 9, 10, '2023-10-08', '13:30:00', '2023-10-08', '15:00:00', 'Airlines E'),
+    (6, 1, 11, 12, '2023-10-09', '14:15:00', '2023-10-09', '16:45:00', 'Airlines F'),
+    (7, 1, 13, 14, '2023-10-10', '15:30:00', '2023-10-10', '17:00:00', 'Airlines G'),
+    (8, 1, 15, 16, '2023-10-11', '16:45:00', '2023-10-11', '18:15:00', 'Airlines H');
+    
+INSERT INTO purchase (travel_product_id, user_id, amount)
+VALUES
+    (1, 2, 550.00),
+    (2, 3, 330.00),
+    (3, 4, 825.00),
+    (4, 5, 55.00),
+    (5, 6, 440.00),
+    (6, 7, 660.00),
+    (7, 8, 880.00),
+    (8, 1, 385.00);
+    
+ -- ESTA ES LA CONSULTA BUENA SIN VENDEDOR  
+SELECT tp.*, pt.*, tt.*, user.user_id , user.name 
+FROM travel_product tp, plane_travel pt, train_travel tt, user 
+WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) 
+and tp.seller_user_id = user.user_id 
+AND tp.admin_enabled = 0 
+AND tp.is_deleted = 0 
+group by tp.travel_product_id;
+
+ -- ESTA ES LA CONSULTA BUENA, VENDIDO, YA TIENE VENDEDOR  
+SELECT tp.*, pt.*, tt.*, user.user_id , user.name 
+FROM travel_product tp, plane_travel pt, train_travel tt, user 
+WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) 
+and tp.seller_user_id = user.user_id 
+AND tp.admin_enabled = 0 
+AND tp.is_deleted = 0 
+AND tp.buyer_user_id IS NOT NULL 
+group by tp.travel_product_id;
+
+-- Hacer que funcione el Group by
+SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+
+select * from user;
+select * from travel_product;
+-- ---------------------------------------
+select * from travel_product, user where user.user_id = travel_product.seller_user_id;
+
+
+
+-- ---------------------------------------
+SELECT tp.*, pt.*, tt.*, user.user_id , user.name 
+FROM travel_product tp, plane_travel pt, train_travel tt, user 
+WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) 
+and tp.seller_user_id = user.user_id 
+AND tp.admin_enabled = 0 
+AND tp.is_deleted = 0
+AND tp.travel_product_id = 1;
+
+SELECT tp.*, u.*, pt.*, a_origin.*, a_destination.* FROM travel_product AS tp 
+      JOIN user AS u ON tp.seller_user_id = u.user_id 
+      JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
+      LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
+      LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
+    WHERE tp.travel_product_id = 16;
+
+SELECT tp.*, u.name as user_name, u.user_id, pt.*, a_origin.*, a_destination.* FROM travel_product AS tp 
+      JOIN user AS u ON tp.seller_user_id = u.user_id 
+      JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
+      LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
+      LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
+    WHERE tp.travel_product_id = 16;
+    
+SELECT tp.*, pt.*, tt.*, user.user_id , user.name 
+FROM travel_product tp, plane_travel pt, train_travel tt, user 
+WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) 
+and tp.seller_user_id = user.user_id 
+AND tp.admin_enabled = 0 
+AND tp.is_deleted = 0 
+AND tp.buyer_user_id IS NULL 
+group by tp.type;

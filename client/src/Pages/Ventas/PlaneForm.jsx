@@ -1,7 +1,8 @@
 import { Row, Col, Form } from "react-bootstrap";
 import { useState } from "react";
-export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
 
+
+export const PlaneForm = ({shwoGoAndBack, handleChange, inputFormPlane }) => {
 
   const [ticketType, setTicketType] = useState('ida');
   const handleTicketTypeChange = (e) => {
