@@ -66,15 +66,15 @@ class TravelController {
         res.status(200).json(result)
     })
   }
-
+// Controlador para crear un viaje de avion, la infomacion llega por un objeto que mandamos y una constante en el body, por lo que hacemos el destruccturing correspondiente
   sellOnePlaneTravel = ( req, res ) => {
     console.log(req.body);
-    const { origin, destiny,passengers, commentaries, original_price, client_price, exchange_rate, plane_travel_id, origin_airpoty_id, destiny_airpoty_id, departure_date, departure_time, arrival_date,  arrival_time, compani_name } = req.body.inputFormPlane
+    const { origin, destiny,passengers, commentaries, original_price, client_price, exchange_rate, plane_travel_id, origin_airpoty_id, destiny_airpoty_id, departure_date, departure_time, arrival_date,  arrival_time, compani_name,origin_airpoty_id_tp2, destiny_airpoty_id_tp2, departure_date_tp2, departure_time_tp2, arrival_date_tp2,  arrival_time_tp2, compani_name_tp2 } = req.body.inputFormPlane
     const {user_id} = req.body
     
    console.log(origin);
  
-
+// Primera insert en la tabla travel_product(tabla con mayor entidad)
     let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate   ) VALUES (1, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)})`
 
     console.log(sqlTravelProduct);
@@ -83,10 +83,11 @@ class TravelController {
      if(err){
       console.log(err)
      }else{
+      // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
       const { insertId } = resultTravel
       console.log( insertId );
       if(resultTravel ){
-
+        // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
         if (!plane_travel_id || plane_travel_id == "1"){
           let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" )`
           console.log(sqlPlaneTravel);
@@ -96,8 +97,23 @@ class TravelController {
              :
              res.status(200).json({resultTravel, resultPlaneform})
           })
+
+        }
+        else if(plane_travel_id === "2"){
+          // si el id es 2 es ida y vuelta y se produce el siguente insert 
+          let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES
+           (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" ), 
+          (${insertId}, 2, ${parseInt(origin_airpoty_id_tp2)},${parseInt(destiny_airpoty_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
+  
+          connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
+            err2 ?
+             res.status(500).json("err2")
+             :
+             res.status(200).json({resultTravel, resultPlaneform})
+          })
         }
       }
+     
      }
 
       

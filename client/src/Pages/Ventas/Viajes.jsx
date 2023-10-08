@@ -29,7 +29,15 @@ const initialValue = {
   arrival_date:"",
   arrival_time:"",
   compani_name: "",
-  
+  // Informacion del vuelo de vuelta si lo hubiera
+  // plane_travel_id:"", /*  2 si es ida y vuelta */
+  origin_airpoty_id_tp2:"",
+  destiny_airpoty_id_tp2:"",
+  departure_date_tp2:"", 
+  departure_time_tp2:"",
+  arrival_date_tp2:"",
+  arrival_time_tp2:"",
+  compani_name_tp2: "",
 }
 // Componente principal Viajes
 export const Viajes = () => {
@@ -42,8 +50,11 @@ export const Viajes = () => {
   const [inputFormPlane, setInputFormPlane] = useState(initialValue);
   const [inputFormTrain, setInputFormTrain] = useState(initialValue);
   const [ shwoGoAndBack , setShwoGoAndBack] = useState(false)
+  // Estados para manejar los airpotrs_id
   const [airportCity, setAirporCity ] = useState()
   const [airportCityDestiny, setAirporCityDestiny ] = useState()
+  const [airportCity_tp2, setAirporCity_tp2 ] = useState()
+  const [airportCityDestiny_tp2, setAirporCityDestiny_tp2 ] = useState()
   // Estado para manejar el icono seleccionado
   const [selectedIcon, setSelectedIcon] = useState(null);
 
@@ -95,8 +106,33 @@ export const Viajes = () => {
     .catch((err) => console.log(err))
     console.log(value);
   }
+  // Manejadores de estado para los aeropuertos de viaje 2(vuelta)(type 2)
+  const handleChangeAirport_tp2 = (e) => {
+    const { value} = e.target
+   
+    axios
+    .get( `http://localhost:4000/travels/getOneAirport/city/${value}`)
+    .then((res) =>{
+      console.log(res.data)
+      setAirporCity_tp2(res.data)
+   
+    } )
+    .catch((err) => console.log(err))
+   
+  }
+
+  const handleChangeDestiny_tp2 = (e) =>{
+    const { value } = e.target
+   
+    axios
+    .get( `http://localhost:4000/travels/getOneAirport/city/${value}`)
+    .then((res) =>{
+      console.log("dataaa", res.data)
+      setAirporCityDestiny_tp2(res.data)
+    } )
+    .catch((err) => console.log(err))
   
- 
+  }
 
 // Controladores de los inputs qeu recogen los datos segun los type de inputs
   const handlePlaneChange = (e) => {
@@ -106,14 +142,6 @@ export const Viajes = () => {
         ...inputFormPlane,
         [name]: value,
       });
-      if(e.target.name == "seller_id"){
-        setInputFormPlane({
-          ...inputFormPlane, 
-          seller_id : user?.user_id
-          
-        })
-   
-      }
     }
       if( e.target.type == "select-one" ){
         if(e.target.name == "plane_travel_id"){
@@ -196,6 +224,10 @@ export const Viajes = () => {
             Rellene los datos del billete de avión
           </h1>
           <PlaneForm
+            handleChangeDestiny_tp2 = {handleChangeDestiny_tp2}
+            airportCityDestiny_tp2 = {airportCityDestiny_tp2}
+            airportCity_tp2 = {airportCity_tp2}
+            handleChangeAirport_tp2 = {handleChangeAirport_tp2}
             handleChangeDestiny = {handleChangeDestiny}
             airportCityDestiny = {airportCityDestiny}
             airportCity = {airportCity}
