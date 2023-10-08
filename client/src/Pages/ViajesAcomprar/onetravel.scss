@@ -1,6 +1,28 @@
 .imgProduct{
-  object-fit: contain;
-  height: 150px;
+  // object-fit: cover;
+   width:  350px;
+   margin-left: 10px;
+}
+
+.hrOneTravel {
+  width: auto;
+  height: 1px;
+  border-top: 1px solid transparent;
+  background-color: #ffc800bd;
+  opacity: 1;
+}
+
+
+.rowCards{
+  display: flex;
+  flex-direction: row;
+}
+.section1OneTravel{
+  // background-color: rgba(255, 255, 0, 0.452);
+  .colSection1OneTravel{
+    display: grid;
+  place-items: center;
+  }
 }
 
 .section2OneTravel{
@@ -32,6 +54,11 @@
 }
 
 .section5OneTravel{
-  background-color: violet;
   padding: 50px;
+}
+
+@media (max-width: 768px) {
+  .rowCards{    
+    flex-direction: column;
+  }
 }

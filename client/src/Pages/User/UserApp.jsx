@@ -44,10 +44,10 @@ export const UserApp = () => {
   // Filtro de viajes que un usuario a comprado (su user_id estará en el buyer_user_id)
   const comprasTravels = allTravelsToBuy.filter((travel) => travel.buyer_user_id === user.user_id);
   
-  // console.log(allUsers);
-  const handleNavigateToFaqs = (e) => {
+   console.log(comprasTravels);
+  const handleNavigateToAT = (e) => {
     e.preventDefault();
-    navigate("/faqs");
+    navigate("/todosLosViajes");
   };
 
   const showCompras = () => {
@@ -231,7 +231,7 @@ export const UserApp = () => {
         <h1>Datos Viaje {user?.name}</h1>
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
-            {comprasTravels ? (
+            {comprasTravels.length > 0 ? (
               comprasTravels?.map((travel, i) => (
                 <Row key={i}>
                   <CardAllTravelsToBuy travel={travel} />
@@ -243,7 +243,7 @@ export const UserApp = () => {
                 <h2>Aún no has comprado nada</h2>
                 <p>
                   Ve al apartado{" "}
-                  <a href="/faqs" onClick={handleNavigateToFaqs}>
+                  <a href="/todosLosViajes" onClick={handleNavigateToAT}>
                     Comprar Viajes
                   </a>{" "}
                   para adquirir tu primer viaje
@@ -254,7 +254,7 @@ export const UserApp = () => {
         )}
         {ventasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
-            {ventasTravels ? (
+            {ventasTravels.length > 0 ? (
               ventasTravels?.map((travel, i) => (
                 <Row key={i}>
                   <CardAllTravelsToBuy travel={travel} />
@@ -266,7 +266,7 @@ export const UserApp = () => {
                 <h2>Aún no tienes nada a la venta</h2>
                 <p>
                   Ve al apartado{" "}
-                  <a href="/faqs" onClick={handleNavigateToFaqs}>
+                  <a href="/todosLosViajes" onClick={handleNavigateToFaqs}>
                     Vender Viajes
                   </a>{" "}
                   para vender tu primer viaje
