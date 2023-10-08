@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Col, Card, Button, Row } from 'react-bootstrap'
 import { getDate } from '../../Utils/getDateTime';
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,7 +23,7 @@ export const CardAllTravelsToBuy = ({travel}) => {
 
 
   
-
+// console.log(travel)
   return (
     
     <Col lg={5} className='bg-allTv'>
@@ -71,7 +72,9 @@ export const CardAllTravelsToBuy = ({travel}) => {
   </Row>
     
    
-   <Button variant="primary">Go somewhere</Button>
+  <Button variant="primary">
+  <Link to={`/oneTravel/${travel.travel_product_id}`}>Ver más</Link>
+</Button>
  </Card.Body>
 </Card>
      
