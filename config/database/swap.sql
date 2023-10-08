@@ -372,8 +372,10 @@ select * from user;
 select * from travel_product;
 -- ---------------------------------------
 select * from travel_product, user where user.user_id = travel_product.seller_user_id;
+select * from airport where city = "barcelona" or name = "barcelona" or name like "%barcelona%";
+select * from airport;
 
-
+delete from airport where airport_id = 91;
 
 -- ---------------------------------------
 SELECT tp.*, pt.*, tt.*, user.user_id , user.name 
