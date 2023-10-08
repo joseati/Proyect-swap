@@ -1,3 +1,9 @@
 export const getDate = ( item ) => {
-  return item.slice(1,10)
+  // Divide la fecha en partes (día, mes y año)
+  const dateParts = item.slice(0, 10).split('-');
+
+  // Invierte el orden de las partes
+  const reversedDate = dateParts.reverse().join('-');
+
+  return reversedDate;
 }
