@@ -97,7 +97,7 @@ export const Footer = () => {
       </Container>
       <Row className="justify-content-center">
        
-        <Col className=" logos-footer d-flex align-items-end justify-content-end ">
+        <Col xs={12} className=" logos-footer d-flex align-items-end justify-content-end ">
    
           <p className="p-footer">Con el apoyo de: </p>
             <div className="d-flex flex-column logos">
