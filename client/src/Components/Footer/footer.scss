@@ -129,6 +129,16 @@ ul {
     align-items: center;
     justify-content: center;
   }
+  .logos-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Considera eliminar o ajustar el siguiente margen para dispositivos móviles */
+    /* margin-left: 25vw; */
+    img {
+        width: 50% !important; /* Asegúrate de que este ancho sea el deseado para móviles */
+    }
+}
 }
 
 //FALTA AJUSTAR LOS ULTIMOS LOGOS Y EL TEXTO

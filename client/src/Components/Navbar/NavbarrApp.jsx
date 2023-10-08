@@ -8,27 +8,15 @@ import { SwapContext } from "../../context/SwapContext";
 import "./navbarApp.scss";
 
 export const NavbarrApp = () => {
-  // requerimos y usamos use navigate de router_dom para navegar entre las rutas mediante Link to
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [showModalLogin, setShowModalLogin] = useState(false);
 
-  // Cierre y apertura de los modales
   const handleClose = () => setShow(false);
-
   const handleShow = () => setShow(true);
-
- 
-
-  const handleCloseModalLogin = () => {
-    setShowModalLogin(false);
-  }; 
-  const handleShowModalLogin = () => {
-    setShowModalLogin(true);
-  };
+  const handleCloseModalLogin = () => setShowModalLogin(false);
+  const handleShowModalLogin = () => setShowModalLogin(true);
   const { isLoged } = useContext(SwapContext);
-
-  // Contex para usar isLoged como controlador de los botones de registro
 
   return (
     <>
@@ -44,35 +32,38 @@ export const NavbarrApp = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto navbLink w-75">
-              <Nav.Link className="custom-nav-link-img" as = {Link} to= {"/todosLosViajes"}> <img src="/assets/images/cart.png" alt="" />COMPRAR VIAJES</Nav.Link>
-              <Nav.Link className="custom-nav-link-img" as={Link} to={"/viajes"}><img src="/assets/images/sell.png" alt="" /> VENDER VIAJE</Nav.Link>
-              <Nav.Link className="custom-nav-link-img" href="/sobrenosotros"> <img src="/assets/images/information-button.png" alt="" />SOBRE NOSOTROS</Nav.Link>
-              <Button className="btn-contact"><img src="/assets/images/phone-black.png" alt="" /> 611 32 96 41</Button>
-              <Button className="btn-contact"><img src="/assets/images/whatsapp.png" alt="" /> CHATEAR</Button>
+              <div className="responsive">
+                <Nav.Link className="custom-nav-link1" as={Link} to="/todosLosViajes">
+                  <img src="/assets/images/arriba.svg" alt="" />COMPRAR VIAJES
+                </Nav.Link>
+                <Nav.Link className="custom-nav-link2" as={Link} to="/viajes">
+                  <img src="/assets/images/abajo.svg" alt="" /> VENDER VIAJE
+                </Nav.Link>
+                <Nav.Link className="custom-nav-link-img" href="/sobrenosotros">
+                  <img src="/assets/images/ambas.svg" alt="" />SOBRE NOSOTROS
+                </Nav.Link>
+                <Button className="btn-contact"><img src="/assets/images/phone-black.png" alt="" /> 611 32 96 41</Button>
+                <Button className="btn-contact"><img src="/assets/images/whatsapp.png" alt="" /> CHATEAR</Button>
 
+                {isLoged === false ? (
+                  <div className="botones-account d-flex ">
+                    <Button className="btn-nav" onClick={handleShow}>Registrarse</Button>
+                    <Button className="btn-nav" onClick={handleShowModalLogin}>Login</Button>
+                  </div>
+                ) : (
+                  <Button className="goToUser" onClick={() => navigate("/oneUser")}>
+                    <img src="/assets/images/icon-user.png" alt="" /> Ir a usuario
+                  </Button>
+                )}
+              </div>
             </Nav>
-            {isLoged === false ? (
-              <>
-                {" "}
-                <div className="botones-account d-flex ">
-                  <Button className="btn-nav" onClick={handleShow}>Registrarse</Button>
-                  <Button className="btn-nav" onClick={handleShowModalLogin}>Login</Button>
-                </div>
-              </>
-            ) : (
-              <>
-                <Button className="goToUser" onClick={() => navigate("/oneUser")}>
-                  <img src="/assets/images/icon-user.png" alt="" /> Ir a usuario
-                </Button>
-              </>
-            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
       <Register show={show} handleClose={handleClose} handleShow={handleShow} />
       <Login
-      handleShow1={handleShow}
-       setShowModalLogin={setShowModalLogin}
+        handleShow1={handleShow}
+        setShowModalLogin={setShowModalLogin}
         show={showModalLogin}
         handleClose={handleCloseModalLogin}
         handleShow={handleShowModalLogin}
