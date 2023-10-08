@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardFooter, CardHeader, Col, Row } from 'react-bootstrap'
 import { SwapContext } from '../../context/SwapContext';
 import { useNavigate } from 'react-router-dom';
-
-
+import { getDate } from '../../Utils/getDateTime';
+import './banUserAdmin.scss'
 
 export const BanUserAdmin = ({allUsers}) => {
   const [searchUser, setSearchUser] = useState('');
@@ -72,8 +72,8 @@ export const BanUserAdmin = ({allUsers}) => {
 
 
   return (
-    <Row>
-      <Col xs={12}>
+    <Row className='stats-section'>
+      <Col xs={12} className='input-search'>
         <label htmlFor="search">Nombre de usuario</label>
         <input
           type="text"
@@ -83,6 +83,7 @@ export const BanUserAdmin = ({allUsers}) => {
           name='search'
         />
         <Button
+          className='buttonn-admin'
           onClick={onSubmit}
         >Buscar usuario</Button>
       </Col>
@@ -104,7 +105,7 @@ export const BanUserAdmin = ({allUsers}) => {
                   <p>Nº Identificación: {e.ident_num}</p>
                   <p>Código postal: {e.zip_code}</p>
                   <p>Teléfono: {e.telephone}</p>
-                  <p>Fecha de alta en la plataforma: {e.register_date}</p>
+                  <p>Fecha de alta en la plataforma: {getDate(e.register_date)}</p>
                   {e.enabled === 0 ?
                   <p>Estado de bloqueo de usuario: <span style={{color: 'red', fontWeight:'bold'}}>Bloqueado</span> </p>
                   :
@@ -114,11 +115,11 @@ export const BanUserAdmin = ({allUsers}) => {
                     {e.enabled === 1 ?
                        <Button
                       onClick={()=>onBlock(e)}
-                      className='btn-danger'>Bloquear usuario</Button>
+                      className='buttonn-admin-red'>Bloquear usuario</Button>
                       :
                       <Button
                       onClick={()=>onUnlock(e)}
-                      className='btn-success'>Desbloquear usuario</Button>}
+                      className='buttonn-admin-green'>Desbloquear usuario</Button>}
                   </CardFooter>
               </Card>
             </Col>

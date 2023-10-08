@@ -8,6 +8,7 @@ import "./userApp.scss";
 import { BanUserAdmin } from "../Admin/BanUserAdmin";
 import { CardAllTravelsToBuy } from "../../Components/Card/CardAllTravelsToBuy";
 import { DelTravelAdmin } from "../Admin/DelTravelAdmin";
+import { getDate } from "../../Utils/getDateTime";
 
 const initialValue = {
   name: "",
@@ -203,13 +204,16 @@ export const UserApp = () => {
           <Button className="Buttonn" onClick={showCompras}>COMPRAS</Button>
           <Button className="Buttonn" onClick={showVentas}>VENTAS</Button>
           <Button className="Buttonn" onClick={showFavoritos}>FAVORITOS</Button>
+          <Button className="Buttonn" onClick={closeSesion}>Cerrar Sesion</Button>
+          <Button className="Buttonn" onClick={() => setShowToast(true)}> Borrar usuario</Button>
           </>}
 
           {user?.type === 2 && 
           <>
             <Button 
               className="buttonn-admin"
-              onClick={OnShowStats}>VER ESTADÍSTICAS</Button>
+              onClick={OnShowStats}>VER ESTADÍSTICAS</Button> 
+            
             <br />
             <Button 
               onClick={OnDelTravel}
@@ -223,9 +227,54 @@ export const UserApp = () => {
             <Button
               className="buttonn-admin" 
               onClick={closeSesion}>Cerrar Sesion</Button>
+
+          {/* Botones para responsive, solo aparecen en vista movil */}
+
+            
           </>}
 
+
         </div>
+        {user?.type === 1 && 
+          <div className="responsiveButtons">
+            <Button className="Buttonn" onClick={showEdit}>
+              <img src="/assets/images/user_edit.png" alt="actualizar perfil" /></Button>
+          <Button className="Buttonn" onClick={showCompras}>
+            <img src="/assets/images/buy_cart.png" alt="icono-compra-user"/>
+          </Button>
+          <Button className="Buttonn" onClick={showVentas}>
+            <img src="/assets/images/sell_tag.png" alt="icono-venta-user"/>
+          </Button>
+          <Button className="Buttonn" onClick={showFavoritos}>
+            <img src="/assets/images/favorite.png" alt="icono-fav-user"/>
+          </Button>
+          <Button className="Buttonn" onClick={closeSesion}>
+            <img src="/assets/images/logout.png" alt="icono-fav-user"/></Button>
+          <Button className="buttonn-admin-red" onClick={() => setShowToast(true)}>
+            <img src="/assets/images/user_block.png" alt="icono-fav-user"/></Button>
+          </div>}
+
+        {user?.type === 2 && <div className="responsiveButtons">
+              <Button
+                className="buttonn-admin"
+                onClick={OnShowStats}>
+                  <img src="/assets/images/stats.png" alt="icono-stats" />
+                </Button>
+              
+              <br />
+              <Button
+                onClick={OnDelTravel}
+                className="buttonn-admin-red"
+                ><img src="/assets/images/travel_block.png" alt="icono-stats" /></Button>
+              <Button
+                className="buttonn-admin-red"
+                onClick={OnUnableUser}><img src="/assets/images/user_block.png" alt="icono-stats" /></Button>
+              <br />
+              <br />
+              <Button
+                className="buttonn-admin"
+                onClick={closeSesion}><img src="/assets/images/logout.png" alt="icono-stats" /></Button>
+            </div>}
       </Col>
       {user?.type === 1 && <Col className="screenUser" xs={12} xl={9}>
         <h1>Datos Viaje {user?.name}</h1>
@@ -372,8 +421,7 @@ export const UserApp = () => {
           </Form>
       </Col>
         )}
-        <Button className="Buttonn" onClick={closeSesion}>Cerrar Sesion</Button>
-        <Button className="Buttonn" onClick={() => setShowToast(true)}> Borrar usuario</Button>
+        
         
           {showToast &&
           <>
@@ -400,11 +448,13 @@ export const UserApp = () => {
       {user?.type === 2 && statsButton  && <Col className="screenUser" xs={12} xl={9}>
           <Row>
             <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
-                  <Row>
+                  <Row className="stats-section justify-content-center">
 
-                    <Col xs={12} className="p-5">
-                    <h4>Estadísticas de usuarios</h4>
+                    <Col xs={12} className="text-center p-5">
+                    <h4 >Estadísticas de usuarios</h4>
                     </Col>
+
+                   
                     <Card style={{ width: '18rem'}}>
                       <Card.Body>nº de Usuarios totales: <strong>{active + banned}</strong></Card.Body>
                     </Card>
@@ -415,11 +465,12 @@ export const UserApp = () => {
                       <Card.Body>nº de Usuarios baneados: <strong>{banned}</strong></Card.Body>
                     </Card>
                     <Card style={{ width: '18rem'}}>
-                      <Card.Body>fecha del último usuario registrado: <strong>{lastUserReg}</strong></Card.Body>
+                      <Card.Body>fecha del último usuario registrado: <strong>{lastUserReg ? getDate(lastUserReg) : "cargando"}</strong></Card.Body>
                     </Card>
+                    
 
-                    <Col xs={12} className="p-5">
-                    <h4>Estadísticas de viajes</h4>
+                    <Col xs={12} className="text-center p-5">
+                    <h4 >Estadísticas de viajes</h4>
                     </Col>
                     <Card style={{ width: '18rem'}}>
                     <Card.Body>nº de viajes totales: </Card.Body>
@@ -449,7 +500,7 @@ export const UserApp = () => {
         <Row>
             
             <Col>
-            <h4>Bloquear usuario</h4>
+            <h4 className="p-3">Bloquear usuario</h4>
                 <BanUserAdmin 
                   allUsers={allUsers}
                 />
