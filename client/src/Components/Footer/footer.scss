@@ -79,8 +79,9 @@ ul {
 
 }
 .logos-footer{
+
   .lanzadera-img {
-    margin-right: 15vw;
+    margin-right: 5vw;
     margin-bottom: 2vh;
     width: 12.5vw;
   }
@@ -92,10 +93,12 @@ ul {
   
   .p-footer {
     margin-bottom: -3vh;
-    margin-right: 3vw;
+    margin-right: 0.6vw;
     color: #005a8d;
   }
-  
+  .logos{
+    padding: 35px;
+  }
 }
 
 
@@ -124,23 +127,27 @@ ul {
   }
   .low-footer{
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    text-align: start;
+    align-items: start;
+    justify-content: start;
   }
-  .logos-footer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Considera eliminar o ajustar el siguiente margen para dispositivos móviles */
-    /* margin-left: 25vw; */
+ .logos{
+  align-items: center;
+  justify-content: center;
+ }
+
     img {
-        width: 50% !important; /* Asegúrate de que este ancho sea el deseado para móviles */
+        width: 60% !important; 
+    }
+    .p-footer{
+      padding-bottom: 5px;
+      text-align: center;
+    }
+    .minerva-img{
+      padding-bottom: 50px;
     }
 }
-}
 
-//FALTA AJUSTAR LOS ULTIMOS LOGOS Y EL TEXTO
 
 
