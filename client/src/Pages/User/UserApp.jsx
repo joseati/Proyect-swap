@@ -201,17 +201,17 @@ export const UserApp = () => {
 
           {user?.type === 1 && 
           <>
-          <Button className="Buttonn" onClick={showCompras}>COMPRAS</Button>
+          <Button className="Buttonn mt-5" onClick={showCompras}>COMPRAS</Button>
           <Button className="Buttonn" onClick={showVentas}>VENTAS</Button>
           <Button className="Buttonn" onClick={showFavoritos}>FAVORITOS</Button>
-          <Button className="Buttonn" onClick={closeSesion}>Cerrar Sesion</Button>
+          <Button className="Buttonn mt-5" onClick={closeSesion}>Cerrar Sesion</Button>
           <Button className="Buttonn" onClick={() => setShowToast(true)}> Borrar usuario</Button>
           </>}
 
           {user?.type === 2 && 
           <>
             <Button 
-              className="buttonn-admin"
+              className="buttonn-admin mt-5"
               onClick={OnShowStats}>VER ESTADÍSTICAS</Button> 
             
             <br />
@@ -302,12 +302,10 @@ export const UserApp = () => {
           </div>
         )}
         {ventasButton && (
-          <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
+          <Row className="all-info-user">
             {ventasTravels.length > 0 ? (
               ventasTravels?.map((travel, i) => (
-                <Row key={i}>
-                  <CardAllTravelsToBuy travel={travel} />
-                </Row>
+                  <CardAllTravelsToBuy key={i} travel={travel} />
                   ))
                 ) : (
                   <>
@@ -322,7 +320,7 @@ export const UserApp = () => {
                 </p>
               </>
               )}
-          </div>
+          </Row>
         )}
         {favoritosButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
@@ -338,7 +336,7 @@ export const UserApp = () => {
           <Col className="d-flex justify-content-center">
           <Form className="formEdit">
               <h2>Editar usuario</h2>
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-around form-inputs">
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="nameInput">Nombre</Form.Label>
                     <Form.Control
@@ -371,7 +369,7 @@ export const UserApp = () => {
                       onChange={handleChange}
                   />
               </Form.Group>
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-around form-inputs">
               <Form.Group className="mb-3">
                   <Form.Label htmlFor="ident_num_Input">DIN</Form.Label>
                   <Form.Control 
