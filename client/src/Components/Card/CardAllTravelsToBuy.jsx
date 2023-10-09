@@ -23,7 +23,11 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
 
 
 
-// console.log(travel)
+
+
+  
+//  console.log("Una tarjeta", travel)
+
   return (
     
     <Col xs={12} lg={6} className='bg-allTv'>

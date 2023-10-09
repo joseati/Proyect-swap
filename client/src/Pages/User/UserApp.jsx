@@ -41,11 +41,11 @@ export const UserApp = () => {
   const [banned, setBanned] = useState()
   const [lastUserReg, setLastUserReg] = useState()
   // Filtro de viajes que el usuario tiene a la venta (no tendrá buyer_user_id)
-  const ventasTravels = allTravelsToBuy.filter((travel) => !travel.buyer_user_id);
+  const ventasTravels = allTravelsToBuy.filter((travel) => travel.seller_user_id === user.user_id);
   // Filtro de viajes que un usuario a comprado (su user_id estará en el buyer_user_id)
   const comprasTravels = allTravelsToBuy.filter((travel) => travel.buyer_user_id === user.user_id);
   
-   console.log(comprasTravels);
+   console.log(allTravelsToBuy);
   const handleNavigateToAT = (e) => {
     e.preventDefault();
     navigate("/todosLosViajes");
@@ -313,7 +313,7 @@ export const UserApp = () => {
                 <h2>Aún no tienes nada a la venta</h2>
                 <p>
                   Ve al apartado{" "}
-                  <a href="/todosLosViajes" onClick={handleNavigateToFaqs}>
+                  <a href="/viajes">
                     Vender Viajes
                   </a>{" "}
                   para vender tu primer viaje

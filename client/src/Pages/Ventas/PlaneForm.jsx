@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 
-export const PlaneForm = ({airportCityDestiny ,airportCity,handleChangeAirport , shwoGoAndBack, handleChange,handleChangeDestiny, inputFormPlane }) => {
+export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityDestiny_tp2,handleChangeDestiny_tp2 ,airportCityDestiny ,airportCity,handleChangeAirport , shwoGoAndBack, handleChange,handleChangeDestiny, inputFormPlane }) => {
 
 
 console.log(airportCity)
@@ -24,7 +24,7 @@ console.log(airportCity)
                 name="origin"
                 onChange={handleChangeAirport}
                 value={inputFormPlane.origin}
-                className="custom-select">
+                className="custom-input">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -35,7 +35,7 @@ console.log(airportCity)
                 name="origin_airpoty_id"
                 onChange={handleChange}
                 id="origin_airpoty_id"
-                className="custom-select"
+                className="custom-input"
                 value={inputFormPlane.origin_airpoty_id}
               >{
                 airportCity?.map((e) => {
@@ -63,7 +63,7 @@ console.log(airportCity)
                 onChange={handleChangeDestiny}
                 value={inputFormPlane.destiny}
                 id="destiny"
-                className="custom-select">
+                className="custom-input">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -74,7 +74,7 @@ console.log(airportCity)
                 name="destiny_airpoty_id"
                 onChange={handleChange}
                 id="destiny_airpoty_id"
-                className="custom-select"
+                className="custom-input"
                 value={inputFormPlane.destiny_airpoty_id}
               >{
                 airportCityDestiny?.map((e) => {
@@ -159,7 +159,7 @@ console.log(airportCity)
                 name="plane_travel_id"
                 onChange={handleChange}
                 id="plane_travel_id"
-                className="custom-select"
+                className="custom-input"
                 value={inputFormPlane.plane_travel_id}
               >
                 <option value="1">Ida</option>
@@ -169,46 +169,154 @@ console.log(airportCity)
         
  {/* Fecha de vuelta si es ida y vuelta */}{console.log(shwoGoAndBack)}
  {shwoGoAndBack && <>
-              <Form.Group>
-              <Form.Label className="label" htmlFor="departure_date">
-                Fecha de ida
+  <Form.Label className="label" htmlFor="plane_travel_id">
+               Informacion respecto al vuelo de vuelta
+              </Form.Label>
+              <Form.Group className="mb-3">
+              <Form.Label className="label" htmlFor="">
+                Aeropuerto de salida 
               </Form.Label>
               <Form.Control
-                className="custom-input"
-                id="arrival_date"
-                name="arrival_date_date"
-                placeholder="Fecha"
-                type="date"
+              placeholder= "nombre de ciudad de oirgen"
+                // name="origin"
+                onChange={handleChangeAirport_tp2}
+                // value={inputFormPlane.origin}
+                className="custom-input">
+              </Form.Control>
+              </Form.Group>
+              <Form.Group>
+              <Form.Label className="label" htmlFor="origin_airpoty_id_tp2">
+                  Elige Aeropuerto
+              </Form.Label>
+              <Form.Select
+                name="origin_airpoty_id_tp2"
                 onChange={handleChange}
-                value={inputFormPlane.arrival_date}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="label" htmlFor="arrival_hour">
+                id="origin_airpoty_id_tp2"
+                className="custom-input"
+                value={inputFormPlane.origin_airpoty_id_tp2}
+              >{
+                airportCity_tp2?.map((e) => {
+
+                  return(
+                  <option  key={e.airport_id} 
+                  
+                  value={e.airport_id}>{e.icao_code} - {e.name} - {e.city}</option>
+                  )
+                })
+              }
+               
+              </Form.Select>
+              </Form.Group>
+             
+            
+            {/* -------------------- */}
+            <Form.Group className="mb-3">
+              <Form.Label className="label" htmlFor="destiny">
+                Aeropuerto de llegada 
+              </Form.Label>
+              <Form.Control
+              placeholder= "nombre de Ciudad de destino"
+                // name = "destiny"
+                onChange={handleChangeDestiny_tp2}
+                // value={inputFormPlane.destiny}
+                id="destiny_t"
+                className="custom-input">
+              </Form.Control>
+              </Form.Group>
+              <Form.Group>
+              <Form.Label htmlFor="destiny_airpoty_id_tp2">
+                  Elige Aeropuerto
+              </Form.Label>
+              <Form.Select
+                name="destiny_airpoty_id_tp2"
+                onChange={handleChange}
+                id="destiny_airpoty_id_tp2"
+                className="custom-input"
+                value={inputFormPlane.destiny_airpoty_id_tp2}
+              >{
+                airportCityDestiny_tp2?.map((e) => {
+
+                  return(
+                  <option key={e.airport_id} 
+                 
+                  value={e.airport_id}>{e.icao_code} - {e.name} - {e.city}</option>
+                  )
+                })
+              }
+               
+              </Form.Select>
+              </Form.Group>
+              <Form.Group>
+              <Form.Label className="label" htmlFor="arrival_time_tp2">
                 Hora de salida- Ida
               </Form.Label>
               <Form.Control
                 className="custom-input"
-                name="arrival_hour"
-                id="arrival_hour"
+                name="arrival_time_tp2"
+                id="arrival_time_tp2"
                 placeholder="Elija el aeropuerto de llegada"
                 type="time"
                 onChange={handleChange}
-                value={inputFormPlane.arrival_hour2}
+                value={inputFormPlane.arrival_time_tp2}
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label className="label" htmlFor="departure_hour">
+              <Form.Label className="label" htmlFor="departure_time_tp2">
                 Hora de llegada - Ida
               </Form.Label>
               <Form.Control
                 className="custom-input"
-                name="departure_hour"
-                id="departure_hour"
+                name="departure_time_tp2"
+                id="departure_time_tp2"
                 placeholder="Elija el aeropuerto de llegada"
                 type="time"
                 onChange={handleChange}
-                value={inputFormPlane.departure_hour}
+                value={inputFormPlane.departure_time_tp2}
+              />
+            </Form.Group>
+
+
+            <Form.Group>
+              <Form.Label className="label" htmlFor="compani_name_tp2">
+                  Nombre de la compañia
+              </Form.Label>
+              <Form.Control
+                className="custom-input"
+                name="compani_name_tp2"
+                id="compani_name_tp2"
+                placeholder="Nombre compañia"
+                type="text"
+                onChange={handleChange}
+                value={inputFormPlane.compani_name_tp2}
+              />
+              </Form.Group>
+              
+            <Form.Group>
+              <Form.Label className="label" htmlFor="departure_date_tp2">
+                Fecha de ida
+              </Form.Label>
+              <Form.Control
+                className="custom-input"
+                id="departure_date_tp2"
+                name="departure_date_tp2"
+                placeholder="Fecha"
+                type="date"
+                onChange={handleChange}
+                value={inputFormPlane.departure_date_tp2}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className="label" htmlFor="arrival_date_tp2">
+                Fecha de Vuelta
+              </Form.Label>
+              <Form.Control
+                className="custom-input"
+                id="arrival_date_tp2"
+                name="arrival_date_tp2"
+                placeholder="Fecha"
+                type="date"
+                onChange={handleChange}
+                value={inputFormPlane.arrival_date_tp2}
               />
             </Form.Group>
             </>}
@@ -250,7 +358,7 @@ console.log(airportCity)
                 className="custom-input"
                 name="compani_name"
                 id="compani_name"
-                placeholder="Precio Original"
+                placeholder="Nombre compañia"
                 type="text"
                 onChange={handleChange}
                 value={inputFormPlane.compani_name}
