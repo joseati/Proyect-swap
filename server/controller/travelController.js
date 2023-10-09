@@ -39,20 +39,20 @@ class TravelController {
 
    getOneTravel= (req, res)=>{
     const {travel_id} = req.params
-
-    let sql = `SELECT tp.*, u.name as user_name, u.user_id, pt.*, a_origin.*, a_destination.* FROM travel_product AS tp 
-    JOIN user AS u ON tp.seller_user_id = u.user_id 
-    JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
-    LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
-    LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
-  WHERE tp.travel_product_id = ${travel_id};`
+    console.log(travel_id);
+    let sql = `SELECT u.*, t.*, p.*, t2.*
+    FROM user AS u
+    LEFT JOIN travel_product AS t ON u.user_id = t.seller_user_id
+    LEFT JOIN plane_travel AS p ON t.travel_product_id = p.travel_product_id
+    LEFT JOIN train_travel AS t2 ON t.travel_product_id = t2.travel_product_id
+    WHERE t.travel_product_id = ${travel_id};`
     connection.query(sql, (err, resul)=>{
       err ?
         res.status(500).json("err")
         // console.log(err)
         :
         res.status(200).json(resul)
-        // console.log(resul);
+         console.log("RESULTADO CONTROLLER", resul);
     })
   } 
   getOneAirport = (req, res ) => {

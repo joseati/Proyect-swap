@@ -1,34 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Accordion, Button, Col, Row } from 'react-bootstrap'
 import "./onetravel.scss"
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { SwapContext } from '../../context/SwapContext';
 
 export const OneTravel = () => {
-  // const {travel_id} = useParams;
+  const navigate = useNavigate();
+  const {travel_id} = useParams();
   const {user, isLoged} =useContext(SwapContext)
   // console.log("USER REGISTRADO", user)
-  const travel_id = 16;
+  // const onTravelSell 
 
   const [oneTravelSell, setOneTravelSell] = useState([]);
   
-  const ida = oneTravelSell[0];
-  let vuelta = {};
-  if (oneTravelSell.length !== 1){
-    vuelta = oneTravelSell[1];
-  } 
-
+  
   // console.log("Esto es vueltaaa", vuelta);
   useEffect(()=>{
     axios
       .get(`http://localhost:4000/travels/getOneTravel/${travel_id}`)
       .then( (res) => {
         setOneTravelSell(res.data)
+        console.log("RESSSSSSSS",res.data);
       } )
       .catch( (err) => console.log(err) )
   }, [])
 
+  const ida = oneTravelSell[0];
+  let vuelta = {};
+  if (oneTravelSell.length !== 1){
+    vuelta = oneTravelSell[1];
+  } 
+
+  // console.log(onTravelSell)
   // console.log("ONE TRAVELLLLL", oneTravelSell)
   // console.log("IIIIIIDDDDDDAAAAAAA", ida)
   // console.log("VVVVVUUUUUUEEEEELLLLTTTTTAAAA", vuelta)
@@ -68,7 +72,7 @@ export const OneTravel = () => {
           </Row>
         </Col>
         <Col md={2} xs={0} ></Col>
-        {Object.keys(vuelta).length > 0 && (
+        {oneTravelSell.length > 1 && (
         <Col md={12}  className='goTravel'>
           <h4>Vuelo de vuelta</h4>
           <Row className='rowCards'>
@@ -98,6 +102,9 @@ export const OneTravel = () => {
 }
       </Row>
       <Row className='section3OneTravel'>
+      <Col>
+          <Button onClick={()=>navigate("/todosLosViajes")}>VOLVER</Button>
+        </Col>
         <Col>
           <Button>GUARDAR</Button>
         </Col>

@@ -23,7 +23,7 @@ export const CardAllTravelsToBuy = ({travel}) => {
 
 
   
-// console.log(travel)
+//  console.log("Una tarjeta", travel)
   return (
     
     <Col lg={5} className='bg-allTv'>
