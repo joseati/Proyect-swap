@@ -1,0 +1,12 @@
+.homeSection2card{
+  width: 99%;
+}
+.allTravelsCard{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  transition: 0.6s;
+}
+.allTravelsCard:hover{
+  transform: translateY(-10px)
+}

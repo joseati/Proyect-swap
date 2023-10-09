@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Col, Card, Button, Row } from 'react-bootstrap'
 import { getDate } from '../../Utils/getDateTime';
-
+import './cardAllTravelsToBuy.scss'
 
 
 export const CardAllTravelsToBuy = ({travel}) => {
@@ -24,8 +24,8 @@ export const CardAllTravelsToBuy = ({travel}) => {
   
 
   return (
-    
-    <Col lg={5} className='bg-allTv'>
+    <Row>
+      <Col lg={5} className='bg-allTv allTravelsCard '>
       
  <Card className='card-All-Travels'   >
  <Card.Text>
@@ -42,7 +42,7 @@ export const CardAllTravelsToBuy = ({travel}) => {
    <Card.Title> {travel.destiny} - {travel?.origin} </Card.Title>
  
    <Row className='d-flex flex-row dateCard'>   
-    <Col xs={3}>
+    <Col xs={12} xl={3} >
   <Card.Text>
     Fecha de ida:
   </Card.Text>
@@ -51,7 +51,7 @@ export const CardAllTravelsToBuy = ({travel}) => {
   </Card.Text>
 
       </Col>
-      <Col xs={3}>
+      <Col xs={12} xl={3}>
       <Card.Text>
   Fecha de vuelta:
   </Card.Text>
@@ -59,7 +59,7 @@ export const CardAllTravelsToBuy = ({travel}) => {
   {arrival_date}
   </Card.Text>
       </Col>
-      <Col xs={3}>
+      <Col xs={12} xl={3}>
   <Card.Text>
      Pasajeros :
    </Card.Text>
@@ -77,6 +77,8 @@ export const CardAllTravelsToBuy = ({travel}) => {
      
 
     </Col>
+    </Row>
+    
     
   )
 }
