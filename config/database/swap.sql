@@ -66,6 +66,7 @@ CREATE TABLE travel_product(
 
 
 CREATE TABLE travels_documents (
+
 travels_document_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 travel_product_id  INT UNSIGNED NOT NULL,
 document VARCHAR(300),
@@ -75,6 +76,7 @@ CONSTRAINT fk_document_travel_id FOREIGN KEY (travel_product_id)
 REFERENCES travel_product(travel_product_id) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
+
 
 
 CREATE TABLE purchase (
@@ -370,41 +372,3 @@ SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 
 select * from user;
 select * from travel_product;
--- ---------------------------------------
-select * from travel_product, user where user.user_id = travel_product.seller_user_id;
-select * from airport where city = "barcelona" or name = "barcelona" or name like "%barcelona%";
-select * from airport;
-
-delete from airport where airport_id = 91;
-
--- ---------------------------------------
-SELECT tp.*, pt.*, tt.*, user.user_id , user.name 
-FROM travel_product tp, plane_travel pt, train_travel tt, user 
-WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) 
-and tp.seller_user_id = user.user_id 
-AND tp.admin_enabled = 0 
-AND tp.is_deleted = 0
-AND tp.travel_product_id = 1;
-
-SELECT tp.*, u.*, pt.*, a_origin.*, a_destination.* FROM travel_product AS tp 
-      JOIN user AS u ON tp.seller_user_id = u.user_id 
-      JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
-      LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
-      LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
-    WHERE tp.travel_product_id = 16;
-
-SELECT tp.*, u.name as user_name, u.user_id, pt.*, a_origin.*, a_destination.* FROM travel_product AS tp 
-      JOIN user AS u ON tp.seller_user_id = u.user_id 
-      JOIN plane_travel AS pt ON tp.travel_product_id = pt.travel_product_id
-      LEFT JOIN airport AS a_origin ON pt.origin_airport_id = a_origin.airport_id
-      LEFT JOIN airport AS a_destination ON pt.destination_airport_id = a_destination.airport_id
-    WHERE tp.travel_product_id = 16;
-    
-SELECT tp.*, pt.*, tt.*, user.user_id , user.name 
-FROM travel_product tp, plane_travel pt, train_travel tt, user 
-WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) 
-and tp.seller_user_id = user.user_id 
-AND tp.admin_enabled = 0 
-AND tp.is_deleted = 0 
-AND tp.buyer_user_id IS NULL 
-group by tp.type;

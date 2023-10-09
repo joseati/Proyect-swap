@@ -1,8 +1,10 @@
-import React,{ useState } from 'react'
+import React,{ useContext, useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import './home.scss'
 import Carousel from 'react-bootstrap/Carousel';
 import { useNavigate } from 'react-router-dom';
+import { SwapContext } from '../../../context/SwapContext';
+import { CardAllTravelsToBuy } from '../../../Components/Card/CardAllTravelsToBuy';
 
 
 export const Home = () => {
@@ -11,6 +13,12 @@ export const Home = () => {
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
+  const {allTravelsToBuy} = useContext(SwapContext)
+  // Dividir la matriz en grupos de 2
+  const dividedTravels = [];
+  for (let i = 0; i < allTravelsToBuy.length; i += 2) {
+    dividedTravels.push(allTravelsToBuy.slice(i, i + 2));
+  }
   return (
     <Col>
       <Row className="homeSection1">
@@ -30,8 +38,14 @@ export const Home = () => {
         <Col className="homeSectionCol1">
           <h2>Últimos Swaps añadidos</h2>
           <h4>SWAPEA Y CONOCE MUNDO AL MEJOR PRECIO</h4>
-          <Row>
-            <Col></Col>
+          <Row className='homeSection2card'>
+          
+        {allTravelsToBuy?.slice(0, 4).map((travel, i) => (
+          <Col key={i} xl={6} xs={12} >
+            <CardAllTravelsToBuy travel={travel} />
+          </Col>
+        ))}
+      
             <a className="azulAmarillo" href="">
               Ver más
             </a>
@@ -83,7 +97,21 @@ export const Home = () => {
           <Button className="botonHomeSection4">Last Call</Button>
         </Col>
         <Col xs={12} md={6}>
-          <h1>AQUI VAN LAS CARDS</h1>
+        <Carousel>
+      {dividedTravels.map((group, index) => (
+        <Carousel.Item key={index}>
+          <Row> 
+            {group.map((travel, i) => (
+              <Col  key={i}>
+                <Row>
+                  <CardAllTravelsToBuy travel={travel} />
+                </Row>
+              </Col>
+            ))}
+          </Row>
+        </Carousel.Item>
+      ))}
+    </Carousel>
         </Col>
       </Row>
       <Row className="homeSection5">

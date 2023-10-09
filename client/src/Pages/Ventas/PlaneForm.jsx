@@ -7,6 +7,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
 
 
 console.log(airportCity)
+
   
   return (
     <>
