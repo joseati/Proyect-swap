@@ -21,6 +21,7 @@
   justify-content: space-around;
   height: 250px;
   margin-top: 80px;
+  gap: 40px;
   
 }
 
@@ -41,27 +42,34 @@
 }
 
 .all-info-user {
-  margin-top: 15vh;
-  h2 {
-    font-size: 40px;
-  }
-  p {
-    font-size: 20px;
-    a {
-      text-decoration: none;
-    }
-  }
+  // margin-top: 15vh;
+  // h2 {
+  //   font-size: 40px;
+  // }
+  // p {
+  //   font-size: 20px;
+  //   a {
+  //     text-decoration: none;
+  //   }
+  // }
+  padding: 0vh 5vw;
+  height: auto;
+  
 }
 .corazon {
   width: 30px;
 }
 
 .formEdit{
-  // background-color: red;
+  background-color: #A5D6DE;
   width: 60%;
   margin: 25px;
   padding: 20px;
   text-align: center;
+  border-radius: 15px;
+  box-shadow: #005a8d 5px 5px 5px;
+  padding: 5vw;
+  
 }
 
 .formButton{
@@ -168,5 +176,13 @@
     display: none;
   }
  
+ //formulario de edicion de usuario
+ .formEdit{
+  width: 100vw;
+ }
  
+ .form-inputs{
+  display: flex;
+  flex-direction: column;
+ }
 }
