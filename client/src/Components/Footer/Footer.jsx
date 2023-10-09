@@ -96,11 +96,14 @@ export const Footer = () => {
         </Row>
       </Container>
       <Row className="justify-content-center">
-       
+
+
         <Col xs={12} className=" logos-footer d-flex align-items-end justify-content-end ">
-   
+        <Row>
+        <Col xs={12}>
           <p className="p-footer">Con el apoyo de: </p>
-            <div className="d-flex flex-column logos">
+          </Col>
+            <Col xs={12} className="d-flex flex-column logos">
               <img
                 src="./assets/images/lanzadera.png"
                 alt="lanzadera"
@@ -111,8 +114,9 @@ export const Footer = () => {
                 alt="minerva"
                 className="minerva-img"
               />
-            </div>
-     
+            </Col>
+            </Row>
+
         </Col>
       </Row>
       
