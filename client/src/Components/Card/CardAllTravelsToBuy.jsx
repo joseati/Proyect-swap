@@ -1,10 +1,14 @@
 import React, { useContext, useEffect } from 'react'
-import { Col, Card, Button, Row } from 'react-bootstrap'
+import { Col, Card, Button, Row, CardFooter } from 'react-bootstrap'
 import { getDate } from '../../Utils/getDateTime';
 import './cardAllTravelsToBuy.scss'
+import { Link } from 'react-router-dom';
+import { SwapContext } from '../../context/SwapContext';
 
 
-export const CardAllTravelsToBuy = ({travel}) => {
+
+
+export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
    
   let departure_date = 0
   let arrival_date = 0
@@ -15,6 +19,8 @@ export const CardAllTravelsToBuy = ({travel}) => {
   
 }
 
+  const { user } = useContext(SwapContext)
+
 
 
 
@@ -22,10 +28,13 @@ export const CardAllTravelsToBuy = ({travel}) => {
 
 
   
+//  console.log("Una tarjeta", travel)
 
   return (
+
     <Row>
       <Col lg={5} className='bg-allTv allTravelsCard '>
+
       
  <Card className='card-All-Travels'   >
  <Card.Text>
@@ -71,8 +80,21 @@ export const CardAllTravelsToBuy = ({travel}) => {
   </Row>
     
    
-   <Button variant="primary">Go somewhere</Button>
+  <Button variant="primary">
+  <Link to={`/oneTravel/${travel.travel_product_id}`}>Ver más</Link>
+</Button>
  </Card.Body>
+ {user.type === 2 && blockMsg && <CardFooter>
+  
+    <h4 style={{color: 'red', fontWeight:'bold', textAlign: 'end'}}>Bloqueado</h4>
+  </CardFooter>}
+
+  {user.type === 2 && !blockMsg &&  <CardFooter>
+  
+  <h4 style={{color: 'green', fontWeight:'bold',  textAlign: 'end'}}>Disponible</h4>
+  </CardFooter>}
+
+ 
 </Card>
      
 

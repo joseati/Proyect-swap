@@ -43,7 +43,7 @@ export const AppRoutes = () => {
           <Route path='/contactaConNosotros' element = {<ContactaConNosotros/>} ></Route>
           <Route path='/sobreNosotros' element = {<SobreNosotros/>} ></Route>
           <Route path='/todosLosViajes' element = {<AllTravels/>}/>
-          <Route path='/oneTravel' element = {<OneTravel/>}/>
+          <Route path='/oneTravel/:travel_id' element = {<OneTravel/>}/>
           <Route path='*' element= {<Error/>}/>
           
 

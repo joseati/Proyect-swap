@@ -17,10 +17,10 @@ export const Footer = () => {
           <Col md={4} xs={12} className="col-1">
             <h4 className="title-col">SOMOS SWAP YOUR TRAVEL</h4>
             <p onClick={() => navigate("/sobreNosotros")}>¿Quiénes somos?</p>
-            <p>Cómo funciona?</p>
+            <p onClick={() => navigate("/comofunciona")}>Cómo funciona?</p>
             <p onClick={() => navigate("/faqs")}>Preguntas frecuentes</p>
             <p>Blog</p>
-            <p>Contacto</p>
+            <p onClick={() => navigate("/contactaConNosotros")}>Contacto</p>
             <p>¿Qué dicen de nosotros?</p>
 
           </Col>
@@ -96,11 +96,14 @@ export const Footer = () => {
         </Row>
       </Container>
       <Row className="justify-content-center">
-       
-        <Col className=" logos-footer d-flex align-items-end justify-content-end ">
-   
+
+
+        <Col xs={12} className=" logos-footer d-flex align-items-end justify-content-end ">
+        <Row>
+        <Col xs={12}>
           <p className="p-footer">Con el apoyo de: </p>
-            <div className="d-flex flex-column logos">
+          </Col>
+            <Col xs={12} className="d-flex flex-column logos">
               <img
                 src="./assets/images/lanzadera.png"
                 alt="lanzadera"
@@ -111,8 +114,9 @@ export const Footer = () => {
                 alt="minerva"
                 className="minerva-img"
               />
-            </div>
-     
+            </Col>
+            </Row>
+
         </Col>
       </Row>
       

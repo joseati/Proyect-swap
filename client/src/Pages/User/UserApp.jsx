@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SwapContext } from '../../context/SwapContext'
-import { Button, Col, Toast, Form, Row, Card } from "react-bootstrap";
+import { Button, Col, Toast, Form, Row, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { delLocalStore } from '../../Utils/localStorage'
 import axios from "axios"
 import "./userApp.scss";
 import { BanUserAdmin } from "../Admin/BanUserAdmin";
+import { CardAllTravelsToBuy } from "../../Components/Card/CardAllTravelsToBuy";
+import { DelTravelAdmin } from "../Admin/DelTravelAdmin";
+import { getDate } from "../../Utils/getDateTime";
 
 const initialValue = {
   name: "",
@@ -20,7 +23,7 @@ const initialValue = {
 export const UserApp = () => {
   
   const navigate = useNavigate();
-  const { user ,setIsLoged, setToken, setUser} = useContext(SwapContext);
+  const { user ,setIsLoged, setToken, setUser, allTravelsToBuy} = useContext(SwapContext);
   const [comprasButton, setComprasButton] = useState(true);
   const [ventasButton, setVentasButton] = useState(false);
   const [favoritosButton, setFavoritosButton] = useState(false);
@@ -37,10 +40,15 @@ export const UserApp = () => {
   const [active, setActive] = useState()
   const [banned, setBanned] = useState()
   const [lastUserReg, setLastUserReg] = useState()
+  // Filtro de viajes que el usuario tiene a la venta (no tendrá buyer_user_id)
+  const ventasTravels = allTravelsToBuy.filter((travel) => travel.seller_user_id === user.user_id);
+  // Filtro de viajes que un usuario a comprado (su user_id estará en el buyer_user_id)
+  const comprasTravels = allTravelsToBuy.filter((travel) => travel.buyer_user_id === user.user_id);
   
-  const handleNavigateToFaqs = (e) => {
+   console.log(allTravelsToBuy);
+  const handleNavigateToAT = (e) => {
     e.preventDefault();
-    navigate("/faqs");
+    navigate("/todosLosViajes");
   };
 
   const showCompras = () => {
@@ -121,7 +129,6 @@ export const UserApp = () => {
           setActive(res.data.filter((e)=>e.enabled === 1).length)
           setBanned(res.data.filter((e)=>e.enabled === 0).length)
           setLastUserReg(res.data[res.data.length-1].register_date)
-          
         })
         .catch((err)=>console.log(err))
 
@@ -181,7 +188,8 @@ export const UserApp = () => {
   }
   return (
     <>
-      <Col className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
+    
+      <Col xs={{ order: 'last' }} md={{ order: 'first' }} className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
         <h1>{user?.name}</h1>
 
         {user?.type === 2 && <h2>Administrador/a</h2>}
@@ -193,16 +201,19 @@ export const UserApp = () => {
 
           {user?.type === 1 && 
           <>
-          <Button className="Buttonn" onClick={showCompras}>COMPRAS</Button>
+          <Button className="Buttonn mt-5" onClick={showCompras}>COMPRAS</Button>
           <Button className="Buttonn" onClick={showVentas}>VENTAS</Button>
           <Button className="Buttonn" onClick={showFavoritos}>FAVORITOS</Button>
+          <Button className="Buttonn mt-5" onClick={closeSesion}>Cerrar Sesion</Button>
+          <Button className="Buttonn" onClick={() => setShowToast(true)}> Borrar usuario</Button>
           </>}
 
           {user?.type === 2 && 
           <>
             <Button 
-              className="buttonn-admin"
-              onClick={OnShowStats}>VER ESTADÍSTICAS</Button>
+              className="buttonn-admin mt-5"
+              onClick={OnShowStats}>VER ESTADÍSTICAS</Button> 
+            
             <br />
             <Button 
               onClick={OnDelTravel}
@@ -216,24 +227,100 @@ export const UserApp = () => {
             <Button
               className="buttonn-admin" 
               onClick={closeSesion}>Cerrar Sesion</Button>
+
+          {/* Botones para responsive, solo aparecen en vista movil */}
+
+            
           </>}
 
+
         </div>
+        {user?.type === 1 && 
+          <div className="responsiveButtons">
+            <Button className="Buttonn" onClick={showEdit}>
+              <img src="/assets/images/user_edit.png" alt="actualizar perfil" /></Button>
+          <Button className="Buttonn" onClick={showCompras}>
+            <img src="/assets/images/buy_cart.png" alt="icono-compra-user"/>
+          </Button>
+          <Button className="Buttonn" onClick={showVentas}>
+            <img src="/assets/images/sell_tag.png" alt="icono-venta-user"/>
+          </Button>
+          <Button className="Buttonn" onClick={showFavoritos}>
+            <img src="/assets/images/favorite.png" alt="icono-fav-user"/>
+          </Button>
+          <Button className="Buttonn" onClick={closeSesion}>
+            <img src="/assets/images/logout.png" alt="icono-fav-user"/></Button>
+          <Button className="buttonn-admin-red" onClick={() => setShowToast(true)}>
+            <img src="/assets/images/user_block.png" alt="icono-fav-user"/></Button>
+          </div>}
+
+        {user?.type === 2 && <div className="responsiveButtons">
+              <Button
+                className="buttonn-admin"
+                onClick={OnShowStats}>
+                  <img src="/assets/images/stats.png" alt="icono-stats" />
+                </Button>
+              
+              <br />
+              <Button
+                onClick={OnDelTravel}
+                className="buttonn-admin-red"
+                ><img src="/assets/images/travel_block.png" alt="icono-stats" /></Button>
+              <Button
+                className="buttonn-admin-red"
+                onClick={OnUnableUser}><img src="/assets/images/user_block.png" alt="icono-stats" /></Button>
+              <br />
+              <br />
+              <Button
+                className="buttonn-admin"
+                onClick={closeSesion}><img src="/assets/images/logout.png" alt="icono-stats" /></Button>
+            </div>}
       </Col>
-      {user?.type === 1 && <Col className="screenUser" xs={10}>
+      {user?.type === 1 && <Col className="screenUser" xs={12} xl={9}>
         <h1>Datos Viaje {user?.name}</h1>
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
-            <img src="/assets/images/avionamarillo.svg" alt="" />
-            <h2>Aún no has comprado nada</h2>
-            <p>
-              Ve al apartado{" "}
-              <a href="/faqs" onClick={handleNavigateToFaqs}>
-                Comprar Viajes
-              </a>{" "}
-              para adquirir tu primer viaje
-            </p>
+            {comprasTravels.length > 0 ? (
+              comprasTravels?.map((travel, i) => (
+                <Row key={i}>
+                  <CardAllTravelsToBuy travel={travel} />
+                </Row>
+                  ))
+                ) : (
+                  <>
+                <img src="/assets/images/avionamarillo.svg" alt="" />
+                <h2>Aún no has comprado nada</h2>
+                <p>
+                  Ve al apartado{" "}
+                  <a href="/todosLosViajes" onClick={handleNavigateToAT}>
+                    Comprar Viajes
+                  </a>{" "}
+                  para adquirir tu primer viaje
+                </p>
+              </>
+              )}
           </div>
+        )}
+        {ventasButton && (
+          <Row className="all-info-user">
+            {ventasTravels.length > 0 ? (
+              ventasTravels?.map((travel, i) => (
+                  <CardAllTravelsToBuy key={i} travel={travel} />
+                  ))
+                ) : (
+                  <>
+                <img src="/assets/images/avionamarillo.svg" alt="" />
+                <h2>Aún no tienes nada a la venta</h2>
+                <p>
+                  Ve al apartado{" "}
+                  <a href="/viajes">
+                    Vender Viajes
+                  </a>{" "}
+                  para vender tu primer viaje
+                </p>
+              </>
+              )}
+          </Row>
         )}
         {favoritosButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
@@ -249,7 +336,7 @@ export const UserApp = () => {
           <Col className="d-flex justify-content-center">
           <Form className="formEdit">
               <h2>Editar usuario</h2>
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-around form-inputs">
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="nameInput">Nombre</Form.Label>
                     <Form.Control
@@ -282,7 +369,7 @@ export const UserApp = () => {
                       onChange={handleChange}
                   />
               </Form.Group>
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-around form-inputs">
               <Form.Group className="mb-3">
                   <Form.Label htmlFor="ident_num_Input">DIN</Form.Label>
                   <Form.Control 
@@ -332,8 +419,7 @@ export const UserApp = () => {
           </Form>
       </Col>
         )}
-        <Button className="Buttonn" onClick={closeSesion}>Cerrar Sesion</Button>
-        <Button className="Buttonn" onClick={() => setShowToast(true)}> Borrar usuario</Button>
+        
         
           {showToast &&
           <>
@@ -357,14 +443,16 @@ export const UserApp = () => {
       </Col>}
 
       {/* VISTAS DEL ADMIN  */}
-      {user?.type === 2 && statsButton  && <Col className="screenUser" xs={10}>
+      {user?.type === 2 && statsButton  && <Col className="screenUser" xs={12} xl={9}>
           <Row>
             <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
-                  <Row>
+                  <Row className="stats-section justify-content-center">
 
-                    <Col xs={12} className="p-5">
-                    <h4>Estadísticas de usuarios</h4>
+                    <Col xs={12} className="text-center p-5">
+                    <h4 >Estadísticas de usuarios</h4>
                     </Col>
+
+                   
                     <Card style={{ width: '18rem'}}>
                       <Card.Body>nº de Usuarios totales: <strong>{active + banned}</strong></Card.Body>
                     </Card>
@@ -375,11 +463,12 @@ export const UserApp = () => {
                       <Card.Body>nº de Usuarios baneados: <strong>{banned}</strong></Card.Body>
                     </Card>
                     <Card style={{ width: '18rem'}}>
-                      <Card.Body>fecha del último usuario registrado: <strong>{lastUserReg}</strong></Card.Body>
+                      <Card.Body>fecha del último usuario registrado: <strong>{lastUserReg ? getDate(lastUserReg) : "cargando"}</strong></Card.Body>
                     </Card>
+                    
 
-                    <Col xs={12} className="p-5">
-                    <h4>Estadísticas de viajes</h4>
+                    <Col xs={12} className="text-center p-5">
+                    <h4 >Estadísticas de viajes</h4>
                     </Col>
                     <Card style={{ width: '18rem'}}>
                     <Card.Body>nº de viajes totales: </Card.Body>
@@ -396,27 +485,26 @@ export const UserApp = () => {
           </Row>
         </Col>}
 
-      {user?.type === 2 && delTravel && <Col className="screenUser" xs={10}>
+      {user?.type === 2 && delTravel && <Col className="screenUser" xs={12} xl={9}>
           <Row>
-              <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
+              <Col>
                 <h4>Borrar viaje</h4>
+                <DelTravelAdmin/>
               </Col>
           </Row>
         </Col>}
 
-      {user?.type === 2 && unableUser && <Col className="screenUser" xs={10}>
+      {user?.type === 2 && unableUser && <Col className="screenUser" xs={12} xl={9}>
         <Row>
-            <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
-              <h4>Bloquear usuario</h4>
-            </Col>
+            
             <Col>
+            <h4 className="p-3">Bloquear usuario</h4>
                 <BanUserAdmin 
                   allUsers={allUsers}
                 />
             </Col>
         </Row>
       </Col>}
-      
     </>
   );
 }

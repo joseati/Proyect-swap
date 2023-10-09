@@ -44,7 +44,7 @@ export const SwapProvider = (props) => {
       .get("http://localhost:4000/travels/getAllTravelsTobuy")
       .then( (res) => {
         setAllTravelsToBuy(res.data)
-        console.log(res.data)
+
       } )
       .catch( (err) => console.log(err) )
   }, [])

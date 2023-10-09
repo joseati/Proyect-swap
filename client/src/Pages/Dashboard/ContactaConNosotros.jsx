@@ -25,7 +25,7 @@ export const ContactaConNosotros = () => {
                 <h2>Live Chat</h2>
                 <p>
                   Puedes chatear con nosotros por Whatsapp en horario de 9:00 a
-                  20:00.
+                  17:00.
                 </p>
                 <a href="https://api.whatsapp.com/send/?phone=34611329641&amp;text&amp;type=phone_number&amp;app_absent=0">
                   Empezar a chatear
@@ -40,7 +40,7 @@ export const ContactaConNosotros = () => {
                 <img src="/assets/images/telefono.png" alt="" />
                 <h2>Teléfono</h2>
                 <p>
-                  Puedes llamarnos por teléfono en horario de 9:00 a 20:00 al:
+                  Puedes llamarnos por teléfono en horario de 9:00 a 17:00 al:
                 </p>
                 <a href="tel:34611329641">611 32 96 41</a>
               </div>

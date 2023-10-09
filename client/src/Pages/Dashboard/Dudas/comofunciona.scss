@@ -11,32 +11,87 @@
   h1 {
     font-size: 60px;
     color: #005a8d;
+    font-weight: 700;
   }
 }
 
-.CosCF {
-  background-color: red;
-}
+
 
 .cardCF {
-  border-radius: 45px !important;
+  background-color: white;
+  border-radius: 100px !important;
   padding: 20px;
+  opacity: .9;
+    height: auto;
+    box-shadow: 10px 0px 41px #c8c8c8 !important;
 
   .hgroupCF {
     padding: 40px 40px 0px 40px;
     text-align: center;
     color: #2d78a1;
+    border-bottom: 1px solid #005A8D;
+    margin-bottom: 3vh;
+    h4{
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+    h2{
+      font-weight: 700;
+    }
+    h6{
+      margin-bottom: 3vh;
+      font-size: 22px;
+      font-style: normal;
+      color: #005a8d;
+    }
+  }
+  
+  .btnCF {
+    background-color: #ffc700 !important;
+    color: #005a8d;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 120%;
+    border: 1px solid transparent;
+    border-radius: 25px !important;
+    margin-left: 25%;
+    padding: 15px;
+  
+    &:hover {
+      background-color: #005a8d !important;
+      color: white !important;
+      transition: 200ms ease-in-out;
+    }
   }
 }
 
 .spanWord {
+  font-weight: bold;
   color: #fdcb18;
+  font-size: 42px;
+
+}
+.spanWord2 {
+  font-weight: bold;
+  color: #89C9D3;
+  font-size: 42px;
 }
 
 .colored-list {
   list-style-type: none;
   counter-reset: list-counter;
+  word-wrap: break-word;
+  li {
+    &::before{
+    content: counter(list-counter) ". "; // Añade un punto y un espacio después del número
+    counter-increment: list-counter;
+    color: #89C9D3;
+    font-weight: 800;
+    font-size: 1.4em;
+  }
+   
 }
+
 
 .colored-list li::before {
   content: counter(list-counter);
@@ -44,11 +99,4 @@
   color: #2d78a1;
   margin-right: 8px; /* Espacio entre el número y el texto */
 }
-
-.btnCF {
-  background-color: #fdcb18;
-  color: #005a8d;
-  border: 1px solid transparent;
-  border-radius: 25px !important;
-  margin-left: 25%;
 }

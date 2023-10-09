@@ -1,0 +1,64 @@
+.modal-login{
+  p{
+    margin-bottom: -10px;
+  }
+  .already{
+    color: #89C9D3;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .enter{
+    color: #005a8d;
+    font-weight: 700;
+    font-size: 40px;
+    box-sizing: border-box;
+    margin-right: -1vw;
+  }
+  .input-login{
+    margin-top: 15px;
+    border: 1px solid #196a98 !important;
+    height: 48px;
+    border-radius: 4px !important;
+    padding: 0.375rem 0.75rem;
+    font-weight: 400;
+    width: 300px;
+    max-width: 600px;
+    margin-bottom: 2vh;
+  }
+  .btn-login{
+    margin-top: 2vh;
+    background-color: #ffc700;
+    color: #005a8d;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 3vh;
+    font-size: 1.5rem;
+    transition: 0.2s;
+  
+    &:hover{
+      color: white;
+      background-color:#005a8d ;
+    }
+    }
+  
+    .p-account{
+      text-align: left;
+      color: black;
+      margin-bottom: 2vh;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .link-register{
+      cursor: pointer;
+      color: #005a8d;
+    }
+    .link-register{
+      cursor: pointer;
+      color: #005a8d;
+    }
+        
+}
+
+

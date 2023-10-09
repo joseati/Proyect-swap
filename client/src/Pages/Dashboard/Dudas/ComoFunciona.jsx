@@ -21,7 +21,6 @@ export const ComoFunciona = () => {
               </h2>
               <h6>Bono, billete avión/tren, hotel, paquete vacacional…</h6>
             </div>
-            <hr />
             <ol className="colored-list">
               <li>Crea tu cuenta en Swap Your Travel.</li>
               <li>Sube tu producto a la plataforma.</li>
@@ -47,11 +46,10 @@ export const ComoFunciona = () => {
               <h4>MUY FÁCIL,</h4>
               <h2>
                 Sigue estos pasos si quieres{" "}
-                <span className="spanWord">comprar</span> un Viaje
+                <span className="spanWord2">comprar</span> un Viaje
               </h2>
               <h6>Bono, billete avión/tren, hotel, paquete vacacional…</h6>
             </div>
-            <hr />
             <ol className="colored-list">
               <li>Crea tu cuenta en Swap Your Travel.</li>
               <li>Compra el viaje que te interese y firma la compraventa.</li>

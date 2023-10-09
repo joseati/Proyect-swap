@@ -10,10 +10,44 @@ export const AllTravels = () => {
  const {allTravelsToBuy} = useContext(SwapContext)
 
 
-
-
   return (
     <>
+    <Container fluid>
+      <Row>
+      <p>Tipos de Swap</p>
+      </Row>
+      <Row className='filter-type d-flex'>
+        <Col lg={2} xs={12} className="text-center">
+      <img src="/assets/images/avion1.svg" alt="" />
+      <p>BILLETES DE AVIÓN </p>
+      </Col>
+      <Col lg={2} xs={12} className="text-center">
+      <img src="/assets/images/tren.svg" alt="" />
+      <p>BILLETES DE TREN </p>
+      </Col>
+      <Col lg={2} xs={12} className="text-center">
+
+      <img src="/assets/images/bono.svg" alt="" />
+      <p>BONOS DE VIAJE </p>
+      </Col>
+      <Col lg={2} xs={12} className="text-center">
+
+      <img src="/assets/images/alojamiento.svg" alt="" />
+      <p>NOCHES DE HOTEL </p>
+      </Col>
+      <Col lg={2} xs={12} className="text-center">
+
+      <img src="/assets/images/vacacional.svg" alt="" />
+      <p>PACKS VACACIONALES </p>
+      </Col>
+    
+
+
+      </Row>
+
+
+      
+    </Container>
       <Col className='pt-4' lg={2} xs={12}>
         <Row className='bg'>
           <Container className="mt-4">
