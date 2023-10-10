@@ -34,9 +34,12 @@
   display: flex;
   text-align: right;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   flex-direction: column;
   flex-wrap: wrap;
+  h1{
+    font-size: 60px;
+  }
 }
 
 .padre2{
@@ -68,7 +71,7 @@
   flex-direction: column;
   align-items: center;
   img{
-    width: 400px;
+    width: 400px !important;
   }
 }
 
@@ -78,7 +81,6 @@
   align-items: center;
   padding: 6vh 15vw 6vh 0vw ;
   flex-wrap: wrap;
-  gap: 2vw;
   background-color: rgb(235, 234, 234);
   
 }
@@ -139,7 +141,6 @@ ol{
   .padre{
     padding: 7vh 4vw 0vh 4vw !important;
   }
- 
   .apasionados2{
     text-align: initial;
     p{
@@ -152,19 +153,22 @@ ol{
     align-items: center;
   }
 }
-@media screen and (max-width: 1200px){
 
+@media screen and (max-width: 1200px){
+.col-xl-7 {
+    flex: 0 0 auto;
+    width: 75%;
+}
   .nuestraMision{
    flex-wrap: wrap;
   }
-
 .col-xl-6 {
     flex: 0 0 auto;
     width: 70%;
 }
+
 .padre3{
   padding: 5vh 0vw 5vh 0vw;
-  gap: 4vh;
 }
 .revolucionando{
   img{
@@ -175,11 +179,10 @@ ol{
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0vh 4vw 0vh 4vw;
+  padding: 4vh 4vw 0vh 4vw;
   p{
     text-align: center;
   }
-
 }
 }
 @media screen and (max-width: 600px){
@@ -215,5 +218,13 @@ ol{
         width: 300px;
       }
     }
+  }
+  .padre3{
+    .revolucionando{
+      img{
+      width: 100vw;
+    }
+    }
+    
   }
 }

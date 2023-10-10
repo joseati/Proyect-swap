@@ -52,7 +52,7 @@ export const SobreNosotros = () => {
           <img src="/assets/images/logo-sobre-nosotros.svg" alt="" />
         </Col>  
       </Row>
-      <Row className="padre3" xs={12}>
+      <Row className="padre3" >
           <Col className="revolucionando">
           <img src="/assets/images/sobre-nosotros-swap.jpg" alt="" />
         </Col>
