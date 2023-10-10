@@ -48,7 +48,7 @@ export const SwapProvider = (props) => {
       .catch( (err) => console.log(err) )
   }, [])
 
-console.log(allTravelsToBuy);
+  console.log(allTravelsToBuy);
 
   return (
 

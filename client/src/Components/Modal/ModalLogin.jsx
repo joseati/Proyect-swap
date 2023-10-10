@@ -38,6 +38,7 @@ export const ModalLogin = ({ showRegister, handleShow1,
           id='password' placeholder='Contraseña'
           value={inputLogin.password}
           name='password'
+          type='password'
           onChange={handleChange}/>
          </Form.Group>
    
