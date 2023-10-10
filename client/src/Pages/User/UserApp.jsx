@@ -41,12 +41,13 @@ export const UserApp = () => {
   const [banned, setBanned] = useState()
   const [lastUserReg, setLastUserReg] = useState()
   const [numUsersMonth, setNumUsersMonth] = useState()
-  // Filtro de viajes que el usuario tiene a la venta (no tendrá buyer_user_id)
-  const ventasTravels = allTravelsToBuy.filter((travel) => travel.seller_user_id === user.user_id);
-  // Filtro de viajes que un usuario a comprado (su user_id estará en el buyer_user_id)
-  const comprasTravels = allTravelsToBuy.filter((travel) => travel.buyer_user_id === user.user_id);
+  // estados relacionados con las vistas del usuario. Viajes en venta y comprados. 
+  const [travelsForSale, setTravelsForSale] = useState([])
+  const [travelsBought, setTravelsBought] = useState([])
+  const [likes, setLikes] = useState([])  
+ 
   
-   console.log(allTravelsToBuy);
+  //  console.log(allTravelsToBuy);
   const handleNavigateToAT = (e) => {
     e.preventDefault();
     navigate("/todosLosViajes");
@@ -185,10 +186,48 @@ export const UserApp = () => {
       })
 
       .catch((err) => console.log(err))
-    }
-     
-    
+    }  
   }
+
+  // Trae los viajes en venta de un usuario
+  useEffect(() => {      
+      if (user){
+        const {user_id} = user;     
+      axios
+        .get(`http://localhost:4000/travels/oneUserSellTravels/${user_id}`)
+        .then((response) => {
+          setTravelsForSale(response.data);
+        })
+        .catch((err) => console.log(err))
+      }
+  }, [user]);
+  
+  // Trae los viajes comprados por un usuario  
+  useEffect(() => {      
+      if (user){
+        const {user_id} = user;     
+      axios
+        .get(`http://localhost:4000/travels/oneUserBoughtTravels/${user_id}`)
+        .then((response) => {
+          setTravelsBought(response.data);
+        })
+        .catch((err) => console.log(err))
+      }
+  }, [user]);
+
+  // Trae los viajes marcados como favoritos de un usuario
+  useEffect(() => {      
+    if (user){
+      const {user_id} = user;     
+    axios
+      .get(`http://localhost:4000/travels/getLikes/${user_id}`)
+      .then((response) => {
+        setLikes(response.data);
+      })
+      .catch((err) => console.log(err))
+    }
+}, [user]);
+
   return (
     <>
     
@@ -281,59 +320,90 @@ export const UserApp = () => {
       </Col>
       {user?.type === 1 && <Col className="screenUser" xs={12} xl={9}>
         <h1>Datos Viaje {user?.name}</h1>
+
+        {/* VISTA USUARIO */}
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
-            {comprasTravels.length > 0 ? (
-              comprasTravels?.map((travel, i) => (
-                <Row key={i}>
-                  <CardAllTravelsToBuy travel={travel} />
-                </Row>
-                  ))
-                ) : (
-                  <>
-                <img src="/assets/images/avionamarillo.svg" alt="" />
-                <h2>Aún no has comprado nada</h2>
-                <p>
-                  Ve al apartado{" "}
-                  <a href="/todosLosViajes" onClick={handleNavigateToAT}>
-                    Comprar Viajes
-                  </a>{" "}
-                  para adquirir tu primer viaje
-                </p>
-              </>
-              )}
+            {(
+                travelsBought.resultPlaneUser?.length > 0 ||
+                travelsBought.resultTrain?.length > 0
+              ) ? (
+                    <>
+                      {travelsBought.resultPlaneUser.length > 0 &&
+                        travelsBought.resultPlaneUser.map((travel, i) => (
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        ))}
+                      {travelsBought.resultTrain.length > 0 &&
+                        travelsBought.resultTrain.map((travel, i) => (
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        ))}
+                    </>
+                   ) : (
+                    <>
+                      <img src="/assets/images/avionamarillo.svg" alt="" />
+                      <h2>Aún no has comprado nada</h2>
+                      <p>
+                        Ve al apartado{" "}
+                        <a href="/todosLosViajes" onClick={handleNavigateToAT}>
+                          Comprar Viajes
+                        </a>{" "}
+                        para adquirir tu primer viaje
+                      </p>
+                    </>
+                    )
+            } 
           </div>
         )}
         {ventasButton && (
           <Row className="all-info-user">
-            {ventasTravels.length > 0 ? (
-              ventasTravels?.map((travel, i) => (
-                  <CardAllTravelsToBuy key={i} travel={travel} />
-                  ))
-                ) : (
-                  <>
-                <img src="/assets/images/avionamarillo.svg" alt="" />
-                <h2>Aún no tienes nada a la venta</h2>
-                <p>
-                  Ve al apartado{" "}
-                  <a href="/viajes">
-                    Vender Viajes
-                  </a>{" "}
-                  para vender tu primer viaje
-                </p>
-              </>
-              )}
+            {(
+                travelsForSale.resultPlaneUser.length > 0 ||
+                travelsForSale.resultTrain.length > 0
+              ) ? (
+                    <>
+                      {travelsForSale.resultPlaneUser.length > 0 &&
+                        travelsForSale.resultPlaneUser.map((travel, i) => (
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        ))}
+                      {travelsForSale.resultTrain.length > 0 &&
+                        travelsForSale.resultTrain.map((travel, i) => (
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        ))}
+                    </>
+                   ) : (
+                    <>
+                      <img src="/assets/images/avionamarillo.svg" alt="" />
+                      <h2>Aún no tienes nada a la venta</h2>
+                      <p>
+                        Ve al apartado{" "}
+                        <a href="/viajes">
+                          Vender Viajes
+                        </a>{" "}
+                        para vender tu primer viaje
+                      </p>
+                    </>
+                    )
+            }             
           </Row>
         )}
         {favoritosButton && (
-          <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
-            <img src="/assets/images/avionamarillo.svg" alt="" />
-            <h2>Aún no hay ningún producto favorito</h2>
-            <p>
-              Para guardar un producto, pulsa{" "} 
-              <img className="corazon" src="/assets/images/corazon.png" alt="" />{" "}
-              sobre el viaje</p>
-          </div>
+          <Row className="all-info-user">
+              {likes.length > 0 ? (
+                likes?.map((travel, i) => (
+                  <CardAllTravelsToBuy key={i} travel={travel} />
+                ))              
+                ) : (
+                <>
+                  <img src="/assets/images/avionamarillo.svg" alt="" />
+                  <h2>Aún no hay ningún producto favorito</h2>
+                  <p>
+                    Para guardar un producto, pulsa{" "} 
+                    <img className="corazon" src="/assets/images/corazon.png" alt="" />{" "}
+                    sobre el viaje</p>
+                </>
+                )
+              }             
+          </Row>
         )}
         {editButton &&(
           <Col className="d-flex justify-content-center">
