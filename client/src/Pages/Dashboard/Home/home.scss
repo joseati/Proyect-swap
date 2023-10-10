@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   gap: 3vh;
   img{
-    width: 400px;
+    width: 400px !important;
   }
   .homeCol1{
     display: flex;
@@ -54,13 +54,16 @@
   }
   
 }
-
+.homeSubSection4Col2{
+  justify-content: center;
+  align-items: center;
+}
 .homeSection2{
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  padding: 8vh 15% 8vh 15% ;
+  padding: 8vh 10% 8vh 10% ;
   flex-wrap: wrap;
   gap: 3vh;
   .azulAmarillo{
@@ -87,6 +90,10 @@
       font-size: 20px;
       color: #89c9d3c4;
       font-weight: bold;
+    }
+    .homeSection2card{
+      width: 99%;
+      justify-content: center;
     }
   }
   .homeSubSection1{
@@ -125,7 +132,7 @@
   }
 }
 .homeSection3{
-  padding: 4vh 15% 4vh 15%;
+  padding: 0vh 15% 4vh 15%;
   justify-content: center;
   align-items: end;
   .iconosHome{
@@ -153,7 +160,7 @@
 }
 .homeSection4{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
   align-items: center;
   background: linear-gradient(to left,  #005a8d, #89c9d3c4);
@@ -260,11 +267,21 @@
   
   
 }
- 
+@media screen and (max-width: 992px){
+  .homeSection4{
+    padding: 8vh 5% 8vh 5% ;
+    flex-wrap: wrap;
+    justify-content: center;
+    .homeSubSection4Col1{
+       width: 80vw;
+    }
+  }
+}
  @media screen and (max-width: 783px){
   .homeSection4{
     padding: 8vh 5% 8vh 5% ;
     flex-wrap: wrap;
+    justify-content: center;
     .homeSubSection4Col1{
        width: 80vw;
     }
