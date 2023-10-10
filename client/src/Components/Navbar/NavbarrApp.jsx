@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { ModalRegister } from "../Modal/ModalRegister";
@@ -6,6 +6,7 @@ import { Register } from "../../Pages/Auth/Register/Register";
 import { Login } from "../../Pages/Auth/Login/Login";
 import { SwapContext } from "../../context/SwapContext";
 import "./navbarApp.scss";
+import { NavLinks } from "./NavLinks";
 
 export const NavbarrApp = () => {
   // requerimos y usamos use navigate de router_dom para navegar entre las rutas mediante Link to
@@ -21,6 +22,23 @@ export const NavbarrApp = () => {
   const handleClick = () => {
     window.location.href = "https://api.whatsapp.com/send/?phone=34611329641";
 }
+const [scrolled, setScrolled] = useState(false);
+
+// useEffect(() => {
+//   const handleScroll = () => {
+//     if (window.scrollY > 50) { // Ajusta este valor según lo que necesites
+//       setScrolled(true);
+//     } else {
+//       setScrolled(false);
+//     }
+//   };
+
+//   window.addEventListener("scroll", handleScroll);
+  
+//   return () => {
+//     window.removeEventListener("scroll", handleScroll);
+//   };
+// }, []);
 
 
   const handleCloseModalLogin = () => {
@@ -35,7 +53,9 @@ export const NavbarrApp = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="md" bg="light" sticky="top">
+   <Navbar collapseOnSelect expand="md" bg="light" className={scrolled ? "navbar-scrolled" : ""}>
+
+
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img
@@ -47,12 +67,9 @@ export const NavbarrApp = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto navbLink w-75">
-              <Nav.Link className="custom-nav-link1" as = {Link} to= {"/todosLosViajes"}> <img src="/assets/images/arriba.svg" alt="" />COMPRAR VIAJES</Nav.Link>
-              <Nav.Link className="custom-nav-link2" as={Link} to={"/viajes"}><img src="/assets/images/abajo.svg" alt="" /> VENDER VIAJE</Nav.Link>
-              <Nav.Link className="custom-nav-link-img" href="/sobrenosotros"> <img src="/assets/images/ambas.svg" alt="" />SOBRE NOSOTROS</Nav.Link>
-              <Button className="btn-contact"><img src="/assets/images/phone-black.png" alt="" /> 611 32 96 41</Button>
-              <Button onClick={handleClick} className="btn-contact"><img src="/assets/images/whatsapp.png" alt="" /> CHATEAR</Button>
-
+              
+              <NavLinks handleClick={handleClick}/>
+          
             </Nav>
             {isLoged === false ? (
               <>

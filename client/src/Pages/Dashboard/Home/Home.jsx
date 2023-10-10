@@ -46,7 +46,7 @@ export const Home = () => {
           </Col>
         ))}
       
-            <a className="azulAmarillo" href="">
+            <a style={{cursor:"pointer"}} className="azulAmarillo" onClick={()=>navigate("/todosLosViajes")}>
               Ver más
             </a>
           </Row>
@@ -94,7 +94,7 @@ export const Home = () => {
         <Col className="homeSubSection4Col1" xs={12} md={12}  lg={5}>
           <h2>¡Última llamada para los Swapers!</h2>
           <h4>NO DEJES PASAR LA OPORTUNIDAD DE ESTOS SWAPS DE ÚLTIMA HORA</h4>
-          <Button className="botonHomeSection4" href='todosLosViajes' >Last Call</Button>
+          <Button className="botonHomeSection4" href='/todosLosViajes' >Last Call</Button>
         </Col>
         <Col  xs={12} md={12}  lg={7}>
         <Carousel className='carouselCard'>

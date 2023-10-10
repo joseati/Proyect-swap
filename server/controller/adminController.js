@@ -6,12 +6,26 @@ class AdminController {
   //Método get para traer los datos de usuarios a la vista de estadísticas del Admin 
 
   getUsersData = (req, res) => {
+    let actualDate = new Date()
+    let actualMonth = actualDate.getMonth() + 1
+    
     let sql = 'SELECT * FROM user WHERE type = 1 AND is_deleted = 0'
+    let sql2 = `SELECT * FROM user WHERE type = 1 AND is_deleted = 0 AND register_date > 2023-${actualMonth}-01 & register_date < 2023-${actualMonth}-31;`
     connection.query(sql, (err, result)=> {
       if(err){
         res.status(500).json(err)
       }
-      res.status(200).json(result)
+      connection.query(sql2, (err2, resultMonth)=>{
+        let data_user = {
+          users: result,
+          users_month: resultMonth
+        }
+        if(err2){
+          res.status(500).json(err2)
+        }
+        res.status(200).json(data_user)
+       
+      })
     })
   }
 
