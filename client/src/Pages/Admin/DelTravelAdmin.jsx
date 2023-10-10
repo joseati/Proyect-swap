@@ -60,14 +60,15 @@ export const DelTravelAdmin = (travel) => {
           <Row key={i}>
             <CardAllTravelsToBuy travel={travel} blockMsg={blockMsg}/>
             
-            {user.type === 2 && 
+            {user.type === 2 && !blockMsg &&
             <Button 
               className='btn btn-danger'
               onClick={()=>onDeleteTravel(travel)}>Bloquear viaje
 
             </Button>}
             
-            {user.type === 2 &&  <Button 
+            {user.type === 2 && blockMsg &&
+            <Button 
               className='btn btn-success'
               onClick={()=>onUnlockTravel(travel)}>Desbloquear viaje
 

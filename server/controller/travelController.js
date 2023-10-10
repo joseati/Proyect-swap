@@ -3,6 +3,7 @@ const express= require("express")
 const { json } = require("express");
 
 class TravelController {
+
 // Falta controlar las horas de salida de vuelo y fecha de vuelo
 getAllTravelsTobuy = (req, res) => {
   let sql = "SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
@@ -28,6 +29,7 @@ getAllTravelsTobuy = (req, res) => {
                  :
                  res.status(200).json(resultTrain)
               })
+
             }
           }
         })
@@ -36,25 +38,6 @@ getAllTravelsTobuy = (req, res) => {
     }
   });
 }
-  // getAllTravelsTobuy = (req, res) => {
-  //   let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by pt.travel_product_id;"
-  //   connection.query( sqlPlane,(err2,resultPlane) => {
-  //     if(err2){
-  //       console.log(err2);
-  //     }else{
-  //       res.status(200).json(resultPlane)
-  //       if(!resultPlane || !resultPlane.length){
-  //         let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tt.travel_product_id;"
-  //         connection.query(sqlTrain, (err3, resultTrain) => {
-  //           err3?
-  //            res.status(500).json(err3)
-  //            :
-  //            res.status(200).json(resultTrain)
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
 
    getOneTravel= (req, res)=>{
     const {travel_id} = req.params
