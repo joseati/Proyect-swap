@@ -65,7 +65,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
   />
 </Form.Group>
 </div>
-       <div className="d-flex align-items-center justify-content-center"><Button onClick={onSubmit} className='btn-register'>Regístrate</Button></div>
+       <div className="d-flex align-items-center justify-content-center"><Button onClick={onSubmit}  disabled={!hasAcceptedTerms} className='btn-register'>Regístrate</Button></div>
   
      </>
       </Modal.Body>

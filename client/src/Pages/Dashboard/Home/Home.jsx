@@ -26,7 +26,7 @@ export const Home = () => {
           <div className="homesubCol1">
             <h2>¿Tienes un viaje que no vas a disfrutar?</h2>
             <h5>¡RECUPERA TU DINERO!</h5>
-            <Button className="boton">SWAPEALO</Button>
+            <Button className="boton" href='/viajes' >SWAPEALO</Button>
           </div>
         </Col>
         <Col className="homeCol1">
@@ -46,7 +46,7 @@ export const Home = () => {
           </Col>
         ))}
       
-            <a className="azulAmarillo" href="">
+            <a style={{cursor:"pointer"}} className="azulAmarillo" onClick={()=>navigate("/todosLosViajes")}>
               Ver más
             </a>
           </Row>
@@ -54,7 +54,7 @@ export const Home = () => {
         <Row className="homeSubSection1">
           <Col className="homeSubCol1">
             <h2>¿No encuentras lo que buscas?</h2>
-            <Button className="botonSubSection1">Vente aquí</Button>
+            <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Vente aquí</Button>
           </Col>
         </Row>
       </Row>
@@ -91,19 +91,19 @@ export const Home = () => {
         </Col>
       </Row>
       <Row className="homeSection4">
-        <Col className="homeSubSection4Col1" xs={12} md={6}>
+        <Col className="homeSubSection4Col1" xs={12} md={12}  lg={5}>
           <h2>¡Última llamada para los Swapers!</h2>
           <h4>NO DEJES PASAR LA OPORTUNIDAD DE ESTOS SWAPS DE ÚLTIMA HORA</h4>
-          <Button className="botonHomeSection4">Last Call</Button>
+          <Button className="botonHomeSection4" href='/todosLosViajes' >Last Call</Button>
         </Col>
-        <Col xs={12} md={6}>
-        <Carousel>
+        <Col  xs={12} md={12}  lg={7}>
+        <Carousel className='carouselCard'>
       {dividedTravels.map((group, index) => (
         <Carousel.Item key={index}>
           <Row> 
             {group.map((travel, i) => (
               <Col  key={i}>
-                <Row>
+                <Row className="homeSubSection4Col2">
                   <CardAllTravelsToBuy travel={travel} />
                 </Row>
               </Col>

@@ -40,10 +40,12 @@ export const UserApp = () => {
   const [active, setActive] = useState()
   const [banned, setBanned] = useState()
   const [lastUserReg, setLastUserReg] = useState()
+  const [numUsersMonth, setNumUsersMonth] = useState()
   // estados relacionados con las vistas del usuario. Viajes en venta y comprados. 
   const [travelsForSale, setTravelsForSale] = useState([])
   const [travelsBought, setTravelsBought] = useState([])
-  const [likes, setLikes] = useState([])
+  const [likes, setLikes] = useState([])  
+ 
   
   //  console.log(allTravelsToBuy);
   const handleNavigateToAT = (e) => {
@@ -125,10 +127,12 @@ export const UserApp = () => {
     axios
         .get('http://localhost:4000/admin/allUsersData')
         .then((res)=>{
-          setAllUsers(res.data)
-          setActive(res.data.filter((e)=>e.enabled === 1).length)
-          setBanned(res.data.filter((e)=>e.enabled === 0).length)
-          setLastUserReg(res.data[res.data.length-1].register_date)
+          setAllUsers(res.data.users)
+          setActive(res.data.users.filter((e)=>e.enabled === 1).length)
+          setBanned(res.data.users.filter((e)=>e.enabled === 0).length)
+          setLastUserReg(res.data.users[res.data.users.length-1].register_date)
+          setNumUsersMonth(res.data.users_month.length)
+          console.log("estos son los users", res.data)
         })
         .catch((err)=>console.log(err))
 
@@ -526,21 +530,22 @@ export const UserApp = () => {
                       <Card.Body>nº de Usuarios totales: <strong>{active + banned}</strong></Card.Body>
                     </Card>
                     <Card style={{ width: '18rem'}}>
+                      <Card.Body>nº de Usuarios registrados este mes: <strong>{numUsersMonth}</strong></Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem'}}>
                       <Card.Body>nº de Usuarios activos: <strong>{active}</strong></Card.Body>
                     </Card>
                     <Card style={{ width: '18rem'}}>
                       <Card.Body>nº de Usuarios baneados: <strong>{banned}</strong></Card.Body>
                     </Card>
-                    <Card style={{ width: '18rem'}}>
-                      <Card.Body>fecha del último usuario registrado: <strong>{lastUserReg ? getDate(lastUserReg) : "cargando"}</strong></Card.Body>
-                    </Card>
+                    
                     
 
                     <Col xs={12} className="text-center p-5">
                     <h4 >Estadísticas de viajes</h4>
                     </Col>
                     <Card style={{ width: '18rem'}}>
-                    <Card.Body>nº de viajes totales: </Card.Body>
+                    <Card.Body>nº de productos totales: <strong>{allTravelsToBuy.length}</strong></Card.Body>
                     </Card>
                     <Card style={{ width: '18rem'}}>
                     <Card.Body>nº de compras en total: </Card.Body>
