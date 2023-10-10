@@ -5,7 +5,8 @@ const { json } = require("express");
 class TravelController {
 
   getAllTravelsTobuy = (req, res) => {
-    let sql = "SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
+    // let sql = "SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
+    let sql = "SELECT tp.*, CASE WHEN pt.travel_product_id IS NOT NULL THEN 'plane_travel' WHEN tt.travel_product_id IS NOT NULL THEN 'train_travel'END AS travel_type,IFNULL(pt.origin_airport_id, tt.origin_train_id) AS origin_id,IFNULL(pt.destination_airport_id, tt.destination_train_id) AS destination_id,user.user_id,user.name FROM travel_product tp INNER JOIN user ON tp.seller_user_id = user.user_id LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id WHERE tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL;"
     connection.query(sql, (err, respons) => {
       if(err){
         console.log(err)
@@ -13,19 +14,19 @@ class TravelController {
       else{
         res.status(200).json(respons)
         if(!respons || !respons.length){
-          let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
-          connection( sqlPlane,(err2,resultPlane) => {
+          let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by pt.travel_product_id;"
+          connection.query( sqlPlane,(err2,resultPlane) => {
             if(err2){
               console.log(err2);
             }else{
-              res.status(200).json(respons)
+              res.status(200).json(resultPlane)
               if(!resultPlane || !resultPlane.length){
-                let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
+                let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tt.travel_product_id;"
                 connection.query(sqlTrain, (err3, resultTrain) => {
                   err?
                    res.status(500).json(err3)
                    :
-                   res.status(200).json({resultTrain})
+                   res.status(200).json(resultTrain)
                 })
               }
             }
@@ -35,6 +36,30 @@ class TravelController {
       }
     });
   }
+  
+  // getAllTravelsTobuy = (req, res) => {
+  //   let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by pt.travel_product_id;"
+  //   connection.query( sqlPlane,(err2,resultPlane) => {
+  //     if(err2){
+  //       console.log(err2);
+  //     }else{
+  //       // res.status(200).json(resultPlane)
+  //       if(resultPlane){
+  //         let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tt.travel_product_id;"
+  //         connection.query(sqlTrain, (err3, resultTrain) => {
+  //           let travel_data = {
+  //             plane: resultPlane,
+  //             train: resultTrain
+  //           }
+  //           err3?
+  //            res.status(500).json(err3)
+  //            :
+  //            res.status(200).json(travel_data)
+  //         })
+  //       }
+  //     }
+  //   })
+  // }
 
 
    getOneTravel= (req, res)=>{
