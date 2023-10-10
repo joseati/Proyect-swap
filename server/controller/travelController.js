@@ -3,39 +3,58 @@ const express= require("express")
 const { json } = require("express");
 
 class TravelController {
-
-  getAllTravelsTobuy = (req, res) => {
-    let sql = "SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
-    connection.query(sql, (err, respons) => {
-      if(err){
-        console.log(err)
-      }
-      else{
-        res.status(200).json(respons)
-        if(!respons || !respons.length){
-          let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
-          connection( sqlPlane,(err2,resultPlane) => {
-            if(err2){
-              console.log(err2);
-            }else{
-              res.status(200).json(respons)
-              if(!resultPlane || !resultPlane.length){
-                let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
-                connection.query(sqlTrain, (err3, resultTrain) => {
-                  err?
-                   res.status(500).json(err3)
-                   :
-                   res.status(200).json({resultTrain})
-                })
-              }
+// Falta controlar las horas de salida de vuelo y fecha de vuelo
+getAllTravelsTobuy = (req, res) => {
+  let sql = "SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
+  // let sql = "SELECT tp.*, CASE WHEN pt.travel_product_id IS NOT NULL THEN 'plane_travel' WHEN tt.travel_product_id IS NOT NULL THEN 'train_travel'END AS travel_type,IFNULL(pt.origin_airport_id, tt.origin_train_id) AS origin_id,IFNULL(pt.destination_airport_id, tt.destination_train_id) AS destination_id,user.user_id,user.name FROM travel_product tp INNER JOIN user ON tp.seller_user_id = user.user_id LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id WHERE tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL;"
+  connection.query(sql, (err, respons) => {
+    if(err){
+      console.log(err)
+    }
+    else{
+      // res.status(200).json(respons)
+      if(!respons || !respons.length){
+        let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by pt.travel_product_id;"
+        connection.query( sqlPlane,(err2,resultPlane) => {
+          if(err2){
+            console.log(err2);
+          }else{
+            res.status(200).json(resultPlane)
+            if(!resultPlane || !resultPlane.length){
+              let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tt.travel_product_id;"
+              connection.query(sqlTrain, (err3, resultTrain) => {
+                err?
+                 res.status(500).json(err3)
+                 :
+                 res.status(200).json(resultTrain)
+              })
             }
-          })
-        }
-       
+          }
+        })
       }
-    });
-  }
-
+     
+    }
+  });
+}
+  // getAllTravelsTobuy = (req, res) => {
+  //   let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by pt.travel_product_id;"
+  //   connection.query( sqlPlane,(err2,resultPlane) => {
+  //     if(err2){
+  //       console.log(err2);
+  //     }else{
+  //       res.status(200).json(resultPlane)
+  //       if(!resultPlane || !resultPlane.length){
+  //         let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tt.travel_product_id;"
+  //         connection.query(sqlTrain, (err3, resultTrain) => {
+  //           err3?
+  //            res.status(500).json(err3)
+  //            :
+  //            res.status(200).json(resultTrain)
+  //         })
+  //       }
+  //     }
+  //   })
+  // }
 
    getOneTravel= (req, res)=>{
     const {travel_id} = req.params
@@ -111,18 +130,79 @@ class TravelController {
              :
              res.status(200).json({resultTravel, resultPlaneform})
           })
+
         }
+
       }
-     
+
      }
 
-      
-     
     })
 
-    
-   
+  }
 
+
+  sellOneTrainTravel = ( req, res ) => {
+    const {origin ,destiny,passengers,commentaries,original_price,client_price,exchange_rate,train_travel_id,origin_trainStation_id,destiny_trainStation_id,departure_date,departure_time,arrival_date,arrival_time,compani_name,origin_trainStation_id_tp2,destiny_trainStation_id_tp2,departure_date_tp2,departure_time_tp2 ,arrival_date_tp2,arrival_time_tp2,compani_name_tp2} = req.body.inputFormTrain
+    const {user_id} = req.body
+
+    // Primera insert en la tabla travel_product(tabla con mayor entidad)
+    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate   ) VALUES (2, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)})`
+
+    connection.query( sqlTravelProduct, (err, resultTravel ) => {
+      if(err){
+       console.log(err)
+      }else{
+       // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
+       const { insertId } = resultTravel
+       console.log( insertId );
+       if(resultTravel ){
+         // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
+         if (!train_travel_id || train_travel_id == "1"){
+           let sqlTrainTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" )`
+           
+           connection.query( sqlTrainTravel, (err2, resultTrainform) => {
+             err2 ?
+              res.status(500).json("err2")
+              :
+              res.status(200).json({resultTravel, resultTrainform})
+           })
+ 
+         }
+         else if(train_travel_id === "2"){
+           // si el id es 2 es ida y vuelta y se produce el siguente insert 
+           let sqlPlaneTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES
+            (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" ), 
+           (${insertId}, 2, ${parseInt(origin_trainStation_id_tp2)},${parseInt(destiny_trainStation_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
+   
+           connection.query( sqlPlaneTravel, (err2, resultTrainform) => {
+             err2 ?
+              res.status(500).json("err2")
+              :
+              res.status(200).json({resultTravel, resultTrainform})
+           })
+ 
+         }
+ 
+       }
+ 
+      }
+ 
+     })
+    
+  }
+
+  getOneTrainStation = (req, res ) => {
+    const { city } = req.params
+
+    let sql = `SELECT * FROM train_station WHERE province LIKE "%${city}%" or city LIKE "%${city}%" `
+    connection.query(sql, (err, result ) => {
+      err ? 
+        res.status(400).json("No encontrado")
+        :
+        res.status(200).json(result)
+        
+    })
   }
 }
 

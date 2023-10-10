@@ -48,7 +48,7 @@ export const SwapProvider = (props) => {
       } )
       .catch( (err) => console.log(err) )
   }, [])
-  
+console.log(allTravelsToBuy);
   return (
 
 // Creacion de contexto ,al que le enviamos los elemntos que requiriremos en los componentes de la aplicacion, mediante el metodo provider y su atributo value

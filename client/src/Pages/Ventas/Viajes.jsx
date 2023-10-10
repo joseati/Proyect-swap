@@ -8,8 +8,9 @@ import { IconSelect } from "./IconSelect";
 import { TrainForm } from "./TrainForm";
 import axios from "axios";
 import {getDate} from "../../Utils/getDateTime"
+import { initialValueTrain  } from "../../Utils/initialValueTrain";
 
-
+console.log(initialValueTrain);
 const initialValue = {
   // Valores insert de travel_product
   origin:"", 
@@ -48,7 +49,7 @@ export const Viajes = () => {
   const [planeButton, setPlaneButton] = useState(false);
   const [trainButton, setTrainButton] = useState(false);
   const [inputFormPlane, setInputFormPlane] = useState(initialValue);
-  const [inputFormTrain, setInputFormTrain] = useState(initialValue);
+  const [inputFormTrain, setInputFormTrain] = useState(initialValueTrain);
   const [ shwoGoAndBack , setShwoGoAndBack] = useState(false)
   // Estados para manejar los airpotrs_id
   const [airportCity, setAirporCity ] = useState()
@@ -57,6 +58,11 @@ export const Viajes = () => {
   const [airportCityDestiny_tp2, setAirporCityDestiny_tp2 ] = useState()
   // Estado para manejar el icono seleccionado
   const [selectedIcon, setSelectedIcon] = useState(null);
+ // Estados para manejar los airpotrs_id
+ const [trainStation, setTrainStation ] = useState()
+ const [ trainStationCityDestiny, setTrainStationCityDestiny ] = useState()
+ const [ trainStationCity_tp2, setTrainStationCity_tp2 ] = useState()
+ const [ trainStationDestiny_tp2,  setTrainStationDestiny_tp2 ] = useState()
 
   // Función para manejar el clic en los iconos y mostrar el formulario correspondiente
   const handleImageClick = (iconType) => {
@@ -171,34 +177,142 @@ export const Viajes = () => {
         })
       }
   }
-  console.log(inputFormPlane);
+ 
  
   console.log(user?.user_id);
    // Controlador qeu envia los cambios del formulario al back 
 
    const handleSubmit = () => {
-  
-   
+
     if(user){
       console.log(user);
       const {user_id} = user
-      axios
-      .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})
-      .then((res) => console.log(res))
-      .catch((err) => {console.log(err);});
+      if( planeButton ){
+        axios
+        .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})
+        .then((res) => console.log(res))
+        .catch((err) => {console.log(err)});
+      }
+      if( trainButton ){
+        axios
+        .post("http://localhost:4000/travels/sellTicket/sellTrainTravel", {inputFormTrain, user_id})
+        .then((res) => console.log(res))
+        .catch((err) => {console.log(err)});
+      }
     }
     
   };
-
-
+  let dateActual = new Date()  
+  dateActual.setDate(dateActual.getDate() -1)
+  console.log("fechaaa", dateActual);
+// Controlador de estado de los inputs de tren que recogen esa informacion en un objeto que se enviara al back
+  
   const handleTrainChange = (e) => {
     const { name, value } = e.target;
+    if( e.target.type == "text" ){
+      setInputFormTrain({
+        ...inputFormTrain,
+        [name]: value,
+      });
+    }
+      if( e.target.type == "select-one" ){
+       
+        if(e.target.name == "train_travel_id"){
+          if(e.target.value == "2"){
+            setShwoGoAndBack(true)
+          
+          }else{
+            setShwoGoAndBack(false)
+          }
+        }
+          
+        
+        setInputFormTrain({
+          ...inputFormTrain,
+          [name]: value
+        })
+      
+        
+      } 
+      if(e.target.type == "date"){
+        setInputFormTrain({
+          ...inputFormTrain, 
+          [name]:value
+        })
+      }
+      if(e.target.type == "time"){
+        setInputFormTrain({
+          ...inputFormTrain, 
+          [name]:value
+        })
+      }
+      
+    };
+    console.log(inputFormTrain);
+    // Función que se ejecutará al enviar el formulario
+  // Controlador para rescatar el id del staciones de tren para ello hago dos axios uno para mapear los aeropuertod de origen y otro para la salida y seteo los inputs de origen y destino 
+
+  const handleChangeTrainStation = (e) => {
+    const {name, value} = e.target
     setInputFormTrain({
       ...inputFormTrain,
-      [name]: value,
-    });
-    console.log(inputFormTrain);
-  };
+      [name] : value
+    })
+    console.log(value);
+    axios
+    .get( `http://localhost:4000/travels/getOneTrainStation/city/${value}`)
+    .then((res) =>{
+      console.log(res.data)
+      setTrainStation(res.data)
+   
+    } )
+    .catch((err) => console.log(err))
+    console.log(value);
+  }
+
+  const handleChangeTrainStationDestiny = (e) =>{
+    const {name, value} = e.target
+    setInputFormTrain({
+      ...inputFormTrain,
+      [name] : value
+    })
+    axios
+    .get( `http://localhost:4000/travels/getOneTrainStation/city/${value}`)
+    .then((res) =>{
+      console.log("dataaa", res.data)
+      setTrainStationCityDestiny(res.data)
+    } )
+    .catch((err) => console.log(err))
+    console.log(value);
+  }
+
+  // Manejadores de estado para las estaciones de tren de viaje 2(vuelta)(type 2)
+  const handleChangeTrainStation_tp2 = (e) => {
+    const { value} = e.target
+   
+    axios
+    .get( `http://localhost:4000/travels/getOneTrainStation/city/${value}`)
+    .then((res) =>{
+      console.log(res.data)
+      setTrainStationCity_tp2(res.data)
+   
+    } )
+    .catch((err) => console.log(err))
+   
+  }
+
+  const handleChangeTrainStationDestiny_tp2 = (e) =>{
+    const { value } = e.target
+   
+    axios
+    .get( `http://localhost:4000/travels/getOneTrainStation/city/${value}`)
+    .then((res) =>{
+      console.log("dataaa", res.data)
+      setTrainStationDestiny_tp2(res.data)
+    } )
+    .catch((err) => console.log(err))
+  
+  }
 
   return (
     <>
@@ -247,6 +361,15 @@ export const Viajes = () => {
             Rellene los datos del billete de tren
           </h1>
           <TrainForm
+          handleChangeTrainStationDestiny_tp2 = {handleChangeTrainStationDestiny_tp2}
+          handleChangeTrainStation_tp2 = {handleChangeTrainStation_tp2}
+          handleChangeTrainStationDestiny = {handleChangeTrainStationDestiny}
+          handleChangeTrainStation = {handleChangeTrainStation}
+            trainStationDestiny_tp2 = {trainStationDestiny_tp2}
+            trainStationCity_tp2 = {trainStationCity_tp2}
+            trainStationCityDestiny = {trainStationCityDestiny}
+            trainStation = {trainStation}
+            shwoGoAndBack = { shwoGoAndBack }
             handleChange={handleTrainChange}
             inputFormTrain={inputFormTrain}
           />{" "}
