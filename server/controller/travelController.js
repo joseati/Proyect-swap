@@ -312,7 +312,7 @@ class TravelController {
       sql += ` AND tp.destiny LIKE "%${destination}%"` 
     }
     sql += group
-    
+
     if (filterByPrice){
       if(filterByPrice == "de mayor a menor precio"){
         let orderDesc = " ORDER BY client_price DESC"
