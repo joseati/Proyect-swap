@@ -122,6 +122,36 @@ class UserController {
       }
     });
   }
+
+  //añade los travels favoritos a la base de datos por cada usuario recogido por req.body
+  favoritos = (req, res) => {
+    console.log(req.body)
+    const {user_id, travel_product_id} = req.body
+    let sqlFavoritos = `INSERT INTO likes(user_id, travel_product_id) VALUES (${user_id}, ${travel_product_id})`
+
+    connection.query(sqlFavoritos, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+    })
+  }
+
+  //Hace un borrado permanente de los travels favoritos a la base de datos por cada usuario recogido por req.body
+  deleteFavoritos = (req, res) => {
+    console.log(req.body)
+    const {user_id, travel_product_id} = req.body
+    let sqlFavoritos = `DELETE FROM likes WHERE user_id = ${user_id} AND travel_product_id = ${travel_product_id}`
+
+    connection.query(sqlFavoritos, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+    })
+  }
 }
 
 

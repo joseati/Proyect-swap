@@ -21,4 +21,9 @@ router.put("/delLogiUser/:user_id", UserController.delLogicUser )
 // http://localhost:4000/users/editUser/:user_id
 router.put("/editUser/:user_id", UserController.editUser);
 
+// http://localhost:4000/users/favoritos
+router.post("/favoritos", UserController.favoritos)
+
+// http://localhost:4000/users/deleteFavoritos
+router.post("/deleteFavoritos", UserController.deleteFavoritos)
 module.exports = router;
