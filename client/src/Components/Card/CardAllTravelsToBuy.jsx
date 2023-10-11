@@ -4,6 +4,7 @@ import { getDate } from '../../Utils/getDateTime';
 import './cardAllTravelsToBuy.scss'
 import { Link } from 'react-router-dom';
 import { SwapContext } from '../../context/SwapContext';
+import axios from 'axios';
 
 
 
@@ -20,18 +21,32 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
 }
 
   const { user } = useContext(SwapContext)
-
   const [like, setLike] = useState('heart1.svg')
 
-
   const isLiked = () => {
+    if (user) {
+      console.log(user)
+      console.log(travel)
+      const {travel_product_id} = travel
+      const {user_id} = user
+
     if (like === 'heart1.svg') {
+      axios
+    .post('http://localhost:4000/users/favoritos', {user_id, travel_product_id})
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
+
       setLike('heart2.svg');
     } else {
+      axios
+    .post('http://localhost:4000/users/deleteFavoritos', {user_id, travel_product_id})
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
       setLike('heart1.svg');
     }
+    }
+    
   };
-
 
   
 //  console.log("Una tarjeta", travel)
