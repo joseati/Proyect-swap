@@ -6,7 +6,7 @@ import axios from "axios";
 export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityDestiny_tp2,handleChangeDestiny_tp2 ,airportCityDestiny ,airportCity,handleChangeAirport , shwoGoAndBack, handleChange,handleChangeDestiny, inputFormPlane }) => {
 
 
-
+// console.log(airportCity)
 
   
   return (
