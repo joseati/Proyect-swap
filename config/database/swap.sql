@@ -438,3 +438,16 @@ WHERE ( tp.travel_product_id = pt.travel_product_id )
 and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 
 AND tp.is_deleted = 0 
 AND tp.buyer_user_id IS NULL group by pt.travel_product_id;
+
+SELECT tp.*, tt.*, user.user_id , user.name 
+FROM travel_product tp, train_travel tt, user 
+WHERE ( tp.travel_product_id = tt.travel_product_id ) 
+and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 
+AND tp.is_deleted = 0 
+AND tp.buyer_user_id IS NULL group by tt.travel_product_id;
+
+SELECT tp.*, tt.*, user.user_id , user.name 
+FROM travel_product tp, train_travel tt, user 
+WHERE ( tp.travel_product_id = tt.travel_product_id ) 
+AND tp.is_deleted = 0 
+AND tp.buyer_user_id IS NULL group by tt.travel_product_id;
