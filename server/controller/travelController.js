@@ -298,7 +298,7 @@ class TravelController {
     let sql = "SELECT u.name,tp.destiny, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date , tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 "
     let group = " GROUP BY tp.travel_product_id "
     if(company_name){
-      sql += ` AND (pt.company_name = "${company_name}" OR tt.company_name = "${company_name}") ` 
+      sql += ` AND (pt.company_name LIKE "%${company_name}%" OR tt.company_name LIKE "%${company_name}%") ` 
     }
     if(departure_date){
       sql += ` AND (pt.departure_date = "${departure_date}" OR tt.departure_date = "${departure_date}") `    }
@@ -306,13 +306,13 @@ class TravelController {
       sql += ` AND tp.client_price = ${price}` 
     }
     if(origin){
-      sql += ` AND tp.origin = "${origin}"` 
+      sql += ` AND tp.origin LIKE "%${origin}%"` 
     }
     if(destination){
-      sql += ` AND tp.destiny = "${destination}"` 
+      sql += ` AND tp.destiny LIKE "%${destination}%"` 
     }
     sql += group
-    
+
     if (filterByPrice){
       if(filterByPrice == "de mayor a menor precio"){
         let orderDesc = " ORDER BY client_price DESC"

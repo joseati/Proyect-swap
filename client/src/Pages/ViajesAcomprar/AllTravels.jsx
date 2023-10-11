@@ -22,14 +22,16 @@ export const AllTravels = () => {
     const [selectedSwap, setSelectedSwap] = useState("");  
     const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
     const [ inputFilter , setInputFilter ] = useState()
+    const  [ allPlaneTravel, setAllPlaneTravel] = useState()
 
     useEffect(() => {
         setReset(true)
         console.log(prepareDataPlane, prepareDataTrain);
         setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
+        setAllPlaneTravel(prepareDataPlane)
     },[prepareDataPlane, prepareDataTrain])
     
-
+    console.log(allPlaneTravel);
     const handleSwapClick = (SwapType) => {
         setSelectedSwap(SwapType);
         if (SwapType === "avion") {
@@ -65,9 +67,23 @@ export const AllTravels = () => {
         axios
         .get(`http://localhost:4000/travels/filterAllTravelsTobuy/${temp}`)
         .then((res)=> {
-            console.log(res.data);
+            console.log(res.data)
+            setAllTravelsToBuy(res.data);
         })
         .catch((err) => console.log(err))
+      }
+
+      if(showPlaneTickets){
+        if(inputFilter){
+            const temp = JSON.stringify(inputFilter)
+            axios
+            .get(`http://localhost:4000/travels/filterAllPlaneToBuy/${temp}`)
+            .then((res)=> {
+                console.log(res.data)
+                // setAllPlaneTravel(res.data);
+            })
+            .catch((err) => console.log(err))
+          }
       }
     }
     return (
@@ -88,20 +104,20 @@ export const AllTravels = () => {
 
           
                 {showPlaneTickets && (<AllPlaneTravel
-                                        prepareDataPlane/>)}
+                                        allPlaneTravel = {allPlaneTravel}/>)}
                 {showTrainTickets && <AllTrainTravel
                                         prepareDataTrain/>}
            
             
 
-            <Col>
+            {/* <Col>
                 {allTravelsToBuy?.map((travel, i) => (
                     <Row key={i}>
                         <CardAllTravelsToBuy travel={travel} />
                     </Row>
                 ))}
 
-            </Col>
+            </Col> */}
 
            
         </>

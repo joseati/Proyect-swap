@@ -1,10 +1,24 @@
 import React from 'react'
+import { CardAllTravelsToBuy } from '../../../Components/Card/CardAllTravelsToBuy';
+import { Row } from 'react-bootstrap';
 
-export const AllPlaneTravel = ({prepareDataPlane}) => {
+export const AllPlaneTravel = ({allPlaneTravel}) => {
 
-    console.log(prepareDataPlane);
+    console.log(allPlaneTravel);
+  
   
   return (
-    <div>AllPlaneTravel</div>
+    <>
+    {allPlaneTravel?.map((plane)=>{
+
+      return(
+        <Row key={plane.travel_product_id}>
+          < CardAllTravelsToBuy
+            travel={plane} />
+          </Row>
+       
+      )
+    })}
+    </>
   )
 }

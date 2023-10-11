@@ -83,7 +83,7 @@ export const ColFilters = ({handleChange}) => {
                                             id="orderbyPrice"
                                             onChange={handleChange}
                                             name='filterByPrice'
-                                            /* value={""} */>
+                                            >
                                              <option value="de menor a mayor precio"> menor a mayor precio</option>
                                              <option value="de mayor a menor precio"> mayor a menor precio</option>
                                           </FormSelect>
