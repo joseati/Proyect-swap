@@ -193,7 +193,7 @@ const [ message , setMessage] = useState()
         .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})
         .then((res) => {
           setReset(false)
-          setInputFormPlane()
+          setInputFormPlane(initialValue)
           console.log(res);
         })
         .catch((err) => {
@@ -206,7 +206,10 @@ const [ message , setMessage] = useState()
       if( trainButton ){
         axios
         .post("http://localhost:4000/travels/sellTicket/sellTrainTravel", {inputFormTrain, user_id})
-        .then((res) => console.log(res))
+        .then((res) => {
+          setReset(false)
+          setInputFormTrain(initialValueTrain)
+        })
         .catch((err) => {console.log(err)});
       }
     }

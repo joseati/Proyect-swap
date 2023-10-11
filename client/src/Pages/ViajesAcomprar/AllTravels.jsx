@@ -1,12 +1,12 @@
 // External libraries
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 
 
 // Internal components and context
 import { SwapContext } from '../../context/SwapContext';
-// import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
+import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
 import { SwapSelect } from './SwapSelect';
 import { ColFilters } from './ColFilters';
 
@@ -21,6 +21,7 @@ export const AllTravels = () => {
     const [showTrainTickets, setShowTrainTickets] = useState(false);
     const [selectedSwap, setSelectedSwap] = useState("");  
     const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
+    const [ inputFilter , setInputFilter ] = useState()
 
     useEffect(() => {
         setReset(true)
@@ -39,7 +40,36 @@ export const AllTravels = () => {
             setShowPlaneTickets(false);
         }
     };
+    const handleChange = (e) => {
+        const { value, name } = e.target
+        if( e.target.type === "select-one"){
 
+            setInputFilter({...inputFilter, [name]:value})
+            
+        }
+        if( e.target.type === "number"){
+            setInputFilter({...inputFilter, [name]: value})
+        }
+        if( e.target.type === "date"){
+            setInputFilter({...inputFilter, [name]: value})
+        }
+        if( e.target.type === "text"){
+            setInputFilter({...inputFilter, [name]: value})
+        }
+    }
+    console.log("filllltrooooosssssssss", inputFilter);
+
+    const onSubmitFilters = () => {
+      if(inputFilter){
+        const temp = JSON.stringify(inputFilter)
+        axios
+        .get(`http://localhost:4000/travels/filterAllTravelsTobuy/${temp}`)
+        .then((res)=> {
+            console.log(res.data);
+        })
+        .catch((err) => console.log(err))
+      }
+    }
     return (
         <>
             <Container className='swap-type mt-4'>
@@ -49,7 +79,9 @@ export const AllTravels = () => {
                 </Col>
                 </Row>
          <Row  className='row-col-filters'>
-                <ColFilters />
+                <ColFilters
+                handleChange = {handleChange} />
+                <Button onClick={ onSubmitFilters} className='btn-filter'>Aplicar filtros</Button>
                 </Row>
             </Container>
 
