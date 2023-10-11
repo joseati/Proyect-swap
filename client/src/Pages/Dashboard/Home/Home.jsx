@@ -16,7 +16,7 @@ export const Home = () => {
   const {allTravelsToBuy} = useContext(SwapContext)
   // Dividir la matriz en grupos de 2
   const dividedTravels = [];
-  for (let i = 0; i < allTravelsToBuy.length; i += 2) {
+  for (let i = 0; i < allTravelsToBuy?.length; i += 2) {
     dividedTravels.push(allTravelsToBuy.slice(i, i + 2));
   }
   return (
