@@ -9,6 +9,7 @@ import { BanUserAdmin } from "../Admin/BanUserAdmin";
 import { CardAllTravelsToBuy } from "../../Components/Card/CardAllTravelsToBuy";
 import { DelTravelAdmin } from "../Admin/DelTravelAdmin";
 import { getDate } from "../../Utils/getDateTime";
+import { StatsAdmin } from "../Admin/StatsAdmin";
 
 const initialValue = {
   name: "",
@@ -23,7 +24,7 @@ const initialValue = {
 export const UserApp = () => {
   
   const navigate = useNavigate();
-  const { user ,setIsLoged, setToken, setUser, allTravelsToBuy} = useContext(SwapContext);
+  const { user ,setIsLoged, setToken, setUser, allTravelsToBuy,setReset, reset} = useContext(SwapContext);
   const [comprasButton, setComprasButton] = useState(true);
   const [ventasButton, setVentasButton] = useState(false);
   const [favoritosButton, setFavoritosButton] = useState(false);
@@ -34,7 +35,7 @@ export const UserApp = () => {
   const [statsButton, setStatsButton] = useState(true)
   const [delTravel, setDelTravel] = useState(false)
   const [unableUser, setUnableUser] = useState(false)
-  const [showEditAdmin, setShowEditAdmin] = useState(false)
+ 
   //estados relacionados con datos de total de usuarios
   const [allUsers, setAllUsers] = useState()
   const [active, setActive] = useState()
@@ -91,6 +92,7 @@ export const UserApp = () => {
     setDelTravel(false)
     setUnableUser(false)
     setStatsButton(true)
+    setReset(!reset)
   }
 
   const OnDelTravel = () =>{
@@ -136,7 +138,7 @@ export const UserApp = () => {
         })
         .catch((err)=>console.log(err))
 
-  },[])
+  },[reset])
 
   const handleChange = (e) =>{
     const {name, value} = e.target;
@@ -518,7 +520,7 @@ export const UserApp = () => {
       {/* VISTAS DEL ADMIN  */}
       {user?.type === 2 && statsButton  && <Col className="screenUser" xs={12} xl={9}>
           <Row>
-            <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
+            {/* <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
                   <Row className="stats-section justify-content-center">
 
                     <Col xs={12} className="text-center p-5">
@@ -555,7 +557,12 @@ export const UserApp = () => {
                     </Card>
 
                   </Row>
-              </Col>
+              </Col> */}
+              <StatsAdmin
+              active={active}
+              banned={banned}
+              numUsersMonth={numUsersMonth}
+              />
           </Row>
         </Col>}
 

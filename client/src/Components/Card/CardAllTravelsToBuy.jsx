@@ -101,12 +101,12 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
   <Link to={`/oneTravel/${travel.travel_product_id}`} className='buttonCardsTravel'>Ver más</Link>
 </Button>
  </Card.Body>
- {user?.type === 2 && blockMsg && <CardFooter>
+ {user?.type === 2 && travel.admin_enabled == 1 && <CardFooter>
   
     <h4 style={{color: 'red', fontWeight:'bold', textAlign: 'end'}}>Bloqueado</h4>
   </CardFooter>}
 
-  {user?.type === 2 && !blockMsg &&  <CardFooter>
+  {user?.type === 2 &&  travel.admin_enabled == 0 &&  <CardFooter>
   
   <h4 style={{color: 'green', fontWeight:'bold',  textAlign: 'end'}}>Disponible</h4>
   </CardFooter>}

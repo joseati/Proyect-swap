@@ -19,4 +19,10 @@ router.put('/banOneTravel/:travel_product_id', AdminController.banOneTravel)
 // http://localhost:4000/admin/banOneTravel/:travel_product_id
 router.put('/unlockOneTravel/:travel_product_id', AdminController.unlockOneTravel)
 
+// http://localhost:4000/admin/getAllTravelsAdmin/
+router.get('/getAllTravelsAdmin/', AdminController.getTravelsAdmin)
+
+// http://localhost:4000/admin/getTravelsMonthly/
+router.get('/getTravelsMonthly/', AdminController.getTravelsMonthlyAdmin)
+
 module.exports = router

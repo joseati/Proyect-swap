@@ -1,12 +1,15 @@
 .infoUser {
   background-color: #89c9d3c4;
-  height: 100vh;
+  
+  height: auto;
   text-align: center;
   padding-top: 25px;
 }
 
 .screenUser {
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
+ 
   background-color: #89c9d346;
 }
 
@@ -79,10 +82,10 @@
 
 //estilos para admin
 .infoAdmin{
-  background-color: #ffeca0;
-  height: 100vh;
+  background-color: #E7EBEC;
+  height: auto;
   text-align: center;
-  padding-top: 25px;
+  padding-top: 2vh;
   
 }
 .buttonn-admin{
@@ -156,6 +159,7 @@
       display: none;
     }
     
+    
   }
 
   .infoUser{
@@ -169,6 +173,7 @@
 
   .screenUser{
     height: auto;
+    min-height: 0;
     padding: 0;
     
   }
