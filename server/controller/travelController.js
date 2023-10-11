@@ -287,6 +287,53 @@ class TravelController {
       err ? res.status(500).json(err) : res.status(200).json(result)
     })
   }
+
+  // Filtros de viajes para vender
+  filterAllTravelsTobuy = (req, res) => {
+    console.log(req.params.filtersTravel);
+    const temp = JSON.parse(req.params.filtersTravel)
+    const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
+    console.log(company_name);
+
+    let sql = "SELECT u.name,tp.destiny, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date , tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 "
+    let group = " GROUP BY tp.travel_product_id "
+    if(company_name){
+      sql += ` AND (pt.company_name = "${company_name}" OR tt.company_name = "${company_name}") ` 
+    }
+    if(departure_date){
+      sql += ` AND (pt.departure_date = "${departure_date}" OR tt.departure_date = "${departure_date}") `    }
+    if(price){
+      sql += ` AND tp.client_price = ${price}` 
+    }
+    if(origin){
+      sql += ` AND tp.origin = "${origin}"` 
+    }
+    if(destination){
+      sql += ` AND tp.destiny = "${destination}"` 
+    }
+    sql += group
+    
+    if (filterByPrice){
+      if(filterByPrice == "de mayor a menor precio"){
+        let orderDesc = " ORDER BY client_price DESC"
+        sql += orderDesc
+      }
+      else if(filterByPrice == "de menor a mayor precio"){
+        let oderAsc = " ORDER BY client_price ASC"
+        sql += oderAsc
+      }
+    }
+    
+    console.log("sqlfiltroossssss", sql);
+    connection.query(sql ,(err, result) => {
+      err ?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+    
+    
+  }
 }
 
 module.exports = new TravelController();

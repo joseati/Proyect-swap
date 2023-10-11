@@ -37,6 +37,7 @@ router.get("/getOneTrainStation/city/:city", travelController.getOneTrainStation
 // http://localhost:4000/travels/deleteOneTravel/:travel_id
 router.put("/deleteOneTravel/:travel_id", TravelController.deleteOneTravel)
 
-
+// http://localhost:4000/travels/filterAllTravelsTobuy
+router.get("/filterAllTravelsTobuy/:filtersTravel", TravelController.filterAllTravelsTobuy)
 
 module.exports = router;
