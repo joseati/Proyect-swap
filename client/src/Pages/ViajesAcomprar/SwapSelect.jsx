@@ -1,14 +1,18 @@
-import { Col, Row, Accordion } from 'react-bootstrap';
+import {
+    Col, Row, Accordion} from 'react-bootstrap';
 
 export const SwapSelect = ({ selectedSwap, handleSwapClick }) => {
     return (
-        <Accordion defaultActiveKey="1" className='filter1'>
+        <Accordion defaultActiveKey="0" className='filter1'>
+                                  <Accordion.Item style={{background:"transparent", border:"none"}} eventKey="0">
+
             <Accordion.Header className='header-title'>
                 <h2 className='title-filter1'>Tipos de Swap</h2>
             </Accordion.Header>
 
-            <Accordion.Body>
-                <Row>
+            <Accordion.Body style={{background:"transparent"}}>
+                <Row className='row-swap'>
+                    {/* MAPEO DE CADA COL */}
                     {[
                         { type: "todos", imgSrc: "/assets/images/logo-sobre-nosotros.svg", label: "TODOS LOS SWAPS" },
                         { type: "avion", imgSrc: "/assets/images/avion1.svg", label: "BILLETES DE AVIÓN" },
@@ -20,15 +24,16 @@ export const SwapSelect = ({ selectedSwap, handleSwapClick }) => {
                         <Col 
                             md={2} xs={12} 
                             key={item.type}
-                            className={`d-flex flex-column align-items-center justify-content-center text-center ${selectedSwap === item.type ? "type-selected" : ""}`}
+                            className={`swap-item ${selectedSwap === item.type ? "type-selected" : ""}`}
                             onClick={() => handleSwapClick(item.type)}
                         >
                             <img className='img-type mb-2' src={item.imgSrc} alt={item.label} />
-                            <p style={{ cursor: "pointer" }}>{item.label}</p>
+                            <p style={{ fontSize:"12px" , cursor: "pointer" }}>{item.label}</p>
                         </Col>
                     ))}
                 </Row>
             </Accordion.Body>
+            </Accordion.Item>
         </Accordion>
     );
 }
