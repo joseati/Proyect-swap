@@ -41,7 +41,7 @@ getAllTravelsTobuy = (req, res) => {
 
    getOneTravel= (req, res)=>{
     const {travel_id} = req.params
-    console.log(travel_id);
+    // console.log(travel_id);
     let sql = `SELECT u.*, t.*, p.*, t2.*
     FROM user AS u
     LEFT JOIN travel_product AS t ON u.user_id = t.seller_user_id
@@ -54,7 +54,7 @@ getAllTravelsTobuy = (req, res) => {
         // console.log(err)
         :
         res.status(200).json(resul)
-         console.log("RESULTADO CONTROLLER", resul);
+        //  console.log("RESULTADO CONTROLLER", resul);
     })
   } 
   getOneAirport = (req, res ) => {
@@ -257,6 +257,19 @@ getAllTravelsTobuy = (req, res) => {
     group by l.travel_product_id;`
     connection.query(sqlLike, (err, result)=>{
       err ? res.status(500).json(err) :  res.status(200).json(result);
+    })
+  }
+
+  //Eliminar un viaje activo
+  deleteOneTravel = (req, res) =>{
+    const {travel_id} = req.params;
+    // console.log("LLEGO HASTA AQUÏ. ELIMINANDO UN VIAJE");
+    let sql = `UPDATE travel_product
+    SET is_deleted = 1
+    WHERE travel_product_id = ${travel_id};`
+
+    connection.query(sql, (err, result) =>{
+      err ? res.status(500).json(err) : res.status(200).json(result)
     })
   }
 }
