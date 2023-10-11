@@ -43,7 +43,7 @@ const initialValue = {
 // Componente principal Viajes
 export const Viajes = () => {
   // Definición del estado y lógica del componente
-  const { isLoged, user } = useContext(SwapContext);
+  const { isLoged, user, setReset } = useContext(SwapContext);
 
   // Estados para determinar qué formulario mostrar basado en la selección del usuario
   const [planeButton, setPlaneButton] = useState(false);
@@ -63,7 +63,7 @@ export const Viajes = () => {
  const [ trainStationCityDestiny, setTrainStationCityDestiny ] = useState()
  const [ trainStationCity_tp2, setTrainStationCity_tp2 ] = useState()
  const [ trainStationDestiny_tp2,  setTrainStationDestiny_tp2 ] = useState()
-
+const [ message , setMessage] = useState()
   // Función para manejar el clic en los iconos y mostrar el formulario correspondiente
   const handleImageClick = (iconType) => {
     setSelectedIcon(iconType);
@@ -142,6 +142,7 @@ export const Viajes = () => {
 
 // Controladores de los inputs qeu recogen los datos segun los type de inputs
   const handlePlaneChange = (e) => {
+    setMessage(false)
     const { name, value } = e.target;
     if( e.target.type == "text" ){
       setInputFormPlane({
@@ -190,8 +191,17 @@ export const Viajes = () => {
       if( planeButton ){
         axios
         .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})
-        .then((res) => console.log(res))
-        .catch((err) => {console.log(err)});
+        .then((res) => {
+          setReset(false)
+          setInputFormPlane()
+          console.log(res);
+        })
+        .catch((err) => {
+          if(err){
+            console.log(err);
+            setMessage(true)
+          }
+        });
       }
       if( trainButton ){
         axios
@@ -381,6 +391,13 @@ export const Viajes = () => {
           md={12}
           className=" buttons d-flex flex-column align-items-center justify-content-center"
         >
+          {message && <>
+          <div>
+          Error en el formulario rellene los campos
+        </div> 
+          </>}
+          
+          
           <Button className="btn">Subir imagen del producto</Button>
           <Button onClick={handleSubmit} className="mt-4 btn">
             Enviar
