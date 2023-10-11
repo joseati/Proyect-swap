@@ -1,7 +1,8 @@
 // External libraries
-import React, { useContext, useState } from 'react';
-// import axios from 'axios';
-import { Container,Col,Row } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { Container, Col, Row } from 'react-bootstrap';
+
 
 // Internal components and context
 import { SwapContext } from '../../context/SwapContext';
@@ -11,12 +12,22 @@ import { ColFilters } from './ColFilters';
 
 // Styles
 import "./allTravelsstyle.scss";
+import { AllPlaneTravel } from './PlaneTravel/AllPlaneTravel';
+import { AllTrainTravel } from './TrainTravel/AllTrainTravel';
 
 export const AllTravels = () => {
-    const { allTravelsToBuy } = useContext(SwapContext);
+    const {  setReset, prepareDataPlane, prepareDataTrain, } = useContext(SwapContext);
     const [showPlaneTickets, setShowPlaneTickets] = useState(false);
     const [showTrainTickets, setShowTrainTickets] = useState(false);
     const [selectedSwap, setSelectedSwap] = useState("");  
+    const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
+
+    useEffect(() => {
+        setReset(true)
+        console.log(prepareDataPlane, prepareDataTrain);
+        setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
+    },[prepareDataPlane, prepareDataTrain])
+    
 
     const handleSwapClick = (SwapType) => {
         setSelectedSwap(SwapType);
@@ -42,18 +53,24 @@ export const AllTravels = () => {
                 </Row>
             </Container>
 
-            {/* When there are travels, use the following to display them:
-                showPlaneTickets && ()
-                showTrainTickets && ()
-       
+
           
+                {showPlaneTickets && (<AllPlaneTravel
+                                        prepareDataPlane/>)}
+                {showTrainTickets && <AllTrainTravel
+                                        prepareDataTrain/>}
+           
+            
+
             <Col>
                 {allTravelsToBuy?.map((travel, i) => (
                     <Row key={i}>
                         <CardAllTravelsToBuy travel={travel} />
                     </Row>
                 ))}
-            </Col> */}
+
+            </Col>
+
            
         </>
     );

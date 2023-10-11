@@ -12,7 +12,9 @@ export const SwapProvider = (props) => {
   const [ token , setToken ] = useState();
   const [ isLoged, setIsLoged ] = useState(false)
   const [ reset, setReset ] = useState(true)
-  const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
+  // const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
+  const [prepareDataPlane, setPrepareDataPlane] = useState()
+  const [prepareDataTrain, setPrepareDataTrain] = useState()
 
 // Hook que recogera la informacion del token( user_id, type, enabled ) cuando nos registrmeos 
   useEffect(()=>{
@@ -34,6 +36,7 @@ export const SwapProvider = (props) => {
   },[isLoged, reset] )
 
   // HOOK que se encarga de setear el loggin a true
+
   useEffect(() => {
     const tokenStorage = localStorage.getItem("token")
     if(tokenStorage){
@@ -43,12 +46,23 @@ export const SwapProvider = (props) => {
     axios
       .get("http://localhost:4000/travels/getAllTravelsTobuy")
       .then( (res) => {
-        setAllTravelsToBuy(res.data)
+        console.log(res.data);
+        // setAllTravelsToBuy(res.data)
+        setPrepareDataPlane(res.data.resultPlane)
+        setPrepareDataTrain(res.data.resultTrain)
+        // setAllTravelsToBuy(prepareDataPlane.concat(prepareDataTrain))
+       
       } )
       .catch( (err) => console.log(err) )
-  }, [])
+  }, [reset])
 
-  console.log(allTravelsToBuy);
+  
+   
+  
+ 
+
+  
+  
 
   return (
 
@@ -62,7 +76,9 @@ export const SwapProvider = (props) => {
         setReset,
         isLoged,
         setIsLoged,
-        allTravelsToBuy
+        // allTravelsToBuy,
+        prepareDataPlane,
+        prepareDataTrain
     } }>
 
 
