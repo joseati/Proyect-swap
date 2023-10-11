@@ -1,5 +1,4 @@
 // External Libraries
-import React from 'react';
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +7,7 @@ import { FooterCol1 } from "./FooterCol1";
 import { FooterCol2 } from "./FooterCol2";
 import { IconosSocial } from "./IconosSocial";
 
-// Icons
-import { FaLinkedinIn, FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+
 
 // Styles
 import "./footer.scss";

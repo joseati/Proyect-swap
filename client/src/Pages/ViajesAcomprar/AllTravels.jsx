@@ -3,9 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Col, Row } from 'react-bootstrap';
 
+
 // Internal components and context
 import { SwapContext } from '../../context/SwapContext';
-import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
+// import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
 import { SwapSelect } from './SwapSelect';
 import { ColFilters } from './ColFilters';
 
@@ -41,10 +42,17 @@ export const AllTravels = () => {
 
     return (
         <>
-            <Container className='swap-type mt-4 d-flex flex-column align-items-center justify-content-center'>
+            <Container className='swap-type mt-4'>
+                <Row md={6} xs={12} >
+                    <Col className='d-flex align-items-center justify-content-center row-select' md={12} xs={12}>
                 <SwapSelect handleSwapClick={handleSwapClick} selectedSwap={selectedSwap} />
+                </Col>
+                </Row>
+         <Row  className='row-col-filters'>
                 <ColFilters />
+                </Row>
             </Container>
+
 
           
                 {showPlaneTickets && (<AllPlaneTravel
@@ -53,13 +61,16 @@ export const AllTravels = () => {
                                         prepareDataTrain/>}
            
             
+
             <Col>
                 {allTravelsToBuy?.map((travel, i) => (
                     <Row key={i}>
                         <CardAllTravelsToBuy travel={travel} />
                     </Row>
                 ))}
+
             </Col>
+
            
         </>
     );
