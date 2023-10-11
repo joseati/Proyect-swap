@@ -33,6 +33,10 @@ router.post("/sellTicket/sellTrainTravel", TravelController.sellOneTrainTravel)
 // http://localhost:4000/travels/getOneTrainStation/citi/:city
 router.get("/getOneTrainStation/city/:city", travelController.getOneTrainStation)
 
+//Eliminar un viaje
+// http://localhost:4000/travels/deleteOneTravel/:travel_id
+router.put("/deleteOneTravel/:travel_id", TravelController.deleteOneTravel)
+
 
 
 module.exports = router;
