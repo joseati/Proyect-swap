@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 
-export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
+export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteTravel}) => {
    
   let departure_date = 0
   let arrival_date = 0
@@ -59,14 +59,34 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
       
       
  <Card className='card-All-Travels CardTravelsBorder'   >
+  {user?.type === 2 && travel.admin_enabled === 0 && 
+  <Card.Header className='header-card cardBlackEffect'>
+                  <Button
+                    className="buttonn-admin-red"
+                    onClick={() => onDeleteTravel(travel)}
+                  >
+                    Bloquear viaje
+                  </Button>
+   
+  </Card.Header>}
+  {user?.type === 2 && travel.admin_enabled === 1 && 
+  <Card.Header className='header-card cardBlackEffect'>
+                  <Button
+                    className="buttonn-admin-green"
+                    onClick={() => onUnlockTravel(travel)}
+                  >
+                    Desbloquear viaje
+                  </Button>
+   
+  </Card.Header>}
    <div className='cardBlackEffect'>
-   <img
+   {user?.type === 1 && <img
         className='like'
         src={`/assets/images/${like}`}
         alt="Imagen"
         onClick={isLiked}
         style={{ cursor: 'pointer' }}
-      />
+      />}
  <Card.Text className='marginLeft'>
      Ofertado por: 
    </Card.Text>
