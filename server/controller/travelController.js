@@ -457,6 +457,17 @@ filterAllPlanesTobuy = ( req, res ) => {
 
   }
 
+  //Controlador para realizar la compra de un viaje en venta
+  buyOneTravel = (req, res) => {
+    const {user_id, travel_id} = req.body
+    let sql = `UPDATE travel_product
+    SET buyer_user_id = ${user_id}
+    WHERE travel_product_id = ${travel_id};` 
+    connection.query(sql, (err, result)=>{
+      err ? res.status(500).json(err) : res.status(200).json(result)
+    })
+  }
+
 }
 
 module.exports = new TravelController();
