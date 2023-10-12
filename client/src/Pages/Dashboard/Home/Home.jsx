@@ -16,7 +16,7 @@ export const Home = () => {
   const {allTravelsToBuy} = useContext(SwapContext)
   // Dividir la matriz en grupos de 2
   const dividedTravels = [];
-  for (let i = 0; i < allTravelsToBuy.length; i += 2) {
+  for (let i = 0; i < allTravelsToBuy?.length; i += 2) {
     dividedTravels.push(allTravelsToBuy.slice(i, i + 2));
   }
   return (
@@ -54,7 +54,7 @@ export const Home = () => {
         <Row className="homeSubSection1">
           <Col className="homeSubCol1">
             <h2>¿No encuentras lo que buscas?</h2>
-            <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Vente aquí</Button>
+            <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Ven aquí</Button>
           </Col>
         </Row>
       </Row>

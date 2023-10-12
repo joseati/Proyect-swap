@@ -6,7 +6,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 
 // Internal components and context
 import { SwapContext } from '../../context/SwapContext';
-// import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
+import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
 import { SwapSelect } from './SwapSelect';
 import { ColFilters } from './ColFilters';
 
