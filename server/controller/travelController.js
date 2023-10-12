@@ -233,7 +233,6 @@ class TravelController {
       }
     })
   }
-
   //Trae todos los viajes comprados por un usuario
   getTravelsBoughtOneUser = (req, res) =>{
     const {user_id} = req.params;

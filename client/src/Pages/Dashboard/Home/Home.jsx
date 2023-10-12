@@ -54,7 +54,7 @@ export const Home = () => {
         <Row className="homeSubSection1">
           <Col className="homeSubCol1">
             <h2>¿No encuentras lo que buscas?</h2>
-            <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Vente aquí</Button>
+            <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Ven aquí</Button>
           </Col>
         </Row>
       </Row>

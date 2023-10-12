@@ -13,7 +13,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
     <>
       <Form>
         <Row>
-          <Col md={6} xs={12} className="d-flex align-items-end flex-column">
+          <Col md={6} xs={12} className="col-plane-1">
             
             {/*  ------------ */}
             <Form.Group className="mb-3">
@@ -21,7 +21,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Aeropuerto de salida (ciudad de origen)
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de ciudad de oirgen"
+              placeholder= "Ciudad de origen..."
                 name="origin"
                 onChange={handleChangeAirport}
                 value={inputFormPlane.origin}
@@ -30,7 +30,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="origin_airpoty_id">
-                  Elige Aeropuerto
+                  Elige aeropuerto
               </Form.Label>
               <Form.Select
                 name="origin_airpoty_id"
@@ -59,7 +59,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Aeropuerto de llegada (ciudad de destino)
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de Ciudad de destino"
+              placeholder= "Ciudad de destino..."
                 name = "destiny"
                 onChange={handleChangeDestiny}
                 value={inputFormPlane.destiny}
@@ -68,8 +68,8 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
               </Form.Control>
               </Form.Group>
               <Form.Group>
-              <Form.Label htmlFor="destiny_airpoty_id">
-                  Elige Aeropuerto
+              <Form.Label className="label" htmlFor="destiny_airpoty_id">
+                  Elige aeropuerto
               </Form.Label>
               <Form.Select
                 name="destiny_airpoty_id"
@@ -107,7 +107,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_date">
-                Fecha de Vuelta
+                Fecha de vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -151,7 +151,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
      
  
           </Col>
-          <Col md={6} xs={12} className="d-flex align-items-start flex-column">
+          <Col md={6} xs={12} className="col-plane-2">
             <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="plane_travel_id">
                 Tipo de billete{" "}
@@ -171,14 +171,14 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
  {/* Fecha de vuelta si es ida y vuelta */}{console.log(shwoGoAndBack)}
  {shwoGoAndBack && <>
   <Form.Label className="label" htmlFor="plane_travel_id">
-               Informacion respecto al vuelo de vuelta
+               Información del vuelo de vuelta
               </Form.Label>
               <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="">
                 Aeropuerto de salida 
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de ciudad de oirgen"
+              placeholder= "Ciudad de origen..."
                 // name="origin"
                 onChange={handleChangeAirport_tp2}
                 // value={inputFormPlane.origin}
@@ -187,7 +187,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="origin_airpoty_id_tp2">
-                  Elige Aeropuerto
+                  Elige aeropuerto
               </Form.Label>
               <Form.Select
                 name="origin_airpoty_id_tp2"
@@ -216,7 +216,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Aeropuerto de llegada 
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de Ciudad de destino"
+              placeholder= "Ciudad de destino..."
                 // name = "destiny"
                 onChange={handleChangeDestiny_tp2}
                 // value={inputFormPlane.destiny}
@@ -225,8 +225,8 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
               </Form.Control>
               </Form.Group>
               <Form.Group>
-              <Form.Label htmlFor="destiny_airpoty_id_tp2">
-                  Elige Aeropuerto
+              <Form.Label className="label" htmlFor="destiny_airpoty_id_tp2">
+                  Elige aeropuerto
               </Form.Label>
               <Form.Select
                 name="destiny_airpoty_id_tp2"
@@ -279,13 +279,13 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
 
             <Form.Group>
               <Form.Label className="label" htmlFor="compani_name_tp2">
-                  Nombre de la compañia
+                  Nombre de la compañía
               </Form.Label>
               <Form.Control
                 className="custom-input"
                 name="compani_name_tp2"
                 id="compani_name_tp2"
-                placeholder="Nombre compañia"
+                placeholder="Nombre compañía"
                 type="text"
                 onChange={handleChange}
                 value={inputFormPlane.compani_name_tp2}
@@ -308,7 +308,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_date_tp2">
-                Fecha de Vuelta
+                Fecha de vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -353,13 +353,13 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
 
             <Form.Group>
               <Form.Label className="label" htmlFor="compani_name">
-                  Nombre de la compañia
+                  Nombre de la compañía
               </Form.Label>
               <Form.Control
                 className="custom-input"
                 name="compani_name"
                 id="compani_name"
-                placeholder="Nombre compañia"
+                placeholder="Nombre compañía"
                 type="text"
                 onChange={handleChange}
                 value={inputFormPlane.compani_name}

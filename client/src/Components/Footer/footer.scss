@@ -132,14 +132,17 @@ ul {
     align-items: start;
     justify-content: start;
   }
- .logos{
-  align-items: center;
-  justify-content: center;
- }
+  .logos-footer{
+    .logos{
+      align-items: center;
+      justify-content: center;
+      img{
+        width: 60%;
+      }
+     }
+  }
 
-    /* img {
-        width: 60% !important; 
-    } */
+
 
     .p-footer{
       padding-bottom: 5px;
