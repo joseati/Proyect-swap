@@ -40,7 +40,7 @@ export const AllTravels = () => {
         if (SwapType === "avion") {
             setShowPlaneTickets(true);
             setShowTrainTickets(false);
-            setShowAllTickets(false);
+            setShowAllTickets(false)
         } else if (SwapType === "tren") {
             setShowTrainTickets(true);
             setShowPlaneTickets(false);
@@ -86,10 +86,10 @@ export const AllTravels = () => {
         if(inputFilter){
             const temp = JSON.stringify(inputFilter)
             axios
-            .get(`http://localhost:4000/travels/filterAllPlaneToBuy/${temp}`)
+            .get(`http://localhost:4000/travels/filterAllPlaneTobuy/${temp}`)
             .then((res)=> {
                 console.log(res.data)
-                // setAllPlaneTravel(res.data);
+                setAllPlaneTravel(res.data);
             })
             .catch((err) => console.log(err))
           }
@@ -130,8 +130,6 @@ export const AllTravels = () => {
                 {showTrainTickets && <AllTrainTravel
                                         allTrainTravel = {allTrainTravel}/>}
            
-            
-
                 {showAllTickets && <Col>
                     {allTravelsToBuy?.map((travel, i) => (
                         <Row key={i}>
@@ -140,6 +138,7 @@ export const AllTravels = () => {
                     ))}
 
                 </Col>}
+
 
            
         </>
