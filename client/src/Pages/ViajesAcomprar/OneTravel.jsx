@@ -22,8 +22,7 @@ export const OneTravel = () => {
   const [showSwapeado, setShowSwapeado] = useState(false);
 
   // Show del model Swapeado
-  const handleCloseSwap = () => setShowSwapeado(false);
-  const handleShowSwap = () => setShowSwapeado(true);
+  const handleCloseSwap = () => setShowSwapeado(false);  
 
   // Trae la información para mostrar de un viaje. 
   useEffect(()=>{
@@ -66,6 +65,18 @@ export const OneTravel = () => {
       })
       .catch((err) => console.log(err));
   }
+
+  // Handle para la compra de una viaje a la venta
+  const handleBuyTravel = () => {
+    const {user_id} = user
+    axios
+      .post(`http://localhost:4000/travels/buyOneTravel/${travel_id}`, {user_id, travel_id})
+      .then((res)=> {
+        setShowSwapeado(true)
+      })
+      .catch((err)=>console.log(err))
+  }
+  
       
   return (
     <Col>
@@ -74,9 +85,9 @@ export const OneTravel = () => {
           <>
             <Row className='section1OneTravel'>
             <Col md={4} xs={12} className='col1'>
-              {ida?.plane_travel_id ? 
+              {ida?.type === 1 ? 
                 (<img className='imgProduct' src="/assets/images/placeholder-avion.jpg" alt="avion" /> ): 
-                (<img className='imgProduct' src="/assets/images/placeholder-tren.jpg" alt="avion" /> )
+                (<img className='imgProduct' src="/assets/images/placeholder-tren.jpg" alt="tren" /> )
                }
             </Col>
             <Col md={7} xs={12} className='colSection1OneTravel'>
@@ -147,8 +158,11 @@ export const OneTravel = () => {
                 <Button>GUARDAR</Button>
               </Col>
               <Col>
-                <Button onClick={handleShowSwap}>SWAPEAR</Button>
+                <Button onClick={handleBuyTravel}>SWAPEAR</Button>
               </Col>
+              {showSwapeado && (
+                <Swapeado handleCloseSwap={handleCloseSwap} showSwapeado={showSwapeado}/>
+              )}
               {/* {user && user?.user_id === user?.seller_user_id && ( */}
                 <Col>
                   <Button onClick={handleEditForm} variant="warning">MODIFICAR</Button>
