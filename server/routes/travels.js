@@ -40,4 +40,10 @@ router.put("/deleteOneTravel/:travel_id", TravelController.deleteOneTravel)
 // http://localhost:4000/travels/filterAllTravelsTobuy
 router.get("/filterAllTravelsTobuy/:filtersTravel", TravelController.filterAllTravelsTobuy)
 
+
+
+
+// http://localhost:4000/travels/filterTrainsTobuy
+router.get("/filterTrainsTobuy/:filtersTravel", TravelController.filterTrainsToBuy)
+
 module.exports = router;
