@@ -1,13 +1,26 @@
 import React, { useContext } from 'react'
 import { SwapContext } from '../../../context/SwapContext'
+import { Row } from 'react-bootstrap';
+import { CardAllTravelsToBuy } from '../../../Components/Card/CardAllTravelsToBuy';
 
-export const AllTrainTravel = () => {
+export const AllTrainTravel = ({allTrainTravel}) => {
 
-  const {user, prepareDataTrain } = useContext(SwapContext)
-  console.log(prepareDataTrain);
+  if(allTrainTravel){
+     console.log(allTrainTravel);
+  }
+ 
   return (
-    <div>
+    <>
+    {allTrainTravel?.map((train)=>{
 
-    </div>
+      return(
+        <Row key={train.travel_product_id}>
+          <CardAllTravelsToBuy travel={train}/>
+        </Row>
+      )
+    })}
+      
+    </>
+    
   )
 }

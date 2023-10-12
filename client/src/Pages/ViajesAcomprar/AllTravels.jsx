@@ -19,16 +19,19 @@ export const AllTravels = () => {
     const {  setReset, prepareDataPlane, prepareDataTrain, } = useContext(SwapContext);
     const [showPlaneTickets, setShowPlaneTickets] = useState(false);
     const [showTrainTickets, setShowTrainTickets] = useState(false);
+    const [showAllTickets, setShowAllTickets] = useState(false)
     const [selectedSwap, setSelectedSwap] = useState("");  
     const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
     const [ inputFilter , setInputFilter ] = useState()
     const  [ allPlaneTravel, setAllPlaneTravel] = useState()
+    const  [ allTrainTravel, setAllTrainTravel] = useState()
 
     useEffect(() => {
         setReset(true)
         console.log(prepareDataPlane, prepareDataTrain);
         setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
         setAllPlaneTravel(prepareDataPlane)
+        setAllTrainTravel(prepareDataTrain)
     },[prepareDataPlane, prepareDataTrain])
     
     console.log(allPlaneTravel);
@@ -37,9 +40,15 @@ export const AllTravels = () => {
         if (SwapType === "avion") {
             setShowPlaneTickets(true);
             setShowTrainTickets(false);
+            setShowAllTickets(false);
         } else if (SwapType === "tren") {
             setShowTrainTickets(true);
             setShowPlaneTickets(false);
+            setShowAllTickets(false)
+        }else if (SwapType === "todos"){
+            setShowTrainTickets(false);
+            setShowPlaneTickets(false);
+            setShowAllTickets(true);
         }
     };
     const handleChange = (e) => {
@@ -85,6 +94,19 @@ export const AllTravels = () => {
             .catch((err) => console.log(err))
           }
       }
+
+      if(showTrainTickets){
+        if(inputFilter){
+            const temp = JSON.stringify(inputFilter)
+            axios
+            .get(`http://localhost:4000/travels/filterTrainsTobuy/${temp}`)
+            .then((res)=> {
+                console.log(res.data)
+                // setAllTrainTravel(res.data);
+            })
+            .catch((err) => console.log(err))
+          }
+      }
     }
     return (
         <>
@@ -106,18 +128,18 @@ export const AllTravels = () => {
                 {showPlaneTickets && (<AllPlaneTravel
                                         allPlaneTravel = {allPlaneTravel}/>)}
                 {showTrainTickets && <AllTrainTravel
-                                        prepareDataTrain/>}
+                                        allTrainTravel = {allTrainTravel}/>}
            
             
 
-            {/* <Col>
-                {allTravelsToBuy?.map((travel, i) => (
-                    <Row key={i}>
-                        <CardAllTravelsToBuy travel={travel} />
-                    </Row>
-                ))}
+                {showAllTickets && <Col>
+                    {allTravelsToBuy?.map((travel, i) => (
+                        <Row key={i}>
+                            <CardAllTravelsToBuy travel={travel} />
+                        </Row>
+                    ))}
 
-            </Col> */}
+                </Col>}
 
            
         </>

@@ -334,6 +334,98 @@ class TravelController {
     
     
   }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  filterTrainsToBuy = (req, res) => {
+    console.log(req.params.filtersTravel);
+    const temp = JSON.parse(req.params.filtersTravel)
+    const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
+    console.log(company_name);
+
+    let sql = "SELECT u.name,tp.destiny, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp  LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 "
+    let group = " GROUP BY tp.travel_product_id "
+    if(company_name){
+      sql += ` AND tt.company_name LIKE "%${company_name}%" ` 
+    }
+    if(departure_date){
+      sql += ` AND tt.departure_date = "${departure_date}" `    }
+    if(price){
+      sql += ` AND tp.client_price = ${price}` 
+    }
+    if(origin){
+      sql += ` AND tp.origin LIKE "%${origin}%"` 
+    }
+    if(destination){
+      sql += ` AND tp.destiny LIKE "%${destination}%"` 
+    }
+    sql += group
+
+    if (filterByPrice){
+      if(filterByPrice == "de mayor a menor precio"){
+        let orderDesc = " ORDER BY client_price DESC"
+        sql += orderDesc
+      }
+      else if(filterByPrice == "de menor a mayor precio"){
+        let oderAsc = " ORDER BY client_price ASC"
+        sql += oderAsc
+      }
+    }
+    
+    console.log("sqlFiltrosTRENES", sql);
+    connection.query(sql ,(err, result) => {
+      err ?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+
+
+  }
 }
 
 module.exports = new TravelController();
