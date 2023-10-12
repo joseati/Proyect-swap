@@ -23,6 +23,12 @@
     display: grid;
   place-items: center;
   }
+
+  .originalPrice{
+    color: red;
+    text-decoration: line-through;
+  }
+  
 }
 
 .section2OneTravel{

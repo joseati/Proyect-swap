@@ -229,7 +229,7 @@ export const UserApp = () => {
       .catch((err) => console.log(err))
     }
 }, [user]);
-
+console.log("LIKKKKKEEEEE",likes);
   return (
     <>
     
@@ -390,21 +390,34 @@ export const UserApp = () => {
         )}
         {favoritosButton && (
           <Row className="all-info-user">
-              {likes.length > 0 ? (
-                likes?.map((travel, i) => (
-                  <CardAllTravelsToBuy key={i} travel={travel} />
-                ))              
-                ) : (
-                <>
-                  <img src="/assets/images/avionamarillo.svg" alt="" />
-                  <h2>Aún no hay ningún producto favorito</h2>
-                  <p>
-                    Para guardar un producto, pulsa{" "} 
-                    <img className="corazon" src="/assets/images/corazon.png" alt="" />{" "}
-                    sobre el viaje</p>
-                </>
-                )
-              }             
+              {(
+                likes.resultPlane?.length > 0 ||
+                likes.resultTrain?.length > 0
+              ) ? (
+                    <>
+                      {likes.resultPlane.length > 0 &&
+                        likes.resultPlane.map((travel, i) => (
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        ))}
+                      {likes.resultTrain.length > 0 &&
+                        likes.resultTrain.map((travel, i) => (
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        ))}
+                    </>
+                   ) : (
+                    <>
+                      <img src="/assets/images/avionamarillo.svg" alt="" />
+                      <h2>Aún no tienes nada a la venta</h2>
+                      <p>
+                        Ve al apartado{" "}
+                        <a href="/viajes">
+                          Vender Viajes
+                        </a>{" "}
+                        para vender tu primer viaje
+                      </p>
+                    </>
+                    )
+            }           
           </Row>
         )}
         {editButton &&(
