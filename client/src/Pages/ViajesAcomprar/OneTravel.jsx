@@ -74,9 +74,9 @@ export const OneTravel = () => {
           <>
             <Row className='section1OneTravel'>
             <Col md={4} xs={12} className='col1'>
-              {ida?.plane_travel_id ? 
+              {ida?.type === 1 ? 
                 (<img className='imgProduct' src="/assets/images/placeholder-avion.jpg" alt="avion" /> ): 
-                (<img className='imgProduct' src="/assets/images/placeholder-tren.jpg" alt="avion" /> )
+                (<img className='imgProduct' src="/assets/images/placeholder-tren.jpg" alt="tren" /> )
                }
             </Col>
             <Col md={7} xs={12} className='colSection1OneTravel'>

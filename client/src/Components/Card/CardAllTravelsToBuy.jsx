@@ -58,7 +58,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
        <Col lg={12} className='bg-allTv allTravelsCard '>
       
       
- <Card className='card-All-Travels CardTravelsBorder'   >
+       <Card className={travel.type === 1 ? `card-All-Travels CardTravelsBorder` : `card-All-Trains CardTravelsBorder`}>
   {user?.type === 2 && travel.admin_enabled === 0 && 
   <Card.Header className='header-card cardBlackEffect'>
                   <Button
