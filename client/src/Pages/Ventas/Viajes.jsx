@@ -329,16 +329,18 @@ const [ message , setMessage] = useState()
 
   return (
     <>
-      <Row className="justify-content-center py-5 border-0">
-        <Col md={12} xs={12} className="d-flex justify-content-center">
-          <h2
-            className="text-center"
-            style={{ fontSize: "40px", fontWeight: "700", color: "#005a8d" }}
-          >
-            ¿Qué quieres vender hoy?
-          </h2>
-        </Col>
-      </Row>
+
+        <Col className="justify-content-center align-items-center d-flex flex-row">
+          <Row md={12} xs={12} className="d-flex justify-content-center">
+            <h2
+              className="text-center"
+              style={{ fontSize: "40px", fontWeight: "700", color: "#005a8d" }}
+            >
+              ¿Qué quieres vender hoy?
+            </h2>
+          </Row>
+          </Col>
+      
       <IconSelect
         selectedIcon={selectedIcon}
         handleImageClick={handleImageClick}

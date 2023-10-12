@@ -43,4 +43,8 @@ router.get("/filterAllTravelsTobuy/:filtersTravel", TravelController.filterAllTr
 // http://localhost:4000/travels/filterAllPlaneTobuy
 router.get("/filterAllPlaneTobuy/:filtersTravel", TravelController.filterAllPlanesTobuy)
 
+// http://localhost:4000/travels/filterTrainsTobuy
+router.get("/filterTrainsTobuy/:filtersTravel", TravelController.filterTrainsToBuy)
+
+
 module.exports = router;

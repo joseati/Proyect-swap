@@ -4,12 +4,13 @@ import "./viajes.scss";
 export const IconSelect = ({ selectedIcon, handleImageClick }) => {
   return (
     <>
-      <Row className="tickets-sell justify-content-center">
+
+      <div className="div-icons d-flex align-items-center justify-content-center mt-4 text-center">
         <Col
           xs={12}
           sm={6}
           md={2}
-          className={`sell-icon d-flex flex-column align-items-center ${
+          className={`sell-icon d-flex flex-column align-items-center justify-content-between ${
             selectedIcon === "avion" ? "selected" : ""
           }`}
         >
@@ -17,16 +18,15 @@ export const IconSelect = ({ selectedIcon, handleImageClick }) => {
             src="/assets/images/avion1.svg"
             alt=""
             onClick={() => handleImageClick("avion")}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer",width:"80px", height:"70px" }}
           />
-
-          <p>BILLETES DE AVIÓN</p>
+          <p style={{marginTop:"10px"}}>BILLETES DE AVIÓN</p>
         </Col>
         <Col
           xs={12}
           sm={6}
           md={2}
-          className={`sell-icon d-flex flex-column align-items-center ${
+          className={`sell-icon d-flex flex-column align-items-center justify-content-between ${
             selectedIcon === "tren" ? "selected" : ""
           }`}
         >
@@ -34,52 +34,50 @@ export const IconSelect = ({ selectedIcon, handleImageClick }) => {
             src="/assets/images/tren.svg"
             alt=""
             onClick={() => handleImageClick("tren")}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer",width:"80px", height:"70px" }}
           />
-          <p>BILLETES DE TREN</p>
+          <p style={{marginTop:"10px"}}>BILLETES DE TREN</p>
         </Col>
         <Col
           xs={12}
           sm={6}
           md={2}
-          className="sell-icon d-flex flex-column align-items-center"
+          className={`sell-icon d-flex flex-column align-items-center justify-content-between `}
         >
           <img
-            src="/assets/images/bono.svg"
-            alt=""
-            style={{ cursor: "pointer" }}
+              src="/assets/images/bono.svg"
+              alt=""
+            style={{ cursor: "pointer",width:"80px", height:"70px"}}
           />
-
-          <p>BONOS DE VIAJE</p>
+          <p style={{marginTop:"10px"}}>BONOS DE VIAJE</p>
         </Col>
         <Col
           xs={12}
           sm={6}
           md={2}
-          className="sell-icon d-flex flex-column align-items-center"
+          className={`sell-icon d-flex flex-column align-items-center justify-content-between`}
         >
           <img
-            src="/assets/images/alojamiento.svg"
-            alt=""
-            style={{ cursor: "pointer" }}
+             src="/assets/images/alojamiento.svg"
+             alt=""
+            style={{ cursor: "pointer",width:"80px", height:"70px"}}
           />
-          <p>NOCHES DE HOTEL</p>
+          <p style={{marginTop:"10px"}}>NOCHES DE HOTEL</p>
         </Col>
         <Col
           xs={12}
           sm={6}
           md={2}
-          className="sell-icon d-flex flex-column align-items-center"
+          className={`sell-icon d-flex flex-column align-items-center justify-content-between`}
         >
           <img
             src="/assets/images/vacacional.svg"
             alt=""
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer",width:"80px", height:"70px" }}
           />
-
-          <p>PACKS VACACIONALES</p>
+          <p style={{marginTop:"10px"}}>PACKS VACACIONALES</p>
         </Col>
-      </Row>
-    </>
+      </div>
+  </>
   );
 };

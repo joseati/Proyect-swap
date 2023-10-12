@@ -34,7 +34,7 @@ export const Footer = () => {
                 </Row>
                 <Row>
                     <div className="rights">
-                        <h5 className="rights-text">2023 © Todos los derechos reservados</h5>
+                        <h5 style={{paddingBottom:"10px"}} className="rights-text">2023 © Todos los derechos reservados</h5>
                     </div>
                 </Row>
             </Container>

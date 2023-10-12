@@ -11,9 +11,9 @@ const initialState = {
   client_price:"",
   exchange_rate:"",
    // Valores insert de plane_product
-  // travel_product_id: "", /* se tiene que rescatar en el back */
-  plane_travel_id:"", /* 1 si es solo ida o 2 si es ida y vuelta */
-  origin_airpoty_id:"", /* Se tendran que rescartar en el back tras una consulta en la tabla airpot con el company_name*/
+  travel_product_id: "", 
+  plane_travel_id:"", // 1 si es solo ida o 2 si es ida y vuelta 
+  origin_airpoty_id:"", 
   destiny_airpoty_id:"",
   departure_date:"", 
   departure_time:"",
@@ -21,7 +21,6 @@ const initialState = {
   arrival_time:"",
   compani_name: "",
   // Informacion del vuelo de vuelta si lo hubiera
-  // plane_travel_id:"", /*  2 si es ida y vuelta */
   origin_airpoty_id_tp2:"",
   destiny_airpoty_id_tp2:"",
   departure_date_tp2:"", 
