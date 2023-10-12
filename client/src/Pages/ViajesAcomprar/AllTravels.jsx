@@ -19,6 +19,7 @@ export const AllTravels = () => {
     const {  setReset, prepareDataPlane, prepareDataTrain, } = useContext(SwapContext);
     const [showPlaneTickets, setShowPlaneTickets] = useState(false);
     const [showTrainTickets, setShowTrainTickets] = useState(false);
+    const [showAllTickets, setShowAllTickets] = useState(false);
     const [selectedSwap, setSelectedSwap] = useState("");  
     const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
     const [ inputFilter , setInputFilter ] = useState()
@@ -37,9 +38,16 @@ export const AllTravels = () => {
         if (SwapType === "avion") {
             setShowPlaneTickets(true);
             setShowTrainTickets(false);
+            setShowAllTickets(false)
         } else if (SwapType === "tren") {
             setShowTrainTickets(true);
             setShowPlaneTickets(false);
+            setShowAllTickets(false)
+
+        }else if (SwapType === "todos"){
+            setShowTrainTickets(false);
+            setShowPlaneTickets(false);
+            setShowAllTickets(true)
         }
     };
     const handleChange = (e) => {
@@ -77,10 +85,10 @@ export const AllTravels = () => {
         if(inputFilter){
             const temp = JSON.stringify(inputFilter)
             axios
-            .get(`http://localhost:4000/travels/filterAllPlaneToBuy/${temp}`)
+            .get(`http://localhost:4000/travels/filterAllPlaneTobuy/${temp}`)
             .then((res)=> {
                 console.log(res.data)
-                // setAllPlaneTravel(res.data);
+                setAllPlaneTravel(res.data);
             })
             .catch((err) => console.log(err))
           }
@@ -107,17 +115,18 @@ export const AllTravels = () => {
                                         allPlaneTravel = {allPlaneTravel}/>)}
                 {showTrainTickets && <AllTrainTravel
                                         prepareDataTrain/>}
-           
-            
-
-            {/* <Col>
+                {showAllTickets && <Col>
                 {allTravelsToBuy?.map((travel, i) => (
                     <Row key={i}>
                         <CardAllTravelsToBuy travel={travel} />
                     </Row>
                 ))}
 
-            </Col> */}
+            </Col> }
+           
+            
+
+           
 
            
         </>
