@@ -235,6 +235,7 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
+        console.log(response.data)
       })
       .catch((err) => console.log(err))
     }

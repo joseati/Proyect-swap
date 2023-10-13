@@ -127,11 +127,12 @@ class UserController {
   favoritos = (req, res) => {
     console.log(req.body)
     const {user_id, travel_product_id} = req.body
+    console.log(travel_product_id)
     let sqlFavoritos = `INSERT INTO likes(user_id, travel_product_id) VALUES (${user_id}, ${travel_product_id})`
 
     connection.query(sqlFavoritos, (err, result) => {
       if (err) {
-        res.status(500).json(err);
+       res.status(500).json(err); 
       } else {
         res.status(200).json(result);
       }
@@ -152,6 +153,7 @@ class UserController {
       }
     })
   }
+
 
   searchTravelOneUser = (req, res) => {
     console.log(req.params)
@@ -193,6 +195,20 @@ class UserController {
         
       }
     })
+
+  getFavoritos = (req, res) =>{
+    const user_temp = JSON.parse(req.params.user_temp)
+    const {user_id} = user_temp
+    
+    let sqlGetFavoritos = `SELECT * FROM likes WHERE user_id = ${user_id}`
+    connection.query(sqlGetFavoritos, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+    }) 
+
   }
 }
 
