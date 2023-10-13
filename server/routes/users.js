@@ -26,4 +26,8 @@ router.post("/favoritos", UserController.favoritos)
 
 // http://localhost:4000/users/deleteFavoritos
 router.post("/deleteFavoritos", UserController.deleteFavoritos)
+
+// http://localhost:4000/users/searchByDestination/:compraFinal
+router.get("/searchByDestination/:compraFinal", UserController.searchTravelOneUser)
+
 module.exports = router;

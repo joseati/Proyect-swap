@@ -46,7 +46,10 @@ export const UserApp = () => {
   const [travelsForSale, setTravelsForSale] = useState([])
   const [travelsBought, setTravelsBought] = useState([])
   const [likes, setLikes] = useState([])  
- 
+ //estados relacionados con el filtrado de viajes comprados del usuario
+ const [searchTravelBought, setSearchTravelBought] = useState("");
+  const [ arrayTempPlanes, setArrayTempPlanes] = useState()
+  const [ arrayTempTrains, setArrayTempTrains] = useState()
   
   //  console.log(allTravelsToBuy);
   const handleNavigateToAT = (e) => {
@@ -145,6 +148,11 @@ export const UserApp = () => {
     setEditInputs({...editInputs, [name]: value});
   }
 
+  //handleChange del buscador de viajes comprados
+  const handleSearch = (e) =>{
+    setSearchTravelBought(e.target.value)
+  }
+
   //Botón que hace volcar los nuevos datos del cliente en la base
   const onSubmit = (e) => {
     e.preventDefault();
@@ -211,7 +219,9 @@ export const UserApp = () => {
       axios
         .get(`http://localhost:4000/travels/oneUserBoughtTravels/${user_id}`)
         .then((response) => {
-          setTravelsBought(response.data);
+          setTravelsBought(response.data)
+          // setArrayTempPlanes(response.data.resultPlaneUser);
+          // setArrayTempTrains(response.data.resultTrain);
         })
         .catch((err) => console.log(err))
       }
@@ -230,6 +240,37 @@ export const UserApp = () => {
     }
 }, [user]);
 console.log("LIKKKKKEEEEE",likes);
+// console.log("hola",travelsBought);
+// console.log("TRENES",arrayTempTrains);
+// console.log("AVIONES",arrayTempPlanes);
+  // const filteredPlanes = arrayTempPlanes?.filter((plane) => 
+  //   plane.destiny.toLowerCase().includes(searchTravelBought.toLowerCase())
+  // );
+
+  // const filteredTrains = arrayTempTrains?.filter((train) => 
+  //   train.destiny.toLowerCase().includes(searchTravelBought.toLowerCase())
+  // );
+    const onSearchTravelBought = () => {
+      //objeto para mandar los datos al back
+      const compra = {
+        user_id: user.user_id,
+        destiny: searchTravelBought
+      }
+      let compraFinal = JSON.stringify(compra)
+      // Realiza una solicitud al servidor para buscar viajes por destino
+      axios
+      .get(`http://localhost:4000/users/searchByDestination/${compraFinal}`)
+      .then((res) => {
+        // Actualiza el estado con los resultados de la búsqueda
+        // setTravelsBought(res.data);
+        setArrayTempPlanes(res.data.resultPlaneUser)
+        setArrayTempTrains(res.data.resultTrain)
+        console.log(res)
+      })
+      .catch((err) => console.log(err));
+    };
+    console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
+
   return (
     <>
     
@@ -326,19 +367,40 @@ console.log("LIKKKKKEEEEE",likes);
         {/* VISTA USUARIO */}
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
+                <label htmlFor="search">Destino</label>
+                  <input
+                    type="text"
+                    placeholder="Buscar viajes comprados por destino"
+                    value={searchTravelBought}
+                    onChange={handleSearch}
+                    name='search'
+                  />
+                  <Button
+                    className='buttonn-admin'
+                    onClick={onSearchTravelBought}
+                  >Buscar viajes comprados</Button>
+      
             {(
-                travelsBought.resultPlaneUser?.length > 0 ||
-                travelsBought.resultTrain?.length > 0
+                // travelsBought.resultPlaneUser?.length > 0 ||
+                // travelsBought.resultTrain?.length > 0
+                arrayTempPlanes?.length > 0 ||
+                arrayTempTrains?.length > 0
               ) ? (
                     <>
-                      {travelsBought.resultPlaneUser.length > 0 &&
-                        travelsBought.resultPlaneUser.map((travel, i) => (
+                      {arrayTempPlanes.length > 0 &&
+                        arrayTempPlanes?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
-                      {travelsBought.resultTrain.length > 0 &&
-                        travelsBought.resultTrain.map((travel, i) => (
+                      {arrayTempTrains.length > 0 &&
+                        arrayTempTrains?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
+                        {/* {filteredPlanes.length > 0 && filteredPlanes.map((travel, i)=>{
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        })}
+                        {filteredTrains.length > 0 && filteredTrains.map((travel, i)=>{
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        })} */}
                     </>
                    ) : (
                     <>

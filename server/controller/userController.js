@@ -152,6 +152,48 @@ class UserController {
       }
     })
   }
+
+  searchTravelOneUser = (req, res) => {
+    console.log(req.params)
+    const temp = JSON.parse(req.params.compraFinal)
+    const  {user_id, destiny } = temp
+    // console.log(temp)
+    // console.log(user_id)
+    // console.log(destiny)
+    let sqlPlaneUser = `SELECT tp.*, pt.*, user.user_id , user.name 
+    FROM travel_product tp, plane_travel pt, user 
+    WHERE ( tp.travel_product_id = pt.travel_product_id ) 
+    and tp.seller_user_id = user.user_id 
+    AND tp.admin_enabled = 0 
+    AND tp.is_deleted = 0 
+    AND tp.buyer_user_id = ${user_id} 
+    AND tp.destiny LIKE '%${destiny}%'
+    group by tp.travel_product_id;`
+    connection.query( sqlPlaneUser,(err1,resultPlaneUser) => {
+      if(err1){
+        console.log(err1);
+      }else{
+        
+          let sqlTrain = `SELECT tp.*, tt.*, user.user_id , user.name 
+          FROM travel_product tp, train_travel tt, user
+          WHERE (tp.travel_product_id = tt.travel_product_id ) 
+          and tp.seller_user_id = user.user_id 
+          AND tp.admin_enabled = 0 
+          AND tp.is_deleted = 0 
+          AND tp.buyer_user_id = ${user_id}
+          AND tp.destiny LIKE '%${destiny}%' 
+          group by tt.travel_product_id;`
+          connection.query(sqlTrain, (err2, resultTrain) => {
+            err2?
+             res.status(500).json(err2)
+             :
+              res.status(200).json({resultPlaneUser,resultTrain})
+            //  console.log({resultPlaneUser,resultTrain});
+          })
+        
+      }
+    })
+  }
 }
 
 
