@@ -75,8 +75,7 @@ export const OneTravel = () => {
         setShowSwapeado(true)
       })
       .catch((err)=>console.log(err))
-  }
-  
+  }   
       
   return (
     <Col>
@@ -163,14 +162,16 @@ export const OneTravel = () => {
               {showSwapeado && (
                 <Swapeado handleCloseSwap={handleCloseSwap} showSwapeado={showSwapeado}/>
               )}
-              {/* {user && user?.user_id === user?.seller_user_id && ( */}
+               {user && user?.user_id === ida?.seller_user_id && ( 
+                <>
                 <Col>
-                  <Button onClick={handleEditForm} variant="warning">MODIFICAR</Button>
+                  <Button onClick={handleEditForm} variant="warning">MODIFICAR IMPORTE</Button>
                 </Col>
                 <Col>
                   <Button onClick={()=>deleteOneTravel(travel_id)} variant="danger">ELIMINAR</Button>
                 </Col>
-              {/* )} */}
+                </>
+               )} 
             </Row>
             {/* MAS INFORMACIÓN */}
             <Row className='section4OneTravel'>        
@@ -200,7 +201,7 @@ export const OneTravel = () => {
             <Col md={12} className='goTravel'>
               <h4>FORMULARIO DE EDICIÓN DE UN VIAJE</h4>             
                 {showPlaneForm && <EditOnePlane />}                            
-                <EditOnePlane/>                        
+                <EditOnePlane ida={ida} vuelta={vuelta}/>                        
                 {showTrainForm && <EditOneTrain/>}              
               <Row>
                 <Col><Button onClick={()=>setEditing(false)}>VOLVER</Button></Col>
