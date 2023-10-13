@@ -111,7 +111,11 @@ nav{
 }
 }
 
-
+.flex-mobile{
+  span{
+    margin-right: 5px;
+  }
+}
 .buttonNav {
   border-radius: 25px !important;
   background-color: #005a8d !important;
@@ -135,11 +139,13 @@ nav{
 
 @media (max-width: 768px) {
   .btn-contact {
-    margin-bottom: 3vh;
-    img{
-      width: 15% !important;
-    }
+    width: 50px;
+    margin-bottom: 1vh;
   }
+  .show-on-desktop {
+    display: none;
+}
+
 
   .goToUser{
     width: 50%;

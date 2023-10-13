@@ -15,10 +15,12 @@ export const Home = () => {
   };
   const { prepareDataPlane, prepareDataTrain} = useContext(SwapContext)
   // Dividir la matriz en grupos de 2
+
   const [allTravelsToBuy, setAllTravelsToBuy] = useState()
   useEffect(()=>{
     setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
   }, [prepareDataPlane, prepareDataTrain])
+
   return (
     <Col>
       <Row className="homeSection1">
@@ -55,7 +57,7 @@ export const Home = () => {
          <Row className="homeSubSection1">
           <Col className="homeSubCol1">
             <h2>¿No encuentras lo que buscas?</h2>
-            <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Vente aquí</Button>
+            <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Ven aquí</Button>
           </Col>
         </Row> 
         </div>

@@ -44,6 +44,11 @@
     color: white;
     text-decoration: none;
 }
+//estilos para Admin
+.header-card{
+  display: flex;
+  justify-content: end;
+}
 
 @media screen and (max-width: 600px){
 

@@ -6,11 +6,13 @@ import axios from 'axios';
 import { SwapContext } from '../../context/SwapContext';
 import { EditOnePlane } from '../Ventas/EditOnePlane';
 import { EditOneTrain } from '../Ventas/EditOneTrain';
+import { getDate } from '../../Utils/getDateTime';
+import { Swapeado } from '../../Components/Modal/Swapeado';
 
 export const OneTravel = () => {
   const navigate = useNavigate();
   const {travel_id} = useParams();
-  const {user, isLoged} =useContext(SwapContext)
+  const {user, isLoged, prepareDataPlane, prepareDataTrain} =useContext(SwapContext)
   //Estado para el seteo de la información que llegar por el context
   const [oneTravelSell, setOneTravelSell] = useState([]);
   // Estados para mostra los datos del viaje o el formulario de edición. 
@@ -18,15 +20,18 @@ export const OneTravel = () => {
   const [showPlaneForm, setShowPlaneForm] =useState(false)
   const [showTrainForm, setShowTrainForm] =useState(false)
   const [like, setLike] = useState('heart1.svg')
-  
-  
+  const [showSwapeado, setShowSwapeado] = useState(false);
+
+  // Show del model Swapeado
+  const handleCloseSwap = () => setShowSwapeado(false);  
+
   // Trae la información para mostrar de un viaje. 
   useEffect(()=>{
     axios
       .get(`http://localhost:4000/travels/getOneTravel/${travel_id}`)
       .then( (res) => {
         setOneTravelSell(res.data)
-        console.log("RESSSSSSSS",res.data);
+        // console.log("RESSSSSSSS",res.data);
       } )
       .catch( (err) => console.log(err) )
   }, [])
@@ -43,7 +48,7 @@ export const OneTravel = () => {
     }
   }
 
-  // División de la información  que nos llega pera su tratamiente (pte de revisar)
+  console.log(oneTravelSell);
   const ida = oneTravelSell[0];
   let vuelta = {};
   if (oneTravelSell.length !== 1){
@@ -52,14 +57,26 @@ export const OneTravel = () => {
 
   //Borrar un viaje activo
   const deleteOneTravel = (travel_id) =>{
-    
+    console.log("TRAVEL ID", travel_id);
     axios
-      .put(`http://localhost:4000/travels/deleteOneTravel/${travel.travel_id}`, {travel_id})
+      .put(`http://localhost:4000/travels/deleteOneTravel/${travel_id}`, {travel_id})
       .then((res)=>{
         setOneTravelSell([...oneTravelSell].filter((elem)=> elem.travel_id !== travel_id))
+        navigate("/todosLosViajes")
       })
       .catch((err) => console.log(err));
   }
+
+  // Handle para la compra de una viaje a la venta
+  const handleBuyTravel = () => {
+    const {user_id} = user
+    axios
+      .post(`http://localhost:4000/travels/buyOneTravel/${travel_id}`, {user_id, travel_id})
+      .then((res)=> {
+        setShowSwapeado(true)
+      })
+      .catch((err)=>console.log(err))
+  }   
       
   const isLiked = () => {
     if (user) {
@@ -92,55 +109,59 @@ export const OneTravel = () => {
           <>
             <Row className='section1OneTravel'>
             <Col md={4} xs={12} className='col1'>
-            <img className='imgProduct' src="/assets/images/placeholder-avion.jpg" alt="avion" />
+              {ida?.type === 1 ? 
+                (<img className='imgProduct' src="/assets/images/placeholder-avion.jpg" alt="avion" /> ): 
+                (<img className='imgProduct' src="/assets/images/placeholder-tren.jpg" alt="tren" /> )
+               }
             </Col>
             <Col md={7} xs={12} className='colSection1OneTravel'>
             <h3>{ida?.origin} -{ida?.destiny} </h3>
             <h2>{ida?.client_price} €</h2>
-            <h4>{ida?.original_price} €</h4>
-            <p>Ofertado por: {ida?.user_name}</p>
+            <h4 className='originalPrice'>{ida?.original_price} €</h4>
+            <p>Ofertado por: {ida?.name}</p>
+            
             </Col>
             </Row>          
             <Row className='section2OneTravel'>
               <Col md={12} className='goTravel'>
-                <h4>Vuelo de ida</h4>
+                <h4>Ida</h4>
                 <Row className='rowCards'>
                   <Col >
-                    <h5>{ida?.departure_date}</h5>
-                    <h5>{ida?.departure_time}</h5>
+                    <h5>{getDate(ida?.departure_date)}</h5>
+                    <h5>{getDate(ida?.departure_time)}</h5>
                     <p></p>
-                    <h5>{ida?.iata_code}</h5>
+                    <h5>{ida?.origin}</h5>
                   </Col>
                   <Col >
                   <hr  className='hrOneTravel' />
                   </Col>
                   <Col>
-                    <h5>{ida?.arrival_date}</h5>
-                    <h5>{ida?.arrival_time}</h5>
+                    <h5>{getDate(ida?.arrival_date)}</h5>
+                    <h5>{getDate(ida?.arrival_time)}</h5>
                     <p></p>
-                    <h5>{vuelta?.iata_code}</h5>
+                    <h5>{ida?.destiny}</h5>
                   </Col>
                 </Row>
               </Col>
               <Col md={2} xs={0} ></Col>
               {oneTravelSell.length > 1 && (
               <Col md={12}  className='goTravel'>
-                <h4>Vuelo de vuelta</h4>
+                <h4>Vuelta</h4>
                 <Row className='rowCards'>
                   <Col>
-                    <h5>{vuelta?.departure_date}</h5>
-                    <h5>{vuelta?.departure_time}</h5>
+                    <h5>{getDate(vuelta?.departure_date)}</h5>
+                    <h5>{getDate(vuelta?.departure_time)}</h5>
                     <p></p>
-                    <h5>{vuelta?.iata_code}</h5>
+                    <h5>{vuelta?.destiny}</h5>
                   </Col>
                   <Col>
                   <hr className='hrOneTravel'/>
                   </Col>
                   <Col>
-                    <h5>{vuelta?.arrival_date}</h5>
-                    <h5>{vuelta?.arrival_time}</h5>
+                    <h5>{getDate(vuelta?.arrival_date)}</h5>
+                    <h5>{getDate(vuelta?.arrival_time)}</h5>
                     <p></p>
-                    <h5>{ida?.iata_code}</h5>
+                    <h5>{vuelta?.origin}</h5>
                   </Col>
                 </Row>
               </Col>
@@ -153,7 +174,7 @@ export const OneTravel = () => {
       }
             </Row>      
             {/* BOTONES */}
-            <Row className='section3OneTravel'>
+            <Row className='section3OneTravel'>              
               <Col>
                   <Button onClick={()=>navigate(-1)}>VOLVER</Button>
               </Col>
@@ -169,16 +190,21 @@ export const OneTravel = () => {
                 </Button>
               </Col>
               <Col>
-                <Button>SWAPEAR</Button>
+                <Button onClick={handleBuyTravel}>SWAPEAR</Button>
               </Col>
-              {/* {user && user?.user_id === user?.seller_user_id && ( */}
+              {showSwapeado && (
+                <Swapeado handleCloseSwap={handleCloseSwap} showSwapeado={showSwapeado}/>
+              )}
+               {user && user?.user_id === ida?.seller_user_id && ( 
+                <>
                 <Col>
-                  <Button onClick={handleEditForm} variant="warning">MODIFICAR</Button>
+                  <Button onClick={handleEditForm} variant="warning">MODIFICAR IMPORTE</Button>
                 </Col>
                 <Col>
-                  <Button onClick={()=>deleteOneTravel(travel)} variant="danger">ELIMINAR</Button>
+                  <Button onClick={()=>deleteOneTravel(travel_id)} variant="danger">ELIMINAR</Button>
                 </Col>
-              {/* )} */}
+                </>
+               )} 
             </Row>
             {/* MAS INFORMACIÓN */}
             <Row className='section4OneTravel'>        
@@ -208,7 +234,7 @@ export const OneTravel = () => {
             <Col md={12} className='goTravel'>
               <h4>FORMULARIO DE EDICIÓN DE UN VIAJE</h4>             
                 {showPlaneForm && <EditOnePlane />}                            
-                <EditOnePlane/>                        
+                <EditOnePlane ida={ida} vuelta={vuelta}/>                        
                 {showTrainForm && <EditOneTrain/>}              
               <Row>
                 <Col><Button onClick={()=>setEditing(false)}>VOLVER</Button></Col>

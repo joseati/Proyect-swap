@@ -229,8 +229,10 @@ export const DelTravelAdmin = (travel) => {
                 <CardAllTravelsToBuy
                   travel={travel}
                   blockMsg={blockMsg}
+                  onUnlockTravel={onUnlockTravel}
+                  onDeleteTravel={onDeleteTravel}
                 />
-                {user.type === 2 && travel.admin_enabled === 0 && (
+                {/* {user.type === 2 && travel.admin_enabled === 0 && (
                   <Button
                     className="buttonn-admin-red"
                     onClick={() => onDeleteTravel(travel)}
@@ -245,7 +247,7 @@ export const DelTravelAdmin = (travel) => {
                   >
                     Desbloquear viaje
                   </Button>
-                )}
+                )} */}
               </div>
             ))}
             {filteredTrains.map((travel, i) => (
@@ -253,8 +255,10 @@ export const DelTravelAdmin = (travel) => {
                 <CardAllTravelsToBuy
                   travel={travel}
                   blockMsg={blockMsg}
+                  onUnlockTravel={onUnlockTravel}
+                  onDeleteTravel={onDeleteTravel}
                 />
-                {user.type === 2 && travel.admin_enabled === 0 && (
+                {/* {user.type === 2 && travel.admin_enabled === 0 && (
                   <Button
                     className="buttonn-admin-red"
                     onClick={() => onDeleteTravel(travel)}
@@ -269,7 +273,7 @@ export const DelTravelAdmin = (travel) => {
                   >
                     Desbloquear viaje
                   </Button>
-                )}
+                )} */}
               </div>
             ))}
           </Col>

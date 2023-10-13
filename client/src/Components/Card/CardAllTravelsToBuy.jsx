@@ -9,7 +9,8 @@ import axios from 'axios';
 
 
 
-export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
+
+export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteTravel}) => {
    const { user } = useContext(SwapContext)
    const [corazon, setCorazon] = useState(false)
 
@@ -84,15 +85,35 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
        <Col lg={12} className='bg-allTv allTravelsCard '>
       
       
- <Card className='card-All-Travels CardTravelsBorder'   >
+       <Card className={travel.type === 1 ? `card-All-Travels CardTravelsBorder` : `card-All-Trains CardTravelsBorder`}>
+  {user?.type === 2 && travel.admin_enabled === 0 && 
+  <Card.Header className='header-card cardBlackEffect'>
+                  <Button
+                    className="buttonn-admin-red"
+                    onClick={() => onDeleteTravel(travel)}
+                  >
+                    Bloquear viaje
+                  </Button>
+   
+  </Card.Header>}
+  {user?.type === 2 && travel.admin_enabled === 1 && 
+  <Card.Header className='header-card cardBlackEffect'>
+                  <Button
+                    className="buttonn-admin-green"
+                    onClick={() => onUnlockTravel(travel)}
+                  >
+                    Desbloquear viaje
+                  </Button>
+   
+  </Card.Header>}
    <div className='cardBlackEffect'>
-   <img
+   {user?.type === 1 && <img
         className='like'
         src={`/assets/images/${like}`}
         alt="Imagen"
         onClick={isLiked}
         style={{ cursor: 'pointer' }}
-      />
+      />}
  <Card.Text className='marginLeft'>
      Ofertado por: 
    </Card.Text>

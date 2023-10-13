@@ -3,7 +3,7 @@ import {
   FormLabel, FormControl, FormSelect, Button, Container
 } from 'react-bootstrap';
 
-export const ColFilters = () => {
+export const ColFilters = ({handleChange}) => {
   return (
     
       <Container className=' mt-5 bg' xs={5}>
@@ -19,52 +19,78 @@ export const ColFilters = () => {
                                               <img src="/assets/images/airline.png" alt="" />
                                               Compañía:
                                           </FormLabel>
-                                          <FormControl type="text" placeholder="Compañía" id="company" />
+                                          <FormControl
+                                           type="text"
+                                          placeholder="Compañía" 
+                                          onChange={handleChange}
+                                          name='company_name'
+                                          id="company" />
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
                                               <img src="/assets/images/arrivals.png" alt="" />
                                               Precio de venta:
                                           </FormLabel>
-                                          <FormControl type="number" placeholder="Precio" id="salePrice" />
+                                          <FormControl 
+                                          type="number"
+                                            placeholder="Precio"
+                                            onChange={handleChange}
+                                            id="salePrice"
+                                            name="price"  />
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
                                               <img src="/assets/images/calendar(1).png" alt="" />
                                               Fecha salida:
                                           </FormLabel>
-                                          <FormControl type="date" id="departureDate" />
+                                          <FormControl 
+                                          type="date" 
+                                          onChange={handleChange}
+                                          id="departureDate"
+                                          name="departure_date" />
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
                                               <img src="/assets/images/departures.png" alt="" />
                                               Origen:
                                           </FormLabel>
-                                          <FormControl type="text" placeholder="Origen" id="origin" />
+                                          <FormControl 
+                                          type="text"
+                                            placeholder="Origen"
+                                            onChange={handleChange}
+                                             id="origin"
+                                             name='origin' />
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
                                               <img src="/assets/images/arrivals.png" alt="" />
                                               Destino:
                                           </FormLabel>
-                                          <FormControl type="text" placeholder="Destino" id="destination" />
+                                          <FormControl 
+                                          type="text"
+                                           placeholder="Destino" 
+                                           id="destination"
+                                           onChange={handleChange}
+                                           name='destination' />
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
-                                          <FormLabel>
+                                          <FormLabel htmlFor='orderbyPrice'>
                                               <img src="/assets/images/discount.png" alt="" />
-                                              Descuento:
+                                              Precio:
                                           </FormLabel>
-                                          <FormSelect id="discount">
-                                              <option value="50">Elija el descuento</option>
-                                              <option value="50">Más de 50%</option>
-                                              <option value="40">De 40 a 50 %</option>
-                                              <option value="30">De 30 a 40 %</option>
-                                              <option value="20">De 20 a 30 %</option>
-                                              <option value="10">De 10 a 20 %</option>
-                                              <option value="0">De 0 a 10 %</option>
+                                          
+                                          <FormSelect 
+                                            id="orderbyPrice"
+                                            onChange={handleChange}
+                                            name='filterByPrice'
+                                            >
+                                             <option value="de menor a mayor precio"> menor a mayor precio</option>
+                                             <option value="de mayor a menor precio"> mayor a menor precio</option>
                                           </FormSelect>
+                                          
+                                          
                                       </FormGroup>
-                                      <Button className='btn-filter'>Aplicar filtros</Button>
+                                      {/* <Button onClick={} className='btn-filter'>Aplicar filtros</Button> */}
                                   </Form>
                               </Col>
                           </Accordion.Body>
