@@ -10,7 +10,9 @@ import axios from 'axios';
 
 
 export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
-   
+   const { user } = useContext(SwapContext)
+   const [corazon, setCorazon] = useState(false)
+
   let departure_date = 0
   let arrival_date = 0
   // Utilizamos una funcion de utils para separar la parte que no nos interesa y guardar la que nos interesa en una variable
@@ -20,7 +22,21 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
   
 }
 
-  const { user } = useContext(SwapContext)
+    useEffect(()=>{
+      const user_temp = JSON.stringify(user)
+       axios
+       .get(`http://localhost:4000/users/getFavoritos/${user_temp}`)
+       .then((res)=>console.log(res))
+       .catch((err)=>console.log(err))
+       const liked = localStorage.getItem('likedTravel_' + travel.travel_product_id);
+
+  if (liked === 'true') {
+    setLike('heart2.svg');
+    setCorazon(true)
+  }
+  
+    },[])
+
   const [like, setLike] = useState('heart1.svg')
 
   const isLiked = () => {
@@ -30,24 +46,34 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
       const {travel_product_id} = travel
       const {user_id} = user
 
-    if (like === 'heart1.svg') {
+    if (corazon === false) {
       axios
     .post('http://localhost:4000/users/favoritos', {user_id, travel_product_id})
-    .then((res)=>console.log(res))
+    .then((res) => {
+        console.log(res);
+        setLike('heart2.svg');
+        setCorazon(true)
+        // Update local storage to reflect the like
+        localStorage.setItem('likedTravel_' + travel_product_id, true);
+      })
     .catch((err)=>console.log(err))
 
-      setLike('heart2.svg');
-    } else {
+    } else if (corazon === true){
       axios
     .post('http://localhost:4000/users/deleteFavoritos', {user_id, travel_product_id})
-    .then((res)=>console.log(res))
-    .catch((err)=>console.log(err))
+    .then((res) => {
+      console.log(res);
       setLike('heart1.svg');
+      setCorazon(false)
+      // Update local storage to reflect the dislike
+      localStorage.setItem('likedTravel_' + travel_product_id, false);
+    })
+    .catch((err)=>console.log(err))
     }
     }
     
   };
-
+   console.log(like)
   
 //  console.log("Una tarjeta", travel)
 
@@ -81,7 +107,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
    <Card.Title> {travel.destiny} - {travel?.origin} </Card.Title>
  
    <Row className='d-flex flex-row dateCard'>   
-    <Col xs={12} sm={3} md={4} xl={3} >
+    <Col xs={12} sm={4} md={4} xl={4} >
   <Card.Text>
     <h6>Fecha de ida:</h6>
   </Card.Text>
@@ -90,7 +116,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
   </Card.Text>
 
       </Col>
-      <Col xs={12} sm={3} md={4} xl={3}>
+      <Col xs={12} sm={4} md={4} xl={4}>
       <Card.Text>
    <h6>Fecha de vuelta:</h6>
   </Card.Text>
@@ -98,7 +124,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg}) => {
   {arrival_date}
   </Card.Text>
       </Col>
-      <Col xs={12} sm={3} md={4} xl={3}>
+      <Col xs={12} sm={4} md={4} xl={4}>
   <Card.Text>
       <h6>Pasajeros :</h6>
    </Card.Text>
