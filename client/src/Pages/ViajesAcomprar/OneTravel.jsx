@@ -19,6 +19,7 @@ export const OneTravel = () => {
   const [editing, setEditing] = useState(false)  
   const [showPlaneForm, setShowPlaneForm] =useState(false)
   const [showTrainForm, setShowTrainForm] =useState(false)
+  const [like, setLike] = useState('heart1.svg')
   const [showSwapeado, setShowSwapeado] = useState(false);
 
   // Show del model Swapeado
@@ -77,6 +78,30 @@ export const OneTravel = () => {
       .catch((err)=>console.log(err))
   }   
       
+  const isLiked = () => {
+    if (user) {
+      
+      
+      const {user_id} = user
+      const travel_product_id =  parseInt(travel_id)
+      console.log(travel_product_id)
+    if (like === 'heart1.svg') {
+      axios
+    .post('http://localhost:4000/users/favoritos', {user_id, travel_product_id})
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
+
+      setLike('heart2.svg');
+    } else {
+      axios
+    .post('http://localhost:4000/users/deleteFavoritos', {user_id, travel_product_id})
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
+      setLike('heart1.svg');
+    }
+    }
+    
+  };
   return (
     <Col>
     {/* DATOS PRINCIPALES VIAJE */}
@@ -154,7 +179,15 @@ export const OneTravel = () => {
                   <Button onClick={()=>navigate(-1)}>VOLVER</Button>
               </Col>
               <Col>
-                <Button>GUARDAR</Button>
+                <Button onClick={isLiked}>GUARDAR
+                <img
+        className='like'
+        src={`/assets/images/${like}`}
+        alt="Imagen"
+        onClick={isLiked}
+        style={{ cursor: 'pointer' }}
+      />
+                </Button>
               </Col>
               <Col>
                 <Button onClick={handleBuyTravel}>SWAPEAR</Button>
