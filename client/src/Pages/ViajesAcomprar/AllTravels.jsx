@@ -102,7 +102,7 @@ export const AllTravels = () => {
             .get(`http://localhost:4000/travels/filterTrainsTobuy/${temp}`)
             .then((res)=> {
                 console.log(res.data)
-                // setAllTrainTravel(res.data);
+                setAllTrainTravel(res.data);
             })
             .catch((err) => console.log(err))
           }
