@@ -76,12 +76,11 @@ nav{
  
   .custom-nav-link1, .custom-nav-link2 {
     margin-top: 5px;
-    
+    border-radius: 50px;
     &:hover  {
         fill: #005a8d;
         font-weight: 500;
         font-size: 1.1em;       
-        border-radius: 50px;
         background-color: #c0dff1;
         transition: background-color 0.2s, transform 0.2s, font-size 0.2s; 
         transform: translateY(-5px);  

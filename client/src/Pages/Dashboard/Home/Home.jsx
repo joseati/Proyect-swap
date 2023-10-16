@@ -14,7 +14,9 @@ export const Home = () => {
     setIndex(selectedIndex);
   };
 
+
   const { prepareDataPlane, prepareDataTrain} = useContext(SwapContext)
+
 
   // Dividir la matriz en grupos de 2
 
