@@ -1,9 +1,11 @@
+@import "../../Colors/colors";
+
 .padre{
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  background: linear-gradient(to left,  #005a8d, #89c9d3c4);
+  background: linear-gradient(to left,  $azul, $home-h5-h4);
   padding: 0vh 10% 0vh 10% ;
   
   
@@ -51,13 +53,13 @@
 }
 
 .nuestraMision{
-  color:  #005a8d;
+  color:  $azul;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   h4{
-    color: #89c9d3c4;
+    color: $home-h5-h4;
   }
   p{
     font-size: 24px;
@@ -93,7 +95,7 @@
   }
 }
 .revolucionando2{
-  color:  #005a8d;
+  color:  $azul;
   display: flex;
   flex-direction: column;
   justify-content: right;
@@ -101,7 +103,7 @@
   text-align: right;
   gap: 10px;
   h4{
-    color: #89c9d3c4;
+    color: $home-h5-h4;
   }
   p{
     line-height: 2rem;
@@ -112,7 +114,7 @@
 }
 
 .padre4{
-  color:  #005a8d;
+  color:  $azul;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +126,7 @@
     
   }
   h4{
-    color: #89c9d3c4;
+    color: $home-h5-h4;
   }
   p{
     line-height: 2rem;

@@ -62,7 +62,25 @@ export const UserApp = () => {
     setVentasButton(false);
     setFavoritosButton(false);
     setEditButton(false)
+    //objeto para mandar los datos al back
+    const compra = {
+      user_id: user.user_id,
+      destiny: searchTravelBought
+    }
+    let compraFinal = JSON.stringify(compra)
+    // Realiza una solicitud al servidor para buscar viajes por destino
+    axios
+    .get(`http://localhost:4000/users/searchByDestination/${compraFinal}`)
+    .then((res) => {
+      // Actualiza el estado con los resultados de la búsqueda
+      // setTravelsBought(res.data);
+      setArrayTempPlanes(res.data.resultPlaneUser)
+      setArrayTempTrains(res.data.resultTrain)
+      console.log(res)
+    })
+    .catch((err) => console.log(err));
   };
+  
   const showVentas = () => {
     setVentasButton(true);
     setFavoritosButton(false);
@@ -235,7 +253,6 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
-       
       })
       .catch((err) => console.log(err))
     }
@@ -251,7 +268,9 @@ export const UserApp = () => {
   // const filteredTrains = arrayTempTrains?.filter((train) => 
   //   train.destiny.toLowerCase().includes(searchTravelBought.toLowerCase())
   // );
+
     const onSearchTravelBought = () => {
+
       //objeto para mandar los datos al back
       const compra = {
         user_id: user.user_id,
@@ -270,12 +289,13 @@ export const UserApp = () => {
       })
       .catch((err) => console.log(err));
     };
-    console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
 
   return (
     <>
     
-      <Col xs={{ order: 'last' }} md={{ order: 'first' }} className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
+
+      <Col xs={{ order: 'last' }} md={{ order: 'first' }} className={user?.type === 1 ? "infoUser" : "infoAdmin"} xl={{ order: 'first' }}>
+
         <h1>{user?.name}</h1>
 
         {user?.type === 2 && <h2>Administrador/a</h2>}
@@ -362,7 +382,7 @@ export const UserApp = () => {
                 onClick={closeSesion}><img src="/assets/images/logout.png" alt="icono-stats" /></Button>
             </div>}
       </Col>
-      {user?.type === 1 && <Col className="screenUser" xs={12} xl={9}>
+      {user?.type === 1 && <Col className="screenUser" xs={12} md={9} xl={9}>
         <h1>Datos Viaje {user?.name}</h1>
 
         {/* VISTA USUARIO */}
@@ -598,7 +618,7 @@ export const UserApp = () => {
       </Col>}
 
       {/* VISTAS DEL ADMIN  */}
-      {user?.type === 2 && statsButton  && <Col className="screenUser" xs={12} xl={9}>
+      {user?.type === 2 && statsButton  && <Col className="screenUser" xs={12} md={8} xl={9}>
           <Row>
             {/* <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
                   <Row className="stats-section justify-content-center">
@@ -646,7 +666,7 @@ export const UserApp = () => {
           </Row>
         </Col>}
 
-      {user?.type === 2 && delTravel && <Col className="screenUser" xs={12} xl={9}>
+      {user?.type === 2 && delTravel && <Col className="screenUser" xs={12} md={8} xl={9}>
           <Row>
               <Col>
                 <h4>Borrar viaje</h4>
@@ -655,7 +675,7 @@ export const UserApp = () => {
           </Row>
         </Col>}
 
-      {user?.type === 2 && unableUser && <Col className="screenUser" xs={12} xl={9}>
+      {user?.type === 2 && unableUser && <Col className="screenUser" xs={12} md={8} xl={9}>
         <Row>
             
             <Col>

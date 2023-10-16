@@ -50,7 +50,9 @@ export const SwapProvider = (props) => {
         setPrepareDataTrain(res.data.resultTrain)       
       } )
       .catch( (err) => console.log(err) )
+
   }, [reset]) 
+
   
   return (
 

@@ -1,8 +1,10 @@
+@import "../../../Colors/colors";
+
 //estilos encabezados
 .h2-head{
   font-size: 60px;
   text-align: center;
-  color: #005a8d;
+  color: $azul;
   margin-top: 5vh;
 }
 
@@ -22,7 +24,7 @@
 
 .head-accord{ 
   font-weight: bold;
-  color: #005a8d;
+  color: $azul;
   font-size: 20px;
   padding: 1vw;
 }

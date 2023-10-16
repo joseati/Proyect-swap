@@ -1,3 +1,4 @@
+@import "../../../Colors/colors";
 .fondoCF {
   background-color: #e7f4f6;
   padding: 10px;
@@ -10,7 +11,7 @@
   padding-top: 50px;
   h1 {
     font-size: 60px;
-    color: #005a8d;
+    color: $azul;
     font-weight: 700;
   }
 }
@@ -29,7 +30,7 @@
     padding: 40px 40px 0px 40px;
     text-align: center;
     color: #2d78a1;
-    border-bottom: 1px solid #005A8D;
+    border-bottom: 1px solid $azul;
     margin-bottom: 3vh;
     h4{
       font-size: 16px;
@@ -42,13 +43,13 @@
       margin-bottom: 3vh;
       font-size: 22px;
       font-style: normal;
-      color: #005a8d;
+      color: $azul;
     }
   }
   
   .btnCF {
-    background-color: #ffc700 !important;
-    color: #005a8d;
+    background-color: $amarillo !important;
+    color: $azul;
     font-size: 28px;
     font-weight: 800;
     line-height: 120%;
@@ -58,7 +59,7 @@
     padding: 15px;
   
     &:hover {
-      background-color: #005a8d !important;
+      background-color: $azul !important;
       color: white !important;
       transition: 200ms ease-in-out;
     }
@@ -73,7 +74,7 @@
 }
 .spanWord2 {
   font-weight: bold;
-  color: #89C9D3;
+  color: $azul-cielo;
   font-size: 42px;
 }
 
@@ -85,7 +86,7 @@
     &::before{
     content: counter(list-counter) ". "; // Añade un punto y un espacio después del número
     counter-increment: list-counter;
-    color: #89C9D3;
+    color:  $azul-cielo;
     font-weight: 800;
     font-size: 1.4em;
   }

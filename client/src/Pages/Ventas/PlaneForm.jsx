@@ -2,7 +2,6 @@ import { Row, Col, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 
-
 export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityDestiny_tp2,handleChangeDestiny_tp2 ,airportCityDestiny ,airportCity,handleChangeAirport , shwoGoAndBack, handleChange,handleChangeDestiny, inputFormPlane }) => {
 
 
@@ -12,10 +11,9 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
   return (
     <>
       <Form>
-        <Row>
+        <Row className="p-5">
           <Col md={6} xs={12} className="col-plane-1">
-            
-            {/*  ------------ */}
+            <Row>
             <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="">
                 Aeropuerto de salida (ciudad de origen)
@@ -28,6 +26,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 className="custom-input">
               </Form.Control>
               </Form.Group>
+              
               <Form.Group>
               <Form.Label className="label" htmlFor="origin_airpoty_id">
                   Elige aeropuerto
@@ -148,10 +147,10 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 value={inputFormPlane.commentaries}
               />
             </Form.Group>
-     
- 
+            </Row>
           </Col>
           <Col md={6} xs={12} className="col-plane-2">
+            <Row>
             <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="plane_travel_id">
                 Tipo de billete{" "}
@@ -408,6 +407,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 value={inputFormPlane.client_price}
               />
             </Form.Group>
+            </Row>
           </Col>
         </Row>
       </Form>
