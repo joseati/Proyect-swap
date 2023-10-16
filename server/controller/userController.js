@@ -199,12 +199,14 @@ class UserController {
       }
     })
 
+
   }
+
   getFavoritos = (req, res) =>{
     console.log(req.params);
     const user_temp = JSON.parse(req.params.user_temp)
     
-    
+
     let sqlGetFavoritos = `SELECT * FROM likes WHERE user_id = ${user_temp}`
     connection.query(sqlGetFavoritos, (err, result) => {
       if (err) {
@@ -218,5 +220,4 @@ class UserController {
 }
 }
 
-
-module.exports = new UserController()
+module.exports = new UserController();
