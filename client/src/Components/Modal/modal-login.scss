@@ -1,14 +1,15 @@
+@import "../../Colors/colors";
 .modal-login{
   p{
     margin-bottom: -10px;
   }
   .already{
-    color: #89C9D3;
+    color: $azul-cielo;
     font-size: 20px;
     line-height: 1.2;
   }
   .enter{
-    color: #005a8d;
+    color:$azul;
     font-weight: 700;
     font-size: 40px;
     box-sizing: border-box;
@@ -16,7 +17,7 @@
   }
   .input-login{
     margin-top: 15px;
-    border: 1px solid #196a98 !important;
+    border: 1px solid $azul-claro !important;
     height: 48px;
     border-radius: 4px !important;
     padding: 0.375rem 0.75rem;
@@ -27,8 +28,8 @@
   }
   .btn-login{
     margin-top: 2vh;
-    background-color: #ffc700;
-    color: #005a8d;
+    background-color: $amarillo;
+    color: $azul;
     border: none;
     border-radius: 50px;
     font-weight: bold;
@@ -39,7 +40,7 @@
   
     &:hover{
       color: white;
-      background-color:#005a8d ;
+      background-color:$azul ;
     }
     }
   
@@ -52,11 +53,11 @@
     }
     .link-register{
       cursor: pointer;
-      color: #005a8d;
+      color: $azul;
     }
     .link-register{
       cursor: pointer;
-      color: #005a8d;
+      color:$azul;
     }
         
 }

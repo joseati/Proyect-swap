@@ -1,17 +1,16 @@
 import {
     Col, Row, Accordion} from 'react-bootstrap';
-import { useState } from 'react';
 
 export const SwapSelect = ({ selectedSwap, handleSwapClick }) => {
     return (
         <Accordion defaultActiveKey="0" className='filter1'>
-                                  <Accordion.Item style={{background:"transparent", border:"none"}} eventKey="0">
+                                  <Accordion.Item eventKey="0">
 
             <Accordion.Header className='header-title'>
                 <h2 className='title-filter1'>Tipos de Swap</h2>
             </Accordion.Header>
 
-            <Accordion.Body style={{background:"transparent"}}>
+            <Accordion.Body>
                 <Row className='row-swap'>
                     {/* MAPEO DE CADA COL */}
                     {[

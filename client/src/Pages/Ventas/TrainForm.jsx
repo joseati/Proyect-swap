@@ -4,6 +4,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
     <Form>
       <Row>
         <Col md={6} xs={12} className="d-flex align-items-end flex-column">
+          <Row>
        {/*  ------------ */}
        <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="">
@@ -138,9 +139,10 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               />
             </Form.Group>
      
- 
+            </Row>
           </Col>
           <Col md={6} xs={12} className="d-flex align-items-start flex-column">
+            <Row>
             <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="train_travel_id">
                 Tipo de billete{" "}
@@ -396,7 +398,8 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 onChange={handleChange}
                 value={inputFormTrain.client_price}
               />
-            </Form.Group>    
+            </Form.Group>
+            </Row>
         </Col>
       </Row>
     </Form>

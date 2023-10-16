@@ -1,3 +1,5 @@
+@import "../../Colors/colors";
+
 nav{
     &.navbar-scrolled {
       position: fixed;
@@ -11,14 +13,14 @@ nav{
   .goToUser{
     padding: 8px;
     background-color: transparent;
-    color: #005a8d;
-    border: 1px solid #89C9D3;
+    color: $azul;
+    border: 1px solid $azul-cielo;
     border-radius: 40px;
     font-size: 1.3em;
     min-height: 42px;
     &:hover{
       color: white !important; 
-      background-color: #005a8d !important;
+      background-color: $azul !important;
     }
     img{
       width: 22px;
@@ -27,8 +29,8 @@ nav{
   .btn-nav{
     margin-left: 2vw;
     margin-top: 2vh;
-    background-color: #ffc700;
-    color: #005a8d;
+    background-color:$amarillo;
+    color: $azul;
     border: none;
     border-radius: 50px;
     font-weight: bold;
@@ -44,10 +46,12 @@ nav{
 
 .navbLink {
   font-size: 12px;
+  border-radius: 50px;
   font-weight: 700;
   color: #0d6efd;
   display: flex;
   justify-content: space-around;
+  
   .btn-contact {
     font-weight: 400;
     line-height: 1.5;
@@ -58,9 +62,10 @@ nav{
     font-size: 1rem;
     border-radius: 50px;
     border: 1px solid transparent;
-    background-color: #005a8d;
+    background-color: $azul;
     min-height: 42px;
-   max-width: 55%;
+    max-width: 55%;
+    
     img {
       width: 22px;
       margin-right: 10px;
@@ -68,48 +73,36 @@ nav{
   
     &:hover {
       font-weight: 500;
-      background-color: #c0dff1;
+      background-color: $hover-NavbLink;
       transition: background-color 0.2s, transform 0.2s, font-size 0.2s;  
       transform: translateY(-5px);  
     }
   }
- 
-  .custom-nav-link1, .custom-nav-link2 {
-    margin-top: 5px;
+
+  .custom-nav-link1, .custom-nav-link2,.custom-nav-link-img {
+    border-radius: 50px;
     
-    &:hover  {
-        fill: #005a8d;
-        font-weight: 500;
-        font-size: 1.1em;       
-        border-radius: 50px;
-        background-color: #c0dff1;
-        transition: background-color 0.2s, transform 0.2s, font-size 0.2s; 
-        transform: translateY(-5px);  
+    &:hover {
+      fill: $azul;
+      font-weight: 500;
+      font-size: 1.1em;       
+      background-color: $hover-NavbLink;
+      transition: background-color 0.2s, transform 0.2s, font-size 0.2s; 
+      transform: translateY(-5px);  
     }
 
     img {
-        width: 22px;  
-        height: auto;
-        margin-right: 10px;
+      width: 22px;  
+      margin-right: 10px;
     }
-}
-.custom-nav-link-img img {
-  width: 22px;  
-  height: auto;
-  margin-right: 10px;
+  }
 
+  .custom-nav-link-img img {
+    width: 22px;  
+    margin-right: 10px;
+  }
+}
 
-}
-.custom-nav-link-img:hover {
-  fill: #005a8d;
-  font-weight: 500;
-  font-size: 1.1em;       
-  border-radius: 50px;
-  background-color: #c0dff1;
-  transition: background-color 0.2s, transform 0.2s, font-size 0.2s; 
-  transform: translateY(-5px);  
-}
-}
 
 .flex-mobile{
   span{
@@ -118,7 +111,7 @@ nav{
 }
 .buttonNav {
   border-radius: 25px !important;
-  background-color: #005a8d !important;
+  background-color: $azul !important;
   margin-left: 25px;
 }
 
@@ -131,7 +124,7 @@ nav{
   align-items: center;
   text-align: center;
   margin-right: 10px;
-  background-color: #005a8d;
+  background-color: $azul;
   h4 {
     color: white;
   }

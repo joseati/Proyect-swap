@@ -1,6 +1,7 @@
+@import "../../Colors/colors";
 .footer {
-  border-top: 2px solid #005a8d;
-  border-bottom: 2px solid #005a8d;
+  border-top: 2px solid $azul;
+  border-bottom: 2px solid $azul;
   margin-top: 5vh;
   margin-bottom: 5vh;
   .title-col {
@@ -10,7 +11,7 @@
     font-size: 24px;
     text-align: left;
     line-height: 24px;
-    color: #005a8d;
+    color: $azul;
   }
   p {
     cursor: pointer;
@@ -20,7 +21,7 @@
     text-align: left;
     line-height: 21px;
     &:hover{
-      color: #FFC700;
+      color: $amarillo;
       translate: 5px;
     }
   }
@@ -28,7 +29,7 @@
 .title-swap {
   font-size: 14px;
   text-align: right;
-  color: #005a8d;
+  color: $azul;
 }
 .logo-swap {
   margin-top: 2vh;
@@ -49,13 +50,13 @@ ul {
   .iconStyle {
     width: 40px;
     height: 40px;
-    border: #005a8d;
+    border: $azul;
     border-radius: 40px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #005a8d;
+    background: $azul;
     margin-right: 20px;
   }
   
@@ -94,7 +95,7 @@ ul {
   .p-footer {
     margin-bottom: -3vh;
     margin-right: 0.6vw;
-    color: #005a8d;
+    color: $azul;
   }
   .logos{
     padding: 35px;
