@@ -1,39 +1,36 @@
-.travel-section{
+@import "../../Colors/colors";
+
+.travel-section {
   height: auto;
   padding: 2vw;
 }
 
-//botones
-.buttonn-admin{
-  background-color: #005a8d !important;
+// botones
+.buttonn-admin,
+.buttonn-admin-red,
+.buttonn-admin-green {
   border-radius: 25px !important;
+  &:hover {
+    background-color: $amarillo !important;
+    border: 1px solid $amarillo !important;
+    color: black !important;
+    font-weight: bold !important;
+  }
 }
-.buttonn-admin-red{
-  background-color: #8d0000 !important;
-  border-radius: 25px !important;
+
+.buttonn-admin {
+  background-color: $azul !important;
+}
+
+.buttonn-admin-red,
+.buttonn-admin-green {
   border: none !important;
-  
 }
-.buttonn-admin-green{
-  background-color: #4CAF50 !important;
-  border-radius: 25px !important;
-  border: none !important;
+
+.buttonn-admin-red {
+  background-color: $button-admin-red !important;
 }
-.buttonn-admin:hover {
-  background-color: #ffc700 !important;
-  border: 1px solid #ffc700 !important;
-  color: black !important;
-  font-weight: bold !important;
-}
-.buttonn-admin-red:hover{
-  background-color: #ffc700 !important;
-  border: 1px solid #ffc700 !important;
-  color: black !important;
-  font-weight: bold !important;
-}
-.buttonn-admin-green:hover{
-  background-color: #ffc700 !important;
-  border: 1px solid #ffc700 !important;
-  color: black !important;
-  font-weight: bold !important;
+
+.buttonn-admin-green {
+  background-color: $button-admin-green !important;
 }

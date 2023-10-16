@@ -291,10 +291,7 @@ export const UserApp = () => {
       .catch((err) => console.log(err));
     };
 
-
-
     console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
-
 
 
   return (

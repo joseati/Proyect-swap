@@ -1,3 +1,5 @@
+@import "../../Colors/colors";
+
 .contactaConNosotrosPadre{
   padding:10vh 15vw 10vh 15vw !important;
   
@@ -23,14 +25,14 @@ col{
     font-weight: 700;
     font-size: 32px;
     line-height: 42px;
-    color: #005A8D;
+    color: $azul;
     padding-top: 5%;
   }
   a{
-    color: #005A8D;
+    color: $azul;
     font-weight: 700;
   &:hover{
-    color:#FFC700 ;
+    color:$amarillo ;
   }
 }
 }

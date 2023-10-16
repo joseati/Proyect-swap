@@ -1,4 +1,4 @@
-
+@import "../../Colors/colors";
 .container-sell {
   overflow: hidden;
   border-radius: 20px;
@@ -9,14 +9,14 @@
 }
 h3 {
   margin-top: 2vh;
-  color: #89c9d3;
+  color: $azul-cielo;
 }
 
 .swapealo {
   margin-right: 50px;
   width: 300px;
-  background-color: #ffc700;
-  color: #005a8d; 
+  background-color: $amarillo;
+  color: $azul; 
   font-family: "Nunito";
   font-weight: 800;
   font-size: 28px;
@@ -70,15 +70,15 @@ h3 {
 }
 
 .title-form {
-  color: #005a8d;
+  color:$azul;
   font-size: 40px;
 }
 .label {
-  color: #005a8d;
+  color: $azul;
   font-size: 16px;
 }
 .custom-input {
-  border: 1px solid #196a98 !important;
+  border: 1px solid $azul-claro !important;
   border-radius: 4px !important;
   padding: 0.375rem 0.75rem;
   font-weight: 400;
@@ -86,20 +86,18 @@ h3 {
 }
 
 .custom-select {
-  border: 1px solid #196a98 !important;
+  border: 1px solid $azul-claro !important;
   height: 48px;
   border-radius: 4px !important;
   padding: 0.375rem 0.75rem;
   font-weight: 400;
-  width: 400px;
-  max-width: 500px;
 }
 
 .buttons {
   .btn {
     margin-top: 8vh;
-    background-color: #ffc700;
-    color: #005a8d;
+    background-color: $amarillo;
+    color: $azul;
     font-weight: 800;
     line-height: 120%;
     font-size: 28px;
@@ -108,7 +106,7 @@ h3 {
     width: 25vw;
 
     &:hover {
-      background-color: #005a8d;
+      background-color: $azul;
       color: white !important;
       transition: 200ms ease-in-out;
     }
@@ -132,7 +130,7 @@ h3 {
 
   .sell-icon {
     display: flex;
-    flex-direction: column;  // Make this column for mobile
+    flex-direction: column;  
     align-items: center;
     justify-content: center;
 
@@ -141,12 +139,8 @@ h3 {
     }
 
     img {
-      margin-bottom: 1vh;  // Add some space between the image and the text
+      margin-bottom: 1vh;  
     }
-  }
-
-  .custom-input {
-    width: 200px !important;
   }
 
   .buttons {
@@ -155,7 +149,7 @@ h3 {
       font-size: 20px;
 
       &:hover {
-        background-color: #005a8d;
+        background-color: $azul;
         color: white !important;
         transition: 300ms ease-in-out;
       }

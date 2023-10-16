@@ -14,9 +14,7 @@ export const Home = () => {
     setIndex(selectedIndex);
   };
 
-
   const { prepareDataPlane, prepareDataTrain} = useContext(SwapContext)
-
 
   // Dividir la matriz en grupos de 2
 
@@ -166,7 +164,7 @@ export const Home = () => {
             </Carousel.Item>
             <Carousel.Item>
               <Col className="carouselHome">
-                <h3>Jose Antonio Acevedo Gomez</h3>
+                <h3>Jose Antonio Acevedo Gómez</h3>
                 <p>
                   Gracias a Swap Your Travel pude recuperar el dinero de un bono
                   de viaje. Tuve un trato muy directo con ellos y me aportaron
@@ -179,7 +177,7 @@ export const Home = () => {
             </Carousel.Item>
             <Carousel.Item>
               <Col className="carouselHome">
-                <h3>Sandra Garcia</h3>
+                <h3>Sandra García</h3>
                 <p>
                   No pude realizar un viaje a Madrid y la compañía aérea me dio
                   un bono de viaje en vez de reembolsarme el billete. Gracias a

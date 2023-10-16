@@ -331,7 +331,8 @@ const [ message , setMessage] = useState()
 
   return (
     <>
-
+      <main>
+        <section>
         <Col className="justify-content-center align-items-center d-flex flex-row">
           <Row md={12} xs={12} className="d-flex justify-content-center">
             <h2
@@ -347,10 +348,12 @@ const [ message , setMessage] = useState()
         selectedIcon={selectedIcon}
         handleImageClick={handleImageClick}
       />
+      </section>
       {/* SI SE ELIGE AVION SE MUESTRA ESTO */}
+      <section>
       {planeButton && (
         <>
-          <hr />
+          {/* <hr /> */}
           <h1 className="text-center title-form">
             Rellene los datos del billete de avión
           </h1>
@@ -373,7 +376,7 @@ const [ message , setMessage] = useState()
       {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
       {trainButton && (
         <>
-          <hr />
+          {/* <hr /> */}
           <h1 className="text-center title-form">
             Rellene los datos del billete de tren
           </h1>
@@ -389,8 +392,10 @@ const [ message , setMessage] = useState()
             shwoGoAndBack = { shwoGoAndBack }
             handleChange={handleTrainChange}
             inputFormTrain={inputFormTrain}
-          />{" "}
+          />
+       
         </>
+        
       )}
       <Row>
         <Col
@@ -411,6 +416,8 @@ const [ message , setMessage] = useState()
           </Button>
         </Col>
       </Row>
+      </section>
+      </main>
     </>
   );
 };

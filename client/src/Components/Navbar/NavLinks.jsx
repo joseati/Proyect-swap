@@ -5,11 +5,11 @@ export const NavLinks = ({handleClick}) => {
   return (
     <>
 
-      <Nav.Link  className="custom-nav-link1" as={Link} to="/todosLosViajes">
+      <Nav.Link style={{marginTop:"10px"}}  className="custom-nav-link1" as={Link} to="/todosLosViajes">
         <img src="/assets/images/arriba.svg" alt="" />
         COMPRAR VIAJES
       </Nav.Link>
-      <Nav.Link className="custom-nav-link2" as={Link} to="/viajes">
+      <Nav.Link style={{marginTop:"10px"}} className="custom-nav-link2" as={Link} to="/viajes">
         <img src="/assets/images/abajo.svg" alt="" />
         VENDER VIAJE
       </Nav.Link>
