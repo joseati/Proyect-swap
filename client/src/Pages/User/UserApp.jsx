@@ -422,8 +422,8 @@ console.log("LIKKKKKEEEEE",likes);
         {ventasButton && (
           <Row className="all-info-user">
             {(
-                travelsForSale.resultPlaneUser.length > 0 ||
-                travelsForSale.resultTrain.length > 0
+                travelsForSale?.resultPlaneUser.length > 0 ||
+                travelsForSale?.resultTrain.length > 0
               ) ? (
                     <>
                       {travelsForSale.resultPlaneUser.length > 0 &&
@@ -473,10 +473,10 @@ console.log("LIKKKKKEEEEE",likes);
                       <h2>Aún no tienes nada a la venta</h2>
                       <p>
                         Ve al apartado{" "}
-                        <a href="/viajes">
-                          Vender Viajes
+                        <a href="/todosLosViajes" onClick={handleNavigateToAT}>
+                          Comprar Viajes
                         </a>{" "}
-                        para vender tu primer viaje
+                        para guardar tu primer viaje
                       </p>
                     </>
                     )
