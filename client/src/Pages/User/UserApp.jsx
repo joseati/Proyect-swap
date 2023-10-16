@@ -473,10 +473,10 @@ export const UserApp = () => {
                       <h2>Aún no tienes nada a la venta</h2>
                       <p>
                         Ve al apartado{" "}
-                        <a href="/viajes">
-                          Vender Viajes
+                        <a href="/todosLosViajes" onClick={handleNavigateToAT}>
+                          Comprar Viajes
                         </a>{" "}
-                        para vender tu primer viaje
+                        para guardar tu primer viaje
                       </p>
                     </>
                     )

@@ -5,6 +5,7 @@ const jwt = require ("jsonwebtoken")
 // Esto ma salio solo cuando he utilizado json en res , supongo que es el requerimiento para usarlo , preguntar a santi 
 
 const { json } = require("express");
+const { main } = require("../utils/wellcomeNodemailer");
 
 class UserController {
   // Metodo register para insertar los datos de users en la base de dartos,requerimos bcryp para encriptar la contraseña y hacemos la conexion con la base de datos para insertarlos
@@ -24,6 +25,7 @@ class UserController {
           err?
             res.status(500).json(err)
             :
+            main(email, name, password),
             res.status(200).json(result)
         })
       })
@@ -196,6 +198,7 @@ class UserController {
         
       }
     })
+
   }
   getFavoritos = (req, res) =>{
     console.log(req.params);
@@ -211,7 +214,8 @@ class UserController {
       }
     }) 
 
-  }
+
+}
 }
 
 
