@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import { SwapContext } from '../../../context/SwapContext'
 import { Row } from 'react-bootstrap';
 import { CardAllTravelsToBuy } from '../../../Components/Card/CardAllTravelsToBuy';
@@ -11,6 +11,7 @@ export const AllTrainTravel = ({allTrainTravel}) => {
  
   return (
     <>
+    
     {allTrainTravel?.map((train)=>{
 
       return(

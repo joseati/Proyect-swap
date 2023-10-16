@@ -10,7 +10,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Estacion de salida (ciudad de origen)
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de ciudad de oirgen"
+              placeholder= "Ciudad de origen..."
                 name="origin"
                 onChange={handleChangeTrainStation}
                 value={inputFormTrain.origin}
@@ -19,7 +19,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="origin_trainStation_id">
-                  Elige Estacion
+                  Elige estación
               </Form.Label>
               <Form.Select
                 name="origin_trainStation_id"
@@ -48,7 +48,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Estacion de llegada (ciudad de destino)
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de Ciudad de destino"
+              placeholder= "Ciudad de destino..."
                 name = "destiny"
                 onChange={handleChangeTrainStationDestiny}
                 value={inputFormTrain.destiny}
@@ -57,8 +57,8 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Control>
               </Form.Group>
               <Form.Group>
-              <Form.Label htmlFor="destiny_trainStation_id">
-                  Elige Estacion
+              <Form.Label className="label" htmlFor="destiny_trainStation_id">
+                  Elige estación
               </Form.Label>
               <Form.Select
                 name="destiny_trainStation_id"
@@ -96,7 +96,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_date">
-                Fecha de Vuelta
+                Fecha de vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -160,14 +160,14 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
  {/* Fecha de vuelta si es ida y vuelta */}{console.log(shwoGoAndBack)}
  {shwoGoAndBack && <>
   <Form.Label className="label" htmlFor="plane_travel_id">
-               Informacion respecto al vuelo de vuelta
+               Información respecto al vuelo de vuelta
               </Form.Label>
               <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="">
                 Estación de salida 
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de ciudad de oirgen"
+              placeholder= "Ciudad de origen..."
                 // name="origin"
                 onChange={ handleChangeTrainStation_tp2}
                 // value={inputFormPlane.origin}
@@ -176,7 +176,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="origin_trainStation_id_tp2">
-                  Elige Estación
+                  Elige estación
               </Form.Label>
               <Form.Select
                 name="origin_trainStation_id_tp2"
@@ -205,7 +205,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Estación de llegada 
               </Form.Label>
               <Form.Control
-              placeholder= "nombre de Ciudad de destino"
+              placeholder= "Ciudad de destino..."
                 // name = "destiny"
                 onChange={handleChangeTrainStationDestiny_tp2}
                 // value={inputFormPlane.destiny}
@@ -214,8 +214,8 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Control>
               </Form.Group>
               <Form.Group>
-              <Form.Label htmlFor="destiny_trainStation_id_tp2">
-                  Elige Estacion
+              <Form.Label className="label" htmlFor="destiny_trainStation_id_tp2">
+                  Elige estación
               </Form.Label>
               <Form.Select
                 name="destiny_trainStation_id_tp2"
@@ -268,13 +268,13 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
 
             <Form.Group>
               <Form.Label className="label" htmlFor="compani_name_tp2">
-                  Nombre de la compañia
+                  Nombre de la compañía
               </Form.Label>
               <Form.Control
                 className="custom-input"
                 name="compani_name_tp2"
                 id="compani_name_tp2"
-                placeholder="Nombre compañia"
+                placeholder="Compañía"
                 type="text"
                 onChange={handleChange}
                 value={inputFormTrain.compani_name_tp2}
@@ -297,7 +297,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_date_tp2">
-                Fecha de Vuelta
+                Fecha de vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -342,13 +342,13 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
 
             <Form.Group>
               <Form.Label className="label" htmlFor="compani_name">
-                  Nombre de la compañia
+                  Nombre de la compañía
               </Form.Label>
               <Form.Control
                 className="custom-input"
                 name="compani_name"
                 id="compani_name"
-                placeholder="Nombre compañia"
+                placeholder="Compañía"
                 type="text"
                 onChange={handleChange}
                 value={inputFormTrain.compani_name}

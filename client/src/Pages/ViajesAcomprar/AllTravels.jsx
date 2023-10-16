@@ -9,11 +9,12 @@ import { SwapContext } from '../../context/SwapContext';
 import { CardAllTravelsToBuy } from '../../Components/Card/CardAllTravelsToBuy';
 import { SwapSelect } from './SwapSelect';
 import { ColFilters } from './ColFilters';
-
 // Styles
+import "../../Colors/_colors.scss"
 import "./allTravelsstyle.scss";
 import { AllPlaneTravel } from './PlaneTravel/AllPlaneTravel';
 import { AllTrainTravel } from './TrainTravel/AllTrainTravel';
+
 
 export const AllTravels = () => {
     const {  setReset, prepareDataPlane, prepareDataTrain, } = useContext(SwapContext);
@@ -25,6 +26,7 @@ export const AllTravels = () => {
     const [ inputFilter , setInputFilter ] = useState()
     const  [ allPlaneTravel, setAllPlaneTravel] = useState()
     const  [ allTrainTravel, setAllTrainTravel] = useState()
+
 
     useEffect(() => {
         setReset(true)
@@ -110,34 +112,33 @@ export const AllTravels = () => {
     }
     return (
         <>
-            <Container className='swap-type mt-4'>
-                <Row md={6} xs={12} >
-                    <Col className='d-flex align-items-center justify-content-center row-select' md={12} xs={12}>
-                <SwapSelect handleSwapClick={handleSwapClick} selectedSwap={selectedSwap} />
+    
+    <Container className='swap-type mt-4'>
+            <Row md={6} xs={12} >
+                <Col className='d-flex align-items-center justify-content-center row-select' md={12} xs={12}>
+                    <SwapSelect handleSwapClick={handleSwapClick} selectedSwap={selectedSwap} />
                 </Col>
-                </Row>
-         <Row  className='row-col-filters'>
-                <ColFilters
-                handleChange = {handleChange} />
-                <Button onClick={ onSubmitFilters} className='btn-filter'>Aplicar filtros</Button>
-                </Row>
-            </Container>
+            </Row>
 
+            <Row className='row-col-filters'>
+                <Col md={2} xs={12}>
+                    <ColFilters handleChange={handleChange} />
+                    <Button onClick={onSubmitFilters} className='btn-filter2'>Aplicar filtros</Button>
+                </Col>
 
-          
-                {showPlaneTickets && (<AllPlaneTravel
-                                        allPlaneTravel = {allPlaneTravel}/>)}
-                {showTrainTickets && <AllTrainTravel
-                                        allTrainTravel = {allTrainTravel}/>}
-           
-                {showAllTickets && <Col>
-                    {allTravelsToBuy?.map((travel, i) => (
+                <Col className='col-travels' md={10} xs={12}>
+                    {showAllTickets && allTravelsToBuy?.map((travel, i) => (
                         <Row key={i}>
                             <CardAllTravelsToBuy travel={travel} />
                         </Row>
                     ))}
-
-                </Col>}
+                    {showPlaneTickets && <AllPlaneTravel allPlaneTravel={allPlaneTravel} />}
+                    {showTrainTickets && <AllTrainTravel allTrainTravel={allTrainTravel} />}
+                </Col>
+            </Row>
+        </Container>
+           
+             
 
 
            

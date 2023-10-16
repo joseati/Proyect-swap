@@ -1,11 +1,11 @@
 nav{
-    // &.navbar-scrolled {
-    //   position: fixed;
-    //   top: 0;
-    //   width: 100%;
-    //   z-index: 1000; // Asegúrate de que esté encima de otros elementos
-    //   transition: all 0.3s; // Opcional: transición suave
-    // }
+    &.navbar-scrolled {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000; 
+      transition: all 0.3s; 
+    }
   
   
   .goToUser{

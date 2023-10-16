@@ -24,21 +24,23 @@ export const NavbarrApp = () => {
 }
 const [scrolled, setScrolled] = useState(false);
 
-// useEffect(() => {
-//   const handleScroll = () => {
-//     if (window.scrollY > 50) { // Ajusta este valor según lo que necesites
-//       setScrolled(true);
-//     } else {
-//       setScrolled(false);
-//     }
-//   };
+//USE EFFECT PARA HACER EL STICKY DEL NAV
 
-//   window.addEventListener("scroll", handleScroll);
+useEffect(() => {
+  const handleScroll = () => {
+    if (window.scrollY > 10) { 
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
   
-//   return () => {
-//     window.removeEventListener("scroll", handleScroll);
-//   };
-// }, []);
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
 
 
   const handleCloseModalLogin = () => {

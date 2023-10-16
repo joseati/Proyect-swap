@@ -235,12 +235,20 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
+<<<<<<< HEAD
+        console.log(response.data)
+=======
        
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
       })
       .catch((err) => console.log(err))
     }
 }, [user]);
+<<<<<<< HEAD
+console.log("LIKKKKKEEEEE",likes);
+=======
 
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
 // console.log("hola",travelsBought);
 // console.log("TRENES",arrayTempTrains);
 // console.log("AVIONES",arrayTempPlanes);
@@ -251,7 +259,17 @@ export const UserApp = () => {
   // const filteredTrains = arrayTempTrains?.filter((train) => 
   //   train.destiny.toLowerCase().includes(searchTravelBought.toLowerCase())
   // );
+<<<<<<< HEAD
+   
+
+
+
+
+
+ const onSearchTravelBought = () => {
+=======
     const onSearchTravelBought = () => {
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
       //objeto para mandar los datos al back
       const compra = {
         user_id: user.user_id,
@@ -270,7 +288,11 @@ export const UserApp = () => {
       })
       .catch((err) => console.log(err));
     };
+<<<<<<< HEAD
+    console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
+=======
 
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
 
   return (
     <>
@@ -368,15 +390,26 @@ export const UserApp = () => {
         {/* VISTA USUARIO */}
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
+<<<<<<< HEAD
+                <label style={{fontSize:"20px",fontWeight:"700",color:" #005a8d",marginBottom:"10px"}} htmlFor="search">Destino</label>
+                  <input
+                    type="text"
+                    placeholder="Buscar viajes comprados"
+=======
                 <label htmlFor="search">Destino</label>
                   <input
                     type="text"
                     placeholder="Buscar viajes comprados por destino"
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                     value={searchTravelBought}
                     onChange={handleSearch}
                     name='search'
                   />
                   <Button
+<<<<<<< HEAD
+                    style={{marginTop:"20px",marginBottom:"10vh"}}
+=======
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                     className='buttonn-admin'
                     onClick={onSearchTravelBought}
                   >Buscar viajes comprados</Button>
@@ -405,14 +438,14 @@ export const UserApp = () => {
                     </>
                    ) : (
                     <>
-                      <img src="/assets/images/avionamarillo.svg" alt="" />
+                      <img style={{width:"320px"}} src="/assets/images/avionamarillo.svg" alt="" />
                       <h2>Aún no has comprado nada</h2>
-                      <p>
-                        Ve al apartado{" "}
-                        <a href="/todosLosViajes" onClick={handleNavigateToAT}>
-                          Comprar Viajes
-                        </a>{" "}
-                        para adquirir tu primer viaje
+                      <p style={{fontSize:"18px"}}>
+                      Ve al apartado 
+                        <a style={{textDecoration:"none",padding:"0 5px 0 5px "}} href="/todosLosViajes" onClick={handleNavigateToAT}>
+                           Comprar Viajes
+                        </a> 
+                         para adquirir tu primer viaje.
                       </p>
                     </>
                     )
@@ -422,6 +455,18 @@ export const UserApp = () => {
         {ventasButton && (
           <Row className="all-info-user">
             {(
+<<<<<<< HEAD
+                travelsForSale?.resultPlaneUser?.length > 0 ||
+                travelsForSale?.resultTrain?.length > 0
+              ) ? (
+                    <>
+                      {travelsForSale?.resultPlaneUser?.length > 0 &&
+                        travelsForSale?.resultPlaneUser?.map((travel, i) => (
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        ))}
+                      {travelsForSale?.resultTrain?.length > 0 &&
+                        travelsForSale?.resultTrain?.map((travel, i) => (
+=======
                 travelsForSale?.resultPlaneUser.length > 0 ||
                 travelsForSale?.resultTrain.length > 0
               ) ? (
@@ -432,20 +477,23 @@ export const UserApp = () => {
                         ))}
                       {travelsForSale?.resultTrain.length > 0 &&
                         travelsForSale?.resultTrain.map((travel, i) => (
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
                     </>
                    ) : (
                     <>
-                      <img src="/assets/images/avionamarillo.svg" alt="" />
-                      <h2>Aún no tienes nada a la venta</h2>
-                      <p>
-                        Ve al apartado{" "}
-                        <a href="/viajes">
-                          Vender Viajes
-                        </a>{" "}
-                        para vender tu primer viaje
-                      </p>
+                      <div className="d-flex flex-column align-items-center justify-content-center">
+                        <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="" />
+                        <h2>Aún no tienes nada a la venta</h2>
+                        <p style={{fontSize:"18px"}}>
+                          Ve al apartado{" "}
+                          <a style={{textDecoration:"none",padding:"0 5px 0 5px "}} href="/viajes">
+                            Vender Viajes
+                          </a>{" "}
+                          para vender tu primer viaje.
+                        </p>
+                      </div>
                     </>
                     )
             }             
@@ -469,6 +517,16 @@ export const UserApp = () => {
                     </>
                    ) : (
                     <>
+<<<<<<< HEAD
+                      <div className="d-flex flex-column align-items-center">
+                      <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="" />
+                      <h2>Aún no tienes ningún producto en favoritos</h2>
+                      <p style={{fontSize:"18px"}}>
+                        Para guardar un producto, pulsa <img style={{width:"30px"}} src="/assets/images/heart1.svg" alt="corazón-favoritos" />.
+                        </p>
+                     </div>
+                     
+=======
                       <img src="/assets/images/avionamarillo.svg" alt="" />
                       <h2>Aún no tienes nada a la venta</h2>
                       <p>
@@ -478,16 +536,18 @@ export const UserApp = () => {
                         </a>{" "}
                         para guardar tu primer viaje
                       </p>
+>>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                     </>
                     )
             }           
           </Row>
         )}
-        {editButton &&(
+         {editButton &&(
           <Col className="d-flex justify-content-center">
           <Form className="formEdit">
               <h2>Editar usuario</h2>
-              <div className="d-flex justify-content-around form-inputs">
+              {/* elegir entre flex-column o como esta  */}
+              <div className="d-flex flex-column justify-content-around form-inputs">
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="nameInput">Nombre</Form.Label>
                     <Form.Control
@@ -520,7 +580,7 @@ export const UserApp = () => {
                       onChange={handleChange}
                   />
               </Form.Group>
-              <div className="d-flex justify-content-around form-inputs">
+              <div className="d-flex flex-column justify-content-around form-inputs">
               <Form.Group className="mb-3">
                   <Form.Label htmlFor="ident_num_Input">DIN</Form.Label>
                   <Form.Control 
@@ -577,16 +637,17 @@ export const UserApp = () => {
             <Toast>
               <Toast.Header onClick={() => setShowToast  (false)}>
            <img  src="holder.js/20x20?  text=%20" className="rounded me-2"  alt="" />
-            <strong style={{color:"red"}} className="me-auto">
-                Atencion!
+            <strong style={{color:"red",fontSize:"25px"}} className="me-auto">
+                Atención!
              </ strong>
 
-        <small>Borrar</small>
           </Toast.Header>
           <Toast.Body>
-            Estas seguro que quieres Borrar el usuario
-            <Button variant="danger" onClick={delLogicUser}> Borrar usuario</Button>
-            <Button onClick={() => setShowToast(false)}> Cancelar</Button>
+           <p style={{fontSize:"15px"}}>¿Estás seguro de que quieres borrar tu usuario?</p>
+            <div className="mt-3">
+              <Button style={{marginRight:"25px"}} variant="danger" onClick={delLogicUser}> Borrar usuario</Button>
+              <Button onClick={() => setShowToast(false)}> Cancelar</Button>
+            </div>
           </Toast.Body>
     </Toast>
     </> }
