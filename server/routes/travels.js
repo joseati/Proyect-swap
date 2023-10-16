@@ -49,4 +49,5 @@ router.get("/filterTrainsTobuy/:filtersTravel", TravelController.filterTrainsToB
 // http://localhost:4000/travels/buyOneTravel/:travel_id
 router.post("/buyOneTravel/:travel_id", TravelController.buyOneTravel)
 
+router.put("/editOneTravel", TravelController.editOneTravel)
 module.exports = router;

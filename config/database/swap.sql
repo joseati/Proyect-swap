@@ -23,8 +23,8 @@ CREATE TABLE user(
 
 SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;
 ALTER TABLE user modify column telephone varchar(20);
-
 select * from user;
+select * from likes;
 
 ALTER TABLE user modify column telephone varchar(20);
 
@@ -113,10 +113,16 @@ FROM plane_travel pt, train_travel tt, travel_product tp, user u
 LEFT JOIN tp on  tp.travel_product_id = pt.travel_product_id
 LEFT JOIN tp on  tp.travel_product_id = tt.travel_product_id;
 
+SELECT u.name, pt.company_name AS plane_company_name, pt.departure_date AS plane_departure_date, pt.arrival_date AS plane_arrival_date, tt.company_name AS train_company_name, tt.departure_date AS train_departure_date, tt.arrival_date AS train_arrival_date
+FROM travel_product tp
+LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id
+LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id
+JOIN user u ON u.user_id = tp.seller_user_id
+WHERE tp.is_deleted = 0;
 
 
-
-
+select * from travel_product;
+DELETE FROM travel_product WHERE travel_product_id = 38;
 select * from airport;
 CREATE TABLE airport (
     airport_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -129,11 +135,12 @@ CREATE TABLE airport (
 
 
 
+delete from travel_product where travel_product_id = 45;
 
 select * from plane_travel;
 
 
-
+SELECT u.name,tp.destiny, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0  AND pt.departure_date = "2023-10-11"  GROUP BY tp.travel_product_id;
 
 
 CREATE TABLE plane_travel(
@@ -222,6 +229,9 @@ SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISIO
 
 
 
+SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL;
+select * from travel_product;
+SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > 2023-01-01 AND creation_date < 2023-01-31; 
 SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;
 select * from travel_product;
 delete from train_travel;
@@ -315,8 +325,9 @@ WHERE
 SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'; 
  SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
  
-
-
+select * from user;
+select * from travel_product;
+delete from travel_product where travel_product_id > 4;
 INSERT INTO purchase (travel_product_id, user_id, amount)
 VALUES
     (1, 1, 550.00),

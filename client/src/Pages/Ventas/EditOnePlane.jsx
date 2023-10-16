@@ -1,43 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import "./editOnePlane.scss"
+import axios from 'axios'
 
 const initialState = {
   original_price:"",
   commentaries: "", 
   exchange_rate:"",
-  client_price:""
+  client_price:"",
+
+
 }
 
-export const EditOnePlane = ({ida, vuelta}) => {
-  console.log(ida);
+export const EditOnePlane = ({setSaveEditOnetravel, ida, vuelta}) => {
+  // console.log(setSaveEditOnetravel);
   const [editInputs, setEditInputs] = useState(initialState)
 
   //Controlar los inputs:
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditInputs({...editInputs, [name]: value})
+    if(e.target.type == "text"){
+      setEditInputs({...editInputs, [name]: value})
+      setSaveEditOnetravel({...editInputs,[name]: value})
     }
-
+    }
+console.log(editInputs);
   // Traer los datos incorporados para modificar: 
   useEffect(()=>{
     setEditInputs({...editInputs, 
       original_price: ida.original_price,
       commentaries: ida.commentaries,
       exchange_rate: ida.exchange_rate,
-      client_price: client_price
+      client_price: ida.client_price
     });
   }, [])
 
-  // Botón para hacer volcar los nuevos datos del viaje en la Base de Datos.
-  // Hay que sacar esta funcionalidad a ONETRAVEL que es donde está el botón y pasarsela a esa página.  
-  const onSubmit = (e) =>{
-    e.preventDefault();
-    axios
-      .post(`http://localhost:4000/travels/editOneTravel`)
-      .then((res)=>console.log(res))
-      .catch((err)=>console.log(err))
-  }
+
 
   return (
     <Row >
@@ -53,7 +51,7 @@ export const EditOnePlane = ({ida, vuelta}) => {
                 id="original_price"
                 placeholder="Precio original billete/persona(€)"
                 onChange={handleChange}
-                value={ida.original_price}
+                value={!handleChange ? ida.original_price : editInputs.original_price}
               />
             </Form.Group>  
             <Form.Group>
@@ -66,7 +64,7 @@ export const EditOnePlane = ({ida, vuelta}) => {
                 id="commentaries"
                 placeholder="Otras especificaciones"
                 onChange={handleChange}
-                value={ida.commentaries}
+                value={!handleChange ? ida.commentaries : editInputs.commentaries}
               />
             </Form.Group>
           </Col>
@@ -82,7 +80,8 @@ export const EditOnePlane = ({ida, vuelta}) => {
                 placeholder="  Tasa de cambio de titularidad"
                 type="text"
                 onChange={handleChange}
-                value={ida.exchange_rate}
+                value={!handleChange ? ida.exchange_rate
+                : editInputs.exchange_rate}
               />
             </Form.Group>
             <Form.Group>
@@ -96,7 +95,8 @@ export const EditOnePlane = ({ida, vuelta}) => {
                 placeholder="Introduce la cantidad"
                 type="text"
                 onChange={handleChange}
-                value={ida.client_price}
+                value={!handleChange ? ida.client_price
+                  : editInputs.client_price}
               />
             </Form.Group>
           </Col>            

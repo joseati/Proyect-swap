@@ -46,7 +46,7 @@ export const SwapProvider = (props) => {
     axios
       .get("http://localhost:4000/travels/getAllTravelsTobuy")
       .then( (res) => {
-        console.log(res.data);
+       
         // setAllTravelsToBuy(res.data)
         setPrepareDataPlane(res.data.resultPlane)
         setPrepareDataTrain(res.data.resultTrain)

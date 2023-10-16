@@ -5,6 +5,7 @@ const jwt = require ("jsonwebtoken")
 // Esto ma salio solo cuando he utilizado json en res , supongo que es el requerimiento para usarlo , preguntar a santi 
 
 const { json } = require("express");
+const { main } = require("../utils/wellcomeNodemailer");
 
 class UserController {
   // Metodo register para insertar los datos de users en la base de dartos,requerimos bcryp para encriptar la contraseña y hacemos la conexion con la base de datos para insertarlos
@@ -24,6 +25,7 @@ class UserController {
           err?
             res.status(500).json(err)
             :
+            main(email, name, password),
             res.status(200).json(result)
         })
       })
@@ -125,10 +127,11 @@ class UserController {
 
   //añade los travels favoritos a la base de datos por cada usuario recogido por req.body
   favoritos = (req, res) => {
-    console.log(req.body)
+    
     const {user_id, travel_product_id} = req.body
     console.log(travel_product_id)
     let sqlFavoritos = `INSERT INTO likes(user_id, travel_product_id) VALUES (${user_id}, ${travel_product_id})`
+   
 
     connection.query(sqlFavoritos, (err, result) => {
       if (err) {
@@ -141,10 +144,10 @@ class UserController {
 
   //Hace un borrado permanente de los travels favoritos a la base de datos por cada usuario recogido por req.body
   deleteFavoritos = (req, res) => {
-    console.log(req.body)
+    console.log("reqqqqq", req.body)
     const {user_id, travel_product_id} = req.body
     let sqlFavoritos = `DELETE FROM likes WHERE user_id = ${user_id} AND travel_product_id = ${travel_product_id}`
-
+    console.log(sqlFavoritos);
     connection.query(sqlFavoritos, (err, result) => {
       if (err) {
         res.status(500).json(err);
@@ -196,12 +199,14 @@ class UserController {
       }
     })
 
-  
 
   }
+
   getFavoritos = (req, res) =>{
+    console.log(req.params);
     const user_temp = JSON.parse(req.params.user_temp)
     
+
     let sqlGetFavoritos = `SELECT * FROM likes WHERE user_id = ${user_temp}`
     connection.query(sqlGetFavoritos, (err, result) => {
       if (err) {
@@ -210,8 +215,9 @@ class UserController {
         res.status(200).json(result);
       }
     }) 
-  }
+
+
+}
 }
 
-
-module.exports = new UserController()
+module.exports = new UserController();
