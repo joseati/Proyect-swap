@@ -34,7 +34,7 @@ export const AllTravels = () => {
         setAllTrainTravel(prepareDataTrain)
     },[prepareDataPlane, prepareDataTrain])
     
-    console.log(allPlaneTravel);
+    // console.log(allPlaneTravel);
     const handleSwapClick = (SwapType) => {
         setSelectedSwap(SwapType);
         if (SwapType === "avion") {

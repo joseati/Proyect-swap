@@ -1,6 +1,7 @@
 const connection = require("../config/db");
 const express= require("express")
 const { json } = require("express");
+const { dropOutTravel } = require("../utils/dropOutTravel");
 
 class TravelController {
 
@@ -313,7 +314,7 @@ class TravelController {
     WHERE travel_product_id = ${travel_id};`
 
     connection.query(sql, (err, result) =>{
-      err ? res.status(500).json(err) : res.status(200).json(result)
+      err ? res.status(500).json(err) : dropOutTravel(travel_id),res.status(200).json(result)
     })
   }
 
