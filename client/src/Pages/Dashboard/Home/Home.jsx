@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React,{ useContext, useState,useEffect} from 'react'
-=======
-import React,{ useContext, useEffect, useState } from 'react'
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
 import { Button, Col, Row } from 'react-bootstrap'
 import './home.scss'
 import Carousel from 'react-bootstrap/Carousel';
@@ -17,21 +13,13 @@ export const Home = () => {
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-<<<<<<< HEAD
-  const {prepareDataPlane,prepareDataTrain} = useContext(SwapContext)
-=======
   const { prepareDataPlane, prepareDataTrain} = useContext(SwapContext)
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
   // Dividir la matriz en grupos de 2
 
   const [allTravelsToBuy, setAllTravelsToBuy] = useState()
   useEffect(()=>{
     setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
   }, [prepareDataPlane, prepareDataTrain])
-<<<<<<< HEAD
-=======
-
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
   return (
     <Col>
       <Row className="homeSection1">
