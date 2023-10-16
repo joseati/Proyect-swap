@@ -54,8 +54,9 @@ export const GraficoEstAdmin = ({prepareDataChart}) => {
   const totalImport = "Nº de Importes(total)"
   const avgImport = "Media de Importes(total)"
   const allTravels = "Nº de Viajes creados (total)"
+  const tasaventas = "Nº de Viajes vendidos / nº viajes creados  "
 
- const labels = [totalViajes, totalImport, avgImport, allTravels]
+ const labels = [totalViajes, totalImport, avgImport, allTravels, tasaventas]
 //  console.log(prepareDataChart);
 
  const data = {
@@ -71,12 +72,25 @@ export const GraficoEstAdmin = ({prepareDataChart}) => {
     
   ],
  }
+ const dataBar = {
+  labels,
+  datasets: [
+    {
+      fill: true,
+      label: 'Total',
+      data: prepareDataChart,
+      borderColor: 'rgb(155, 99, 132)',
+      backgroundColor: 'rgba(55, 199, 132, 0.9)',
+    },
+    
+  ],
+ }
  const [show, setShow] = useState(true)
   return (
     <>
     <Button variant="info"className='mt-1' onClick={()=> setShow(!show)}>Ver { show ? "Grafico de barras": "Grafico de Lineas"}</Button>
     {show ?  <Line data={data} options={options}/> 
-    :<Bar data={data} options={options}/>}
+    :<Bar data={dataBar} options={options}/>}
     </>
     
   )
