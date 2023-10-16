@@ -12,7 +12,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
   return (
     <>
       <Form>
-        <Row>
+        <Row className="p-5">
           <Col md={6} xs={12} className="col-plane-1">
             
             {/*  ------------ */}

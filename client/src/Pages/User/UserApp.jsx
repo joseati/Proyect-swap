@@ -62,7 +62,25 @@ export const UserApp = () => {
     setVentasButton(false);
     setFavoritosButton(false);
     setEditButton(false)
+    //objeto para mandar los datos al back
+    const compra = {
+      user_id: user.user_id,
+      destiny: searchTravelBought
+    }
+    let compraFinal = JSON.stringify(compra)
+    // Realiza una solicitud al servidor para buscar viajes por destino
+    axios
+    .get(`http://localhost:4000/users/searchByDestination/${compraFinal}`)
+    .then((res) => {
+      // Actualiza el estado con los resultados de la búsqueda
+      // setTravelsBought(res.data);
+      setArrayTempPlanes(res.data.resultPlaneUser)
+      setArrayTempTrains(res.data.resultTrain)
+      console.log(res)
+    })
+    .catch((err) => console.log(err));
   };
+  
   const showVentas = () => {
     setVentasButton(true);
     setFavoritosButton(false);
@@ -235,7 +253,7 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
-       
+
       })
       .catch((err) => console.log(err))
     }
@@ -272,12 +290,19 @@ export const UserApp = () => {
       })
       .catch((err) => console.log(err));
     };
+
+
+
     console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
+
+
 
   return (
     <>
     
+
       <Col xs={{ order: 'last' }} md={{ order: 'first' }} className={user?.type === 1 ? "infoUser" : "infoAdmin"} xl={{ order: 'first' }}>
+
         <h1>{user?.name}</h1>
 
         {user?.type === 2 && <h2>Administrador/a</h2>}
