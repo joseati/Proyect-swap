@@ -5,20 +5,15 @@ import "./modal-register.scss"
 export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser, show, showMsgReg, setShowMsgReg }) => {
 
   const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
-
-
   
   return (
     <>
- 
-
     <Modal className='modal-div' show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <div className="d-flex flex-column p-4 p-lg-3 border-bottom-0 align-items-start">
           <Modal.Title className='modal-title'>¡Únete! Es gratis</Modal.Title>
           <p>Compra y vende viajes en un solo click</p>
         </div>
-
       </Modal.Header>
       <Modal.Body>
       <>
@@ -51,7 +46,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
          </Form.Group>
      
        {showMsgReg && <p style={{color: "red", fontWeight: "bold", fontSize: "20px", marginTop: "2vw"}}>email o password no válidos</p>}
-       <Form.Group className="d-flex align-items-center">
+      <Form.Group className="d-flex align-items-center">
   <Form.Check 
     type="checkbox" 
     label={
@@ -63,7 +58,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
     checked={hasAcceptedTerms}
     onChange={(e) => setHasAcceptedTerms(e.target.checked)}
   />
-</Form.Group>
+      </Form.Group>
 </div>
        <div className="d-flex align-items-center justify-content-center"><Button onClick={onSubmit}  disabled={!hasAcceptedTerms} className='btn-register'>Regístrate</Button></div>
   

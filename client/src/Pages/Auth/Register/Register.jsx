@@ -26,7 +26,6 @@ const handleChange = (e) =>{
  
 // seteamos el estado para mandarlo al back
   setInputUser({...inputUser, [name]: value})
-  console.log(inputUser);
 }
 
 const onSubmit = (e) =>{
@@ -42,7 +41,6 @@ const onSubmit = (e) =>{
     .post("http://localhost:4000/users/register", inputUser)
   
     .then( (res) =>{
-      console.log(res.data)
       handleClose()
       navigate("/")
       setInputUser("")

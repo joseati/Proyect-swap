@@ -253,7 +253,6 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
-
       })
       .catch((err) => console.log(err))
     }
@@ -290,9 +289,6 @@ export const UserApp = () => {
       })
       .catch((err) => console.log(err));
     };
-
-    console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
-
 
   return (
     <>
