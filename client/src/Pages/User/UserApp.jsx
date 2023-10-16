@@ -137,7 +137,7 @@ export const UserApp = () => {
           setBanned(res.data.users.filter((e)=>e.enabled === 0).length)
           setLastUserReg(res.data.users[res.data.users.length-1].register_date)
           setNumUsersMonth(res.data.users_month.length)
-          console.log("estos son los users", res.data)
+        
         })
         .catch((err)=>console.log(err))
 
@@ -235,12 +235,12 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
-        console.log(response.data)
+       
       })
       .catch((err) => console.log(err))
     }
 }, [user]);
-console.log("LIKKKKKEEEEE",likes);
+
 // console.log("hola",travelsBought);
 // console.log("TRENES",arrayTempTrains);
 // console.log("AVIONES",arrayTempPlanes);
@@ -270,7 +270,7 @@ console.log("LIKKKKKEEEEE",likes);
       })
       .catch((err) => console.log(err));
     };
-    console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
+
 
   return (
     <>
@@ -426,12 +426,12 @@ console.log("LIKKKKKEEEEE",likes);
                 travelsForSale?.resultTrain.length > 0
               ) ? (
                     <>
-                      {travelsForSale.resultPlaneUser.length > 0 &&
-                        travelsForSale.resultPlaneUser.map((travel, i) => (
+                      {travelsForSale?.resultPlaneUser.length > 0 &&
+                        travelsForSale?.resultPlaneUser.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
-                      {travelsForSale.resultTrain.length > 0 &&
-                        travelsForSale.resultTrain.map((travel, i) => (
+                      {travelsForSale?.resultTrain.length > 0 &&
+                        travelsForSale?.resultTrain.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
                     </>

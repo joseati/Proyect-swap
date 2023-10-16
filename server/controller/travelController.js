@@ -469,6 +469,21 @@ filterAllPlanesTobuy = ( req, res ) => {
     })
   }
 
+  editOneTravel = (req, res) => {
+    console.log(req.body);
+    const {travel_product_id} = req.body.ida
+    const {original_price, commentaries, exchange_rate, client_price} = req.body.saveEditOnetravel
+
+    let sql = `UPDATE travel_product SET original_price = ${parseFloat(original_price)}, commentaries = "${commentaries}", exchange_rate = ${parseFloat(exchange_rate)}, client_price = ${parseInt(client_price)} WHERE travel_product_id = ${travel_product_id}`
+
+    connection.query(sql, (err, result) => {
+      err ?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
 }
 
 module.exports = new TravelController();
