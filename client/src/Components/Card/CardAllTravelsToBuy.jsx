@@ -26,24 +26,27 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
 
     useEffect(()=>{
       if(user){
-        // console.log(user)
+
+        // console.log(user);
         const {user_id} = user
         const user_temp = JSON.stringify(user_id)
-       axios
-       .get(`http://localhost:4000/users/getFavoritos/${user_temp}`)
-       .then((res)=>console.log(res))
-       .catch((err)=>console.log(err))
-       const liked = localStorage.getItem('likedTravel_' + travel.travel_product_id);
+        axios
+        .get(`http://localhost:4000/users/getFavoritos/${user_temp}`)
+        .then((res)=>console.log(res))
+        .catch((err)=>console.log(err))
+        const liked = localStorage.getItem('likedTravel_' + travel.travel_product_id);
+
         if (liked === 'true') {
           setLike('heart2.svg');
           setCorazon(true)
         }
       }
-      
-  
+
+     
     },[corazon, like])
 
-  
+ 
+
 
   const isLiked = () => {
     if (user) {

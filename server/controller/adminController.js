@@ -4,7 +4,7 @@ const connection = require('../config/db');
 
 class AdminController {
   //Método get para traer los datos de usuarios a la vista de estadísticas del Admin 
-
+  
   getUsersData = (req, res) => {
     let actualDate = new Date()
     let actualMonth = actualDate.getMonth() + 1
@@ -124,6 +124,555 @@ class AdminController {
       res.status(200).json(result)
     })
   }
+
+  getAllSell = (req, res) => {
+    let sql = "SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL"
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravel = (req, res) => {
+    let sql = "SELECT COUNT(travel_product_id) AS num FROM travel_product where is_deleted = 0 and admin_enabled = 0"
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImport = (req, res) => {
+
+    let sql = "SELECT SUM(client_price) AS num FROM travel_product where buyer_user_id IS NOT NULL"
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAvgImport = (req, res) => {
+
+    let sql = "SELECT AVG(client_price) AS num FROM travel_product where buyer_user_id IS NOT NULL"
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      console.log(result);
+      res.status(200).json(result)
+    })
+  }
+
+  // estadisticas de total de venta por meses
+  getAllSellJ = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-01-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-01-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllSellF = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-02-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-02-27";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllSellMa = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-03-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-03-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllSellAp = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-04-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-04-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllSellMa = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-05-01 "AND creation_date < "${AdminController.ACTUAL_YEAR}-05-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllSellJun = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-06-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-06-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllSellJul = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-07-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-07-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllSellAug = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-08-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-08-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllSellSep = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-09-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-09-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllSellOct = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-10-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-10-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllSellNov = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-11-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-11-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllSellDic = (req, res) => {
+    let sql = `SELECT COUNT(*) AS num FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-12-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-12-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  // Suma de importes mensuales vendidos
+
+  getAllImportJ = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-01-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-01-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImportF = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-02-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-02-27";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImportMa = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-03-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-03-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImportAp = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-04-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-04-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImportMa = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-05-01 "AND creation_date < "${AdminController.ACTUAL_YEAR}-05-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImportJun = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-06-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-06-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllImportJul = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-07-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-07-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllImportAug = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-08-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-08-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllImportSep = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-09-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-09-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImportOct = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-10-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-10-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllImportNov = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-11-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-11-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllImportDic = (req, res) => {
+    let sql = `SELECT SUM(client_price) AS sumClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-12-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-12-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  // Media de importes mensuales vendidos
+
+  getAllAvgImportJ = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-01-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-01-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllAvgImportF = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-02-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-02-27";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllAvgImportMa = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-03-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-03-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllAvgImportAp = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-04-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-04-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllAvgImportMa = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-05-01 "AND creation_date < "${AdminController.ACTUAL_YEAR}-05-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllAvgImportJun = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-06-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-06-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllAvgImportJul = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-07-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-07-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllAvgImportAug = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-08-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-08-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllAvgImportSep = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-09-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-09-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllAvgImportOct = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-10-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-10-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllAvgImportNov = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-11-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-11-30";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllAvgImportDic = (req, res) => {
+    let sql = `SELECT AVG(client_price) AS avgClientPrice FROM travel_product where buyer_user_id IS NOT NULL and creation_date > "${AdminController.ACTUAL_YEAR}-12-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-12-31";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  // 
+   // estadisticas de total de productos subid por meses
+   getAllTravelJ = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-01-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-01-31 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravelF = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-02-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-02-27 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravelMa = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-03-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-03-31 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravelAp = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-04-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-04-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravelMa = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-05-01 "AND creation_date < "${AdminController.ACTUAL_YEAR}-05-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravelJun = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-06-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-06-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllTravelJul = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-07-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-07-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllTravelAug = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-08-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-08-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllTravelSep = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-09-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-09-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravelOct = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-10-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-10-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
+  getAllTravelNov = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-11-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-11-30 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+  getAllTravelDic = (req, res) => {
+    let sql = `SELECT COUNT(travel_product_id) AS num FROM travel_product where creation_date > "${AdminController.ACTUAL_YEAR}-12-01" AND creation_date < "${AdminController.ACTUAL_YEAR}-12-31 and is_deleted = 0 and admin_enabled = 0";`
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      err?
+      res.status(500).json(err)
+      :
+      res.status(200).json(result)
+    })
+  }
+
 }
+
+AdminController.ACTUAL_YEAR = 2023
 
 module.exports = new AdminController()
