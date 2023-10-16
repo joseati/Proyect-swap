@@ -19,11 +19,11 @@ export const OneTravel = () => {
   const [editing, setEditing] = useState(false)  
   const [showPlaneForm, setShowPlaneForm] =useState(false)
   const [showTrainForm, setShowTrainForm] =useState(false)
+  const [like, setLike] = useState('heart1.svg')
   const [showSwapeado, setShowSwapeado] = useState(false);
-
+  const [ saveEditOnetravel, setSaveEditOnetravel] = useState()
   // Show del model Swapeado
-  const handleCloseSwap = () => setShowSwapeado(false);
-  const handleShowSwap = () => setShowSwapeado(true);
+  const handleCloseSwap = () => setShowSwapeado(false);  
 
   // Trae la información para mostrar de un viaje. 
   useEffect(()=>{
@@ -48,7 +48,7 @@ export const OneTravel = () => {
     }
   }
 
-  console.log(oneTravelSell);
+  // console.log(oneTravelSell);
   const ida = oneTravelSell[0];
   let vuelta = {};
   if (oneTravelSell.length !== 1){
@@ -66,7 +66,57 @@ export const OneTravel = () => {
       })
       .catch((err) => console.log(err));
   }
+
+  // Handle para la compra de una viaje a la venta
+  const handleBuyTravel = () => {
+    const {user_id} = user
+    axios
+      .post(`http://localhost:4000/travels/buyOneTravel/${travel_id}`, {user_id, travel_id})
+      .then((res)=> {
+        setShowSwapeado(true)
+      })
+      .catch((err)=>console.log(err))
+  }   
       
+  const isLiked = () => {
+    if (user) {
+      
+      
+      const {user_id} = user
+      const travel_product_id =  parseInt(travel_id)
+      console.log(travel_product_id)
+    if (like === 'heart1.svg') {
+      axios
+    .post('http://localhost:4000/users/favoritos', {user_id, travel_product_id})
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
+
+      setLike('heart2.svg');
+    } else {
+      axios
+    .post('http://localhost:4000/users/deleteFavoritos', {user_id, travel_product_id})
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
+      setLike('heart1.svg');
+    }
+    }
+    
+  };
+  //   // Botón para hacer volcar los nuevos datos del viaje en la Base de Datos.
+  
+  const onSubmit = (e) =>{
+    console.log(saveEditOnetravel);
+    console.log(ida);
+    e.preventDefault();
+    if(saveEditOnetravel){
+      axios
+      .put(`http://localhost:4000/travels/editOneTravel`, {ida, saveEditOnetravel})
+      .then((res)=>console.log(res))
+      .catch((err)=>console.log(err))
+    }
+    
+    
+  }
   return (
     <Col>
     {/* DATOS PRINCIPALES VIAJE */}
@@ -74,9 +124,9 @@ export const OneTravel = () => {
           <>
             <Row className='section1OneTravel'>
             <Col md={4} xs={12} className='col1'>
-              {ida?.plane_travel_id ? 
+              {ida?.type === 1 ? 
                 (<img className='imgProduct' src="/assets/images/placeholder-avion.jpg" alt="avion" /> ): 
-                (<img className='imgProduct' src="/assets/images/placeholder-tren.jpg" alt="avion" /> )
+                (<img className='imgProduct' src="/assets/images/placeholder-tren.jpg" alt="tren" /> )
                }
             </Col>
             <Col md={7} xs={12} className='colSection1OneTravel'>
@@ -144,19 +194,32 @@ export const OneTravel = () => {
                   <Button onClick={()=>navigate(-1)}>VOLVER</Button>
               </Col>
               <Col>
-                <Button>GUARDAR</Button>
+                <Button onClick={isLiked}>GUARDAR
+                <img
+        className='like'
+        src={`/assets/images/${like}`}
+        alt="Imagen"
+        onClick={isLiked}
+        style={{ cursor: 'pointer' }}
+      />
+                </Button>
               </Col>
               <Col>
-                <Button onClick={handleShowSwap}>SWAPEAR</Button>
+                <Button onClick={handleBuyTravel}>SWAPEAR</Button>
               </Col>
-              {/* {user && user?.user_id === user?.seller_user_id && ( */}
+              {showSwapeado && (
+                <Swapeado handleCloseSwap={handleCloseSwap} showSwapeado={showSwapeado}/>
+              )}
+               {user && user?.user_id === ida?.seller_user_id && ( 
+                <>
                 <Col>
-                  <Button onClick={handleEditForm} variant="warning">MODIFICAR</Button>
+                  <Button onClick={handleEditForm} variant="warning">MODIFICAR IMPORTE</Button>
                 </Col>
                 <Col>
                   <Button onClick={()=>deleteOneTravel(travel_id)} variant="danger">ELIMINAR</Button>
                 </Col>
-              {/* )} */}
+                </>
+               )} 
             </Row>
             {/* MAS INFORMACIÓN */}
             <Row className='section4OneTravel'>        
@@ -186,11 +249,11 @@ export const OneTravel = () => {
             <Col md={12} className='goTravel'>
               <h4>FORMULARIO DE EDICIÓN DE UN VIAJE</h4>             
                 {showPlaneForm && <EditOnePlane />}                            
-                <EditOnePlane/>                        
+                <EditOnePlane setSaveEditOnetravel = {setSaveEditOnetravel} ida={ida} vuelta={vuelta}/>                        
                 {showTrainForm && <EditOneTrain/>}              
               <Row>
                 <Col><Button onClick={()=>setEditing(false)}>VOLVER</Button></Col>
-                <Col><Button variant="success">GUARDAR</Button></Col>
+                <Col><Button onClick={onSubmit} variant="success">GUARDAR</Button></Col>
               </Row>
             </Col>        
           </Row>

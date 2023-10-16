@@ -10,7 +10,7 @@ import axios from "axios";
 import {getDate} from "../../Utils/getDateTime"
 import { initialValueTrain  } from "../../Utils/initialValueTrain";
 
-console.log(initialValueTrain);
+
 const initialValue = {
   // Valores insert de travel_product
   origin:"", 

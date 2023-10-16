@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   gap: 3vh;
   img{
-    width: 400px !important;
+    width: 400px;
   }
   .homeCol1{
     display: flex;
@@ -63,7 +63,7 @@
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  padding: 8vh 10% 8vh 10% ;
+  padding: 8vh 0vw 8vh 0vw ;
   flex-wrap: wrap;
   gap: 3vh;
   .azulAmarillo{
@@ -96,6 +96,9 @@
       justify-content: center;
     }
   }
+  .divHomeSubSection1{
+    padding: 0vh 9% 0vh 9%;
+  }
   .homeSubSection1{
     display: flex;
   justify-content: center;
@@ -110,6 +113,7 @@
     justify-content: center;
      align-items: center;
      display: flex;
+     text-align: center;
      flex-direction: column;
      color: white;
      padding: 4vh;
@@ -134,7 +138,7 @@
 .homeSection3{
   padding: 0vh 15% 4vh 15%;
   justify-content: center;
-  align-items: end;
+
   .iconosHome{
     display: flex;
     flex-direction: column;
@@ -143,7 +147,6 @@
       width: 80px;
       height: 70px;
     }
-  
     a{
       padding-top: 10px;
       font-weight: 800;
@@ -151,7 +154,6 @@
       color: #005a8d;
       font-weight: bold;
       text-decoration: none;
-      text-align: center;
     }
     a:hover{
       color: #ffc700;
@@ -262,7 +264,7 @@
     }
   }
   .homeSection2{
-    padding: 8vh 10% 8vh 10% ;
+    padding: 8vh 0vw 8vh 0vw ;
   }
   
   
@@ -303,7 +305,7 @@
   .homeSection1{
     .homeCol1{
       img{
-        width: 350px;
+        width: 300px;
       }
     }
   }

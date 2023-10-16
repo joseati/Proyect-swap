@@ -5,6 +5,7 @@ const jwt = require ("jsonwebtoken")
 // Esto ma salio solo cuando he utilizado json en res , supongo que es el requerimiento para usarlo , preguntar a santi 
 
 const { json } = require("express");
+const { main } = require("../utils/wellcomeNodemailer");
 
 class UserController {
   // Metodo register para insertar los datos de users en la base de dartos,requerimos bcryp para encriptar la contraseña y hacemos la conexion con la base de datos para insertarlos
@@ -24,6 +25,7 @@ class UserController {
           err?
             res.status(500).json(err)
             :
+            main(email, name, password),
             res.status(200).json(result)
         })
       })
@@ -125,13 +127,15 @@ class UserController {
 
   //añade los travels favoritos a la base de datos por cada usuario recogido por req.body
   favoritos = (req, res) => {
-    console.log(req.body)
+    
     const {user_id, travel_product_id} = req.body
+    console.log(travel_product_id)
     let sqlFavoritos = `INSERT INTO likes(user_id, travel_product_id) VALUES (${user_id}, ${travel_product_id})`
+   
 
     connection.query(sqlFavoritos, (err, result) => {
       if (err) {
-        res.status(500).json(err);
+       res.status(500).json(err); 
       } else {
         res.status(200).json(result);
       }
@@ -140,10 +144,10 @@ class UserController {
 
   //Hace un borrado permanente de los travels favoritos a la base de datos por cada usuario recogido por req.body
   deleteFavoritos = (req, res) => {
-    console.log(req.body)
+    console.log("reqqqqq", req.body)
     const {user_id, travel_product_id} = req.body
     let sqlFavoritos = `DELETE FROM likes WHERE user_id = ${user_id} AND travel_product_id = ${travel_product_id}`
-
+    console.log(sqlFavoritos);
     connection.query(sqlFavoritos, (err, result) => {
       if (err) {
         res.status(500).json(err);
@@ -152,7 +156,68 @@ class UserController {
       }
     })
   }
+
+
+  searchTravelOneUser = (req, res) => {
+    console.log(req.params)
+    const temp = JSON.parse(req.params.compraFinal)
+    const  {user_id, destiny } = temp
+    // console.log(temp)
+    // console.log(user_id)
+    // console.log(destiny)
+    let sqlPlaneUser = `SELECT tp.*, pt.*, user.user_id , user.name 
+    FROM travel_product tp, plane_travel pt, user 
+    WHERE ( tp.travel_product_id = pt.travel_product_id ) 
+    and tp.seller_user_id = user.user_id 
+    AND tp.admin_enabled = 0 
+    AND tp.is_deleted = 0 
+    AND tp.buyer_user_id = ${user_id} 
+    AND tp.destiny LIKE '%${destiny}%'
+    group by tp.travel_product_id;`
+    connection.query( sqlPlaneUser,(err1,resultPlaneUser) => {
+      if(err1){
+        console.log(err1);
+      }else{
+        
+          let sqlTrain = `SELECT tp.*, tt.*, user.user_id , user.name 
+          FROM travel_product tp, train_travel tt, user
+          WHERE (tp.travel_product_id = tt.travel_product_id ) 
+          and tp.seller_user_id = user.user_id 
+          AND tp.admin_enabled = 0 
+          AND tp.is_deleted = 0 
+          AND tp.buyer_user_id = ${user_id}
+          AND tp.destiny LIKE '%${destiny}%' 
+          group by tt.travel_product_id;`
+          connection.query(sqlTrain, (err2, resultTrain) => {
+            err2?
+             res.status(500).json(err2)
+             :
+              res.status(200).json({resultPlaneUser,resultTrain})
+            //  console.log({resultPlaneUser,resultTrain});
+          })
+        
+      }
+    })
+
+
+  }
+
+  getFavoritos = (req, res) =>{
+    console.log(req.params);
+    const user_temp = JSON.parse(req.params.user_temp)
+    
+
+    let sqlGetFavoritos = `SELECT * FROM likes WHERE user_id = ${user_temp}`
+    connection.query(sqlGetFavoritos, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+    }) 
+
+
+}
 }
 
-
-module.exports = new UserController()
+module.exports = new UserController();

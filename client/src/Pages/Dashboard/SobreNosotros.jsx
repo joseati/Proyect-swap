@@ -8,10 +8,10 @@ export const SobreNosotros = () => {
       <Row className="padre">
         <Col className="apasionados">
             <Row className="subPadre">
-             <Col className="foto" xs={12} xl={4}>
+             <Col className="foto" xs={12} md={12} xl={5}>
             <img src="/assets/images/fondo-2.png" alt="" />
           </Col>
-          <Col className="apasionados2" xs={12} xl={7} >
+          <Col className="apasionados2" xs={12} md={12} xl={7} >
             <h1>Somos unos apasionados de los viajes </h1>
             <h4>
               Estamos creando una COMUNIDAD de SWAPERS donde todos salimos

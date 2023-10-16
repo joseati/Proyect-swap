@@ -137,9 +137,14 @@ ol{
 }
 //-------------------------------------
 
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1250px){
   .padre{
-    padding: 7vh 4vw 0vh 4vw !important;
+    padding: 7vh 8vw 0vh 8vw !important;
+  }
+  .foto{
+    img{
+      width: 450px;
+    }
   }
   .apasionados2{
     text-align: initial;
@@ -155,17 +160,10 @@ ol{
 }
 
 @media screen and (max-width: 1200px){
-.col-xl-7 {
-    flex: 0 0 auto;
-    width: 75%;
-}
+
   .nuestraMision{
    flex-wrap: wrap;
   }
-.col-xl-6 {
-    flex: 0 0 auto;
-    width: 70%;
-}
 
 .padre3{
   padding: 5vh 0vw 5vh 0vw;
