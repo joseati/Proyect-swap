@@ -13,6 +13,7 @@ import axios from 'axios';
 export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteTravel}) => {
    const { user } = useContext(SwapContext)
    const [corazon, setCorazon] = useState(false)
+   const [like, setLike] = useState('heart1.svg')
 
   let departure_date = 0
   let arrival_date = 0
@@ -24,21 +25,25 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
 }
 
     useEffect(()=>{
-      const user_temp = JSON.stringify(user)
+      if(user){
+        // console.log(user)
+        const {user_id} = user
+        const user_temp = JSON.stringify(user_id)
        axios
        .get(`http://localhost:4000/users/getFavoritos/${user_temp}`)
        .then((res)=>console.log(res))
        .catch((err)=>console.log(err))
        const liked = localStorage.getItem('likedTravel_' + travel.travel_product_id);
-
-  if (liked === 'true') {
-    setLike('heart2.svg');
-    setCorazon(true)
-  }
+        if (liked === 'true') {
+          setLike('heart2.svg');
+          setCorazon(true)
+        }
+      }
+      
   
-    },[])
+    },[corazon, like])
 
-  const [like, setLike] = useState('heart1.svg')
+  
 
   const isLiked = () => {
     if (user) {
