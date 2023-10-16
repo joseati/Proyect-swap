@@ -21,7 +21,7 @@ export const OneTravel = () => {
   const [showTrainForm, setShowTrainForm] =useState(false)
   const [like, setLike] = useState('heart1.svg')
   const [showSwapeado, setShowSwapeado] = useState(false);
-
+  const [ saveEditOnetravel, setSaveEditOnetravel] = useState()
   // Show del model Swapeado
   const handleCloseSwap = () => setShowSwapeado(false);  
 
@@ -48,7 +48,7 @@ export const OneTravel = () => {
     }
   }
 
-  console.log(oneTravelSell);
+  // console.log(oneTravelSell);
   const ida = oneTravelSell[0];
   let vuelta = {};
   if (oneTravelSell.length !== 1){
@@ -102,6 +102,21 @@ export const OneTravel = () => {
     }
     
   };
+  //   // Botón para hacer volcar los nuevos datos del viaje en la Base de Datos.
+  
+  const onSubmit = (e) =>{
+    console.log(saveEditOnetravel);
+    console.log(ida);
+    e.preventDefault();
+    if(saveEditOnetravel){
+      axios
+      .put(`http://localhost:4000/travels/editOneTravel`, {ida, saveEditOnetravel})
+      .then((res)=>console.log(res))
+      .catch((err)=>console.log(err))
+    }
+    
+    
+  }
   return (
     <Col>
     {/* DATOS PRINCIPALES VIAJE */}
@@ -234,11 +249,11 @@ export const OneTravel = () => {
             <Col md={12} className='goTravel'>
               <h4>FORMULARIO DE EDICIÓN DE UN VIAJE</h4>             
                 {showPlaneForm && <EditOnePlane />}                            
-                <EditOnePlane ida={ida} vuelta={vuelta}/>                        
+                <EditOnePlane setSaveEditOnetravel = {setSaveEditOnetravel} ida={ida} vuelta={vuelta}/>                        
                 {showTrainForm && <EditOneTrain/>}              
               <Row>
                 <Col><Button onClick={()=>setEditing(false)}>VOLVER</Button></Col>
-                <Col><Button variant="success">GUARDAR</Button></Col>
+                <Col><Button onClick={onSubmit} variant="success">GUARDAR</Button></Col>
               </Row>
             </Col>        
           </Row>
