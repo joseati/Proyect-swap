@@ -13,13 +13,16 @@ export const Home = () => {
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
+
   const { prepareDataPlane, prepareDataTrain} = useContext(SwapContext)
+
   // Dividir la matriz en grupos de 2
 
   const [allTravelsToBuy, setAllTravelsToBuy] = useState()
   useEffect(()=>{
     setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
   }, [prepareDataPlane, prepareDataTrain])
+
   return (
     <Col>
       <Row className="homeSection1">
