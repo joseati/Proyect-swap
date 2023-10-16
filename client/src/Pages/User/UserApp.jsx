@@ -62,7 +62,25 @@ export const UserApp = () => {
     setVentasButton(false);
     setFavoritosButton(false);
     setEditButton(false)
+    //objeto para mandar los datos al back
+    const compra = {
+      user_id: user.user_id,
+      destiny: searchTravelBought
+    }
+    let compraFinal = JSON.stringify(compra)
+    // Realiza una solicitud al servidor para buscar viajes por destino
+    axios
+    .get(`http://localhost:4000/users/searchByDestination/${compraFinal}`)
+    .then((res) => {
+      // Actualiza el estado con los resultados de la búsqueda
+      // setTravelsBought(res.data);
+      setArrayTempPlanes(res.data.resultPlaneUser)
+      setArrayTempTrains(res.data.resultTrain)
+      console.log(res)
+    })
+    .catch((err) => console.log(err));
   };
+  
   const showVentas = () => {
     setVentasButton(true);
     setFavoritosButton(false);
@@ -235,20 +253,12 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
-<<<<<<< HEAD
-        console.log(response.data)
-=======
        
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
       })
       .catch((err) => console.log(err))
     }
 }, [user]);
-<<<<<<< HEAD
-console.log("LIKKKKKEEEEE",likes);
-=======
 
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
 // console.log("hola",travelsBought);
 // console.log("TRENES",arrayTempTrains);
 // console.log("AVIONES",arrayTempPlanes);
@@ -259,17 +269,9 @@ console.log("LIKKKKKEEEEE",likes);
   // const filteredTrains = arrayTempTrains?.filter((train) => 
   //   train.destiny.toLowerCase().includes(searchTravelBought.toLowerCase())
   // );
-<<<<<<< HEAD
-   
 
-
-
-
-
- const onSearchTravelBought = () => {
-=======
     const onSearchTravelBought = () => {
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
+
       //objeto para mandar los datos al back
       const compra = {
         user_id: user.user_id,
@@ -288,16 +290,12 @@ console.log("LIKKKKKEEEEE",likes);
       })
       .catch((err) => console.log(err));
     };
-<<<<<<< HEAD
     console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
-=======
-
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
 
   return (
     <>
     
-      <Col xs={{ order: 'last' }} md={{ order: 'first' }} className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
+      <Col xs={{ order: 'last' }} xl={{ order: 'first'}} className={user?.type === 1 ? "infoUser" : "infoAdmin"}>
         <h1>{user?.name}</h1>
 
         {user?.type === 2 && <h2>Administrador/a</h2>}
@@ -390,26 +388,16 @@ console.log("LIKKKKKEEEEE",likes);
         {/* VISTA USUARIO */}
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
-<<<<<<< HEAD
                 <label style={{fontSize:"20px",fontWeight:"700",color:" #005a8d",marginBottom:"10px"}} htmlFor="search">Destino</label>
                   <input
                     type="text"
                     placeholder="Buscar viajes comprados"
-=======
-                <label htmlFor="search">Destino</label>
-                  <input
-                    type="text"
-                    placeholder="Buscar viajes comprados por destino"
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                     value={searchTravelBought}
                     onChange={handleSearch}
                     name='search'
                   />
                   <Button
-<<<<<<< HEAD
                     style={{marginTop:"20px",marginBottom:"10vh"}}
-=======
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                     className='buttonn-admin'
                     onClick={onSearchTravelBought}
                   >Buscar viajes comprados</Button>
@@ -455,7 +443,6 @@ console.log("LIKKKKKEEEEE",likes);
         {ventasButton && (
           <Row className="all-info-user">
             {(
-<<<<<<< HEAD
                 travelsForSale?.resultPlaneUser?.length > 0 ||
                 travelsForSale?.resultTrain?.length > 0
               ) ? (
@@ -466,18 +453,6 @@ console.log("LIKKKKKEEEEE",likes);
                         ))}
                       {travelsForSale?.resultTrain?.length > 0 &&
                         travelsForSale?.resultTrain?.map((travel, i) => (
-=======
-                travelsForSale?.resultPlaneUser.length > 0 ||
-                travelsForSale?.resultTrain.length > 0
-              ) ? (
-                    <>
-                      {travelsForSale?.resultPlaneUser.length > 0 &&
-                        travelsForSale?.resultPlaneUser.map((travel, i) => (
-                          <CardAllTravelsToBuy key={i} travel={travel} />
-                        ))}
-                      {travelsForSale?.resultTrain.length > 0 &&
-                        travelsForSale?.resultTrain.map((travel, i) => (
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
                     </>
@@ -517,7 +492,6 @@ console.log("LIKKKKKEEEEE",likes);
                     </>
                    ) : (
                     <>
-<<<<<<< HEAD
                       <div className="d-flex flex-column align-items-center">
                       <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="" />
                       <h2>Aún no tienes ningún producto en favoritos</h2>
@@ -526,17 +500,6 @@ console.log("LIKKKKKEEEEE",likes);
                         </p>
                      </div>
                      
-=======
-                      <img src="/assets/images/avionamarillo.svg" alt="" />
-                      <h2>Aún no tienes nada a la venta</h2>
-                      <p>
-                        Ve al apartado{" "}
-                        <a href="/todosLosViajes" onClick={handleNavigateToAT}>
-                          Comprar Viajes
-                        </a>{" "}
-                        para guardar tu primer viaje
-                      </p>
->>>>>>> 4df6d69504162a985089e756411bf09a35e6429d
                     </>
                     )
             }           
