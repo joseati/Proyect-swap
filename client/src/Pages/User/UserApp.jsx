@@ -46,7 +46,10 @@ export const UserApp = () => {
   const [travelsForSale, setTravelsForSale] = useState([])
   const [travelsBought, setTravelsBought] = useState([])
   const [likes, setLikes] = useState([])  
- 
+ //estados relacionados con el filtrado de viajes comprados del usuario
+ const [searchTravelBought, setSearchTravelBought] = useState("");
+  const [ arrayTempPlanes, setArrayTempPlanes] = useState()
+  const [ arrayTempTrains, setArrayTempTrains] = useState()
   
   //  console.log(allTravelsToBuy);
   const handleNavigateToAT = (e) => {
@@ -145,6 +148,11 @@ export const UserApp = () => {
     setEditInputs({...editInputs, [name]: value});
   }
 
+  //handleChange del buscador de viajes comprados
+  const handleSearch = (e) =>{
+    setSearchTravelBought(e.target.value)
+  }
+
   //Botón que hace volcar los nuevos datos del cliente en la base
   const onSubmit = (e) => {
     e.preventDefault();
@@ -211,7 +219,9 @@ export const UserApp = () => {
       axios
         .get(`http://localhost:4000/travels/oneUserBoughtTravels/${user_id}`)
         .then((response) => {
-          setTravelsBought(response.data);
+          setTravelsBought(response.data)
+          // setArrayTempPlanes(response.data.resultPlaneUser);
+          // setArrayTempTrains(response.data.resultTrain);
         })
         .catch((err) => console.log(err))
       }
@@ -225,11 +235,49 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
+        console.log(response.data)
       })
       .catch((err) => console.log(err))
     }
 }, [user]);
 console.log("LIKKKKKEEEEE",likes);
+// console.log("hola",travelsBought);
+// console.log("TRENES",arrayTempTrains);
+// console.log("AVIONES",arrayTempPlanes);
+  // const filteredPlanes = arrayTempPlanes?.filter((plane) => 
+  //   plane.destiny.toLowerCase().includes(searchTravelBought.toLowerCase())
+  // );
+
+  // const filteredTrains = arrayTempTrains?.filter((train) => 
+  //   train.destiny.toLowerCase().includes(searchTravelBought.toLowerCase())
+  // );
+   
+
+
+
+
+
+ const onSearchTravelBought = () => {
+      //objeto para mandar los datos al back
+      const compra = {
+        user_id: user.user_id,
+        destiny: searchTravelBought
+      }
+      let compraFinal = JSON.stringify(compra)
+      // Realiza una solicitud al servidor para buscar viajes por destino
+      axios
+      .get(`http://localhost:4000/users/searchByDestination/${compraFinal}`)
+      .then((res) => {
+        // Actualiza el estado con los resultados de la búsqueda
+        // setTravelsBought(res.data);
+        setArrayTempPlanes(res.data.resultPlaneUser)
+        setArrayTempTrains(res.data.resultTrain)
+        console.log(res)
+      })
+      .catch((err) => console.log(err));
+    };
+    console.log('ESTOS SON LOS VIAJES COMPRADOS Y FILTRADOS', arrayTempPlanes, arrayTempTrains)
+
   return (
     <>
     
@@ -326,30 +374,52 @@ console.log("LIKKKKKEEEEE",likes);
         {/* VISTA USUARIO */}
         {comprasButton && (
           <div className="d-flex align-items-center justify-content-center flex-column all-info-user">
+                <label style={{fontSize:"20px",fontWeight:"700",color:" #005a8d",marginBottom:"10px"}} htmlFor="search">Destino</label>
+                  <input
+                    type="text"
+                    placeholder="Buscar viajes comprados"
+                    value={searchTravelBought}
+                    onChange={handleSearch}
+                    name='search'
+                  />
+                  <Button
+                    style={{marginTop:"20px",marginBottom:"10vh"}}
+                    className='buttonn-admin'
+                    onClick={onSearchTravelBought}
+                  >Buscar viajes comprados</Button>
+      
             {(
-                travelsBought.resultPlaneUser?.length > 0 ||
-                travelsBought.resultTrain?.length > 0
+                // travelsBought.resultPlaneUser?.length > 0 ||
+                // travelsBought.resultTrain?.length > 0
+                arrayTempPlanes?.length > 0 ||
+                arrayTempTrains?.length > 0
               ) ? (
                     <>
-                      {travelsBought.resultPlaneUser.length > 0 &&
-                        travelsBought.resultPlaneUser.map((travel, i) => (
+                      {arrayTempPlanes.length > 0 &&
+                        arrayTempPlanes?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
-                      {travelsBought.resultTrain.length > 0 &&
-                        travelsBought.resultTrain.map((travel, i) => (
+                      {arrayTempTrains.length > 0 &&
+                        arrayTempTrains?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
+                        {/* {filteredPlanes.length > 0 && filteredPlanes.map((travel, i)=>{
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        })}
+                        {filteredTrains.length > 0 && filteredTrains.map((travel, i)=>{
+                          <CardAllTravelsToBuy key={i} travel={travel} />
+                        })} */}
                     </>
                    ) : (
                     <>
-                      <img src="/assets/images/avionamarillo.svg" alt="" />
+                      <img style={{width:"320px"}} src="/assets/images/avionamarillo.svg" alt="" />
                       <h2>Aún no has comprado nada</h2>
-                      <p>
-                        Ve al apartado{" "}
-                        <a href="/todosLosViajes" onClick={handleNavigateToAT}>
-                          Comprar Viajes
-                        </a>{" "}
-                        para adquirir tu primer viaje
+                      <p style={{fontSize:"18px"}}>
+                      Ve al apartado 
+                        <a style={{textDecoration:"none",padding:"0 5px 0 5px "}} href="/todosLosViajes" onClick={handleNavigateToAT}>
+                           Comprar Viajes
+                        </a> 
+                         para adquirir tu primer viaje.
                       </p>
                     </>
                     )
@@ -359,30 +429,32 @@ console.log("LIKKKKKEEEEE",likes);
         {ventasButton && (
           <Row className="all-info-user">
             {(
-                travelsForSale.resultPlaneUser.length > 0 ||
-                travelsForSale.resultTrain.length > 0
+                travelsForSale?.resultPlaneUser?.length > 0 ||
+                travelsForSale?.resultTrain?.length > 0
               ) ? (
                     <>
-                      {travelsForSale.resultPlaneUser.length > 0 &&
-                        travelsForSale.resultPlaneUser.map((travel, i) => (
+                      {travelsForSale?.resultPlaneUser?.length > 0 &&
+                        travelsForSale?.resultPlaneUser?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
-                      {travelsForSale.resultTrain.length > 0 &&
-                        travelsForSale.resultTrain.map((travel, i) => (
+                      {travelsForSale?.resultTrain?.length > 0 &&
+                        travelsForSale?.resultTrain?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
                     </>
                    ) : (
                     <>
-                      <img src="/assets/images/avionamarillo.svg" alt="" />
-                      <h2>Aún no tienes nada a la venta</h2>
-                      <p>
-                        Ve al apartado{" "}
-                        <a href="/viajes">
-                          Vender Viajes
-                        </a>{" "}
-                        para vender tu primer viaje
-                      </p>
+                      <div className="d-flex flex-column align-items-center justify-content-center">
+                        <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="" />
+                        <h2>Aún no tienes nada a la venta</h2>
+                        <p style={{fontSize:"18px"}}>
+                          Ve al apartado{" "}
+                          <a style={{textDecoration:"none",padding:"0 5px 0 5px "}} href="/viajes">
+                            Vender Viajes
+                          </a>{" "}
+                          para vender tu primer viaje.
+                        </p>
+                      </div>
                     </>
                     )
             }             
@@ -406,25 +478,25 @@ console.log("LIKKKKKEEEEE",likes);
                     </>
                    ) : (
                     <>
-                      <img src="/assets/images/avionamarillo.svg" alt="" />
-                      <h2>Aún no tienes nada a la venta</h2>
-                      <p>
-                        Ve al apartado{" "}
-                        <a href="/viajes">
-                          Vender Viajes
-                        </a>{" "}
-                        para vender tu primer viaje
-                      </p>
+                      <div className="d-flex flex-column align-items-center">
+                      <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="" />
+                      <h2>Aún no tienes ningún producto en favoritos</h2>
+                      <p style={{fontSize:"18px"}}>
+                        Para guardar un producto, pulsa <img style={{width:"30px"}} src="/assets/images/heart1.svg" alt="corazón-favoritos" />.
+                        </p>
+                     </div>
+                     
                     </>
                     )
             }           
           </Row>
         )}
-        {editButton &&(
+         {editButton &&(
           <Col className="d-flex justify-content-center">
           <Form className="formEdit">
               <h2>Editar usuario</h2>
-              <div className="d-flex justify-content-around form-inputs">
+              {/* elegir entre flex-column o como esta  */}
+              <div className="d-flex flex-column justify-content-around form-inputs">
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="nameInput">Nombre</Form.Label>
                     <Form.Control
@@ -457,7 +529,7 @@ console.log("LIKKKKKEEEEE",likes);
                       onChange={handleChange}
                   />
               </Form.Group>
-              <div className="d-flex justify-content-around form-inputs">
+              <div className="d-flex flex-column justify-content-around form-inputs">
               <Form.Group className="mb-3">
                   <Form.Label htmlFor="ident_num_Input">DIN</Form.Label>
                   <Form.Control 
@@ -514,16 +586,17 @@ console.log("LIKKKKKEEEEE",likes);
             <Toast>
               <Toast.Header onClick={() => setShowToast  (false)}>
            <img  src="holder.js/20x20?  text=%20" className="rounded me-2"  alt="" />
-            <strong style={{color:"red"}} className="me-auto">
-                Atencion!
+            <strong style={{color:"red",fontSize:"25px"}} className="me-auto">
+                Atención!
              </ strong>
 
-        <small>Borrar</small>
           </Toast.Header>
           <Toast.Body>
-            Estas seguro que quieres Borrar el usuario
-            <Button variant="danger" onClick={delLogicUser}> Borrar usuario</Button>
-            <Button onClick={() => setShowToast(false)}> Cancelar</Button>
+           <p style={{fontSize:"15px"}}>¿Estás seguro de que quieres borrar tu usuario?</p>
+            <div className="mt-3">
+              <Button style={{marginRight:"25px"}} variant="danger" onClick={delLogicUser}> Borrar usuario</Button>
+              <Button onClick={() => setShowToast(false)}> Cancelar</Button>
+            </div>
           </Toast.Body>
     </Toast>
     </> }

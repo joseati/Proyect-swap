@@ -92,13 +92,13 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
    </Card.Text>
 
   <Card.Text className='marginLeft'>
-     <h6>{travel.name}</h6>
+     <h6>{travel?.name}</h6>
    </Card.Text>
    <Card.Text>
-     {travel.company}
+     {travel?.company}
    </Card.Text>
  <Card.Body>
-   <Card.Title> {travel.destiny} - {travel?.origin} </Card.Title>
+   <Card.Title> {travel?.destiny} - {travel?.origin} </Card.Title>
  
    <Row className='d-flex flex-row dateCard'>   
     <Col xs={12} sm={3} md={4} xl={3} >
@@ -123,7 +123,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
       <h6>Pasajeros :</h6>
    </Card.Text>
    <Card.Text>
-     {travel.passenger}
+     {travel?.passenger}
    </Card.Text>
       </Col> 
       
@@ -132,8 +132,8 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
   </Row>
     
    
-  <Button variant="primary" >
-  <Link to={`/oneTravel/${travel.travel_product_id}`} className='buttonCardsTravel'>Ver más</Link>
+  <Button style={{marginTop:"15px"}} variant="primary" >
+  <Link  to={`/oneTravel/${travel.travel_product_id}`} className='buttonCardsTravel'>Ver más</Link>
 </Button>
  </Card.Body>
  {user?.type === 2 && travel.admin_enabled == 1 && <CardFooter>

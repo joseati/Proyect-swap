@@ -34,16 +34,18 @@
     font-weight: bold;
   }
   h6{
+    margin-top: 10px;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
   }
 }
 .allTravelsCard:hover{
   transform: translateY(-10px)
 }
 .buttonCardsTravel{
-    color: white;
-    text-decoration: none;
+  color: white ;
+  text-decoration: none;
+
 }
 //estilos para Admin
 .header-card{

@@ -1,4 +1,4 @@
-import React,{ useContext, useState } from 'react'
+import React,{ useContext, useState,useEffect} from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import './home.scss'
 import Carousel from 'react-bootstrap/Carousel';
@@ -13,12 +13,13 @@ export const Home = () => {
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-  const {allTravelsToBuy} = useContext(SwapContext)
+  const {prepareDataPlane,prepareDataTrain} = useContext(SwapContext)
   // Dividir la matriz en grupos de 2
-  const dividedTravels = [];
-  for (let i = 0; i < allTravelsToBuy?.length; i += 2) {
-    dividedTravels.push(allTravelsToBuy.slice(i, i + 2));
-  }
+
+  const [allTravelsToBuy, setAllTravelsToBuy] = useState()
+  useEffect(()=>{
+    setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
+  }, [prepareDataPlane, prepareDataTrain])
   return (
     <Col>
       <Row className="homeSection1">
@@ -51,12 +52,15 @@ export const Home = () => {
             </a>
           </Row>
         </Col>
-        <Row className="homeSubSection1">
+        <div className='divHomeSubSection1'>
+         <Row className="homeSubSection1">
           <Col className="homeSubCol1">
             <h2>¿No encuentras lo que buscas?</h2>
             <Button className="botonSubSection1" href='https://swapyourtravel.airhopping.com/' >Ven aquí</Button>
           </Col>
-        </Row>
+        </Row> 
+        </div>
+        
       </Row>
       <Row className="homeSection3">
         <Col className="iconosHome" xs={6} xl={2}>
@@ -98,17 +102,9 @@ export const Home = () => {
         </Col>
         <Col  xs={12} md={12}  lg={7}>
         <Carousel className='carouselCard'>
-      {dividedTravels.map((group, index) => (
+      {allTravelsToBuy?.slice(0, 4).map((travel, index) => (
         <Carousel.Item key={index}>
-          <Row> 
-            {group.map((travel, i) => (
-              <Col  key={i}>
-                <Row className="homeSubSection4Col2">
                   <CardAllTravelsToBuy travel={travel} />
-                </Row>
-              </Col>
-            ))}
-          </Row>
         </Carousel.Item>
       ))}
     </Carousel>

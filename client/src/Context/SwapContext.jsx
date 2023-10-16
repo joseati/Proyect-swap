@@ -55,6 +55,7 @@ export const SwapProvider = (props) => {
       } )
       .catch( (err) => console.log(err) )
   }, [reset])
+  console.log(prepareDataTrain);
 
   
    
