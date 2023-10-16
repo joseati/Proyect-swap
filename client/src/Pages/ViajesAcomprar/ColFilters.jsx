@@ -90,7 +90,7 @@ export const ColFilters = ({handleChange}) => {
                                           
                                           
                                       </FormGroup>
-                                      {/* <Button onClick={} className='btn-filter'>Aplicar filtros</Button> */}
+                                      {/* <Button className='btn-filter'>Aplicar filtros</Button> */}
                                   </Form>
                               </Col>
                           </Accordion.Body>

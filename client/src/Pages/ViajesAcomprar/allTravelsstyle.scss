@@ -1,5 +1,21 @@
 .row-col-filters {
   padding: 5px 3vw 5vh 10vw;
+  .btn-filter2 {
+    margin-left: 25px;
+    width: 10vw;
+    padding: 12px;
+    background-color: #ffc700;
+    color: #005a8d;
+
+    &:hover {
+        background-color: #005a8d;
+        color: white !important;
+        transition: 200ms ease-in-out;
+    }
+}
+.col-travels{
+  margin-top: 10vh;
+}
 }
 
 .swap-type {
@@ -100,18 +116,7 @@
       }
   }
 
-  .btn-filter {
-      width: 100%;
-      padding: 12px;
-      background-color: #ffc700;
-      color: #005a8d;
-
-      &:hover {
-          background-color: #005a8d;
-          color: white !important;
-          transition: 200ms ease-in-out;
-      }
-  }
+ 
 }
 
 .dateCard {
@@ -125,6 +130,13 @@
   }
 
 
+    .row-col-filters{
+      .btn-filter2{
+        margin-left: 26.5vw ;
+        width: 40vw ;
+      }
+
+  }
   .row-col-filters {
       padding: 20px;
   }

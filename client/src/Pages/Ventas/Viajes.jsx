@@ -31,7 +31,7 @@ const initialValue = {
   arrival_time:"",
   compani_name: "",
   // Informacion del vuelo de vuelta si lo hubiera
-  // plane_travel_id:"", /*  2 si es ida y vuelta */
+  plane_travel_id:"", /*  2 si es ida y vuelta */
   origin_airpoty_id_tp2:"",
   destiny_airpoty_id_tp2:"",
   departure_date_tp2:"", 
@@ -208,6 +208,7 @@ const [ message , setMessage] = useState()
         axios
         .post("http://localhost:4000/travels/sellTicket/sellTrainTravel", {inputFormTrain, user_id})
         .then((res) => {
+          console.log(res.data);
           setReset(false)
           setInputFormTrain(initialValueTrain)
         })
