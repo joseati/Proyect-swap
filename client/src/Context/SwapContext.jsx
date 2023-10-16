@@ -56,7 +56,8 @@ export const SwapProvider = (props) => {
       .catch( (err) => console.log(err) )
   }, [reset])
 
-  
+  console.log(prepareDataPlane)
+  console.log(prepareDataTrain)
    
   
  

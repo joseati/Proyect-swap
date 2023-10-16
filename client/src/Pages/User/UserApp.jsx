@@ -422,16 +422,16 @@ console.log("LIKKKKKEEEEE",likes);
         {ventasButton && (
           <Row className="all-info-user">
             {(
-                travelsForSale.resultPlaneUser.length > 0 ||
-                travelsForSale.resultTrain.length > 0
+                travelsForSale?.resultPlaneUser?.length > 0 ||
+                travelsForSale?.resultTrain?.length > 0
               ) ? (
                     <>
-                      {travelsForSale.resultPlaneUser.length > 0 &&
-                        travelsForSale.resultPlaneUser.map((travel, i) => (
+                      {travelsForSale?.resultPlaneUser?.length > 0 &&
+                        travelsForSale?.resultPlaneUser?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
-                      {travelsForSale.resultTrain.length > 0 &&
-                        travelsForSale.resultTrain.map((travel, i) => (
+                      {travelsForSale?.resultTrain?.length > 0 &&
+                        travelsForSale?.resultTrain?.map((travel, i) => (
                           <CardAllTravelsToBuy key={i} travel={travel} />
                         ))}
                     </>

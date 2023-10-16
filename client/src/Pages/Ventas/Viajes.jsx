@@ -188,6 +188,7 @@ const [ message , setMessage] = useState()
     if(user){
       console.log(user);
       const {user_id} = user
+      console.log("inputttt from planeee", inputFormPlane)
       if( planeButton ){
         axios
         .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})

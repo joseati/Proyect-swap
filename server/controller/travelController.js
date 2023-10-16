@@ -38,7 +38,7 @@ class TravelController {
 //     }
 //   });
 // }
-  getAllTravelsTobuy = (req, res) => {
+   getAllTravelsTobuy = (req, res) => {
     let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
     connection.query(sqlPlane, (err, resultPlane) => {
       if(err){
@@ -47,12 +47,13 @@ class TravelController {
       let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
       connection.query(sqlTrain, (err2, resultTrain) => {
         err2 ?
-          res.status(500).json("err")
+          res.status(500).json("err2")
           :
-          res.status(200).json({resultPlane,resultTrain})
+           res.status(200).json({resultPlane, resultTrain}) 
+          console.log(resultPlane, resultTrain)
       })
     })
-  }
+  } 
 
    getOneTravel= (req, res)=>{
     const {travel_id} = req.params

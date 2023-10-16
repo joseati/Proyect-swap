@@ -21,7 +21,7 @@ CREATE TABLE user(
 	enabled BOOLEAN NOT NULL DEFAULT 0 -- (enable false puede loguearse, True no puede loguearse) Marcado por un administrador. 
 );
 
-
+SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;
 ALTER TABLE user modify column telephone varchar(20);
 
 select * from user;
@@ -209,12 +209,16 @@ CREATE TABLE train_travel(
 
 
 DELETE FROM travel_product WHERE travel_product_id > 0;
+
 select * from travel_product;
 SELECT * from plane_travel;
 select * from train_travel;
 INSERT INTO travel_product (creation_date, type, origin, destiny, passenger, admin_enabled, seller_user_id, original_price, client_price)
 VALUES
 (1, 1, 1, 2, '2023-10-04', '08:00:00', '2023-10-04', '10:30:00', 'Airlines A');
+
+SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'; 
+ SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 
 
 
@@ -242,7 +246,7 @@ WHERE tp.admin_enabled = 0
   AND tp.is_deleted = 0
   AND tp.buyer_user_id IS NULL;
 
-
+DELETE FROM travel_product WHERE travel_product_id > 0;
 SELECT user.name ,tp.* , pt.*
 FROM user , travel_product tp, plane_travel pt
 WHERE (tp.travel_product_id = pt.travel_product_id and tp.seller_user_id = user.user_id) 
@@ -448,3 +452,55 @@ AND tp.admin_enabled = 0
 AND tp.is_deleted = 0 
 AND tp.buyer_user_id IS NULL 
 group by tp.type;
+
+
+INSERT INTO train_station 
+VALUES 
+  (05161,'XOVE','CARRETERA LU-862 - ESTACION FERROCARRIL, S/N',27878,'Xove','Lugo','España'),
+  (05163,'LAGO','CARRETERA LU-2602 - ESTACION FERROCARRIL, S/N',27878,'Xove','Lugo','España'),
+  (05165,'BIDUEIROS','CAMINO MONTE GALIS, S/N',27890,'Cervo','Lugo','España'),
+  (05167,'SAN CIBRAO','CARRETERA LU-P-1510 - ESTACION FERROCARRIL, S/N',27890,'Cervo','Lugo','España'),
+  (05169,'MADEIRO','CARRETERA LU-P-1510 - ESTACION FERROCARRIL, S/N',27891,'Cervo','Lugo','España'),
+  (05171,'BURELA','RUA NOSA SEÑORA DO CARME, 10',27880,'Burela','Lugo','España'),
+  (05173,'CANGAS DE FOZ','CAMINO ALAMPARTE, S/N',27892,'Foz','Lugo','España'),
+  (05175,'NOIS','CARRETERA N-642 - ESTACION FERROCARRIL, S/N',27893,'Foz','Lugo','España'),
+  (05177,'FAZOURO','CARRETERA XENERAL FAZOURO, 4',27789,'Foz','Lugo','España'),
+  (05179,'MARZAN','RUA PENA PARDA, S/N',27787,'Foz','Lugo','España'),
+  (05181,'FOZ','CARRETERA XERAL PEDREIRA - RUA XOIÑA, S/N',27788,'Foz','Lugo','España'),
+  (05183,'BARREIROS','CARRETERA REMIOR, S/N',27792,'Barreiros','Lugo','España'),
+  (05185,'REINANTE','CARRETERA LU-P-0604 - ESTACION FERROCARRIL, S/N',27794,'Barreiros','Lugo','España'),
+  (05187,'ESTEIRO','CARRETERA LU-P-0610 - ESTACION FERROCARRIL, S/N',27795,'Ribadeo','Lugo','España'),
+  (05189,'OS CASTROS','CARRETERA LU-P-5208 - ESTACION FERROCARRIL, S/N',27795,'Ribadeo','Lugo','España'),
+  (05191,'RINLO','CARRETERA LU-141 - ESTACION FERROCARRIL, S/N',27797,'Ribadeo','Lugo','España'),
+  (05193,'RIBADEO','RUA PACO LANZA, 9',27700,'Ribadeo','Lugo','España'),
+  (05197,'VEGADEO PUEBLO','CARRETERA CP-52-05 - ESTACION FERROCARRIL, S/N',33770,'Vegadeo','Asturias','España'),
+  (05199,'VILAVEDELLE','CARRETERA N-640 - ESTACION FERROCARRIL, S/N',33778,'Castropol','Asturias','España'),
+  (05203,'TREMAÑES-CARREÑO','CAMINO DE LA IGLESIA - ESTACION FERROCARRIL, S/N',33211,'Gijón','Asturias','España'),
+  (05204,'CENTRO DE TRANSPORTES','CENTRO DE TRANSPORTES DE GIJÓN, APEADERO DEL FERROCARRIL',33211,'Gijón','Asturias','España'),
+  (05207,'ABOÑO-APEADERO','BARRIO ABOÑO-INDUSTRIA, S/N',33492,'Carreño','Asturias','España'),
+  (05208,'XIVARES','BARRIO XIVARES 4 - ESTACION FERROCARRIL, S/N',33492,'Carreño','Asturias','España'),
+  (05209,'PERLORA','POLIGONO PERLORA URBANO - ESTACION FERROCARRIL, S/N',33491,'Carreño','Asturias','España'),
+  (05210,'CANDAS-APEADERO','CALLE NUESTRA SEÑORA COVADEONGA, 9',33430,'Carreño','Asturias','España'),
+  (05211,'CANDAS','AVENIDA JOSE MARIA FERNANDEZ LADRERA, 27',33430,'Carreño','Asturias','España'),
+  (05213,'REGUERAL','BARRIO REGUERAL, 19 - ESTACION FERROCARRIL, S/N',33439,'Carreño','Asturias','España'),
+  (05215,'ZANZABORNIN','CARRETERA CE-1 - ESTACION FERROCARRIL, S/N',33449,'Carreño','Asturias','España'),
+  (05216,'GUDIN LAMINACION','CARRETERA AS-19 - ESTACION FERROCARRIL, S/N',33460,'Corvera de Asturias','Asturias','España'),
+  (05217,'TRASONA','CARRETERA AS-19 - ESTACION FERROCARRIL, S/N',33468,'Corvera de Asturias','Asturias','España'),
+  (05218,'OFICINAS','AVENIDA DE GJON - ESTACION FERROCARRIL, S/N',33468,'Corvera de Asturias','Asturias','España'),
+  (05219,'LLARANES','PLAZA ENSIDESA, 29',33417,'Avilés','Asturias','España'),
+  (05220,'CRISTALERIA','BARRIO LA MARUCA, S/N - ESTACION FERROCARRIL, S/N',33468,'Corvera de Asturias','Asturias','España'),
+  (05221,'NITON','BARRIO LA MARUCA, S/N - ESTACION FERROCARRIL, S/N',33468,'Corvera de Asturias','Asturias','España');
+
+
+
+
+
+
+
+
+
+
+
+
+
+

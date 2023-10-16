@@ -196,11 +196,13 @@ class UserController {
       }
     })
 
+  
+
+  }
   getFavoritos = (req, res) =>{
     const user_temp = JSON.parse(req.params.user_temp)
-    const {user_id} = user_temp
     
-    let sqlGetFavoritos = `SELECT * FROM likes WHERE user_id = ${user_id}`
+    let sqlGetFavoritos = `SELECT * FROM likes WHERE user_id = ${user_temp}`
     connection.query(sqlGetFavoritos, (err, result) => {
       if (err) {
         res.status(500).json(err);
@@ -208,7 +210,6 @@ class UserController {
         res.status(200).json(result);
       }
     }) 
-
   }
 }
 

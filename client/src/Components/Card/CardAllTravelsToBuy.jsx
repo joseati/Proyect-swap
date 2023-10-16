@@ -24,7 +24,10 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
 }
 
     useEffect(()=>{
-      const user_temp = JSON.stringify(user)
+      if(user){
+        // console.log(user)
+      const {user_id} = user
+      const user_temp = JSON.stringify(user_id)
        axios
        .get(`http://localhost:4000/users/getFavoritos/${user_temp}`)
        .then((res)=>console.log(res))
@@ -35,8 +38,8 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
     setLike('heart2.svg');
     setCorazon(true)
   }
-  
-    },[])
+}
+    },[corazon])
 
   const [like, setLike] = useState('heart1.svg')
 
