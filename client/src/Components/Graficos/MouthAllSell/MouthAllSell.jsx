@@ -47,7 +47,7 @@ ChartJS.register(
   
 
   };
-export const MouthAllSell = ({allTravel, prepareDataChartMouth, allImportMoth, avgImportMounth}) => {
+export const MouthAllSell = ({tasaMes,allTravel, prepareDataChartMouth, allImportMoth, avgImportMounth}) => {
   console.log("dATOSSSS",allImportMoth);
   const labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
   //  console.log(prepareDataChart);
@@ -82,6 +82,13 @@ export const MouthAllSell = ({allTravel, prepareDataChartMouth, allImportMoth, a
         data: allTravel?.map((e)=> e),
         borderColor: 'rgb(50, 99, 132)',
         backgroundColor: 'rgba(50, 99, 132, 0.6)',
+      },
+      {
+        fill: true,
+        label: 'Porcentaje ventas por mes (%) ',
+        data: tasaMes?.map((e)=> e),
+        borderColor: 'rgb(190, 199, 132)',
+        backgroundColor: 'rgba(190, 199, 132, 0.6)',
       },
       
       

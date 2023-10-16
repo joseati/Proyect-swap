@@ -19,6 +19,7 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
   const [ allImportMoth, setAllImportMoth ] = useState ()
   const [avgImportMounth, setAvgImportMounth] = useState()
   const [allTravel, setAllTravel] = useState()
+  const [tasaMes, setTasaMes] = useState()
 
   useEffect(() => {
     fetchTravelData()
@@ -28,6 +29,7 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
     getAllImportSellMounth()
     getAllImportMothAvg()
     getAllTravelPro()
+    tasa()
   }, [reset]);
 
 
@@ -66,124 +68,15 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
   try{
     const resultAllTrav = await Promise.all(routesGenera)
     const newData = resultAllTrav.map((e)=>e.data[0].num)
+    const tasaVenta = (newData[0]/newData[3]) * 100
+    newData.push(tasaVenta)
     setPrepareDataChart(newData)
     console.log(prepareDataChart);
   }catch(err){
     console.log(err);
   }
  }
-  // Obtencion de los datos por meses
-  // const getAllSellForMounth = () =>{
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellJ')
-  //       .then((res)=>{
-          
-  //         setallSellE([res.data[0].num])
-        
-  //       }
-  //        )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellf')
-  //       .then((resf)=>{
-          
-  //         setPrepareDataChartMouth([...allSellE, resf.data[0].num])
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellMarch')
-  //       .then((resMarch)=>{
-        
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resMarch.data[0].num])
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellA')
-  //       .then((resA)=>{
-          
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resA.data[0].num])
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellM')
-  //       .then((resM)=>{
-          
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resM.data[0].num])
-          
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellJun')
-  //       .then((resJ)=>{
-         
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resJ.data[0].num])
-  //         setReset(false)
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellJul')
-  //       .then((resJu)=>{
-        
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resJu.data[0].num])
-          
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellAug')
-  //       .then((resAug)=>{
-         
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resAug.data[0].num])
-          
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellSep')
-  //       .then((resSep)=>{
-         
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resSep.data[0].num])
-          
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellOct')
-  //       .then((resOct)=>{
-  //         console.log(resOct.data[0].num);
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resOct.data[0].num])
-          
-  //         ;
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellNov')
-  //       .then((resNov)=>{
-          
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resNov.data[0].num])
-          
-  //         ;
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  //   axios
-  //       .get('http://localhost:4000/admin/getAllSellDic')
-  //       .then((resDic)=>{
-  //         console.log(resDic);
-  //         setPrepareDataChartMouth([...prepareDataChartMouth, resDic.data[0].num])
-  //         setReset(false)
-  //         ;
-  //         }
-  //       )
-  //       .catch((err)=> console.log(err))
-  // }
+ 
   const getAllSellForMounth = async () => {
     try {
       const results = await Promise.all([
@@ -283,8 +176,10 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
       const result = await Promise.all(getData)
       const prepareData = result.map((e)=> e.data[0].num)
       const prepareNotNULL = prepareData.map((elem)=> elem == null ? 0 : elem)
+
       setAllTravel(prepareNotNULL)
-      console.log("resulttt", prepareData);
+  
+      // console.log("resulttt", prepareData);
     }catch(err){
       console.log(err);
     }
@@ -300,7 +195,15 @@ const showGraficoMes = () =>{
   setReset(true)
   setBoolGrafico(2)
 }
-  
+const tasa = ()=>{
+  const tasaMes = prepareDataChartMouth?.map((e,i)=> parseInt(e) / parseInt(allTravel[i]) * 100)
+  // console.log(tasaMes);
+  const tasaNoTNaN = tasaMes?.map((e)=> !e || isNaN(e) ? 0 : e)
+  console.log(tasaNoTNaN);
+      setTasaMes(tasaNoTNaN)
+      setReset(false)
+}
+console.log(prepareDataChart);
   return (
     <Col className="d-flex align-items-center justify-content-center flex-column all-info-user">
                   <Row className="stats-section justify-content-center">
@@ -364,7 +267,8 @@ const showGraficoMes = () =>{
          prepareDataChartMouth = {prepareDataChartMouth}
          allImportMoth = {allImportMoth}
          avgImportMounth = {avgImportMounth}
-         allTravel = {allTravel}/>
+         allTravel = {allTravel}
+         tasaMes = {tasaMes}/>
          </>  :
                     null}
 
