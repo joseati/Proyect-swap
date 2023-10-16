@@ -4,8 +4,7 @@ import "./contactaConNosotros.scss";
 export const ContactaConNosotros = () => {
   return (
     <>
-      <Row className="contactaConNosotrosPadre" >
-        
+      <Row className="contactaConNosotrosPadre" >        
             <Col xs={12} xl={6} >
               <div className="contacts">
                 <img src="/assets/images/email.png" alt="" />
@@ -31,10 +30,7 @@ export const ContactaConNosotros = () => {
                   Empezar a chatear
                 </a>
               </div>
-            </Col>
-          
-       
-         
+            </Col>     
             <Col xl={6} >
               <div className="contacts">
                 <img src="/assets/images/telefono.png" alt="" />
@@ -55,8 +51,7 @@ export const ContactaConNosotros = () => {
                   C.P. 41092 La Cartuja, Sevilla
                 </a>
               </div>
-            </Col>
-         
+            </Col>         
       </Row>
     </>
   );

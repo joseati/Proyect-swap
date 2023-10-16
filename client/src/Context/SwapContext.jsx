@@ -45,29 +45,16 @@ export const SwapProvider = (props) => {
     }
     axios
       .get("http://localhost:4000/travels/getAllTravelsTobuy")
-      .then( (res) => {
-       
-        // setAllTravelsToBuy(res.data)
+      .then( (res) => {       
         setPrepareDataPlane(res.data.resultPlane)
-        setPrepareDataTrain(res.data.resultTrain)
-        // setAllTravelsToBuy(prepareDataPlane.concat(prepareDataTrain))
-       
+        setPrepareDataTrain(res.data.resultTrain)       
       } )
       .catch( (err) => console.log(err) )
-  }, [reset])
-  console.log(prepareDataTrain);
-
+  }, [reset]) 
   
-   
-  
- 
-
-  
-  
-
   return (
 
-// Creacion de contexto ,al que le enviamos los elemntos que requiriremos en los componentes de la aplicacion, mediante el metodo provider y su atributo value
+    // Creacion de contexto ,al que le enviamos los elemntos que requiriremos en los componentes de la aplicacion, mediante el metodo provider y su atributo value
     <SwapContext.Provider value={ {
         user,
         setUser,
@@ -81,8 +68,6 @@ export const SwapProvider = (props) => {
         prepareDataPlane,
         prepareDataTrain
     } }>
-
-
       {props.children}
     </SwapContext.Provider>
   );

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export const NavLinks = ({handleClick}) => {
   return (
     <>
-
       <Nav.Link  className="custom-nav-link1" as={Link} to="/todosLosViajes">
         <img src="/assets/images/arriba.svg" alt="" />
         COMPRAR VIAJES

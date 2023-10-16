@@ -3,8 +3,7 @@ import { Col, Toast } from 'react-bootstrap'
 
 export const ToastRegister = ({showOk, setShowOk}) => {
   return (
-    <Col xs={12} className="mb-2 d-flex justify-content-end">
-        
+    <Col xs={12} className="mb-2 d-flex justify-content-end">        
         <Toast 
           show={showOk} 
           onClose={()=>setShowOk(false)}

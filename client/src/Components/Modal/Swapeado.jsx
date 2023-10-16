@@ -2,13 +2,12 @@ import React from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-export const Swapeado = ({handleCloseSwap, showSwapeado}) => {
-  
+export const Swapeado = ({handleCloseSwap, showSwapeado}) => {  
   const navigate = useNavigate();
-
   const handleViewPurchases = () => {
     navigate('/oneUser'); 
   };
+  
   return (
     <>
       <Modal show={showSwapeado}>

@@ -7,8 +7,6 @@ import { FooterCol1 } from "./FooterCol1";
 import { FooterCol2 } from "./FooterCol2";
 import { IconosSocial } from "./IconosSocial";
 
-
-
 // Styles
 import "./footer.scss";
 

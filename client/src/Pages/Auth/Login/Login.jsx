@@ -18,8 +18,6 @@ const [showMsg, setShowMsg] = useState(false)
  const handleChange = (e) => {
   const { name, value } = e.target;
   setInputLogin({...inputLogin, [name]: value})
-  console.log(inputLogin);
-
  }
 
 //  Funcion para traernos del back la informacion del user , utilizamos un metodo post ya que enviamos informacion

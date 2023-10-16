@@ -16,32 +16,27 @@ export const NavbarrApp = () => {
 
   // Cierre y apertura de los modales
   const handleClose = () => setShow(false);
-
   const handleShow = () => setShow(true);
-
   const handleClick = () => {
     window.location.href = "https://api.whatsapp.com/send/?phone=34611329641";
-}
-const [scrolled, setScrolled] = useState(false);
+  }
+  const [scrolled, setScrolled] = useState(false);
 
-//USE EFFECT PARA HACER EL STICKY DEL NAV
+  //USE EFFECT PARA HACER EL STICKY DEL NAV
 
-useEffect(() => {
-  const handleScroll = () => {
-    if (window.scrollY > 10) { 
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
-
-  window.addEventListener("scroll", handleScroll);
-  
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
-
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) { 
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleCloseModalLogin = () => {
     setShowModalLogin(false);
@@ -56,8 +51,6 @@ useEffect(() => {
   return (
     <>
    <Navbar collapseOnSelect expand="md" bg="light" className={scrolled ? "navbar-scrolled" : ""}>
-
-
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img
@@ -68,10 +61,8 @@ useEffect(() => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto navbLink w-75">
-              
-              <NavLinks handleClick={handleClick}/>
-          
+            <Nav className="me-auto navbLink w-75">              
+              <NavLinks handleClick={handleClick}/>          
             </Nav>
             {isLoged === false ? (
               <>
