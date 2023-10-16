@@ -189,7 +189,7 @@ export const Home = () => {
                 <h3>Sandra Garcia</h3>
                 <p>
                   No pude realizar un viaje a Madrid y la compañía aérea me dio
-                  un bono de viaje en vez de reembolsarme el billete. Gracias A
+                  un bono de viaje en vez de reembolsarme el billete. Gracias a
                   Swap Your Travel otra persona ha podido viajar con él,
                   ahorrándose un dinero y yo he podido recuperar el mío. Todos
                   hemos salido ganando!
