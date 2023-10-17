@@ -27,9 +27,9 @@ async function main(email, name, password) {
         <script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>
       </head>
       <body>
-       <h1>Hola  ${name}. Te damos la bienvenida.</h1> 
-       <p>Empieza a comprar y vender, y no te pierdas ni una escapada, o el dinero de tu billete si no vas a poder viajar.</p>
-       <h2>Te recordamos que tu contraseña es: ${password}</h2>
+       <h3>Hola  ${name}. Te damos la bienvenida a Swap Your Travel.</h3> 
+       <p>Ya puedes empezar a swapear!!!.</p>
+       <p>Te recordamos que tu contraseña es: ${password}</p>
       </body>
     </html>`   
   })
