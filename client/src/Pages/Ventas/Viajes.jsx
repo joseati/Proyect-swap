@@ -1,13 +1,12 @@
 // Importando los módulos y componentes necesarios
-import React, { useState, useContext } from "react";
-import { Button, Container, Row, Col, Form } from "react-bootstrap";
+import { useState, useContext } from "react";
+import { Button, Row, Col } from "react-bootstrap";
 import { SwapContext } from "../../context/SwapContext";
 import "./viajes.scss";
 import { PlaneForm } from "./PlaneForm";
 import { IconSelect } from "./IconSelect";
 import { TrainForm } from "./TrainForm";
 import axios from "axios";
-import {getDate} from "../../Utils/getDateTime"
 import { initialValueTrain  } from "../../Utils/initialValueTrain";
 
 
@@ -353,8 +352,7 @@ const [ message , setMessage] = useState()
       <section>
       {planeButton && (
         <>
-          {/* <hr /> */}
-          <h1 className="text-center title-form">
+          <h1 className="text-center title-form p-3">
             Rellene los datos del billete de avión
           </h1>
           <PlaneForm
@@ -372,12 +370,10 @@ const [ message , setMessage] = useState()
           />
         </>
       )}
-
-      {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
+            {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
       {trainButton && (
         <>
-          {/* <hr /> */}
-          <h1 className="text-center title-form">
+          <h1 className="text-center title-form p-3">
             Rellene los datos del billete de tren
           </h1>
           <TrainForm
@@ -409,8 +405,6 @@ const [ message , setMessage] = useState()
         </div> 
           </>}
           
-          
-          <Button className="btn">Subir imagen del producto</Button>
           <Button onClick={handleSubmit} className="mt-4 btn">
             Enviar
           </Button>

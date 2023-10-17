@@ -16,7 +16,7 @@ export const ColFilters = ({handleChange}) => {
                                   <Form className="mt-3">
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
-                                              <img src="/assets/images/airline.png" alt="" />
+                                              <img src="/assets/images/airline.png" alt="aerolinea" />
                                               Compañía:
                                           </FormLabel>
                                           <FormControl
@@ -28,7 +28,7 @@ export const ColFilters = ({handleChange}) => {
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
-                                              <img src="/assets/images/arrivals.png" alt="" />
+                                              <img src="/assets/images/arrivals.png" alt="llegada" />
                                               Precio de venta:
                                           </FormLabel>
                                           <FormControl 
@@ -40,7 +40,7 @@ export const ColFilters = ({handleChange}) => {
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
-                                              <img src="/assets/images/calendar(1).png" alt="" />
+                                              <img src="/assets/images/calendar(1).png" alt="calendario" />
                                               Fecha salida:
                                           </FormLabel>
                                           <FormControl 
@@ -51,7 +51,7 @@ export const ColFilters = ({handleChange}) => {
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
-                                              <img src="/assets/images/departures.png" alt="" />
+                                              <img src="/assets/images/departures.png" alt="salidas" />
                                               Origen:
                                           </FormLabel>
                                           <FormControl 
@@ -63,7 +63,7 @@ export const ColFilters = ({handleChange}) => {
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
-                                              <img src="/assets/images/arrivals.png" alt="" />
+                                              <img src="/assets/images/arrivals.png" alt="llegada" />
                                               Destino:
                                           </FormLabel>
                                           <FormControl 
@@ -75,7 +75,7 @@ export const ColFilters = ({handleChange}) => {
                                       </FormGroup>
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel htmlFor='orderbyPrice'>
-                                              <img src="/assets/images/discount.png" alt="" />
+                                              <img src="/assets/images/discount.png" alt="precio" />
                                               Precio:
                                           </FormLabel>
                                           
@@ -90,7 +90,6 @@ export const ColFilters = ({handleChange}) => {
                                           
                                           
                                       </FormGroup>
-                                      {/* <Button className='btn-filter'>Aplicar filtros</Button> */}
                                   </Form>
                               </Col>
                           </Accordion.Body>

@@ -279,7 +279,7 @@ export const DelTravelAdmin = (travel) => {
           </Col>
         ) : (
           <>
-            <img src="/assets/images/avionamarillo.svg" alt="" />
+            <img src="/assets/images/avionamarillo.svg" alt="imagen de avion de papel" />
             <h2>No hay viajes</h2>
           </>
         )}

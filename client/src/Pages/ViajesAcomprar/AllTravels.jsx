@@ -1,5 +1,5 @@
 // External libraries
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Col, Row, Button } from 'react-bootstrap';
 
@@ -137,11 +137,6 @@ export const AllTravels = () => {
                 </Col>
             </Row>
         </Container>
-           
-             
-
-
-           
         </>
     );
 }

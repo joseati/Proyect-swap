@@ -1,4 +1,3 @@
-import React from 'react'
 import { Col} from "react-bootstrap";
 import {
   FaLinkedinIn,
@@ -15,7 +14,7 @@ export const IconosSocial = ({navigate}) => {
         className="square-logo"
         onClick={()=> navigate("/")}
         src="/assets/images/swapframe.png"
-        alt=""
+        alt="logo-swap"
       />
     </div>
     <ul className="ul-redes-footer mt-4 align-items-end justify-content-end">

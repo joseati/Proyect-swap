@@ -1,7 +1,5 @@
-import React from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 import "./modal-login.scss"
-import {ModalRegister} from "./ModalRegister"
 export const ModalLogin = ({ showRegister, handleShow1,
   setShowRegister ,show, handleClose,handleChange, inputLogin, onSubmit, showMsg, setShowMsg, setInputLogin}) => {
 

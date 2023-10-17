@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +13,7 @@ export const Swapeado = ({handleCloseSwap, showSwapeado}) => {
         <Modal.Header closeButton >
           <Modal.Title>Proceso de compra</Modal.Title>
         </Modal.Header>
-        <Modal.Body> <img src="/assets/images/check.svg" alt="" /> Enhorabuena! La compra se ha realizado correctamente</Modal.Body>
+        <Modal.Body> <img src="/assets/images/check.svg" alt="imagen de check correcto" /> Enhorabuena! La compra se ha realizado correctamente</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseSwap}>
             Cerrar

@@ -26,6 +26,10 @@ h3 {
   justify-content: center !important;
   margin-top: 7%;
 }
+.row-col-train,.row-col-plane{
+  padding:6vh 8vw;
+}
+
 .col-plane-1{
   display: flex;
   flex-direction: column;
@@ -155,4 +159,11 @@ h3 {
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  .row-col-plane,.row-col-train{
+    padding:8vw ;
+  }
+ 
 }

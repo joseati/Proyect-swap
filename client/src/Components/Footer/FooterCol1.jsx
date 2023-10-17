@@ -1,4 +1,3 @@
-import React from 'react'
 import { Col } from "react-bootstrap";
 
 export const FooterCol1 = ({navigate}) => {
@@ -6,11 +5,9 @@ export const FooterCol1 = ({navigate}) => {
     <Col md={4} xs={12} className="col-1">
     <h4 className="title-col">SOMOS SWAP YOUR TRAVEL</h4>
     <p onClick={() => navigate("/sobreNosotros")}>¿Quiénes somos?</p>
-    <p onClick={() => navigate("/comofunciona")}>Cómo funciona?</p>
+    <p onClick={() => navigate("/comofunciona")}>¿Cómo funciona?</p>
     <p onClick={() => navigate("/faqs")}>Preguntas frecuentes</p>
-    <p>Blog</p>
     <p onClick={() => navigate("/contactaConNosotros")}>Contacto</p>
-    <p>¿Qué dicen de nosotros?</p>
     </Col>
   )
 }

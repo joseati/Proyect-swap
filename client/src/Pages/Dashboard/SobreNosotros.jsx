@@ -9,7 +9,7 @@ export const SobreNosotros = () => {
         <Col className="apasionados">
             <Row className="subPadre">
              <Col className="foto" xs={12} md={12} xl={5}>
-            <img src="/assets/images/fondo-2.png" alt="" />
+            <img src="/assets/images/fondo-2.png" alt="imagen de fondo 2" />
           </Col>
           <Col className="apasionados2" xs={12} md={12} xl={7} >
             <h1>Somos unos apasionados de los viajes </h1>
@@ -49,12 +49,12 @@ export const SobreNosotros = () => {
           </p>
         </Col>
         <Col className="nuestraMision2">
-          <img src="/assets/images/logo-sobre-nosotros.svg" alt="" />
+          <img src="/assets/images/logo-sobre-nosotros.svg" alt="imagen sobre nosotros" />
         </Col>  
       </Row>
       <Row className="padre3" >
           <Col className="revolucionando">
-          <img src="/assets/images/sobre-nosotros-swap.jpg" alt="" />
+          <img src="/assets/images/sobre-nosotros-swap.jpg" alt="logo swap" />
         </Col>
         <Col className="revolucionando2">
           <h2>Revolucionando el mundo de los viajes</h2>

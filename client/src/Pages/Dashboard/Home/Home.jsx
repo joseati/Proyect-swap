@@ -1,4 +1,4 @@
-import React,{ useContext, useState,useEffect} from 'react'
+import { useContext, useState,useEffect} from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import './home.scss'
 import Carousel from 'react-bootstrap/Carousel';
@@ -34,7 +34,7 @@ export const Home = () => {
           </div>
         </Col>
         <Col className="homeCol1">
-          <img src="/assets/images/fondo-1.png" alt="" />
+          <img src="/assets/images/fondo-1.png" alt="imagen de fondo 1" />
         </Col>
       </Row>
 
@@ -68,31 +68,32 @@ export const Home = () => {
       <Row className="homeSection3">
         <Col className="iconosHome" xs={6} xl={2}>
           <a href="/todosLosViajes">
-            <img src="/assets/images/avion1.svg" alt="" />
+            <img src="/assets/images/avion1.svg" alt="imagen de avion" />
           </a>
           <a href="/todosLosViajes">Billetes de avión</a>
         </Col>
         <Col className="iconosHome" xs={6} xl={2}>
           <a href="/todosLosViajes">
-            <img src="/assets/images/bono.svg" alt="" />
-          </a>
-          <a href="/todosLosViajes">Bonos de viaje</a>
-        </Col>
-        <Col className="iconosHome" xs={6} xl={2}>
-          <a href="/todosLosViajes">
-            <img src="/assets/images/tren.svg" alt="" />
+            <img src="/assets/images/tren.svg" alt="imagen de tren" />
           </a>
           <a href="/todosLosViajes">Billetes de tren</a>
         </Col>
         <Col className="iconosHome" xs={6} xl={2}>
           <a href="/todosLosViajes">
-            <img src="/assets/images/alojamiento.svg" alt="" />
+            <img src="/assets/images/bono.svg" alt="imagen de bono" />
+          </a>
+          <a href="/todosLosViajes">Bonos de viaje</a>
+        </Col>
+     
+        <Col className="iconosHome" xs={6} xl={2}>
+          <a href="/todosLosViajes">
+            <img src="/assets/images/alojamiento.svg" alt="imagen de hotel" />
           </a>
           <a href="/todosLosViajes">Estancias de hotel</a>
         </Col>
         <Col className="iconosHome" xs={6} xl={2}>
           <a href="/todosLosViajes">
-            <img src="/assets/images/vacacional.svg" alt="" />
+            <img src="/assets/images/vacacional.svg" alt="imagen de pack vacacional" />
           </a>
           <a href="/todosLosViajes">Paquetes vacacionales</a>
         </Col>
@@ -115,12 +116,12 @@ export const Home = () => {
       </Row>
       <Row className="homeSection5">
         <Col className="iconosHome2" xs={6} xl={2}>
-          <img src="/assets/images/candado.svg" alt="" />
+          <img src="/assets/images/candado.svg" alt="candado" />
           <h5>Seguro</h5>
           <p>intermediación de SYT para dar seguridad a vendedor y comprador</p>
         </Col>
         <Col className="iconosHome2" xs={6} xl={2}>
-          <img src="/assets/images/facil.svg" alt="" />
+          <img src="/assets/images/facil.svg" alt="Fácil" />
           <h5>Fácil</h5>
           <p>
             Regístrate en la web y en un par de clicks podrás vender o comprar
@@ -128,18 +129,18 @@ export const Home = () => {
           </p>
         </Col>
         <Col className="iconosHome2" xs={6} xl={2}>
-          <img src="/assets/images/confiable.svg" alt="" />
+          <img src="/assets/images/confiable.svg" alt="confiable" />
           <h5>Confiable</h5>
           <p>Atención personalizada por parte de un equipo especializado</p>
         </Col>
         <Row className="homeSubSection5">
           <Col className="iconosHome2" xs={6} xl={2}>
-            <img src="/assets/images/circular.svg" alt="" />
+            <img src="/assets/images/circular.svg" alt="circular" />
             <h5>Economía circular</h5>
             <p>Favorecemos la economía colaborativa entre nuestros usuarios</p>
           </Col>
           <Col className="iconosHome2" xs={6} xl={2}>
-            <img src="/assets/images/sostenibilidad.svg" alt="" />
+            <img src="/assets/images/sostenibilidad.svg" alt="sostenibilidad" />
             <h5>Sostenibilidad</h5>
             <p>Nos preocupamos por el planeta</p>
           </Col>
@@ -159,7 +160,7 @@ export const Home = () => {
                   de que todo se realice correctamente y te mantienen
                   informados. Totalmente recomendados.
                 </p>
-                <img src="/assets/images/review_google.png" alt="" />
+                <img src="/assets/images/review_google.png" alt="review de google" />
               </Col>
             </Carousel.Item>
             <Carousel.Item>
@@ -172,7 +173,7 @@ export const Home = () => {
                   repetir con ellos si me volviera a quedar tirada con un bono o
                   billete de avión.
                 </p>
-                <img src="/assets/images/review_google.png" alt="" />
+                <img src="/assets/images/review_google.png" alt="review de google" />
               </Col>
             </Carousel.Item>
             <Carousel.Item>
@@ -185,7 +186,7 @@ export const Home = () => {
                   ahorrándose un dinero y yo he podido recuperar el mío. Todos
                   hemos salido ganando!
                 </p>
-                <img src="/assets/images/review_google.png" alt="" />
+                <img src="/assets/images/review_google.png" alt="review de google" />
               </Col>
             </Carousel.Item>
           </Carousel>

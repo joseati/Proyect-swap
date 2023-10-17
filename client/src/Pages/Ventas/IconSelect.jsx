@@ -16,7 +16,7 @@ export const IconSelect = ({ selectedIcon, handleImageClick }) => {
         >
           <img
             src="/assets/images/avion1.svg"
-            alt=""
+            alt="avion"
             onClick={() => handleImageClick("avion")}
             style={{ cursor: "pointer",width:"80px", height:"70px" }}
           />
@@ -32,7 +32,7 @@ export const IconSelect = ({ selectedIcon, handleImageClick }) => {
         >
           <img
             src="/assets/images/tren.svg"
-            alt=""
+            alt="tren"
             onClick={() => handleImageClick("tren")}
             style={{ cursor: "pointer",width:"80px", height:"70px" }}
           />
@@ -46,7 +46,7 @@ export const IconSelect = ({ selectedIcon, handleImageClick }) => {
         >
           <img
               src="/assets/images/bono.svg"
-              alt=""
+              alt="bono"
             style={{ cursor: "pointer",width:"80px", height:"70px"}}
           />
           <p style={{marginTop:"10px"}}>BONOS DE VIAJE</p>
@@ -59,7 +59,7 @@ export const IconSelect = ({ selectedIcon, handleImageClick }) => {
         >
           <img
              src="/assets/images/alojamiento.svg"
-             alt=""
+             alt="alojamiento"
             style={{ cursor: "pointer",width:"80px", height:"70px"}}
           />
           <p style={{marginTop:"10px"}}>NOCHES DE HOTEL</p>
@@ -72,7 +72,7 @@ export const IconSelect = ({ selectedIcon, handleImageClick }) => {
         >
           <img
             src="/assets/images/vacacional.svg"
-            alt=""
+            alt="vacacional"
             style={{ cursor: "pointer",width:"80px", height:"70px" }}
           />
           <p style={{marginTop:"10px"}}>PACKS VACACIONALES</p>
