@@ -115,9 +115,7 @@
 
 .padre4{
   color:  $azul;
-  display: flex;
   justify-content: center;
-  align-items: center;
   padding: 10vh 18vw 10vh 18vw;
   gap: 2vw;
   line-height: 2rem;
@@ -226,5 +224,8 @@ ol{
     }
     }
     
+  }
+  .padre4{
+    padding: 10vh 10vw 10vh 5vw;
   }
 }

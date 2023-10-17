@@ -7,9 +7,12 @@
   
 }
 .title{
-  font-size: 70px !important;
   color: #005a8d;
   margin: 3vh;
+  h1{
+    font-size: 50px;
+    font-weight: 700;
+  }
 }
 @media screen and (max-width: 1400px){
   .clausula{
@@ -17,5 +20,11 @@
   }
   .title{
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 700px){
+  .clausula{
+   padding: 0vh 7vw 0vh 7vw; 
   }
 }
