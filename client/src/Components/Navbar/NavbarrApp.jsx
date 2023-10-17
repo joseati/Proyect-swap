@@ -49,7 +49,7 @@ export const NavbarrApp = () => {
 
   return (
     <>
-   <Navbar collapseOnSelect expand="md" bg="light" className={scrolled ? "navbar-scrolled" : ""}>
+   <Navbar collapseOnSelect expand="lg" bg="light" className={scrolled ? "navbar-scrolled" : ""}>
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img

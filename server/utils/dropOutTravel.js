@@ -17,7 +17,7 @@ async function dropOutTravel(travel_id) {
   let info = await transporter.sendMail({
     from: '"Swap Your Travel" <adm.swapyourtravel.2023@gmail.com>',
     to: '"Swap Your Travel" <adm.swapyourtravel.2023@gmail.com>',
-    subject: "Se ha eliminado viaje con id ",    
+    subject: `Se ha eliminado viaje con id ${travel_id}`,    
     html: `<!doctype html>
     <html ⚡4email>
       <head>

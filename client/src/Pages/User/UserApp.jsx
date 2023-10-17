@@ -512,11 +512,11 @@ export const UserApp = () => {
               {/* elegir entre flex-column o como esta  */}
               <div className="d-flex flex-column justify-content-around form-inputs">
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="nameInput">Nombre</Form.Label>
+                    <Form.Label htmlFor="nameInput">Nombre / Alias</Form.Label>
                     <Form.Control
                     
                         id="nameInput"
-                        placeholder="Nombre"
+                        placeholder="Nombre / Alias"
                         name="name"
                         value={editInputs.name}
                         onChange={handleChange}
@@ -545,10 +545,10 @@ export const UserApp = () => {
               </Form.Group>
               <div className="d-flex flex-column justify-content-around form-inputs">
               <Form.Group className="mb-3">
-                  <Form.Label htmlFor="ident_num_Input">DIN</Form.Label>
+                  <Form.Label htmlFor="ident_num_Input">DNI/CIF</Form.Label>
                   <Form.Control 
                       id="ident_num_Input" 
-                      placeholder="DNI / PASAPORTE / CIF" 
+                      placeholder="DNI / CIF" 
                       name="ident_num"
                       value={editInputs.ident_num}
                       onChange={handleChange}

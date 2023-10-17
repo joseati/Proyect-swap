@@ -39,9 +39,11 @@ console.log(editInputs);
 
   return (
     <Row >
-      <Form className="d-flex">      
-          <Col md={6} xs={12} className="d-flex align-items-end flex-column p-4">            
-            <Form.Group>
+      <Col className='columna-edit'>
+      <Form className="d-flex align-items-center justify-content-center" >   
+      <Row>
+        <Col  md={6} xs={12} className=" form-Edit">            
+            <Form.Group className='d-flex flex-column align-items-center'>
               <Form.Label className="label" htmlFor="original_price">
                 Precio original billete/persona(€)
               </Form.Label>
@@ -54,7 +56,7 @@ console.log(editInputs);
                 value={!handleChange ? ida.original_price : editInputs.original_price}
               />
             </Form.Group>  
-            <Form.Group>
+            <Form.Group className='d-flex flex-column align-items-center'>
               <Form.Label className="label" htmlFor="commentaries">
                 Otras especificaciones
               </Form.Label>
@@ -68,8 +70,8 @@ console.log(editInputs);
               />
             </Form.Group>
           </Col>
-          <Col md={6} xs={12} className="d-flex align-items-start flex-column p-4">
-            <Form.Group>
+          <Col md={6} xs={12} className="form-Edit">
+            <Form.Group className='d-flex flex-column align-items-center'>
               <Form.Label className="label" htmlFor="exchange_rate">
                 Tasa de cambio de titularidad
               </Form.Label>
@@ -84,7 +86,7 @@ console.log(editInputs);
                 : editInputs.exchange_rate}
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='d-flex flex-column align-items-center'>
               <Form.Label className="label" htmlFor="total_amount">
                 Importe mínimo a recibir. (Precio Final - €)
               </Form.Label>
@@ -99,8 +101,12 @@ console.log(editInputs);
                   : editInputs.client_price}
               />
             </Form.Group>
-          </Col>            
+          </Col>  
+        </Row>   
+                    
       </Form>
+      </Col>
+      
     </Row>
   )
 }

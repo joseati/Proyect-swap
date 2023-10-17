@@ -29,6 +29,7 @@ ChartJS.register(
   );
   const options = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         position: 'top'
@@ -36,14 +37,6 @@ ChartJS.register(
       title: {
         display: true,
         text: 'Total y media de importes y viajes vendidos',
-      },
-    },
-    scales:{
-      x:{
-        barPercentage:0.5,
-      },
-      y:{
-        barPercentage:0.6,
       },
     },
 

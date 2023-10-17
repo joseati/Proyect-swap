@@ -22,7 +22,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
         <Form.Group>
          <Form.Control
          className='input-modal'
-          id='name' placeholder='Nombre'
+          id='name' placeholder='Nombre / Alias (Empresas)'
           value={inputUser.name}
           name='name'
           onChange={handleChange}/>

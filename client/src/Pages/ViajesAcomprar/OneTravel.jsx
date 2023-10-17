@@ -184,17 +184,18 @@ export const OneTravel = () => {
             {!isLoged &&
             <>
               <p>Para continuar tienes que tener una cuenta en Swap Your Travel.</p>
-              <p><a href="">Acceder a tu cuenta</a> o <a href="">Registrate</a></p>
             </>
       }
             </Row>      
             {/* BOTONES */}
             <Row className='section3OneTravel'>              
               <Col>
-                  <Button onClick={()=>navigate(-1)}>VOLVER</Button>
+                  <Button className='Buttonn' onClick={()=>navigate(-1)}>VOLVER</Button>
               </Col>
-              <Col>
-                <Button onClick={isLiked}>GUARDAR
+             {isLoged && 
+             <>
+             <Col>
+                <Button className='Buttonn' onClick={isLiked}>
                 <img
         className='like'
         src={`/assets/images/${like}`}
@@ -205,18 +206,19 @@ export const OneTravel = () => {
                 </Button>
               </Col>
               <Col>
-                <Button onClick={handleBuyTravel}>SWAPEAR</Button>
+                <Button className='Buttonn' onClick={handleBuyTravel}>SWAPEAR</Button>
               </Col>
+             </>}
               {showSwapeado && (
                 <Swapeado handleCloseSwap={handleCloseSwap} showSwapeado={showSwapeado}/>
               )}
                {user && user?.user_id === ida?.seller_user_id && ( 
                 <>
                 <Col>
-                  <Button onClick={handleEditForm} variant="warning">MODIFICAR IMPORTE</Button>
+                  <Button className='button-edit' onClick={handleEditForm} variant="warning">MODIFICAR IMPORTE</Button>
                 </Col>
                 <Col>
-                  <Button onClick={()=>deleteOneTravel(travel_id)} variant="danger">ELIMINAR</Button>
+                  <Button className='buttonn-deleted' onClick={()=>deleteOneTravel(travel_id)} variant="danger">ELIMINAR</Button>
                 </Col>
                 </>
                )} 
@@ -252,8 +254,8 @@ export const OneTravel = () => {
                 <EditOnePlane setSaveEditOnetravel = {setSaveEditOnetravel} ida={ida} vuelta={vuelta}/>                        
                 {showTrainForm && <EditOneTrain/>}              
               <Row>
-                <Col><Button onClick={()=>setEditing(false)}>VOLVER</Button></Col>
-                <Col><Button onClick={onSubmit} variant="success">GUARDAR</Button></Col>
+                <Col><Button className='Buttonn' onClick={()=>setEditing(false)}>VOLVER</Button></Col>
+                <Col><Button className='buttonn-guardar' onClick={onSubmit} variant="success">GUARDAR</Button></Col>
               </Row>
             </Col>        
           </Row>

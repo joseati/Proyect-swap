@@ -64,10 +64,53 @@
 }
 
 .like{
-  margin-left: 7px;
     width: 30px;
 }
 
+.Buttonn {
+  background-color: #005a8d !important;
+  border-radius: 25px !important;
+}
+.Buttonn:hover {
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700 !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.buttonn-deleted{
+  background-color: #8d0000 !important;
+  border-radius: 25px !important;
+  border: none !important;
+}
+.buttonn-deleted:hover{
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700 !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+.button-edit{
+  background-color: #ffc700 !important;
+  border-radius: 25px !important;
+  border: none !important;
+}
+.button-edit:hover{
+  background-color: #005a8d !important;
+  border: 1px solid #005a8d !important;
+  color: white!important;
+  font-weight: bold !important;
+}
+.buttonn-guardar{
+  background-color: #4CAF50 !important;
+  border-radius: 25px !important;
+  border: none !important;
+}
+.buttonn-guardar:hover{
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700 !important;
+  color: black !important;
+  font-weight: bold !important;
+}
 @media (max-width: 768px) {
   .rowCards{    
     flex-direction: column;
