@@ -5,7 +5,7 @@ import "./comofunciona.scss";
 export const ComoFunciona = () => {
   return (
     <Col>
-      <Row className="fondoCF mx-auto gap-5">
+      <Row className="fondoCF mx-auto ">
         <Col xs={12} className="firstRow">
           <h1>Cómo Funciona</h1>
         </Col>
@@ -37,7 +37,7 @@ export const ComoFunciona = () => {
               <li>Disfruta de tu dinero recuperado.</li>
             </ol>
             <br />
-            <Button className="btnCF w-50" href="/viajes">Véndelo</Button>
+            <Button className="btnCF " href="/viajes">Véndelo</Button>
           </Card>
         </Col>
         <Col xs={12} md={5}>
@@ -63,7 +63,7 @@ export const ComoFunciona = () => {
               <li>Disfruta de tu viaje.</li>
             </ol>
             <br />
-            <Button className="btnCF w-50" href="/todosLosViajes">Cómpralo</Button>
+            <Button className="btnCF " href="/todosLosViajes">Cómpralo</Button>
           </Card>
         </Col>
       </Row>

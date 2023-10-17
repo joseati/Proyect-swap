@@ -112,9 +112,9 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
             {travel?.company}
           </Card.Text>
           <Card.Body>
-          <Card.Title> {travel?.destiny} - {travel?.origin} </Card.Title> 
+          <Card.Title> {travel?.origin} - {travel?.destiny} </Card.Title> 
           <Row className='d-flex flex-row dateCard'>   
-            <Col xs={12} sm={4} md={4} xl={4} >
+            <Col xs={4} sm={4} md={4} xl={4} >
               <Card.Text>
                 <h6>Fecha de ida:</h6>
               </Card.Text>
@@ -122,7 +122,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
                 {departure_date}
               </Card.Text>
             </Col>
-            <Col xs={12} sm={4} md={4} xl={4}>
+            <Col xs={4} sm={4} md={4} xl={4}>
               <Card.Text>
                 <h6>Fecha de vuelta:</h6>
               </Card.Text>
@@ -130,7 +130,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
                 {arrival_date}
               </Card.Text>
             </Col>
-            <Col xs={12} sm={4} md={4} xl={4}>
+            <Col xs={4} sm={4} md={4} xl={4}>
               <Card.Text>
                 <h6>Pasajeros :</h6>
               </Card.Text>
@@ -139,9 +139,19 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
               </Card.Text>
             </Col>  
           </Row>
-          <Button style={{marginTop:"15px"}} variant="primary" >
+          <Row>
+            <Col >
+            <Button className='Buttonn' style={{marginTop:"15px"}} variant="primary" >
             <Link  to={`/oneTravel/${travel.travel_product_id}`} className='buttonCardsTravel'>Ver más</Link>
           </Button>
+            </Col>
+            <Col className='d-flex align-items-end justify-content-end'>
+            <Card.Text>
+               <span style={{fontSize: "30px", fontWeight: 700}}>{travel?.client_price} € </span> 
+              </Card.Text>
+            </Col>
+          </Row>
+          
       </Card.Body>
         {user?.type === 2 && travel.admin_enabled == 1 && <CardFooter>  
         <h4 style={{color: 'red', fontWeight:'bold', textAlign: 'end'}}>Bloqueado</h4>

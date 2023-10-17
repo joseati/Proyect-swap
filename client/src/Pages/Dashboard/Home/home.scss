@@ -257,7 +257,12 @@
     }
   }
 }
-
+.carousel-control-next{
+  display: none !important;
+}
+.carousel-control-prev{
+ display: none !important;
+}
 //----------------------
 
 @media screen and (max-width: 1200px){
@@ -328,4 +333,6 @@
       }
     }
   }
+  
+  
 }

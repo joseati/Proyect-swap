@@ -3,7 +3,7 @@
   background-color: #e7f4f6;
   padding: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .firstRow {
@@ -25,7 +25,9 @@
   opacity: .9;
     height: auto;
     box-shadow: 10px 0px 41px #c8c8c8 !important;
-
+  display: flex;
+  align-items: center;
+  margin: 2vh 0vw;
   .hgroupCF {
     padding: 40px 40px 0px 40px;
     text-align: center;
@@ -50,14 +52,13 @@
   .btnCF {
     background-color: $amarillo !important;
     color: $azul;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 800;
     line-height: 120%;
     border: 1px solid transparent;
     border-radius: 25px !important;
-    margin-left: 25%;
     padding: 15px;
-  
+    width: 150px;
     &:hover {
       background-color: $azul !important;
       color: white !important;
@@ -100,4 +101,10 @@
   color: #2d78a1;
   margin-right: 8px; /* Espacio entre el número y el texto */
 }
+}
+
+@media screen and (max-width: 992px){
+  .btnCF {
+    font-size: 23px !important;
+  }
 }

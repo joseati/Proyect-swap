@@ -5,11 +5,11 @@ import "./advertenciasGenericas.scss";
 export const AdvertenciasGenericas = () => {
   return (
     <Col>
-      <Row className="firstRow">
+      <Row className="firstRowAdver">
         <h1>Advertencias Genericas</h1>
       </Row>
       <Row className="d-flex justify-content-center mb-5">
-        <Col xs={7}>
+        <Col xs={11} xl={7}>
           <table className="table table-bordered">
             <thead>
               <tr>
