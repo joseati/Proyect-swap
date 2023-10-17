@@ -1,4 +1,4 @@
-import React, {Children, useState} from 'react'
+import {useState} from 'react'
 import { Modal,Button, Form } from 'react-bootstrap';
 import "./modal-register.scss"
 

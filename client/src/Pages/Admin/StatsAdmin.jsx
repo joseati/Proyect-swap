@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Card, Col, Row, Button, DropdownButton, Dropdown } from 'react-bootstrap'
 import { SwapContext } from '../../context/SwapContext'
 import axios from 'axios'
@@ -271,9 +271,6 @@ console.log(prepareDataChart);
          tasaMes = {tasaMes}/>
          </>  :
                     null}
-
-        
-
                   </Row>
               </Col>
   )

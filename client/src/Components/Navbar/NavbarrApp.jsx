@@ -1,7 +1,6 @@
-import React, { useState, useContext,useEffect } from "react";
+import { useState, useContext,useEffect } from "react";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { ModalRegister } from "../Modal/ModalRegister";
 import { Register } from "../../Pages/Auth/Register/Register";
 import { Login } from "../../Pages/Auth/Login/Login";
 import { SwapContext } from "../../context/SwapContext";
@@ -75,7 +74,7 @@ export const NavbarrApp = () => {
             ) : (
               <>
                 <Button className="goToUser" onClick={() => navigate("/oneUser")}>
-                  <img src="/assets/images/icon-user.png" alt="" /> Ir a usuario
+                  <img src="/assets/images/icon-user.png" alt="icono de usuario" /> Ir a usuario
                 </Button>
               </>
             )}

@@ -1,4 +1,3 @@
-
 import {createContext, useEffect, useState} from 'react';
 import { getLocalStore } from '../Utils/localStorage';
 import jwt_decode from "jwt-decode"
@@ -12,7 +11,6 @@ export const SwapProvider = (props) => {
   const [ token , setToken ] = useState();
   const [ isLoged, setIsLoged ] = useState(false)
   const [ reset, setReset ] = useState(true)
-  // const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
   const [prepareDataPlane, setPrepareDataPlane] = useState()
   const [prepareDataTrain, setPrepareDataTrain] = useState()
 

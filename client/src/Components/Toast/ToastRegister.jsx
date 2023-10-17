@@ -1,4 +1,3 @@
-import React from 'react'
 import { Col, Toast } from 'react-bootstrap'
 
 export const ToastRegister = ({showOk, setShowOk}) => {

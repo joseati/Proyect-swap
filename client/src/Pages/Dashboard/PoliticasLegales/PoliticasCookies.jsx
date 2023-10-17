@@ -3,14 +3,17 @@ import { Col, Row } from "react-bootstrap";
 import './politicasCookies.scss'
 export const PoliticasCookies = () => {
   return (
-    <Col className="politicaCookiesPadre">
+    <main>
+      <section className="container-fluid p-5">
       <Row>
         <Col className="cookiesTitle">
           <h1>Políticas de Cookies</h1>
         </Col>
       </Row>
-      <Row>
-        <Col className="coookiesHijo2 ">
+      <Row className="p-4">
+        <Col className="coookiesHijo2">
+          <Row>
+            <Col md={12} xs={12}>
           <p>
             Las cookies son ficheros que se descargan en su ordenador al acceder
             a determinadas páginas web. Las cookies facilitan a una página web
@@ -79,7 +82,7 @@ export const PoliticasCookies = () => {
               <li>
                 Chrome:
                 <a href="http://support.google.com/chrome/bin/answer.pyhl=es&answer=95647">
-                  http://support.google.com/chrome/bin/answer.pyhl=es&answer=95647
+                  http://support.google.com/chrome/bin/<br></br>answer.pyhl=es&answer=95647
                 </a>
               </li>
               <li>
@@ -94,8 +97,13 @@ export const PoliticasCookies = () => {
             desactivación de alguna cookie impida o dificulte la navegación o la
             prestación de los servicios ofrecidos en esta Web.
           </p>
+          </Col>
+          </Row>
         </Col>
+        
       </Row>
-    </Col>
+    {/* </Col> */}
+    </section>
+    </main>
   );
 };

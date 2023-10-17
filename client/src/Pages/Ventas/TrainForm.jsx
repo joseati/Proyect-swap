@@ -2,10 +2,9 @@ import { Row, Col, Form } from "react-bootstrap";
 export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDestiny_tp2,trainStationCity_tp2, trainStationCityDestiny,handleChangeTrainStation_tp2,handleChangeTrainStationDestiny,handleChangeTrainStation,  trainStation, shwoGoAndBack,handleChange, inputFormTrain }) => {
   return (
     <Form>
-      <Row>
+      <Row className="row-col-train">
         <Col md={6} xs={12} className="d-flex align-items-end flex-column">
           <Row>
-       {/*  ------------ */}
        <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="">
                 Estacion de salida (ciudad de origen)
@@ -20,7 +19,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="origin_trainStation_id">
-                  Elige estación
+                  Elige estación de salida - Ida
               </Form.Label>
               <Form.Select
                 name="origin_trainStation_id"
@@ -43,10 +42,9 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Group>
              
             
-            {/* -------------------- */}
             <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="destiny">
-                Estacion de llegada (ciudad de destino)
+                Estacion de llegada - Ida (ciudad de destino)
               </Form.Label>
               <Form.Control
               placeholder= "Ciudad de destino..."
@@ -59,7 +57,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="destiny_trainStation_id">
-                  Elige estación
+                  Elige estación de llegada - Ida
               </Form.Label>
               <Form.Select
                 name="destiny_trainStation_id"
@@ -83,7 +81,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
              
             <Form.Group>
               <Form.Label className="label" htmlFor="departure_date">
-                Fecha de ida
+                Fecha de salida - Ida
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -97,7 +95,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_date">
-                Fecha de vuelta
+                Fecha de llegada - Ida
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -161,24 +159,22 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
         
  {/* Fecha de vuelta si es ida y vuelta */}{console.log(shwoGoAndBack)}
  {shwoGoAndBack && <>
-  <Form.Label className="label" htmlFor="plane_travel_id">
+  <Form.Label style={{fontSize:"25px", fontWeight:"700"}} className="label" htmlFor="plane_travel_id">
                Información respecto al vuelo de vuelta
               </Form.Label>
               <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="">
-                Estación de salida 
+                Estación de salida - Vuelta
               </Form.Label>
               <Form.Control
               placeholder= "Ciudad de origen..."
-                // name="origin"
                 onChange={ handleChangeTrainStation_tp2}
-                // value={inputFormPlane.origin}
                 className="custom-input">
               </Form.Control>
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="origin_trainStation_id_tp2">
-                  Elige estación
+                  Elige estación de salida - Vuelta
               </Form.Label>
               <Form.Select
                 name="origin_trainStation_id_tp2"
@@ -201,23 +197,20 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Group>
              
             
-            {/* -------------------- */}
             <Form.Group className="mb-3">
               <Form.Label className="label" htmlFor="destiny">
-                Estación de llegada 
+                Estación de llegada  - Vuelta
               </Form.Label>
               <Form.Control
               placeholder= "Ciudad de destino..."
-                // name = "destiny"
                 onChange={handleChangeTrainStationDestiny_tp2}
-                // value={inputFormPlane.destiny}
                 id="destiny_t"
                 className="custom-input">
               </Form.Control>
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="destiny_trainStation_id_tp2">
-                  Elige estación
+                  Elige estación de llegada - Vuelta
               </Form.Label>
               <Form.Select
                 name="destiny_trainStation_id_tp2"
@@ -240,7 +233,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Group>
               <Form.Group>
               <Form.Label className="label" htmlFor="arrival_time_tp2">
-                Hora de salida- Ida
+                Hora de salida- Vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -254,7 +247,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="departure_time_tp2">
-                Hora de llegada - Ida
+                Hora de llegada - Vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -270,7 +263,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
 
             <Form.Group>
               <Form.Label className="label" htmlFor="compani_name_tp2">
-                  Nombre de la compañía
+                  Nombre de la compañía de vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -285,7 +278,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               
             <Form.Group>
               <Form.Label className="label" htmlFor="departure_date_tp2">
-                Fecha de ida
+                Fecha de salida - Vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -299,7 +292,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_date_tp2">
-                Fecha de vuelta
+                Fecha de llegada - Vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -314,7 +307,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
             </>}
             <Form.Group>
               <Form.Label className="label" htmlFor="arrival_time">
-                Hora de salida- Ida
+                Hora de salida- Vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -328,7 +321,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
             </Form.Group>
             <Form.Group>
               <Form.Label className="label" htmlFor="departure_time">
-                Hora de llegada - Ida
+                Hora de llegada - Vuelta
               </Form.Label>
               <Form.Control
                 className="custom-input"
@@ -344,7 +337,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
 
             <Form.Group>
               <Form.Label className="label" htmlFor="compani_name">
-                  Nombre de la compañía
+                  Nombre de la compañía de ida
               </Form.Label>
               <Form.Control
                 className="custom-input"

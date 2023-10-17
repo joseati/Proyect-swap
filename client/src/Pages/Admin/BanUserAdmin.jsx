@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardFooter, CardHeader, Col, Row } from 'react-bootstrap'
 import { SwapContext } from '../../context/SwapContext';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,6 @@ export const BanUserAdmin = ({allUsers}) => {
   const [searching, setSearching] = useState(false); // Nuevo estado para indicar si se está realizando una búsqueda
   const [showMsgMissing, setShowMsgMissing] = useState(false) // Estado para enseñar mensaje de que el usuario no existe
   const [arrayTemp, setArrayTemp] = useState()
-  const navigate = useNavigate()
   const { reset, setReset } = useContext(SwapContext)
 
   useEffect(()=>{
@@ -126,8 +125,6 @@ export const BanUserAdmin = ({allUsers}) => {
           ))}
 
       <Card>
-        
-
       </Card>
     </Row>
   )

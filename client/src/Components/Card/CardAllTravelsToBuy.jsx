@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 import { Col, Card, Button, Row, CardFooter } from 'react-bootstrap'
 import { getDate } from '../../Utils/getDateTime';
 import './cardAllTravelsToBuy.scss'

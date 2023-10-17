@@ -459,7 +459,7 @@ export const UserApp = () => {
                    ) : (
                     <>
                       <div className="d-flex flex-column align-items-center justify-content-center">
-                        <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="" />
+                        <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="avion amarillo" />
                         <h2>Aún no tienes nada a la venta</h2>
                         <p style={{fontSize:"18px"}}>
                           Ve al apartado{" "}
@@ -493,7 +493,7 @@ export const UserApp = () => {
                    ) : (
                     <>
                       <div className="d-flex flex-column align-items-center">
-                      <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="" />
+                      <img style={{width:"320px",marginTop:"15vh"}} src="/assets/images/avionamarillo.svg" alt="avion amarillo" />
                       <h2>Aún no tienes ningún producto en favoritos</h2>
                       <p style={{fontSize:"18px"}}>
                         Para guardar un producto, pulsa <img style={{width:"30px"}} src="/assets/images/heart1.svg" alt="corazón-favoritos" />.
@@ -599,7 +599,7 @@ export const UserApp = () => {
           <>
             <Toast>
               <Toast.Header onClick={() => setShowToast  (false)}>
-           <img  src="holder.js/20x20?  text=%20" className="rounded me-2"  alt="" />
+           <img  src="holder.js/20x20?  text=%20" className="rounded me-2"  />
             <strong style={{color:"red",fontSize:"25px"}} className="me-auto">
                 Atención!
              </ strong>

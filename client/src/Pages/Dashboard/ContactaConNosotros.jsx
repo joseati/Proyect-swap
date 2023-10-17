@@ -7,7 +7,7 @@ export const ContactaConNosotros = () => {
       <Row className="contactaConNosotrosPadre" >        
             <Col xs={12} xl={6} >
               <div className="contacts">
-                <img src="/assets/images/email.png" alt="" />
+                <img src="/assets/images/email.png" alt="email" />
                 <h2>Email</h2>
                 <p>
                   Si tienes alguna duda puedes contactarnos escribiendo un
@@ -20,7 +20,7 @@ export const ContactaConNosotros = () => {
             </Col>
             <Col xl={6} >
               <div className="contacts">
-                <img src="/assets/images/chat.png" alt="" />
+                <img src="/assets/images/chat.png" alt="chat" />
                 <h2>Live Chat</h2>
                 <p>
                   Puedes chatear con nosotros por Whatsapp en horario de 9:00 a
@@ -33,7 +33,7 @@ export const ContactaConNosotros = () => {
             </Col>     
             <Col xl={6} >
               <div className="contacts">
-                <img src="/assets/images/telefono.png" alt="" />
+                <img src="/assets/images/telefono.png" alt="telefono" />
                 <h2>Teléfono</h2>
                 <p>
                   Puedes llamarnos por teléfono en horario de 9:00 a 17:00 al:
@@ -43,7 +43,7 @@ export const ContactaConNosotros = () => {
             </Col>
             <Col xl={6}  className="contacts">
               <div className="contacts">
-                <img src="/assets/images/oficinas.png" alt="" />
+                <img src="/assets/images/oficinas.png" alt="oficinas" />
                 <h2>Oficinas</h2>
                 <p>Nuestras oficinas están ubicadas en:</p>
                 <a href="https://goo.gl/maps/ECPJLMKNY8hDn1RF7">
