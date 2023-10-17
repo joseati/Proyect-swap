@@ -2,6 +2,7 @@ const connection = require("../config/db");
 const express= require("express")
 const { json } = require("express");
 const { dropOutTravel } = require("../utils/dropOutTravel");
+const { modifyTravel } = require("../utils/modifyTravel");
 
 class TravelController {
 
@@ -481,6 +482,7 @@ filterAllPlanesTobuy = ( req, res ) => {
       err ?
       res.status(500).json(err)
       :
+      modifyTravel(travel_product_id),
       res.status(200).json(result)
     })
   }
