@@ -98,10 +98,18 @@ class UserController {
    let sql = `UPDATE user SET is_deleted = 1 WHERE user_id = ${user_id} `
 
    connection.query(sql, (err, result)=> {
-    err?
-    res.status(500).json(err)
-    :
-    res.status(200).json(result)
+    if (err){
+      console.log(err);
+    }
+    let sqlTravelDelete =`UPDATE travel_product SET is_deleted = 1 WHERE seller_user_id = ${user_id}`
+    
+    connection.query(sqlTravelDelete,(err1, resultTravel)=>{
+      err1?
+      res.status(500).json("upss, problem!")
+      :
+      res.status(200).json("ok")
+    })
+
    })
     
   }

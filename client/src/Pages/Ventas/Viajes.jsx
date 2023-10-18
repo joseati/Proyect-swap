@@ -8,6 +8,7 @@ import { IconSelect } from "./IconSelect";
 import { TrainForm } from "./TrainForm";
 import axios from "axios";
 import { initialValueTrain  } from "../../Utils/initialValueTrain";
+import { useNavigate } from "react-router-dom";
 
 
 const initialValue = {
@@ -63,6 +64,7 @@ export const Viajes = () => {
  const [ trainStationCity_tp2, setTrainStationCity_tp2 ] = useState()
  const [ trainStationDestiny_tp2,  setTrainStationDestiny_tp2 ] = useState()
 const [ message , setMessage] = useState()
+const navigate = useNavigate()
   // Función para manejar el clic en los iconos y mostrar el formulario correspondiente
   const handleImageClick = (iconType) => {
     setSelectedIcon(iconType);
@@ -187,14 +189,14 @@ const [ message , setMessage] = useState()
     if(user){
       console.log(user);
       const {user_id} = user
-      console.log("inputttt from planeee", inputFormPlane)
+      console.log("inputttt from planeee", inputFormTrain)
       if( planeButton ){
         axios
         .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})
         .then((res) => {
           setReset(false)
           setInputFormPlane(initialValue)
-          console.log(res);
+          navigate("/oneUser")
         })
         .catch((err) => {
           if(err){
@@ -210,8 +212,14 @@ const [ message , setMessage] = useState()
           console.log(res.data);
           setReset(false)
           setInputFormTrain(initialValueTrain)
+          navigate("/oneUser")
         })
-        .catch((err) => {console.log(err)});
+        .catch((err1) => {
+          if(err1){
+            console.log(err1);
+            setMessage(true)
+          }
+        });
       }
     }
     
@@ -222,6 +230,7 @@ const [ message , setMessage] = useState()
 // Controlador de estado de los inputs de tren que recogen esa informacion en un objeto que se enviara al back
   
   const handleTrainChange = (e) => {
+    setMessage(false)
     const { name, value } = e.target;
     if( e.target.type == "text" ){
       setInputFormTrain({
@@ -400,7 +409,7 @@ const [ message , setMessage] = useState()
           className=" buttons d-flex flex-column align-items-center justify-content-center"
         >
           {message && <>
-          <div>
+          <div style={{color:"red"}}>
           Error en el formulario rellene los campos
         </div> 
           </>}

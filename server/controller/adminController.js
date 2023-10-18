@@ -38,7 +38,13 @@ class AdminController {
       if(err){
         res.status(500).json(err)
       }
-      res.status(200).json(result)
+      let sql2 = `UPDATE travel_product SET admin_enabled = 1 WHERE seller_user_id = ${user_id}`
+      connection.query(sql2, (err2, result2) => {
+        err2 ? 
+        res.status(500).json("err")
+        :
+        res.status(200).json("todo ook")
+      })
     })
   }
 
@@ -51,7 +57,14 @@ class AdminController {
       if(err){
         res.status(500).json(err)
       }
-      res.status(200).json(result)
+      let sql2 = `UPDATE travel_product SET admin_enabled = 0 WHERE seller_user_id = ${user_id}`
+      connection.query(sql2, (err2, result2) => {
+        err2 ? 
+        res.status(500).json("err")
+        :
+        res.status(200).json("todo ook")
+      })
+      
     })
   }
 
