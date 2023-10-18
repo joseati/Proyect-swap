@@ -48,11 +48,22 @@ class TravelController {
       }
       let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
       connection.query(sqlTrain, (err2, resultTrain) => {
-        err2 ?
+        if(err2){
           res.status(500).json("err2")
-          :
-           res.status(200).json({resultPlane, resultTrain}) 
-          console.log(resultPlane, resultTrain)
+
+        }else{
+          console.log("resssss", resultPlane, resultTrain)
+         let dataPlane = resultPlane.map((e) => ({...e,
+            departure_date: e.departure_date.toString().split("G")[0],
+            arrival_date: e.arrival_date.toString().split("G")[0]}))
+         let dataTrain = resultTrain.map((e) => ({...e,
+            departure_date: e.departure_date.toString().split("G")[0],
+            arrival_date: e.arrival_date.toString().split("G")[0]}))
+
+          res.status(200).json({dataPlane, dataTrain}) 
+        }
+          
+          
       })
     })
   } 
@@ -76,12 +87,18 @@ class TravelController {
     AND tp.is_deleted = 0 
     AND tp.travel_product_id = ${travel_id};`
     connection.query(sql, (err, resul)=>{
-      err ?
+      if(err){
         res.status(500).json("err")
-        // console.log(err)
-        :
-        res.status(200).json(resul)
-        //  console.log("RESULTADO CONTROLLER", resul);
+        
+      }else{
+         // console.log(err)
+        let data =  resul.map((e)=>({...e,
+          departure_date: e.departure_date.toString().split("G")[0],
+          arrival_date: e.arrival_date.toString().split("G")[0]}))
+         res.status(200).json(data)
+ //  console.log("RESULTADO CONTROLLER", resul);
+      }
+       
     })
   } 
   getOneAirport = (req, res ) => {
@@ -114,12 +131,12 @@ class TravelController {
      }else{
       // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
       const { insertId } = resultTravel
-      console.log( insertId );
+      
       if(resultTravel ){
         // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
         if (!plane_travel_id || plane_travel_id == "1"){
           let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" )`
-          console.log(sqlPlaneTravel);
+          
           connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
            if(err2){
              res.status(500).json("err2")
@@ -186,7 +203,7 @@ class TravelController {
       }else{
        // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
        const { insertId } = resultTravel
-       console.log( insertId );
+      
        if(resultTravel ){
          // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
          if (!train_travel_id || train_travel_id == "1"){
@@ -399,19 +416,22 @@ class TravelController {
     
     console.log("sqlfiltroossssss", sql);
     connection.query(sql ,(err, result) => {
-      err ?
-      res.status(500).json(err)
-      :
-      console.log(result)
-      if(departure_date && arrival_date ){
+      if(err){
+
+        res.status(500).json(err)
+      }else{
+// console.log(result)
+      // if(departure_date && arrival_date ){
         let finalresult = result.map((e)=> ({...e,
           departure_date: e.departure_date.toString().split("G")[0],
           arrival_date: e.arrival_date.toString().split("G")[0]}))
-        console.log("resulttt", result[0].departure_date.toString())
+        // console.log("resulttt", result[0].departure_date.toString())
         res.status(200).json(finalresult)
-      }else{
-        res.status(200).json(result)
+      // }else{
+        // res.status(200).json(result)
+      // }
       }
+      
       
     })
     
@@ -457,19 +477,22 @@ filterAllPlanesTobuy = ( req, res ) => {
     
     console.log("sqlfiltroossssssplaneee", sql);
     connection.query(sql ,(err, result) => {
-      err ?
+     if (err){
       res.status(500).json(err)
-      :
-      console.log(result)
-      if(departure_date && arrival_date ){
+     } else{
+  // console.log(result)
+      // if(departure_date ){
         let finalresult = result.map((e)=> ({...e,
           departure_date: e.departure_date.toString().split("G")[0],
           arrival_date: e.arrival_date.toString().split("G")[0]}))
-        console.log("resulttt", result[0].departure_date.toString())
+        // console.log("resulttt", result[0].departure_date.toString())
         res.status(200).json(finalresult)
-      }else{
-        res.status(200).json(result)
-      }
+      // }else{
+        // res.status(200).json(result)
+      // }
+     }
+      
+    
     })
   }
 
@@ -515,19 +538,23 @@ filterAllPlanesTobuy = ( req, res ) => {
     console.log("sqlFiltrosTRENES", sql);
 
     connection.query(sql ,(err, result) => {
-      err ?
-      res.status(500).json(err)
-      :
-      console.log(result)
-      if(departure_date && arrival_date ){
-        let finalresult = result.map((e)=> ({...e,
-          departure_date: e.departure_date.toString().split("G")[0],
-          arrival_date: e.arrival_date.toString().split("G")[0]}))
-        console.log("resulttt", result[0].departure_date.toString())
-        res.status(200).json(finalresult)
+      if(err){
+
+        res.status(500).json(err)
       }else{
-        res.status(200).json(result)
+  // if(departure_date ){
+    let finalresult = result.map((e)=> ({...e,
+      departure_date: e.departure_date.toString().split("G")[0],
+      arrival_date: e.arrival_date.toString().split("G")[0]}))
+    console.log("resulttt", result[0].departure_date.toString())
+    res.status(200).json(finalresult)
+  // }else{
+  //   res.status(200).json(result)
+  // }
       }
+      
+      
+    
     })
 
   }
