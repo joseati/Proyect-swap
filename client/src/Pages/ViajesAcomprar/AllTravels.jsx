@@ -129,12 +129,14 @@ export const AllTravels = () => {
             </Row>
 
             <Row className='row-col-filters'>
-                <Col md={2} xs={12}>
+                <Col md={4} xs={12}>
                     <ColFilters handleChange={handleChange} />
                     <Button onClick={onSubmitFilters} className='btn-filter2'>Aplicar filtros</Button>
                 </Col>
-{console.log(allTravelsToBuy)}
-                <Col className='col-travels' md={10} xs={12}>
+
+
+                <Col className='col-travels' md={6} xs={12}>
+
                     {showAllTickets && allTravelsToBuy?.map((travel, i) => (
                         <>
                         <Row key={i}>
