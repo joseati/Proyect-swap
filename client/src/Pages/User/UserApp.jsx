@@ -240,13 +240,14 @@ export const UserApp = () => {
       axios
         .get(`http://localhost:4000/travels/oneUserBoughtTravels/${user_id}`)
         .then((response) => {
-          setTravelsBought(response.data)
-          // setArrayTempPlanes(response.data.resultPlaneUser);
-          // setArrayTempTrains(response.data.resultTrain);
+          // setTravelsBought(response.data)
+          setArrayTempPlanes(response.data.resultPlaneUser);
+          setArrayTempTrains(response.data.resultTrain);
         })
         .catch((err) => console.log(err))
       }
   }, [user]);
+
 
   // Trae los viajes marcados como favoritos de un usuario
   useEffect(() => {      
@@ -256,6 +257,7 @@ export const UserApp = () => {
       .get(`http://localhost:4000/travels/getLikes/${user_id}`)
       .then((response) => {
         setLikes(response.data);
+        console.log(response.data)
       })
       .catch((err) => console.log(err))
     }

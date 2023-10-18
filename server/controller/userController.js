@@ -182,7 +182,7 @@ class UserController {
     AND tp.buyer_user_id = ${user_id} 
     AND tp.destiny LIKE '%${destiny}%'
     group by tp.travel_product_id;`
-    connection.query( sqlPlaneUser,(err1,resultPlaneUser) => {
+    connection.query( sqlPlaneUser,(err1,resultPlane) => {
       if(err1){
         console.log(err1);
       }else{
@@ -196,12 +196,23 @@ class UserController {
           AND tp.buyer_user_id = ${user_id}
           AND tp.destiny LIKE '%${destiny}%' 
           group by tt.travel_product_id;`
-          connection.query(sqlTrain, (err2, resultTrain) => {
-            err2?
-             res.status(500).json(err2)
-             :
-              res.status(200).json({resultPlaneUser,resultTrain})
-            //  console.log({resultPlaneUser,resultTrain});
+          connection.query(sqlTrain, (err2, resultTrainUser) => {
+            if(err2){
+              res.status(500).json(err2)
+            }else{
+              let resultPlaneUser = resultPlane.map((e)=>({...e,
+                departure_date: e.departure_date.toString().split("G")[0],
+                arrival_date: e.arrival_date.toString().split("G")[0]}))
+  
+              let resultTrain = resultTrainUser.map((e)=>({...e,
+                departure_date: e.departure_date.toString().split("G")[0],
+                arrival_date: e.arrival_date.toString().split("G")[0]}))
+                
+                res.status(200).json({resultPlaneUser,resultTrain})
+            }
+             
+             
+        
           })
         
       }
