@@ -190,37 +190,65 @@ const navigate = useNavigate()
       console.log(user);
       const {user_id} = user
       console.log("inputttt from planeee", inputFormTrain)
-      if( planeButton ){
-        axios
-        .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})
-        .then((res) => {
-          setReset(false)
-          setInputFormPlane(initialValue)
-          navigate("/oneUser")
-        })
-        .catch((err) => {
-          if(err){
-            console.log(err);
-            setMessage(true)
+      
+        if( planeButton ){
+          if(!inputFormPlane.origin_airpoty_id ||
+            inputFormPlane.origin_airpoty_id === ""||
+             !inputFormPlane.destiny_airpoty_id ||
+             inputFormPlane.destiny_airpoty_id === "" ||
+             !inputFormPlane.departure_date ||
+             inputFormPlane.departure_date == "" ||
+            !inputFormPlane.arrival_date ||
+            inputFormPlane.arrival_date == "" ){
+              setMessage(true)
+
+          }else{
+            axios
+            .post("http://localhost:4000/travels/sellTicket/sellPlaneTravel", {inputFormPlane, user_id})
+            .then((res) => {
+              setReset(false)
+              setInputFormPlane(initialValue)
+              navigate("/oneUser")
+            })
+            .catch((err) => {
+              if(err){
+                console.log(err);
+                setMessage(true)
+              }
+            });
           }
-        });
-      }
-      if( trainButton ){
-        axios
-        .post("http://localhost:4000/travels/sellTicket/sellTrainTravel", {inputFormTrain, user_id})
-        .then((res) => {
-          console.log(res.data);
-          setReset(false)
-          setInputFormTrain(initialValueTrain)
-          navigate("/oneUser")
-        })
-        .catch((err1) => {
-          if(err1){
-            console.log(err1);
-            setMessage(true)
+         
+        }
+        if( trainButton ){
+          if(!inputFormTrain.origin_airpoty_id ||
+            inputFormTrain.origin_airpoty_id === ""||
+             !inputFormTrain.destiny_airpoty_id ||
+             inputFormTrain.destiny_airpoty_id === "" ||
+             !inputFormTrain.departure_date ||
+             inputFormTrain.departure_date == "" ||
+            !inputFormTrain.arrival_date ||
+            inputFormTrain.arrival_date == ""){
+              setMessage(true)
+          }else{
+            axios
+            .post("http://localhost:4000/travels/sellTicket/sellTrainTravel", {inputFormTrain, user_id})
+            .then((res) => {
+              console.log(res.data);
+              setReset(false)
+              setInputFormTrain(initialValueTrain)
+              navigate("/oneUser")
+            })
+            .catch((err1) => {
+              if(err1){
+                console.log(err1);
+                setMessage(true)
+              }
+            });
           }
-        });
-      }
+         
+        }
+      
+      
     }
     
   };
@@ -271,7 +299,7 @@ const navigate = useNavigate()
       }
       
     };
-    console.log(inputFormTrain);
+    console.log(inputFormPlane);
     // Función que se ejecutará al enviar el formulario
   // Controlador para rescatar el id del staciones de tren para ello hago dos axios uno para mapear los aeropuertod de origen y otro para la salida y seteo los inputs de origen y destino 
 

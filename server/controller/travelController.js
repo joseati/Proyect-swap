@@ -104,7 +104,7 @@ class TravelController {
    console.log(origin);
  
 // Primera insert en la tabla travel_product(tabla con mayor entidad)
-    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate   ) VALUES (1, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)})`
+    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate, is_deleted ) VALUES (1, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)}, 1)`
 
     console.log(sqlTravelProduct);
 
@@ -121,10 +121,21 @@ class TravelController {
           let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" )`
           console.log(sqlPlaneTravel);
           connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
-            err2 ?
+           if(err2){
              res.status(500).json("err2")
-             :
-             res.status(200).json({resultTravel, resultPlaneform})
+
+           }  else{
+            const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+            console.log(sqlIsdelete);
+            connection.query(sqlIsdelete,(err3, resultIsDelete) => {
+              err3 ?
+              res.status(500).json(err3)
+              :
+              res.status(200).json("ok")
+            })
+           }
+            //  res.status(200).json({resultTravel, resultPlaneform})
+            
           })
 
         }
@@ -135,10 +146,20 @@ class TravelController {
           (${insertId}, 2, ${parseInt(origin_airpoty_id_tp2)},${parseInt(destiny_airpoty_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
   
           connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
-            err2 ?
-             res.status(500).json("err2")
-             :
-             res.status(200).json({resultTravel, resultPlaneform})
+            if(err2){
+              res.status(500).json("err2")
+ 
+            }else{
+              const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+              connection.query(sqlIsdelete,(err3, resultIsDelete) => {
+                err3 ?
+                res.status(500).json(err3)
+                :
+                res.status(200).json("ok")
+              })
+            }
+             //  res.status(200).json({resultTravel, resultPlaneform})
+           
           })
 
         }
@@ -157,7 +178,7 @@ class TravelController {
     const {user_id} = req.body
 
     // Primera insert en la tabla travel_product(tabla con mayor entidad)
-    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate,is_deleted   ) VALUES (2, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)})`
+    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate,is_deleted ) VALUES (2, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)}, 1)`
 
     connection.query( sqlTravelProduct, (err, resultTravel ) => {
       if(err){
@@ -172,10 +193,20 @@ class TravelController {
            let sqlTrainTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}"   , "${compani_name}" )`
            
            connection.query( sqlTrainTravel, (err2, resultTrainform) => {
-             err2 ?
+            if(err2){
               res.status(500).json("err2")
-              :
-              res.status(200).json({resultTravel, resultTrainform})
+ 
+            } else{
+              const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+              connection.query(sqlIsdelete,(err3, resultIsDelete) => {
+                err3 ?
+                res.status(500).json(err3)
+                :
+                res.status(200).json("ok")
+              })
+            }
+             //  res.status(200).json({resultTravel, resultPlaneform})
+            
            })
  
          }
@@ -186,10 +217,20 @@ class TravelController {
            (${insertId}, 2, ${parseInt(origin_trainStation_id_tp2)},${parseInt(destiny_trainStation_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
    
            connection.query( sqlPlaneTravel, (err2, resultTrainform) => {
-             err2 ?
+            if(err2){
               res.status(500).json("err2")
-              :
-              res.status(200).json({resultTravel, resultTrainform})
+ 
+            }else{
+              const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+              connection.query(sqlIsdelete,(err3, resultIsDelete) => {
+                err3 ?
+                res.status(500).json(err3)
+                :
+                res.status(200).json("ok")
+              })
+            }
+             //  res.status(200).json({resultTravel, resultPlaneform})
+             
            })
  
          }
@@ -361,25 +402,37 @@ class TravelController {
       err ?
       res.status(500).json(err)
       :
-      res.status(200).json(result)
+      console.log(result)
+      if(departure_date && arrival_date ){
+        let finalresult = result.map((e)=> ({...e,
+          departure_date: e.departure_date.toString().split("G")[0],
+          arrival_date: e.arrival_date.toString().split("G")[0]}))
+        console.log("resulttt", result[0].departure_date.toString())
+        res.status(200).json(finalresult)
+      }else{
+        res.status(200).json(result)
+      }
+      
     })
     
     
   }
 
 filterAllPlanesTobuy = ( req, res ) => {
-    console.log(req.params.filtersTravel);
+    console.log("parammssssss", req.params.filtersTravel);
     const temp = JSON.parse(req.params.filtersTravel)
     const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
     console.log(company_name);
   
-    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 and tp.buyer_user_id IS NULL"
+    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 and tp.buyer_user_id IS NULL and tp.type = 1"
     let group = " GROUP BY tp.travel_product_id "
     if(company_name){
       sql += ` AND pt.company_name LIKE "%${company_name}%"  ` 
     }
     if(departure_date){
-      sql += ` AND pt.departure_date = "${departure_date}" `    }
+      sql += ` AND pt.departure_date = "${departure_date}" `    
+     
+    }
     if(price){
       sql += ` AND tp.client_price = ${price}` 
     }
@@ -407,7 +460,16 @@ filterAllPlanesTobuy = ( req, res ) => {
       err ?
       res.status(500).json(err)
       :
-      res.status(200).json(result)
+      console.log(result)
+      if(departure_date && arrival_date ){
+        let finalresult = result.map((e)=> ({...e,
+          departure_date: e.departure_date.toString().split("G")[0],
+          arrival_date: e.arrival_date.toString().split("G")[0]}))
+        console.log("resulttt", result[0].departure_date.toString())
+        res.status(200).json(finalresult)
+      }else{
+        res.status(200).json(result)
+      }
     })
   }
 
@@ -418,12 +480,13 @@ filterAllPlanesTobuy = ( req, res ) => {
     const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
     console.log(company_name);
 
-    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp  LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 and tp.buyer_user_id IS NULL"
+    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp  LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 and tp.buyer_user_id IS NULL and tp.type = 2"
     let group = " GROUP BY tp.travel_product_id "
     if(company_name){
       sql += ` AND tt.company_name LIKE "%${company_name}%" ` 
     }
     if(departure_date){
+      // sql += ` AND tt.departure_date = "${departure_date}" `    }
       sql += ` AND tt.departure_date = "${departure_date}" `    }
 
     if(price){
@@ -455,7 +518,16 @@ filterAllPlanesTobuy = ( req, res ) => {
       err ?
       res.status(500).json(err)
       :
-      res.status(200).json(result)
+      console.log(result)
+      if(departure_date && arrival_date ){
+        let finalresult = result.map((e)=> ({...e,
+          departure_date: e.departure_date.toString().split("G")[0],
+          arrival_date: e.arrival_date.toString().split("G")[0]}))
+        console.log("resulttt", result[0].departure_date.toString())
+        res.status(200).json(finalresult)
+      }else{
+        res.status(200).json(result)
+      }
     })
 
   }
