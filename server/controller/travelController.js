@@ -157,11 +157,11 @@ class TravelController {
     const {user_id} = req.body
 
     // Primera insert en la tabla travel_product(tabla con mayor entidad)
-    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate   ) VALUES (2, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)})`
+    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate,is_deleted   ) VALUES (2, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)})`
 
     connection.query( sqlTravelProduct, (err, resultTravel ) => {
       if(err){
-       console.log(err)
+       res.status(500).json("err en sql")
       }else{
        // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
        const { insertId } = resultTravel
@@ -169,7 +169,7 @@ class TravelController {
        if(resultTravel ){
          // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
          if (!train_travel_id || train_travel_id == "1"){
-           let sqlTrainTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" )`
+           let sqlTrainTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}"   , "${compani_name}" )`
            
            connection.query( sqlTrainTravel, (err2, resultTrainform) => {
              err2 ?
@@ -327,7 +327,7 @@ class TravelController {
     const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
     console.log(company_name);
 
-    let sql = "SELECT u.name,tp.destiny, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date , tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 "
+    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date , tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 AND tp.buyer_user_id IS NULL"
     let group = " GROUP BY tp.travel_product_id "
     if(company_name){
       sql += ` AND (pt.company_name LIKE "%${company_name}%" OR tt.company_name LIKE "%${company_name}%") ` 
@@ -373,7 +373,7 @@ filterAllPlanesTobuy = ( req, res ) => {
     const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
     console.log(company_name);
   
-    let sql = "SELECT u.name,tp.destiny, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 "
+    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 and tp.buyer_user_id IS NULL"
     let group = " GROUP BY tp.travel_product_id "
     if(company_name){
       sql += ` AND pt.company_name LIKE "%${company_name}%"  ` 
@@ -418,7 +418,7 @@ filterAllPlanesTobuy = ( req, res ) => {
     const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
     console.log(company_name);
 
-    let sql = "SELECT u.name,tp.destiny, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp  LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 "
+    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp  LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 and tp.buyer_user_id IS NULL"
     let group = " GROUP BY tp.travel_product_id "
     if(company_name){
       sql += ` AND tt.company_name LIKE "%${company_name}%" ` 

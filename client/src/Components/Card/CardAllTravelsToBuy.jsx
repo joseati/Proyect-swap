@@ -68,7 +68,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
         }
     }    
   };
-  
+  console.log(travel);
   return (
 
     <Row className='cardPadre'>     
@@ -140,11 +140,13 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
             </Col>  
           </Row>
           <Row>
+          
             <Col >
             <Button className='Buttonn' style={{marginTop:"15px"}} variant="primary" >
             <Link  to={`/oneTravel/${travel.travel_product_id}`} className='buttonCardsTravel'>Ver más</Link>
           </Button>
             </Col>
+            
             <Col className='d-flex align-items-end justify-content-end'>
             <Card.Text>
                <span style={{fontSize: "30px", fontWeight: 700}}>{travel?.client_price} € </span> 

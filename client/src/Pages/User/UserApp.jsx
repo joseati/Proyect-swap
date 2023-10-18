@@ -106,6 +106,8 @@ export const UserApp = () => {
     setToken()
     setIsLoged(false)
     navigate("/")
+    window.location.reload()
+    setReset(true)
   }
 
   //FUNCIONALIDAD DEL ADMIN 
@@ -211,6 +213,7 @@ export const UserApp = () => {
         delLocalStore("token")
         setToken("")
         navigate("/")
+        setReset(false)
       })
 
       .catch((err) => console.log(err))
