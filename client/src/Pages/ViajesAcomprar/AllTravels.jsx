@@ -1,5 +1,5 @@
 // External libraries
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Col, Row, Button } from 'react-bootstrap';
 
@@ -73,16 +73,22 @@ export const AllTravels = () => {
     console.log("filllltrooooosssssssss", inputFilter);
 
     const onSubmitFilters = () => {
-      if(inputFilter){
-        const temp = JSON.stringify(inputFilter)
-        axios
-        .get(`http://localhost:4000/travels/filterAllTravelsTobuy/${temp}`)
-        .then((res)=> {
-            console.log(res.data)
-            setAllTravelsToBuy(res.data);
-        })
-        .catch((err) => console.log(err))
-      }
+        if(showAllTickets){
+            if(inputFilter){
+                const temp = JSON.stringify(inputFilter)
+                axios
+                    .get(`http://localhost:4000/travels/filterAllTravelsTobuy/${temp}`)
+                    .then((res)=> {
+                        console.log(res.data)
+                        setAllTravelsToBuy(res.data);
+                    })
+                    .catch((err) => console.log(err))
+                  }
+        }
+       
+        
+      
+      console.log(allTravelsToBuy);
 
       if(showPlaneTickets){
         if(inputFilter){
@@ -105,11 +111,13 @@ export const AllTravels = () => {
             .then((res)=> {
                 console.log(res.data)
                 setAllTrainTravel(res.data);
+                
             })
             .catch((err) => console.log(err))
           }
       }
     }
+
     return (
         <>
     
@@ -126,17 +134,31 @@ export const AllTravels = () => {
                     <Button onClick={onSubmitFilters} className='btn-filter2'>Aplicar filtros</Button>
                 </Col>
 
+
                 <Col className='col-travels' md={6} xs={12}>
+
                     {showAllTickets && allTravelsToBuy?.map((travel, i) => (
+                        <>
                         <Row key={i}>
                             <CardAllTravelsToBuy travel={travel} />
                         </Row>
+                        
+                        
+                        </>
+                        
                     ))}
+                    
                     {showPlaneTickets && <AllPlaneTravel allPlaneTravel={allPlaneTravel} />}
                     {showTrainTickets && <AllTrainTravel allTrainTravel={allTrainTravel} />}
+                    
                 </Col>
             </Row>
         </Container>
+           
+             
+
+
+           
         </>
     );
 }

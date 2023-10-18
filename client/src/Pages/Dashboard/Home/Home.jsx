@@ -14,13 +14,18 @@ export const Home = () => {
     setIndex(selectedIndex);
   };
   
-  const { prepareDataPlane, prepareDataTrain} = useContext(SwapContext)
+  const { prepareDataPlane, prepareDataTrain, user} = useContext(SwapContext)
+  
+  console.log(user);
 
   // Dividir la matriz en grupos de 2
 
   const [allTravelsToBuy, setAllTravelsToBuy] = useState()
   useEffect(()=>{
-    setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
+   
+      setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
+    
+   
   }, [prepareDataPlane, prepareDataTrain])
 
   return (

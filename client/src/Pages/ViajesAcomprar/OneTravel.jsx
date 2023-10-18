@@ -12,7 +12,7 @@ import { Swapeado } from '../../Components/Modal/Swapeado';
 export const OneTravel = () => {
   const navigate = useNavigate();
   const {travel_id} = useParams();
-  const {user, isLoged, prepareDataPlane, prepareDataTrain} =useContext(SwapContext)
+  const {user, isLoged, setReset, reset} =useContext(SwapContext)
   //Estado para el seteo de la información que llegar por el context
   const [oneTravelSell, setOneTravelSell] = useState([]);
   // Estados para mostra los datos del viaje o el formulario de edición. 
@@ -22,6 +22,7 @@ export const OneTravel = () => {
   const [like, setLike] = useState('heart1.svg')
   const [showSwapeado, setShowSwapeado] = useState(false);
   const [ saveEditOnetravel, setSaveEditOnetravel] = useState()
+  
   // Show del model Swapeado
   const handleCloseSwap = () => setShowSwapeado(false);  
 
@@ -34,7 +35,7 @@ export const OneTravel = () => {
         // console.log("RESSSSSSSS",res.data);
       } )
       .catch( (err) => console.log(err) )
-  }, [])
+  }, [reset])
 
   // Handle para abrir un formulario u otro dependiente del tipo de viaje. 
   const handleEditForm = () => {
@@ -48,7 +49,7 @@ export const OneTravel = () => {
     }
   }
 
-  // console.log(oneTravelSell);
+  console.log("LOGGG", oneTravelSell);
   const ida = oneTravelSell[0];
   let vuelta = {};
   if (oneTravelSell.length !== 1){
@@ -103,15 +104,18 @@ export const OneTravel = () => {
     
   };
   //   // Botón para hacer volcar los nuevos datos del viaje en la Base de Datos.
-  
+  console.log("idaaaaaa", saveEditOnetravel)
   const onSubmit = (e) =>{
     console.log(saveEditOnetravel);
-    console.log(ida);
+   
     e.preventDefault();
     if(saveEditOnetravel){
       axios
       .put(`http://localhost:4000/travels/editOneTravel`, {ida, saveEditOnetravel})
-      .then((res)=>console.log(res))
+      .then((res)=>{
+        setEditing(false)
+        navigate("/oneUser")
+      })
       .catch((err)=>console.log(err))
     }
     
@@ -131,7 +135,7 @@ export const OneTravel = () => {
             </Col>
             <Col md={7} xs={12} className='colSection1OneTravel'>
             <h3>{ida?.origin} -{ida?.destiny} </h3>
-            <h2>{ida?.client_price} €</h2>
+            <h2>{ ida?.client_price } €</h2>
             <h4 className='originalPrice'>{ida?.original_price} €</h4>
             <p>Ofertado por: {ida?.name}</p>
             
@@ -192,7 +196,7 @@ export const OneTravel = () => {
               <Col>
                   <Button className='Buttonn' onClick={()=>navigate(-1)}>VOLVER</Button>
               </Col>
-             {isLoged && 
+             {(isLoged && user && user?.user_id !== ida?.seller_user_id) &&
              <>
              <Col>
                 <Button className='Buttonn' onClick={isLiked}>
