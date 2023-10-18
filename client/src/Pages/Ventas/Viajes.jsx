@@ -220,10 +220,10 @@ const navigate = useNavigate()
          
         }
         if( trainButton ){
-          if(!inputFormTrain.origin_airpoty_id ||
-            inputFormTrain.origin_airpoty_id === ""||
-             !inputFormTrain.destiny_airpoty_id ||
-             inputFormTrain.destiny_airpoty_id === "" ||
+          if(!inputFormTrain.origin_trainStation_id ||
+            inputFormTrain.origin_trainStation_id === ""||
+             !inputFormTrain.destiny_trainStation_id ||
+             inputFormTrain.destiny_trainStation_id === "" ||
              !inputFormTrain.departure_date ||
              inputFormTrain.departure_date == "" ||
             !inputFormTrain.arrival_date ||

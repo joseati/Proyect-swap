@@ -44,8 +44,8 @@ export const SwapProvider = (props) => {
     axios
       .get("http://localhost:4000/travels/getAllTravelsTobuy")
       .then( (res) => {       
-        setPrepareDataPlane(res.data.resultPlane)
-        setPrepareDataTrain(res.data.resultTrain)       
+        setPrepareDataPlane(res.data.dataPlane)
+        setPrepareDataTrain(res.data.dataTrain)       
       } )
       .catch( (err) => console.log(err) )
 
