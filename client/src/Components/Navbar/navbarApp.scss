@@ -106,10 +106,12 @@ nav{
 
 
 .flex-mobile{
-  span{
-    margin-right: 5px;
-  }
+  flex-direction: row;
+  display: flex;
+  gap: 2vw;
+  align-items: center;
 }
+
 .buttonNav {
   border-radius: 25px !important;
   background-color: $azul !important;
@@ -158,4 +160,10 @@ nav{
     }
   
   
+}
+
+@media (max-width: 990px) {
+  .flex-mobile{
+    margin-bottom: 20px;
+  }
 }

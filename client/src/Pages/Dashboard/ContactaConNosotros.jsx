@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import "./contactaConNosotros.scss";
 export const ContactaConNosotros = () => {
   return (
-    <>
+    <Col>
       <Row className="contactaConNosotrosPadre" >        
             <Col xs={12} xl={6} >
               <div className="contacts">
@@ -53,6 +53,6 @@ export const ContactaConNosotros = () => {
               </div>
             </Col>         
       </Row>
-    </>
+    </Col>
   );
 };
