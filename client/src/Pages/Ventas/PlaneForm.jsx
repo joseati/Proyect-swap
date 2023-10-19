@@ -18,7 +18,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 name="origin"
                 onChange={handleChangeAirport}
                 value={inputFormPlane.origin}
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               
@@ -30,7 +30,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 name="origin_airpoty_id"
                 onChange={handleChange}
                 id="origin_airpoty_id"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormPlane.origin_airpoty_id}
               >{
                 airportCity?.map((e) => {
@@ -57,7 +57,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 onChange={handleChangeDestiny}
                 value={inputFormPlane.destiny}
                 id="destiny"
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -68,7 +68,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 name="destiny_airpoty_id"
                 onChange={handleChange}
                 id="destiny_airpoty_id"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormPlane.destiny_airpoty_id}
               >{
                 airportCityDestiny?.map((e) => {
@@ -89,7 +89,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Fecha de salida - Ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="departure_date"
                 name="departure_date"
                 placeholder="Fecha"
@@ -103,7 +103,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Fecha de llegada - Ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="arrival_date"
                 name="arrival_date"
                 placeholder="Fecha"
@@ -118,7 +118,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
               </Form.Label>
               <Form.Control
                 name="original_price"
-                className="custom-input"
+                className="input-formulario"
                 id="original_price"
                 placeholder="Precio original billete/persona(€)"
                 onChange={handleChange}
@@ -133,7 +133,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Otras especificaciones
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="commentaries"
                 id="commentaries"
                 placeholder="Otras especificaciones"
@@ -153,7 +153,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 name="plane_travel_id"
                 onChange={handleChange}
                 id="plane_travel_id"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormPlane.plane_travel_id}
               >
                 <option value="1">Ida</option>
@@ -173,7 +173,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
               <Form.Control
               placeholder= "Ciudad de origen..."
                 onChange={handleChangeAirport_tp2}
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -184,7 +184,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 name="origin_airpoty_id_tp2"
                 onChange={handleChange}
                 id="origin_airpoty_id_tp2"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormPlane.origin_airpoty_id_tp2}
               >{
                 airportCity_tp2?.map((e) => {
@@ -209,7 +209,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
               placeholder= "Ciudad de destino..."
                 onChange={handleChangeDestiny_tp2}
                 id="destiny_t"
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -220,7 +220,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 name="destiny_airpoty_id_tp2"
                 onChange={handleChange}
                 id="destiny_airpoty_id_tp2"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormPlane.destiny_airpoty_id_tp2}
               >{
                 airportCityDestiny_tp2?.map((e) => {
@@ -240,7 +240,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Hora Salida-Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="arrival_time_tp2"
                 id="arrival_time_tp2"
                 placeholder="Elija el aeropuerto de llegada"
@@ -254,7 +254,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Hora Llegada-Vuelta 
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="departure_time_tp2"
                 id="departure_time_tp2"
                 placeholder="Elija el aeropuerto de llegada"
@@ -270,7 +270,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                   Nombre de la compañía de vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="compani_name_tp2"
                 id="compani_name_tp2"
                 placeholder="Nombre compañía"
@@ -285,7 +285,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Fecha de salida - Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="departure_date_tp2"
                 name="departure_date_tp2"
                 placeholder="Fecha"
@@ -299,7 +299,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Fecha de llegada - Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="arrival_date_tp2"
                 name="arrival_date_tp2"
                 placeholder="Fecha"
@@ -314,7 +314,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Hora Salida - Ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="arrival_time"
                 id="arrival_time"
                 placeholder="Elija el aeropuerto de llegada"
@@ -328,7 +328,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Hora LLegada - Ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="departure_time"
                 id="departure_time"
                 placeholder="Elija el aeropuerto de llegada"
@@ -344,7 +344,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                   Nombre de la compañía de ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="compani_name"
                 id="compani_name"
                 placeholder="Nombre compañía"
@@ -358,7 +358,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Tasa de cambio de titularidad
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="exchange_rate"
                 id="exchange_rate"
                 placeholder="  Tasa de cambio de titularidad"
@@ -372,7 +372,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 Nº de pasajeros
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="passengers"
                 id="passengers"
                 placeholder="Nº de pasajeros"
@@ -387,7 +387,7 @@ export const PlaneForm = ({handleChangeAirport_tp2,airportCity_tp2, airportCityD
                 (Precio final) (€)
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="client_price"
                 id="client_price"
                 placeholder="Introduce la cantidad"

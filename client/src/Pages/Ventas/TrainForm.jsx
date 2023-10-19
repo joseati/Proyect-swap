@@ -14,7 +14,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 name="origin"
                 onChange={handleChangeTrainStation}
                 value={inputFormTrain.origin}
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -25,7 +25,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 name="origin_trainStation_id"
                 onChange={handleChange}
                 id="origin_trainStation_id"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormTrain.origin_trainStation_id}
               >{
                 trainStation?.map((e) => {
@@ -52,7 +52,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 onChange={handleChangeTrainStationDestiny}
                 value={inputFormTrain.destiny}
                 id="destiny"
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -63,7 +63,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 name="destiny_trainStation_id"
                 onChange={handleChange}
                 id="destiny_trainStation_id"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormTrain.destiny_trainStation_id}
               >{
                 trainStationCityDestiny ?.map((e) => {
@@ -84,7 +84,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Fecha de salida - Ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="departure_date"
                 name="departure_date"
                 placeholder="Fecha"
@@ -98,7 +98,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Fecha de llegada - Ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="arrival_date"
                 name="arrival_date"
                 placeholder="Fecha"
@@ -113,7 +113,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               </Form.Label>
               <Form.Control
                 name="original_price"
-                className="custom-input"
+                className="input-formulario"
                 id="original_price"
                 placeholder="Precio original billete/persona(€)"
                 onChange={handleChange}
@@ -128,7 +128,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Otras especificaciones
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="commentaries"
                 id="commentaries"
                 placeholder="Otras especificaciones"
@@ -149,7 +149,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 name="train_travel_id"
                 onChange={handleChange}
                 id="train_travel_id"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormTrain.train_travel_id}
               >
                 <option value="1">Ida</option>
@@ -169,7 +169,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               <Form.Control
               placeholder= "Ciudad de origen..."
                 onChange={ handleChangeTrainStation_tp2}
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -180,7 +180,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 name="origin_trainStation_id_tp2"
                 onChange={handleChange}
                 id="origin_trainStation_id_tp2"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormTrain.origin_trainStation_id_tp2}
               >{
                 trainStationCity_tp2?.map((e) => {
@@ -205,7 +205,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
               placeholder= "Ciudad de destino..."
                 onChange={handleChangeTrainStationDestiny_tp2}
                 id="destiny_t"
-                className="custom-input">
+                className="input-formulario">
               </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -216,7 +216,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 name="destiny_trainStation_id_tp2"
                 onChange={handleChange}
                 id="destiny_trainStation_id_tp2"
-                className="custom-input"
+                className="input-formulario"
                 value={inputFormTrain.destiny_trainStation_id_tp2}
               >{
                 trainStationDestiny_tp2?.map((e) => {
@@ -236,7 +236,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Hora de salida- Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="arrival_time_tp2"
                 id="arrival_time_tp2"
                 placeholder="Elija el aeropuerto de llegada"
@@ -250,7 +250,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Hora de llegada - Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="departure_time_tp2"
                 id="departure_time_tp2"
                 placeholder="Elija el aeropuerto de llegada"
@@ -266,7 +266,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                   Nombre de la compañía de vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="compani_name_tp2"
                 id="compani_name_tp2"
                 placeholder="Compañía"
@@ -281,7 +281,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Fecha de salida - Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="departure_date_tp2"
                 name="departure_date_tp2"
                 placeholder="Fecha"
@@ -295,7 +295,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Fecha de llegada - Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 id="arrival_date_tp2"
                 name="arrival_date_tp2"
                 placeholder="Fecha"
@@ -310,7 +310,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Hora de salida- Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="arrival_time"
                 id="arrival_time"
                 placeholder="Elija el aeropuerto de llegada"
@@ -324,7 +324,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Hora de llegada - Vuelta
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="departure_time"
                 id="departure_time"
                 placeholder="Elija el aeropuerto de llegada"
@@ -340,7 +340,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                   Nombre de la compañía de ida
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="compani_name"
                 id="compani_name"
                 placeholder="Compañía"
@@ -354,7 +354,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Tasa de cambio de titularidad
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="exchange_rate"
                 id="exchange_rate"
                 placeholder="  Tasa de cambio de titularidad"
@@ -368,7 +368,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 Nº de pasajeros
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="passengers"
                 id="passengers"
                 placeholder="Nº de pasajeros"
@@ -383,7 +383,7 @@ export const TrainForm = ({handleChangeTrainStationDestiny_tp2,  trainStationDes
                 (Precio Final) (€)
               </Form.Label>
               <Form.Control
-                className="custom-input"
+                className="input-formulario"
                 name="client_price"
                 id="client_price"
                 placeholder="Introduce la cantidad"

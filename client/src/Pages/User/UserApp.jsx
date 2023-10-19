@@ -604,7 +604,6 @@ export const UserApp = () => {
           <>
             <Toast>
               <Toast.Header onClick={() => setShowToast  (false)}>
-           <img  src="holder.js/20x20?  text=%20" className="rounded me-2"  />
             <strong style={{color:"red",fontSize:"25px"}} className="me-auto">
                 Atención!
              </ strong>

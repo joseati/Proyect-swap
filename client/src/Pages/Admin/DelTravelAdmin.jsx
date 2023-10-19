@@ -217,7 +217,7 @@ export const DelTravelAdmin = (travel) => {
     <div>
       <input
         type="text"
-        placeholder="Buscar viaje"
+        placeholder="Buscar viaje por nombre de usuario"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
