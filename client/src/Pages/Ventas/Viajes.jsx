@@ -366,89 +366,103 @@ const navigate = useNavigate()
   }
 
   return (
-    <>
-      <main>
-        <section>
-        <Col className="justify-content-center align-items-center d-flex flex-row">
-          <Row md={12} xs={12} className="d-flex justify-content-center">
-            <h2
-              className="text-center"
-              style={{ fontSize: "40px", fontWeight: "700", color: "#005a8d" }}
-            >
-              ¿Qué quieres vender hoy?
-            </h2>
-          </Row>
-          </Col>
-      
-      <IconSelect
-        selectedIcon={selectedIcon}
-        handleImageClick={handleImageClick}
-      />
-      </section>
-      {/* SI SE ELIGE AVION SE MUESTRA ESTO */}
+    <main>
       <section>
-      {planeButton && (
-        <>
-          <h1 className="text-center title-form p-3">
-            Rellene los datos del billete de avión
-          </h1>
-          <PlaneForm
-            handleChangeDestiny_tp2 = {handleChangeDestiny_tp2}
-            airportCityDestiny_tp2 = {airportCityDestiny_tp2}
-            airportCity_tp2 = {airportCity_tp2}
-            handleChangeAirport_tp2 = {handleChangeAirport_tp2}
-            handleChangeDestiny = {handleChangeDestiny}
-            airportCityDestiny = {airportCityDestiny}
-            airportCity = {airportCity}
-            handleChangeAirport = {handleChangeAirport}
-            handleChange={handlePlaneChange}
-            inputFormPlane={inputFormPlane}
-            shwoGoAndBack = { shwoGoAndBack }
-          />
-        </>
-      )}
+        {!isLoged ? (
+          // Contenido que ve el usuario que no está logeado
+          <>
+            <Row className="homeSection1">
+              <Col className="homeCol1">
+                <div className="homesubCol1">
+                  <h2>¿Tienes un viaje que no vas a disfrutar?</h2>
+                  <h5>¡RECUPERA TU DINERO!</h5>
+                  <Button className="boton" href='/viajes'>SWAPEALO</Button>
+                </div>
+              </Col>
+              <Col className="homeCol1">
+                <img src="/assets/images/fondo-1.png" alt="imagen de fondo 1" />
+              </Col>
+            </Row>
+            <Row>
+              <Col className="d-flex align-items-center justify-content-center mt-5">
+                <h1 className="h1-home1">Antes de poder vender un viaje, tienes que crear o acceder a tu cuenta.</h1>
+              </Col>
+            </Row>
+          </>
+        ) : (
+          // Contenido que ve el usuario logeado
+          <>
+            <Col className="justify-content-center align-items-center d-flex flex-row">
+              <Row md={12} xs={12} className="d-flex justify-content-center">
+                <h2
+                  className="text-center"
+                  style={{ fontSize: "40px", fontWeight: "700", color: "#005A8D" }}
+                >
+                  ¿Qué quieres vender hoy?
+                </h2>
+              </Row>
+            </Col>
+            <IconSelect
+              selectedIcon={selectedIcon}
+              handleImageClick={handleImageClick}
+            />
+            {/* SI SE ELIGE AVION SE MUESTRA ESTO */}
+            {planeButton && (
+              <>
+                <h1 className="text-center title-form p-3">
+                  Rellene los datos del billete de avión
+                </h1>
+                <PlaneForm
+                  handleChangeDestiny_tp2={handleChangeDestiny_tp2}
+                  airportCityDestiny_tp2={airportCityDestiny_tp2}
+                  airportCity_tp2={airportCity_tp2}
+                  handleChangeAirport_tp2={handleChangeAirport_tp2}
+                  handleChangeDestiny={handleChangeDestiny}
+                  airportCityDestiny={airportCityDestiny}
+                  airportCity={airportCity}
+                  handleChangeAirport={handleChangeAirport}
+                  handleChange={handlePlaneChange}
+                  inputFormPlane={inputFormPlane}
+                  shwoGoAndBack={shwoGoAndBack}
+                />
+              </>
+            )}
             {/* SI SE ELIGE TREN SE MUESTRA ESTO */}
-      {trainButton && (
-        <>
-          <h1 className="text-center title-form p-3">
-            Rellene los datos del billete de tren
-          </h1>
-          <TrainForm
-          handleChangeTrainStationDestiny_tp2 = {handleChangeTrainStationDestiny_tp2}
-          handleChangeTrainStation_tp2 = {handleChangeTrainStation_tp2}
-          handleChangeTrainStationDestiny = {handleChangeTrainStationDestiny}
-          handleChangeTrainStation = {handleChangeTrainStation}
-            trainStationDestiny_tp2 = {trainStationDestiny_tp2}
-            trainStationCity_tp2 = {trainStationCity_tp2}
-            trainStationCityDestiny = {trainStationCityDestiny}
-            trainStation = {trainStation}
-            shwoGoAndBack = { shwoGoAndBack }
-            handleChange={handleTrainChange}
-            inputFormTrain={inputFormTrain}
-          />
-       
-        </>
-        
-      )}
-      <Row>
-        <Col
-          xs={12}
-          md={12}
-          className=" buttons d-flex flex-column align-items-center justify-content-center"
-        >
-          {message && <>
-          <div style={{color:"red"}}>
-          Error en el formulario rellene los campos
-        </div> 
-          </>}
-          
-          <Button onClick={handleSubmit} className="mt-4 btn">
-            Enviar
-          </Button>
-        </Col>
-      </Row>
+            {trainButton && (
+              <>
+                <h1 className="text-center title-form p-3">
+                  Rellene los datos del billete de tren
+                </h1>
+                <TrainForm
+                  handleChangeTrainStationDestiny_tp2={handleChangeTrainStationDestiny_tp2}
+                  handleChangeTrainStation_tp2={handleChangeTrainStation_tp2}
+                  handleChangeTrainStationDestiny={handleChangeTrainStationDestiny}
+                  handleChangeTrainStation={handleChangeTrainStation}
+                  trainStationDestiny_tp2={trainStationDestiny_tp2}
+                  trainStationCity_tp2={trainStationCity_tp2}
+                  trainStationCityDestiny={trainStationCityDestiny}
+                  trainStation={trainStation}
+                  shwoGoAndBack={shwoGoAndBack}
+                  handleChange={handleTrainChange}
+                  inputFormTrain={inputFormTrain}
+                />
+              </>
+            )}
+            <Row>
+              <Col xs={12} md={12} className="buttons d-flex flex-column align-items-center justify-content-center">
+                {message && (
+                  <div style={{ color: "red" }}>
+                    Error en el formulario rellene los campos
+                  </div>
+                )}
+                <Button onClick={handleSubmit} className="mt-4 btn">
+                  Enviar
+                </Button>
+              </Col>
+            </Row>
+          </>
+        )}
       </section>
-      </main>
-    </>
+    </main>
   );
 };

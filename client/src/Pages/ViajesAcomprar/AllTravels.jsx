@@ -23,7 +23,9 @@ export const AllTravels = () => {
     const [showAllTickets, setShowAllTickets] = useState(false)
     const [selectedSwap, setSelectedSwap] = useState("");  
     const [ allTravelsToBuy, setAllTravelsToBuy] = useState([])
-    const [ inputFilter , setInputFilter ] = useState()
+    const [ inputFilter , setInputFilter ] = useState({
+        filterByPrice: "des"
+    })
     const  [ allPlaneTravel, setAllPlaneTravel] = useState()
     const  [ allTrainTravel, setAllTrainTravel] = useState()
 
@@ -79,8 +81,8 @@ export const AllTravels = () => {
                 axios
                     .post(`http://localhost:4000/travels/filterAllTravelsTobuy`, inputFilter)
                     .then((res)=> {
-                        
-                        setAllTravelsToBuy(res.data.map((e) => ({...e,
+                        console.log("RESSSS", res.data.dataTemp);
+                        setAllTravelsToBuy(res.data.dataTemp.map((e) => ({...e,
                             departure_date: e.departure_date === null || e.departure_date === undefined ? allTravelsToBuy.departure_date : e.departure_date,
                             arrival_date: e.arrival_date === null || e.arrival_date === undefined ? allTravelsToBuy.arrival_date : e.arrival_date                            
                         })));
@@ -101,7 +103,7 @@ export const AllTravels = () => {
             axios
             .get(`http://localhost:4000/travels/filterAllPlaneTobuy/${temp}`)
             .then((res)=> {
-                console.log(res.data)
+                // console.log("ressssHORRR", res)
                 setAllPlaneTravel(res.data);
             })
             .catch((err) => console.log(err))
@@ -114,7 +116,7 @@ export const AllTravels = () => {
             axios
             .get(`http://localhost:4000/travels/filterTrainsTobuy/${temp}`)
             .then((res)=> {
-                console.log(res.data)
+                // console.log(res.data)
                 setAllTrainTravel(res.data);
                 
             })
@@ -135,7 +137,10 @@ export const AllTravels = () => {
 
             <Row className='row-col-filters'>
                 <Col md={4} xs={12}>
-                    <ColFilters handleChange={handleChange} />
+                    <ColFilters 
+                    handleChange={handleChange} 
+                    inputFilter = {inputFilter}
+                    />
                     <Button onClick={onSubmitFilters} className='btn-filter2'>Aplicar filtros</Button>
                 </Col>
 

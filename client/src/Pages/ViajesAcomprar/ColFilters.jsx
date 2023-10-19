@@ -3,7 +3,7 @@ import {
   FormLabel, FormControl, FormSelect, Button, Container
 } from 'react-bootstrap';
 
-export const ColFilters = ({handleChange}) => {
+export const ColFilters = ({inputFilter,handleChange}) => {
   return (
     
       <Container className=' mt-5 bg' xs={5}>
@@ -29,7 +29,7 @@ export const ColFilters = ({handleChange}) => {
                                       <FormGroup className="mb-3 filters-label">
                                           <FormLabel>
                                               <img src="/assets/images/arrivals.png" alt="llegada" />
-                                              Precio de venta:
+                                              Precio de venta(menor que):
                                           </FormLabel>
                                           <FormControl 
                                           type="number"
@@ -83,9 +83,10 @@ export const ColFilters = ({handleChange}) => {
                                             id="orderbyPrice"
                                             onChange={handleChange}
                                             name='filterByPrice'
+                                            value={inputFilter.filterByPrice}
                                             >
-                                             <option value="de menor a mayor precio"> menor a mayor precio</option>
-                                             <option value="de mayor a menor precio"> mayor a menor precio</option>
+                                             <option value="des"> mayor a menor precio</option>
+                                             <option value="asc"> menor a mayor precio</option>
                                           </FormSelect>
                                           
                                           
