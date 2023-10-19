@@ -75,12 +75,17 @@ export const AllTravels = () => {
     const onSubmitFilters = () => {
         if(showAllTickets){
             if(inputFilter){
-                const temp = JSON.stringify(inputFilter)
+                // const temp = JSON.stringify(inputFilter)
                 axios
-                    .get(`http://localhost:4000/travels/filterAllTravelsTobuy/${temp}`)
+                    .post(`http://localhost:4000/travels/filterAllTravelsTobuy`, inputFilter)
                     .then((res)=> {
+                        
+                        setAllTravelsToBuy(res.data.map((e) => ({...e,
+                            departure_date: e.departure_date === null || e.departure_date === undefined ? allTravelsToBuy.departure_date : e.departure_date,
+                            arrival_date: e.arrival_date === null || e.arrival_date === undefined ? allTravelsToBuy.arrival_date : e.arrival_date                            
+                        })));
                         console.log(res.data)
-                        setAllTravelsToBuy(res.data);
+                        console.log(res.data.departure_date)
                     })
                     .catch((err) => console.log(err))
                   }

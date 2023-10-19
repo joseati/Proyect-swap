@@ -38,7 +38,7 @@ router.get("/getOneTrainStation/city/:city", travelController.getOneTrainStation
 router.put("/deleteOneTravel/:travel_id", TravelController.deleteOneTravel)
 
 // http://localhost:4000/travels/filterAllTravelsTobuy
-router.get("/filterAllTravelsTobuy/:filtersTravel", TravelController.filterAllTravelsTobuy)
+router.post("/filterAllTravelsTobuy", TravelController.filterAllTravelsTobuy)
 
 // http://localhost:4000/travels/filterAllPlaneTobuy
 router.get("/filterAllPlaneTobuy/:filtersTravel", TravelController.filterAllPlanesTobuy)

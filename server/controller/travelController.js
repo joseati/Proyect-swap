@@ -406,16 +406,61 @@ class TravelController {
 
   // Filtros de viajes para vender
   filterAllTravelsTobuy = (req, res) => {
-    console.log(req.params.filtersTravel);
+    const {company_name, origin, departure_date, price: client_price, destination: destiny}  = req.body;
+    console.log("company_nameeeeeeeeeeeee", req.body);
+    let sqlPlane = " SELECT tp.*, pt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, user WHERE ( tp.travel_product_id = pt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
+    connection.query(sqlPlane, (err, resultPlane) => {
+      if(err){
+        res.status(500).json("Error de conexion")
+      }
+      let sqlTrain = "SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tp.travel_product_id;"
+      connection.query(sqlTrain, (err2, resultTrain) => {
+        if(err2){
+          res.status(500).json("err2")
+
+        }else{
+          // console.log("resssss", resultPlane, resultTrain)
+         let dataPlane = resultPlane.map((e) => ({...e,
+            departure_date: e.departure_date.toString().split("G")[0],
+            arrival_date: e.arrival_date.toString().split("G")[0]}))
+         let dataTrain = resultTrain.map((e) => ({...e,
+            departure_date: e.departure_date.toString().split("G")[0],
+            arrival_date: e.arrival_date.toString().split("G")[0]}))
+
+          let data = [...dataPlane, ...dataTrain]
+          let dataTemp = data.filter((e)=>(            
+            company_name ? e.company_name.toLowerCase().includes(company_name?.toLowerCase()) : e  
+          )).filter((e)=>(
+            origin ? e.origin.toLowerCase().includes(origin?.toLowerCase()) : e
+          )).filter((e)=>(
+            destiny ? e.destiny.toLowerCase().includes(destiny?.toLowerCase()) : e
+          )).filter((e)=>(
+            client_price ? e.client_price.toLowerCase().includes(client_price?.toLowerCase()) : e
+          ))
+          console.log("DATAAA TEMO", dataTemp);
+          // console.log(data);  
+          res.status(200).json({dataPlane, dataTrain}) 
+        }
+          
+          
+      })
+    })
+  } 
+    /* console.log(req.params.filtersTravel);
     const temp = JSON.parse(req.params.filtersTravel)
     const {company_name, price, departure_date, origin, destination, filterByPrice} = temp 
     console.log(company_name);
 
-    let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date , tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 AND tp.buyer_user_id IS NULL"
-    let group = " GROUP BY tp.travel_product_id "
-    if(company_name){
+     let sql = "SELECT u.name,tp.destiny,tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id, pt.company_name , pt.departure_date, pt.arrival_date , tt.company_name, tt.departure_date, tt.arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 AND tp.buyer_user_id IS NULL"  */
+    /* let sql = " SELECT tp.*, pt.*, tt.*, user.user_id , user.name FROM travel_product tp, plane_travel pt, train_travel tt, user WHERE ( tp.travel_product_id = pt.travel_product_id or tp.travel_product_id = tt.travel_product_id ) and tp.seller_user_id = user.user_id AND tp.admin_enabled = 0 AND tp.buyer_user_id is null AND tp.is_deleted = 0" */
+    /*let sql = "SELECT u.name, tp.destiny, tp.type, tp.origin, tp.client_price, tp.passenger, tp.travel_product_id,   pt.company_name AS plane_company_name,  pt.departure_date AS plane_departure_date,  pt.arrival_date AS plane_arrival_date, tt.company_name AS train_company_name,  tt.departure_date AS train_departure_date,     tt.arrival_date AS train_arrival_date FROM travel_product tp LEFT JOIN plane_travel pt ON tp.travel_product_id = pt.travel_product_id LEFT JOIN train_travel tt ON tp.travel_product_id = tt.travel_product_id JOIN user u ON u.user_id = tp.seller_user_id WHERE tp.is_deleted = 0 AND tp.admin_enabled = 0 AND tp.buyer_user_id IS NULL"
+     let group = " GROUP BY tp.travel_product_id "*/
+    
+    /* if(company_name){
+      console.log("HOLAAAAAAAAAAAAAA");
       sql += ` AND (pt.company_name LIKE "%${company_name}%" OR tt.company_name LIKE "%${company_name}%") ` 
     }
+    console.log(departure_date);
     if(departure_date){
       sql += ` AND (pt.departure_date = "${departure_date}" OR tt.departure_date = "${departure_date}") `    }
     if(price){
@@ -440,26 +485,26 @@ class TravelController {
       }
     }
     
-    console.log("sqlfiltroossssss", sql);
+    console.log("sqlfiltroossssss", sql); 
     connection.query(sql ,(err, result) => {
       if(err){
-
+        
         res.status(500).json(err)
       }else{
+        console.log(result);
 
-        let finalresult = result.map((e)=> ({...e,
-          departure_date: e === null ? e.departure_date : e.departure_date.toString().split("G")[0],
-          arrival_date: e === null ? e.arrival_date : e.arrival_date.toString().split("G")[0]}))
-        
-        res.status(200).json(finalresult)
-      
+         let finalresult = result.map((e)=> ({...e,
+          departure_date: e.departure_date === null ? e.departure_date : e.departure_date.toString().split("G")[0],
+          arrival_date: e.arrival_date === null ? e.arrival_date : e.arrival_date.toString().split("G")[0]})) 
+          res.status(200).json(result)
+          
       }
       
       
-    })
+    }) */
     
     
-  }
+  
 
 filterAllPlanesTobuy = ( req, res ) => {
     console.log("parammssssss", req.params.filtersTravel);
@@ -505,8 +550,8 @@ filterAllPlanesTobuy = ( req, res ) => {
      } else{
   
         let finalresult = result.map((e)=> ({...e,
-          departure_date: e === null ? e.departure_date : e.departure_date.toString().split("G")[0],
-          arrival_date: e === null ? e.arrival_date : e.arrival_date.toString().split("G")[0]}))
+          departure_date: e.departure_date === null ? e.departure_date : e.departure_date.toString().split("G")[0],
+          arrival_date: e.arrival_date === null ? e.arrival_date : e.arrival_date.toString().split("G")[0]}))
         
         res.status(200).json(finalresult)
       
@@ -564,8 +609,8 @@ filterAllPlanesTobuy = ( req, res ) => {
       }else{
         
         let finalresult = result.map((e)=> ({...e,
-          departure_date: e === null ? e.departure_date : e.departure_date.toString().split("G")[0],
-          arrival_date: e === null ? e.arrival_date : e.arrival_date.toString().split("G")[0]}))
+          departure_date: e.departure_date === null ? e.departure_date : e.departure_date.toString().split("G")[0],
+          arrival_date: e.arrival_date === null ? e.arrival_date : e.arrival_date.toString().split("G")[0]}))
         
         res.status(200).json(finalresult)
       

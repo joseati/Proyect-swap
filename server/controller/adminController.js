@@ -109,16 +109,26 @@ class AdminController {
       }else{
         
           let sqlTrainAdmin = `SELECT tp.*, tt.*, user.user_id , user.name FROM travel_product tp, train_travel tt, user WHERE ( tp.travel_product_id = tt.travel_product_id ) AND tp.is_deleted = 0 AND tp.buyer_user_id IS NULL group by tt.travel_product_id;`
-          connection.query(sqlTrainAdmin, (err3, resultTrainAdmin) => {
-            let travel_data ={
-              plane: resultPlaneAdmin,
-              train: resultTrainAdmin
-            }
-            err3?
-             res.status(500).json(err3)
-             :
+          connection.query(sqlTrainAdmin, (err3, resultTrainAdmin) => {    
+                    
+            if(err3){
+              res.status(500).json(err3)
+            }else{
+              let resultPlaneUser = resultPlaneAdmin.map((e)=>({...e,
+                departure_date: e.departure_date.toString().split("G")[0],
+                arrival_date: e.arrival_date.toString().split("G")[0]}))
+  
+              let resultTrain = resultTrainAdmin.map((e)=>({...e,
+                departure_date: e.departure_date.toString().split("G")[0],
+                arrival_date: e.arrival_date.toString().split("G")[0]}))
+                // res.status(200).json({resultPlaneUser,resultTrain})
+              let travel_data ={
+              plane: resultPlaneUser,
+              train: resultTrain
+            }  
+              
               res.status(200).json(travel_data)
-            //  console.log({resultPlaneUser,resultTrain});
+            }
           })
         
       }
