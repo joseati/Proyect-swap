@@ -6,7 +6,7 @@ export const NavLinks = ({handleClick}) => {
     <>
 
 
-      <Nav.Link style={{marginTop:"10px", display:"flex", justifyContent:"center", alignItems:"center"}}  className="custom-nav-link1" as={Link} to="/todosLosViajes">
+      <Nav.Link style={{marginTop:"10px", display:"flex", alignItems:"center"}}  className="custom-nav-link1" as={Link} to="/todosLosViajes">
         <img src="/assets/images/arriba.svg" alt="" />
         COMPRAR VIAJES
       </Nav.Link>
@@ -18,7 +18,7 @@ export const NavLinks = ({handleClick}) => {
         <img src="/assets/images/ambas.svg" alt="" />
         SOBRE NOSOTROS
       </Nav.Link>
-      {/* <div className="flex-mobile flex-column"> */}
+       <div className="flex-mobile "> 
         <Button className="btn-contact">
           <img src="/assets/images/phone-black.png" alt="" />
           <span className="show-on-desktop"></span>
@@ -27,7 +27,7 @@ export const NavLinks = ({handleClick}) => {
           <img src="/assets/images/whatsapp.png" alt="" />
           <span className="show-on-desktop"></span>
         </Button>
-      {/* </div> */}
+       </div> 
     </>
   );
 }
