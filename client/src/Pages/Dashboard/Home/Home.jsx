@@ -16,7 +16,7 @@ export const Home = () => {
   
   const { prepareDataPlane, prepareDataTrain, user} = useContext(SwapContext)
   
-  console.log(user);
+  
 
   // Dividir la matriz en grupos de 2
 

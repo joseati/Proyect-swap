@@ -25,6 +25,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
           id='name' placeholder='Nombre / Alias (Empresas)'
           value={inputUser.name}
           name='name'
+          maxLength={150}
           onChange={handleChange}/>
          </Form.Group>
         <Form.Group>
@@ -32,6 +33,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
            className='input-modal'
           id='email' placeholder='Correo electrónico'
           value={inputUser.email}
+          maxLength={150}
           name='email'
           onChange={handleChange}/>
          </Form.Group>
@@ -41,6 +43,7 @@ export const ModalRegister = ({ handleClose ,handleChange , onSubmit, inputUser,
           id='password' placeholder='Contraseña'
           type='password'
           value={inputUser.password}
+          maxLength={25}
           name='password'
           onChange={handleChange}/>
          </Form.Group>

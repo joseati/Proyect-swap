@@ -30,24 +30,28 @@ const handleChange = (e) =>{
 
 const onSubmit = (e) =>{
   e.preventDefault()
-  
-  if(inputUser.name === "" || inputUser.email === "" || inputUser.password === ""){
+  const validate = new RegExp("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}")
+  console.log(validate);
+  if(inputUser.name === "" || inputUser.email === "" || inputUser.password === "" ){
     setShowMsgReg(true)
     return
   }
+  else if(validate.test(inputUser.email)){
+// utilizamos axios ,para enviar a la direccion donde creamos el metodo post, e insertarlo en la base de datos colgandole el objeto inputUser, y cerrar el modal
+axios
+.post("http://localhost:4000/users/register", inputUser)
 
-  // utilizamos axios ,para enviar a la direccion donde creamos el metodo post, e insertarlo en la base de datos colgandole el objeto inputUser, y cerrar el modal
-  axios
-    .post("http://localhost:4000/users/register", inputUser)
+.then( (res) =>{
+  handleClose()
+  navigate("/")
+  setInputUser("")
+  setShowOk(true)
+}
+  )
+.catch((err) => setShowMsgReg(true))
+  }
+
   
-    .then( (res) =>{
-      handleClose()
-      navigate("/")
-      setInputUser("")
-      setShowOk(true)
-    }
-      )
-    .catch((err) => setShowMsgReg(true))
     
 }
   return (
