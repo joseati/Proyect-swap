@@ -109,7 +109,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
             <h6>{travel?.name}</h6>
           </Card.Text>
           <Card.Text>
-            {travel?.company}
+            {travel?.company_name}
           </Card.Text>
           <Card.Body>
           <Card.Title> {travel?.origin} - {travel?.destiny} </Card.Title> 

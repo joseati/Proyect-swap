@@ -58,14 +58,13 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
 
   
  const getAllSell = async() =>{
-  
+  try{  
   const routesGenera = [
     axios.get("http://localhost:4000/admin/getAllSell"),
     axios.get("http://localhost:4000/admin/getAllImpotSell"),
     axios.get("http://localhost:4000/admin/getAvgImpotSell"),
    axios.get("http://localhost:4000/admin/getAllTravels")
-  ]
-  try{
+  ]  
     const resultAllTrav = await Promise.all(routesGenera)
     const newData = resultAllTrav.map((e)=>e.data[0].num)
     const tasaVenta = (newData[0]/newData[3]) * 100
