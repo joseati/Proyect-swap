@@ -68,7 +68,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
         }
     }    
   };
-  console.log(travel);
+
   return (
 
     <Row className='cardPadre'>     
@@ -106,9 +106,9 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
             Ofertado por: 
           </Card.Text>
           <Card.Text className='marginLeft'>
-            <h6>{travel?.name}</h6>
+            <span style={{fontWeight:"bold"}}>{travel?.name}</span>
           </Card.Text>
-          <Card.Text>
+          <Card.Text className='marginLeft'>
             {travel?.company_name}
           </Card.Text>
           <Card.Body>
@@ -116,7 +116,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
           <Row className='d-flex flex-row dateCard'>   
             <Col xs={4} sm={4} md={4} xl={4} >
               <Card.Text>
-                <h6>Fecha de ida:</h6>
+              <span style={{fontWeight:"bold"}}>Fecha de ida:</span>
               </Card.Text>
               <Card.Text>
                 {departure_date}
@@ -124,7 +124,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
             </Col>
             <Col xs={4} sm={4} md={4} xl={4}>
               <Card.Text>
-                <h6>Fecha de vuelta:</h6>
+              <span style={{fontWeight:"bold"}}>Fecha de vuelta:</span>
               </Card.Text>
               <Card.Text>
                 {arrival_date}
@@ -132,7 +132,7 @@ export const CardAllTravelsToBuy = ({travel, blockMsg, onUnlockTravel, onDeleteT
             </Col>
             <Col xs={4} sm={4} md={4} xl={4}>
               <Card.Text>
-                <h6>Pasajeros :</h6>
+              <span style={{fontWeight:"bold"}}>Pasajeros :</span>
               </Card.Text>
               <Card.Text>
                 {travel?.passenger}

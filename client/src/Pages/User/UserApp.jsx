@@ -50,6 +50,7 @@ export const UserApp = () => {
  const [searchTravelBought, setSearchTravelBought] = useState("");
   const [ arrayTempPlanes, setArrayTempPlanes] = useState()
   const [ arrayTempTrains, setArrayTempTrains] = useState()
+  const [messa, setMessa] = useState(false)
   
   //  console.log(allTravelsToBuy);
   const handleNavigateToAT = (e) => {
@@ -164,6 +165,7 @@ export const UserApp = () => {
   },[reset])
 
   const handleChange = (e) =>{
+    setMessa(false)
     const {name, value} = e.target;
     setEditInputs({...editInputs, [name]: value});
   }
@@ -176,24 +178,29 @@ export const UserApp = () => {
   //Botón que hace volcar los nuevos datos del cliente en la base
   const onSubmit = (e) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:4000/users/editUser/${user.user_id}`, editInputs)
-      .then((res) => {
-        // Actualiza los datos del usuario en el estado local
-        setUser({
-          ...user,
-          name: editInputs.name,
-          last_name: editInputs.last_name,
-          address: editInputs.address,
-          ident_num: editInputs.ident_num,
-          telephone: editInputs.telephone,
-          zip_code: editInputs.zip_code,
-          iban: editInputs.iban
-        });
-  
-        setEditButton(false);
-      })
-      .catch((err) => console.log(err));
+    if(editInputs.telephone[0] == "+" ){
+      axios
+        .put(`http://localhost:4000/users/editUser/${user.user_id}`, editInputs)
+        .then((res) => {
+          // Actualiza los datos del usuario en el estado local
+          setUser({
+            ...user,
+            name: editInputs.name,
+            last_name: editInputs.last_name,
+            address: editInputs.address,
+            ident_num: editInputs.ident_num,
+            telephone: editInputs.telephone,
+            zip_code: editInputs.zip_code,
+            iban: editInputs.iban
+          });
+    
+          setEditButton(false);
+        })
+        .catch((err) => console.log(err));
+    }else{
+      setMessa(true)
+    }
+   
   }
 
   // borrado logico de usuario , ruta put para cambiar datos de usuario , utilizo ruta dinámica con parametro dinamico para recoger el usuario a traves del user_id
@@ -543,6 +550,7 @@ export const UserApp = () => {
                   <Form.Control 
                       id="addressInput" 
                       placeholder="Dirección de correo" 
+                      maxLength={150}
                       name="address"
                       value={editInputs.address}
                       onChange={handleChange}
@@ -555,6 +563,7 @@ export const UserApp = () => {
                       id="ident_num_Input" 
                       placeholder="DNI / CIF" 
                       name="ident_num"
+                      maxLength={19}
                       value={editInputs.ident_num}
                       onChange={handleChange}
                   />
@@ -566,16 +575,20 @@ export const UserApp = () => {
                         id="phoneInput"
                         placeholder="Teléfono"
                         name="telephone"
+                        maxLength={19}
                         value={editInputs.telephone}
                         onChange={handleChange}
                     />
+                    {messa && <p style={{color:"red"}}>El Teléfono debe empezar con un prefijo (+34 en España)</p> }
                 </Form.Group>
+                
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="zipInput">Código Postal</Form.Label>
                     <Form.Control
                         id="zipInput"
                         placeholder="Código Postal"
                         name="zip_code"
+                        maxLength={9}
                         value={editInputs.zip_code}
                         onChange={handleChange}
                     />
@@ -586,6 +599,7 @@ export const UserApp = () => {
                   <Form.Control 
                       id="ibanInput" 
                       placeholder="IBAN" 
+                      maxLength={49}
                       name="iban"
                       value={editInputs.iban}
                       onChange={handleChange}

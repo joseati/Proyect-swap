@@ -132,6 +132,7 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
   }
   
   const getAllImportMothAvg = async() =>{
+    try{
     const getDataAVG = [
       axios.get('http://localhost:4000/admin/getAllAvgImportJ'),
         axios.get('http://localhost:4000/admin/getAllAvgImportf'),
@@ -146,7 +147,7 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
         axios.get('http://localhost:4000/admin/getAllAvgImportNov'),
         axios.get('http://localhost:4000/admin/getAllAvgImportDic'),
     ]
-    try{
+   
       const resultAvg = await Promise.all(getDataAVG)
       const prepareData = resultAvg.map((e)=> e.data[0].avgClientPrice)
       const prepareNotNULL = prepareData.map((elem)=> elem == null ? 0 : elem)
@@ -157,6 +158,7 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
   }
 
   const getAllTravelPro = async() =>{
+    try{
     const getData = [
       axios.get('http://localhost:4000/admin/getAllTravelJ'),
         axios.get('http://localhost:4000/admin/getAllTravelf'),
@@ -171,7 +173,7 @@ export const StatsAdmin = ({active, banned, numUsersMonth}) => {
         axios.get('http://localhost:4000/admin/getAllTravelNov'),
         axios.get('http://localhost:4000/admin/getAllTravelDic'),
     ]
-    try{
+    
       const result = await Promise.all(getData)
       const prepareData = result.map((e)=> e.data[0].num)
       const prepareNotNULL = prepareData.map((elem)=> elem == null ? 0 : elem)

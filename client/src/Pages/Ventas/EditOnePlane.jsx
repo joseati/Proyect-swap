@@ -51,6 +51,7 @@ console.log(editInputs);
                 name="original_price"
                 className="custom-input"
                 id="original_price"
+                maxLength={9}
                 placeholder="Precio original billete/persona(€)"
                 onChange={handleChange}
                 value={!handleChange ? ida.original_price : editInputs.original_price}
@@ -65,6 +66,7 @@ console.log(editInputs);
                 name="commentaries"
                 id="commentaries"
                 placeholder="Otras especificaciones"
+                maxLength={299}
                 onChange={handleChange}
                 value={!handleChange ? ida.commentaries : editInputs.commentaries}
               />
@@ -79,6 +81,7 @@ console.log(editInputs);
                 className="custom-input"
                 name="exchange_rate"
                 id="exchange_rate"
+                maxLength={9}
                 placeholder="  Tasa de cambio de titularidad"
                 type="text"
                 onChange={handleChange}
@@ -94,6 +97,7 @@ console.log(editInputs);
                 className="custom-input"
                 name="client_price"
                 id="client_price"
+                maxLength={9}
                 placeholder="Introduce la cantidad"
                 type="text"
                 onChange={handleChange}
