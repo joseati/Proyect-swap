@@ -1,7 +1,7 @@
 // External libraries
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Container, Col, Row, Button, Card } from 'react-bootstrap';
 
 
 // Internal components and context
@@ -28,14 +28,20 @@ export const AllTravels = () => {
     })
     const  [ allPlaneTravel, setAllPlaneTravel] = useState()
     const  [ allTrainTravel, setAllTrainTravel] = useState()
-
-
+    const [ message , setMessage ] = useState(false)
+    useEffect(() => {
+        setTimeout(() => {
+        setShowAllTickets(true)
+            
+        }, 600);
+    }, []);
     useEffect(() => {
         setReset(true)
         console.log(prepareDataPlane, prepareDataTrain);
         setAllTravelsToBuy(prepareDataPlane?.concat(prepareDataTrain))
         setAllPlaneTravel(prepareDataPlane)
         setAllTrainTravel(prepareDataTrain)
+
     },[prepareDataPlane, prepareDataTrain])
     
     // console.log(allPlaneTravel);
@@ -45,14 +51,17 @@ export const AllTravels = () => {
             setShowPlaneTickets(true);
             setShowTrainTickets(false);
             setShowAllTickets(false)
+            setMessage(false)
         } else if (SwapType === "tren") {
             setShowTrainTickets(true);
             setShowPlaneTickets(false);
             setShowAllTickets(false)
+            setMessage(false)
         }else if (SwapType === "todos"){
             setShowTrainTickets(false);
             setShowPlaneTickets(false);
             setShowAllTickets(true);
+            setMessage(false)
         }
     };
     const handleChange = (e) => {
@@ -86,18 +95,21 @@ export const AllTravels = () => {
                             departure_date: e.departure_date === null || e.departure_date === undefined ? allTravelsToBuy.departure_date : e.departure_date,
                             arrival_date: e.arrival_date === null || e.arrival_date === undefined ? allTravelsToBuy.arrival_date : e.arrival_date                            
                         })));
-                        console.log(res.data)
-                        console.log(res.data.departure_date)
+                       
+                        if(!res.data.dataTemp.length){
+                            setMessage(true)
+                        }else{
+                            setMessage(false)
+                        }
+                       
                     })
                     .catch((err) => console.log(err))
                   }
         }
-       
-        
-      
-      console.log(allTravelsToBuy);
+       console.log(message);
 
       if(showPlaneTickets){
+        setMessage(false)
         if(inputFilter){
             const temp = JSON.stringify(inputFilter)
             axios
@@ -105,6 +117,11 @@ export const AllTravels = () => {
             .then((res)=> {
                 // console.log("ressssHORRR", res)
                 setAllPlaneTravel(res.data);
+                if(!res.data.length){
+                    setMessage(true)
+                }else{
+                    setMessage(false)
+                }
             })
             .catch((err) => console.log(err))
           }
@@ -118,11 +135,21 @@ export const AllTravels = () => {
             .then((res)=> {
                 // console.log(res.data)
                 setAllTrainTravel(res.data);
+                if(!res.data.length ){
+                    setMessage(true)
+                }else{
+                    setMessage(false)
+                }
                 
             })
             .catch((err) => console.log(err))
           }
       }
+      
+     if(!allTravelsToBuy.length || !allPlaneTravel.length || !allTrainTravel.length){
+        setMessage(true)
+     }
+    
     }
 
     return (
@@ -157,6 +184,12 @@ export const AllTravels = () => {
                         </>
                         
                     ))}
+                    { !allTravelsToBuy  && 
+                    <Card style={{fontWeight: "bold", color: "#035a8d"}} className='text-center p-5' >No hay viajes Aun! <br /> Registra Uno para empezar</Card>}
+                    {/* {  (!allTravelsToBuy?.length || !allPlaneTravel?.length || !allTrainTravel.length )&& 
+                    <Card style={{fontWeight: "bold", color: "#035a8d"}} className='text-center p-5' >No hay viajes que coincidan con tu busquedad <br /> </Card>} */}
+                    {  message && 
+                    <Card style={{fontWeight: "bold", color: "#035a8d"}} className='text-center p-5' >No hay viajes que coincidan con tu busquedad <br /> </Card>}
                     
                     {showPlaneTickets && <AllPlaneTravel allPlaneTravel={allPlaneTravel} />}
                     {showTrainTickets && <AllTrainTravel allTrainTravel={allTrainTravel} />}

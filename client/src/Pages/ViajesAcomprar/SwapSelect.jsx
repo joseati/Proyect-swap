@@ -1,10 +1,25 @@
+import { useEffect, useState } from 'react';
 import {
     Col, Row, Accordion} from 'react-bootstrap';
 
 export const SwapSelect = ({ selectedSwap, handleSwapClick }) => {
+
+    
+    const [accordion2, setAccordion2] = useState()
+    useEffect(() => {
+        setTimeout(() => {
+          
+            
+            setAccordion2("0")
+            
+        }, 500);
+    }, []);
+
+     
+   
     return (
         <Accordion defaultActiveKey="0" className='filter1'>
-                                  <Accordion.Item eventKey="0">
+                                  <Accordion.Item eventKey={`${accordion2}`}>
 
             <Accordion.Header className='header-title'>
                 <h2 className='title-filter1'>Tipos de Swap</h2>

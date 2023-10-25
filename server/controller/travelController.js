@@ -85,146 +85,164 @@ class TravelController {
     console.log(req.body);
     const { origin, destiny,passengers, commentaries, original_price, client_price, exchange_rate, plane_travel_id, origin_airpoty_id, destiny_airpoty_id, departure_date, departure_time, arrival_date,  arrival_time, compani_name,origin_airpoty_id_tp2, destiny_airpoty_id_tp2, departure_date_tp2, departure_time_tp2, arrival_date_tp2,  arrival_time_tp2, compani_name_tp2 } = req.body.inputFormPlane
     const {user_id} = req.body
-    
-   console.log(origin);
- 
-// Primera insert en la tabla travel_product(tabla con mayor entidad)
-    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate, is_deleted ) VALUES (1, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)}, 1)`
+    if(exchange_rate == "" || !exchange_rate ||
+    passengers == ""  || !passengers ||
+    original_price == "" || !original_price ||
+    client_price == "" || !client_price ||
+    exchange_rate == "" || !exchange_rate){
+      res.status(500).json("err en los campos")
+    }else{
+       
+        // Primera insert en la tabla travel_product(tabla con mayor entidad)
+      let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate, is_deleted ) VALUES (1, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)}, 1)`
 
-    console.log(sqlTravelProduct);
-
-    connection.query( sqlTravelProduct, (err, resultTravel ) => {
-     if(err){
-      res.status(500).json("error en sql")
-     }else{
-      // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
-      const { insertId } = resultTravel
-      
-      if(resultTravel ){
-        // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
-        if (!plane_travel_id || plane_travel_id == "1"){
-          let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" )`
-          
-          connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
-           if(err2){
-             res.status(500).json("err2")
-
-           }  else{
-            const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
-            console.log(sqlIsdelete);
-            connection.query(sqlIsdelete,(err3, resultIsDelete) => {
-              err3 ?
-              res.status(500).json(err3)
-              :
-              res.status(200).json("ok")
-            })
-           }
-            
-            
-          })
-
-        }
-        else if(plane_travel_id === "2"){
-          // si el id es 2 es ida y vuelta y se produce el siguente insert 
-          let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES
-           (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" ), 
-          (${insertId}, 2, ${parseInt(origin_airpoty_id_tp2)},${parseInt(destiny_airpoty_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
+      console.log(sqlTravelProduct);
   
-          connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
-            if(err2){
-              res.status(500).json("err2")
- 
-            }else{
+      connection.query( sqlTravelProduct, (err, resultTravel ) => {
+       if(err){
+        res.status(500).json(err)
+       }else{
+        // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
+        const { insertId } = resultTravel
+        
+        if(resultTravel ){
+          // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
+          if (!plane_travel_id || plane_travel_id == "1"){
+            let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" )`
+            
+            connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
+             if(err2){
+               res.status(500).json(err2)
+  
+             }  else{
               const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+              console.log(sqlIsdelete);
               connection.query(sqlIsdelete,(err3, resultIsDelete) => {
                 err3 ?
                 res.status(500).json(err3)
                 :
                 res.status(200).json("ok")
               })
-            }
+             }
+              
+              
+            })
+  
+          }
+          else if(plane_travel_id === "2"){
+            // si el id es 2 es ida y vuelta y se produce el siguente insert 
+            let sqlPlaneTravel = `INSERT INTO plane_travel (travel_product_id, plane_travel_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES
+             (${insertId}, 1, ${parseInt(origin_airpoty_id)},${parseInt(destiny_airpoty_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" ), 
+            (${insertId}, 2, ${parseInt(origin_airpoty_id_tp2)},${parseInt(destiny_airpoty_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
+    
+            connection.query( sqlPlaneTravel, (err2, resultPlaneform) => {
+              if(err2){
+                res.status(500).json("err2")
+   
+              }else{
+                const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+                connection.query(sqlIsdelete,(err3, resultIsDelete) => {
+                  err3 ?
+                  res.status(500).json(err3)
+                  :
+                  res.status(200).json("ok")
+                })
+              }
+               
              
-           
-          })
-
+            })
+  
+          }
+  
         }
+  
+       }
+  
+      })
+  
+    }
+   
 
-      }
-
-     }
-
-    })
-
+    
   }
 
 
   sellOneTrainTravel = ( req, res ) => {
     const {origin ,destiny,passengers,commentaries,original_price,client_price,exchange_rate,train_travel_id,origin_trainStation_id,destiny_trainStation_id,departure_date,departure_time,arrival_date,arrival_time,compani_name,origin_trainStation_id_tp2,destiny_trainStation_id_tp2,departure_date_tp2,departure_time_tp2 ,arrival_date_tp2,arrival_time_tp2,compani_name_tp2} = req.body.inputFormTrain
     const {user_id} = req.body
-
-    // Primera insert en la tabla travel_product(tabla con mayor entidad)
-    let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate,is_deleted ) VALUES (2, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)}, 1)`
-
-    connection.query( sqlTravelProduct, (err, resultTravel ) => {
-      if(err){
-       res.status(500).json("err en sql")
-      }else{
-       // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
-       const { insertId } = resultTravel
-      
-       if(resultTravel ){
-         // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
-         if (!train_travel_id || train_travel_id == "1"){
-           let sqlTrainTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}"   , "${compani_name}" )`
-           
-           connection.query( sqlTrainTravel, (err2, resultTrainform) => {
-            if(err2){
-              res.status(500).json("err2")
- 
-            } else{
-              const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
-              connection.query(sqlIsdelete,(err3, resultIsDelete) => {
-                err3 ?
-                res.status(500).json(err3)
-                :
-                res.status(200).json("ok")
-              })
-            }
-          
-            
-           })
- 
-         }
-         else if(train_travel_id === "2"){
-           // si el id es 2 es ida y vuelta y se produce el siguente insert 
-           let sqlPlaneTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES
-            (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" ), 
-           (${insertId}, 2, ${parseInt(origin_trainStation_id_tp2)},${parseInt(destiny_trainStation_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
+    if(exchange_rate == "" || !exchange_rate ||
+    passengers == ""  || !passengers ||
+    original_price == "" || !original_price ||
+    client_price == "" || !client_price ||
+    exchange_rate == "" || !exchange_rate){
+      res.status(500).json("err en los campos")
+    }else{
+      console.log(req.body);
+      // Primera insert en la tabla travel_product(tabla con mayor entidad)
+      let sqlTravelProduct = `INSERT INTO travel_product(type, origin, destiny, passenger, commentaries, seller_user_id, original_price, client_price, exchange_rate,is_deleted ) VALUES (2, "${origin}","${destiny}","${parseInt(passengers)}","${commentaries}",${user_id},${parseFloat(original_price)},${parseFloat(client_price)},${parseFloat(exchange_rate)}, 1)`
+  console.log(sqlTravelProduct);
+      connection.query( sqlTravelProduct, (err, resultTravel ) => {
+        if(err){
+         res.status(500).json(err)
+        }else{
+         // Si la inserccion se produce rescatamos el numero de insert que usaremos para el travel_id de la siguente insert
+         const { insertId } = resultTravel
+        
+         if(resultTravel ){
+           // Si plane viene como undefine o es 1 se produce solo un insert 1 solo viaje(ida)
+           if (!train_travel_id || train_travel_id == "1"){
+             let sqlTrainTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}"   , "${compani_name}" )`
+             
+             connection.query( sqlTrainTravel, (err2, resultTrainform) => {
+              if(err2){
+                res.status(500).json(err2)
    
-           connection.query( sqlPlaneTravel, (err2, resultTrainform) => {
-            if(err2){
-              res.status(500).json("err2")
- 
-            }else{
-              const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
-              connection.query(sqlIsdelete,(err3, resultIsDelete) => {
-                err3 ?
-                res.status(500).json(err3)
-                :
-                res.status(200).json("ok")
-              })
-            }
-             
-             
-           })
- 
+              } else{
+                const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+                connection.query(sqlIsdelete,(err3, resultIsDelete) => {
+                  err3 ?
+                  res.status(500).json(err3)
+                  :
+                  res.status(200).json("ok")
+                })
+              }
+            
+              
+             })
+   
+           }
+           else if(train_travel_id === "2"){
+             // si el id es 2 es ida y vuelta y se produce el siguente insert 
+             let sqlPlaneTravel = `INSERT INTO train_travel (travel_product_id, train_travel_id, origin_train_id, destination_train_id, departure_date, departure_time, arrival_date, arrival_time, company_name ) VALUES
+              (${insertId}, 1, ${parseInt(origin_trainStation_id)},${parseInt(destiny_trainStation_id)}, "${departure_date}", "${departure_time}", "${arrival_date}", "${arrival_time}", "${compani_name}" ), 
+             (${insertId}, 2, ${parseInt(origin_trainStation_id_tp2)},${parseInt(destiny_trainStation_id_tp2)}, "${departure_date_tp2}", "${departure_time_tp2}", "${ arrival_date_tp2 }", "${ arrival_time_tp2}", "${ compani_name_tp2}" )`
+     
+             connection.query( sqlPlaneTravel, (err2, resultTrainform) => {
+              if(err2){
+                res.status(500).json("err2")
+   
+              }else{
+                const sqlIsdelete = `UPDATE travel_product set is_deleted = 0 WHERE travel_product_id = ${insertId}`
+                connection.query(sqlIsdelete,(err3, resultIsDelete) => {
+                  err3 ?
+                  res.status(500).json(err3)
+                  :
+                  res.status(200).json("ok")
+                })
+              }
+               
+               
+             })
+   
+           }
+   
          }
- 
-       }
- 
-      }
- 
-     })
+   
+        }
+   
+       })
+    }
+    
     
   }
 

@@ -2,14 +2,24 @@ import {
   Col, Accordion, Form, FormGroup, 
   FormLabel, FormControl, FormSelect, Button, Container
 } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 
 export const ColFilters = ({inputFilter,handleChange}) => {
+    const [accordion2, setAccordion2] = useState()
+    useEffect(() => {
+        setTimeout(() => {
+          
+            
+            setAccordion2("0")
+            
+        }, 500);
+    }, []);
   return (
     
       <Container className=' mt-5 bg' xs={5}>
           <Col className='pt-4 col-filters'>
                   <Accordion defaultActiveKey="0">
-                      <Accordion.Item eventKey="0">
+                      <Accordion.Item eventKey={`${accordion2}`}>
                           <Accordion.Header className='title-filter2'>Filtros</Accordion.Header>
                           <Accordion.Body>
                               <Col xs={12} className='column-filters'>
